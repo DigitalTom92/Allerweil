@@ -69,16 +69,13 @@
 ========================================================== */
 
 * {
-
     margin: 0;
     padding: 0;
-
     box-sizing: border-box;
 }
 
 
 html {
-
     scroll-behavior: smooth;
 }
 
@@ -95,41 +92,33 @@ body {
         sans-serif;
 
     background: var(--cream);
-
     color: var(--text);
 
     overflow-x: hidden;
 
     -webkit-font-smoothing: antialiased;
-
     text-rendering: optimizeLegibility;
 }
 
 
 body.no-scroll {
-
     overflow: hidden;
 }
 
 
 a {
-
     color: inherit;
-
     text-decoration: none;
 }
 
 
 button {
-
     font: inherit;
 }
 
 
 img {
-
     display: block;
-
     max-width: 100%;
 }
 
@@ -148,14 +137,12 @@ img {
     z-index: 3000;
 
     width: 100%;
-
     height: var(--nav-height);
 
     padding:
         0 5vw;
 
     display: flex;
-
     align-items: center;
 
     background:
@@ -199,8 +186,6 @@ img {
 }
 
 
-/* INNERER BEREICH */
-
 .nav-inner {
 
     width: 100%;
@@ -211,7 +196,6 @@ img {
     margin: 0 auto;
 
     display: flex;
-
     align-items: center;
 }
 
@@ -256,7 +240,6 @@ img {
 .nav-logo {
 
     display: flex;
-
     align-items: center;
 
     flex-shrink: 0;
@@ -266,7 +249,6 @@ img {
 .nav-logo img {
 
     width: auto;
-
     height: 46px;
 
     object-fit: contain;
@@ -286,7 +268,6 @@ img {
     margin-left: auto;
 
     display: flex;
-
     align-items: center;
 
     gap: 31px;
@@ -306,7 +287,6 @@ img {
         );
 
     font-size: .84rem;
-
     font-weight: 550;
 
     letter-spacing: -.01em;
@@ -317,7 +297,6 @@ img {
 
 
 .nav-links a:hover {
-
     color: white;
 }
 
@@ -388,11 +367,9 @@ img {
             .94
         );
 
-    color:
-        var(--green-dark);
+    color: var(--green-dark);
 
     font-size: .83rem;
-
     font-weight: 650;
 
     box-shadow:
@@ -467,13 +444,11 @@ img {
 .mobile-menu {
 
     position: fixed;
-
     inset: 0;
 
     z-index: 5000;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
@@ -491,7 +466,6 @@ img {
     color: white;
 
     opacity: 0;
-
     visibility: hidden;
 
     transition:
@@ -503,7 +477,6 @@ img {
 .mobile-menu.open {
 
     opacity: 1;
-
     visibility: visible;
 }
 
@@ -577,13 +550,17 @@ img {
 
 /* ==========================================================
    HERO
+   DESKTOP = EXAKT BILDSCHIRMHOCH
 ========================================================== */
 
 .hero {
 
     position: relative;
 
-    min-height: 100svh;
+    width: 100%;
+
+    height: 100svh;
+    min-height: 620px;
 
     overflow: hidden;
 
@@ -593,9 +570,9 @@ img {
     justify-content: center;
 
     padding:
-        calc(var(--nav-height) + 80px)
+        calc(var(--nav-height) + 34px)
         5vw
-        80px;
+        38px;
 
     color: white;
 
@@ -642,11 +619,11 @@ img {
 
     position: absolute;
 
-    width: 820px;
-    height: 820px;
+    width: min(820px, 72vw);
+    aspect-ratio: 1;
 
     left: 50%;
-    top: 50%;
+    top: 53%;
 
     transform:
         translate(
@@ -675,11 +652,11 @@ img {
 
     position: absolute;
 
-    width: 590px;
-    height: 590px;
+    width: min(590px, 54vw);
+    aspect-ratio: 1;
 
     left: 50%;
-    top: 50%;
+    top: 53%;
 
     transform:
         translate(
@@ -713,13 +690,11 @@ img {
     z-index: 3;
 
     width: 100%;
-
-    max-width: 1050px;
+    max-width: 1100px;
 
     margin: 0 auto;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
@@ -741,9 +716,9 @@ img {
 
     gap: 11px;
 
-    margin-bottom: 29px;
+    margin-bottom: 22px;
 
-    font-size: .72rem;
+    font-size: .69rem;
 
     font-weight: 650;
 
@@ -756,7 +731,7 @@ img {
             255,
             255,
             255,
-            .67
+            .62
         );
 }
 
@@ -774,27 +749,28 @@ img {
             255,
             255,
             255,
-            .45
+            .40
         );
 }
 
 
 /* ==========================================================
    HERO LOGO
+   JETZT DEUTLICH PRÄSENTER
 ========================================================== */
 
 .hero-logo {
 
     width:
         clamp(
-            380px,
-            47vw,
-            670px
+            450px,
+            52vw,
+            760px
         );
 
     margin:
         0 auto
-        45px;
+        30px;
 }
 
 
@@ -809,32 +785,33 @@ img {
         brightness(0)
         invert(1);
 
-    opacity: .99;
+    opacity: 1;
 }
 
 
 /* ==========================================================
    HERO ZITAT
+   BEWUSST KLEINER ALS VORHER
 ========================================================== */
 
 .hero-quote {
 
-    max-width: 940px;
+    max-width: 790px;
 
     margin: 0 auto;
 
     font-size:
         clamp(
-            2.3rem,
-            4.4vw,
-            4.7rem
+            1.85rem,
+            2.8vw,
+            3.15rem
         );
 
-    line-height: 1.04;
+    line-height: 1.08;
 
-    letter-spacing: -.047em;
+    letter-spacing: -.04em;
 
-    font-weight: 520;
+    font-weight: 500;
 
     text-align: center;
 
@@ -843,7 +820,7 @@ img {
             255,
             255,
             255,
-            .97
+            .94
         );
 }
 
@@ -859,7 +836,7 @@ img {
 
     font-weight: 400;
 
-    letter-spacing: -.035em;
+    letter-spacing: -.025em;
 }
 
 
@@ -869,23 +846,23 @@ img {
 
 .hero-quote-author {
 
-    margin-top: 24px;
+    margin-top: 17px;
 
     color:
         rgba(
             255,
             255,
             255,
-            .55
+            .48
         );
 
-    font-size: .76rem;
+    font-size: .69rem;
 
     font-weight: 500;
 
     line-height: 1.5;
 
-    letter-spacing: .08em;
+    letter-spacing: .07em;
 }
 
 
@@ -895,7 +872,7 @@ img {
 
 .hero-actions {
 
-    margin-top: 38px;
+    margin-top: 27px;
 
     display: flex;
 
@@ -913,12 +890,12 @@ img {
     align-items: center;
     justify-content: center;
 
-    min-height: 50px;
+    min-height: 48px;
 
     padding:
-        0 21px;
+        0 20px;
 
-    border-radius: 15px;
+    border-radius: 14px;
 
     background:
         rgba(
@@ -931,7 +908,7 @@ img {
     color:
         var(--green-dark);
 
-    font-size: .88rem;
+    font-size: .85rem;
 
     font-weight: 650;
 
@@ -966,12 +943,12 @@ img {
     align-items: center;
     justify-content: center;
 
-    min-height: 50px;
+    min-height: 48px;
 
     padding:
-        0 21px;
+        0 20px;
 
-    border-radius: 15px;
+    border-radius: 14px;
 
     border:
         1px solid
@@ -998,7 +975,7 @@ img {
     -webkit-backdrop-filter:
         blur(16px);
 
-    font-size: .88rem;
+    font-size: .85rem;
 
     font-weight: 550;
 
@@ -1225,14 +1202,11 @@ img {
 @keyframes marqueeMove {
 
     from {
-
         transform:
             translateX(0);
     }
 
-
     to {
-
         transform:
             translateX(-50%);
     }
@@ -1262,7 +1236,6 @@ img {
 .container {
 
     width: 100%;
-
     max-width: 1260px;
 
     margin: auto;
@@ -1461,10 +1434,6 @@ img {
 }
 
 
-/* ==========================================================
-   BILDER
-========================================================== */
-
 .gallery-card img {
 
     position: absolute;
@@ -1571,9 +1540,7 @@ img {
     background:
         linear-gradient(
             135deg,
-
             var(--green) 0%,
-
             var(--green-dark) 100%
         );
 
@@ -1804,7 +1771,6 @@ img {
 
 
 .info-card:last-child {
-
     border-right: 0;
 }
 
@@ -1897,7 +1863,6 @@ img {
 
 
 .hours-row:last-child {
-
     border-bottom: 0;
 }
 
@@ -1934,7 +1899,6 @@ img {
 
 
 .text-link:hover {
-
     gap: 13px;
 }
 
@@ -2283,7 +2247,6 @@ img {
 
 
 .footer a:hover {
-
     color: white;
 }
 
@@ -2363,7 +2326,6 @@ img {
 
 
 .cookie-layer.visible {
-
     display: flex;
 }
 
@@ -2371,7 +2333,6 @@ img {
 .cookie-box {
 
     width: 100%;
-
     max-width: 730px;
 
     padding: 28px;
@@ -2680,6 +2641,87 @@ img {
 
 
 /* ==========================================================
+   FLACHERE DESKTOP / NOTEBOOK DISPLAYS
+   DAMIT DER HERO IMMER KOMPLETT PASST
+========================================================== */
+
+@media
+    (min-width: 701px)
+    and (max-height: 820px) {
+
+    .hero {
+
+        min-height: 0;
+
+        padding:
+            calc(var(--nav-height) + 20px)
+            5vw
+            24px;
+    }
+
+
+    .hero-eyebrow {
+
+        margin-bottom: 14px;
+
+        font-size: .62rem;
+    }
+
+
+    .hero-logo {
+
+        width:
+            clamp(
+                390px,
+                44vw,
+                620px
+            );
+
+        margin-bottom: 19px;
+    }
+
+
+    .hero-quote {
+
+        max-width: 720px;
+
+        font-size:
+            clamp(
+                1.6rem,
+                2.35vw,
+                2.55rem
+            );
+
+        line-height: 1.06;
+    }
+
+
+    .hero-quote-author {
+
+        margin-top: 12px;
+
+        font-size: .62rem;
+    }
+
+
+    .hero-actions {
+
+        margin-top: 18px;
+    }
+
+
+    .primary-button,
+    .secondary-button {
+
+        min-height: 44px;
+
+        font-size: .81rem;
+    }
+
+}
+
+
+/* ==========================================================
    TABLET
 ========================================================== */
 
@@ -2693,7 +2735,6 @@ img {
 
 
     .menu-button {
-
         display: block;
     }
 
@@ -2707,13 +2748,11 @@ img {
 
 
     .about-grid {
-
         gap: 25px;
     }
 
 
     .about-text {
-
         padding-top: 0;
     }
 
@@ -2728,7 +2767,6 @@ img {
 
 
     .info-header {
-
         gap: 25px;
     }
 
@@ -2774,9 +2812,7 @@ img {
 @media (max-width: 700px) {
 
     :root {
-
-        --nav-height:
-            66px;
+        --nav-height: 66px;
     }
 
 
@@ -2791,7 +2827,6 @@ img {
 
 
     .nav-logo img {
-
         height: 40px;
     }
 
@@ -2805,13 +2840,14 @@ img {
 
     .hero {
 
-        min-height:
-            100svh;
+        height: auto;
+
+        min-height: 100svh;
 
         padding:
-            calc(var(--nav-height) + 55px)
+            calc(var(--nav-height) + 48px)
             22px
-            65px;
+            55px;
 
         align-items:
             center;
@@ -2834,11 +2870,11 @@ img {
 
     .hero-eyebrow {
 
-        font-size: .62rem;
+        font-size: .60rem;
 
         letter-spacing: .14em;
 
-        margin-bottom: 24px;
+        margin-bottom: 21px;
     }
 
 
@@ -2853,26 +2889,26 @@ img {
 
         width:
             min(
-                390px,
-                88vw
+                420px,
+                91vw
             );
 
-        margin-bottom: 34px;
+        margin-bottom: 28px;
     }
 
 
     .hero-quote {
 
-        max-width: 95%;
+        max-width: 94%;
 
         font-size:
             clamp(
-                2rem,
-                9.5vw,
-                3.3rem
+                1.75rem,
+                7.8vw,
+                2.7rem
             );
 
-        line-height: 1.06;
+        line-height: 1.07;
     }
 
 
@@ -2880,9 +2916,9 @@ img {
 
         max-width: 330px;
 
-        margin-top: 20px;
+        margin-top: 17px;
 
-        font-size: .68rem;
+        font-size: .64rem;
 
         line-height: 1.55;
     }
@@ -2892,7 +2928,7 @@ img {
 
         width: 100%;
 
-        margin-top: 31px;
+        margin-top: 25px;
 
         flex-direction: column;
 
@@ -2918,25 +2954,21 @@ img {
 
 
     .event-small {
-
         font-size: .58rem;
     }
 
 
     .event-title {
-
         font-size: .72rem;
     }
 
 
     .event-date {
-
         font-size: .84rem;
     }
 
 
     .event-time {
-
         font-size: .65rem;
     }
 
@@ -3119,26 +3151,21 @@ img {
 
         <div class="nav-links">
 
-
             <a href="#allerweil">
                 Allerweil
             </a>
-
 
             <a href="#standort">
                 Standort
             </a>
 
-
             <a href="#oeffnungszeiten">
                 Öffnungszeiten
             </a>
 
-
             <a href="#kontakt">
                 Kontakt
             </a>
-
 
         </div>
 
@@ -3147,9 +3174,7 @@ img {
             href="#standort"
             class="nav-button"
         >
-
             Vorbeikommen
-
         </a>
 
 
@@ -3158,9 +3183,7 @@ img {
             onclick="openMobileMenu()"
             aria-label="Menü öffnen"
         >
-
             ☰
-
         </button>
 
 
@@ -3191,9 +3214,7 @@ img {
         onclick="closeMobileMenu()"
         aria-label="Menü schließen"
     >
-
         ✕
-
     </button>
 
 
@@ -3263,8 +3284,7 @@ img {
 
         <div class="hero-quote">
 
-            Wir wollten nur kurz
-            stehen bleiben.
+            Wir wollten nur kurz stehen bleiben.
 
             <br>
 
@@ -3291,9 +3311,7 @@ img {
                 class="primary-button"
                 href="#standort"
             >
-
                 Vorbeikommen
-
             </a>
 
 
@@ -3301,9 +3319,7 @@ img {
                 class="secondary-button"
                 href="#allerweil"
             >
-
                 Allerweil entdecken ↓
-
             </a>
 
 
@@ -3311,7 +3327,6 @@ img {
 
 
     </div>
-
 
 </header>
 
@@ -3684,8 +3699,6 @@ img {
         <div class="info-grid">
 
 
-            <!-- STANDORT -->
-
             <article class="info-card reveal">
 
 
@@ -3736,8 +3749,6 @@ img {
 
 
 
-            <!-- ÖFFNUNGSZEITEN -->
-
             <article
                 class="info-card reveal"
                 id="oeffnungszeiten"
@@ -3763,65 +3774,45 @@ img {
 
                     <div class="hours-row">
 
-                        <span>
-                            Sonntag
-                        </span>
+                        <span>Sonntag</span>
 
-                        <span>
-                            geschlossen
-                        </span>
+                        <span>geschlossen</span>
 
                     </div>
 
 
                     <div class="hours-row">
 
-                        <span>
-                            Montag
-                        </span>
+                        <span>Montag</span>
 
-                        <span>
-                            geschlossen
-                        </span>
+                        <span>geschlossen</span>
 
                     </div>
 
 
                     <div class="hours-row">
 
-                        <span>
-                            Di – Do
-                        </span>
+                        <span>Di – Do</span>
 
-                        <span>
-                            15 – 22 Uhr
-                        </span>
+                        <span>15 – 22 Uhr</span>
 
                     </div>
 
 
                     <div class="hours-row">
 
-                        <span>
-                            Freitag
-                        </span>
+                        <span>Freitag</span>
 
-                        <span>
-                            15 – 00 Uhr
-                        </span>
+                        <span>15 – 00 Uhr</span>
 
                     </div>
 
 
                     <div class="hours-row">
 
-                        <span>
-                            Samstag
-                        </span>
+                        <span>Samstag</span>
 
-                        <span>
-                            11 – 00 Uhr
-                        </span>
+                        <span>11 – 00 Uhr</span>
 
                     </div>
 
@@ -3832,8 +3823,6 @@ img {
             </article>
 
 
-
-            <!-- KONTAKT -->
 
             <article
                 class="info-card reveal"
@@ -4184,9 +4173,7 @@ img {
                     </strong>
 
                     <small>
-
                         Grundlegende Website-Funktionen.
-
                     </small>
 
                 </div>
@@ -4222,10 +4209,8 @@ img {
                     </strong>
 
                     <small>
-
                         Zum Beispiel Karten
                         oder Social-Media-Inhalte.
-
                     </small>
 
                 </div>
@@ -4260,9 +4245,7 @@ img {
                 class="cookie-button necessary"
                 onclick="acceptNecessary()"
             >
-
                 Nur notwendige
-
             </button>
 
 
@@ -4270,9 +4253,7 @@ img {
                 class="cookie-button save"
                 onclick="saveSelection()"
             >
-
                 Auswahl speichern
-
             </button>
 
 
@@ -4280,9 +4261,7 @@ img {
                 class="cookie-button accept"
                 onclick="acceptAll()"
             >
-
                 Alle akzeptieren
-
             </button>
 
 
@@ -4297,9 +4276,7 @@ img {
             Weitere Informationen findest du in unserer
 
             <a href="datenschutz.html">
-
                 Datenschutzerklärung
-
             </a>.
 
         </p>
@@ -4327,9 +4304,7 @@ img {
 
 
     if (!faviconLink) {
-
         return;
-
     }
 
 
@@ -4357,7 +4332,6 @@ img {
 
             canvas.width =
                 size;
-
 
             canvas.height =
                 size;
@@ -4448,7 +4422,6 @@ img {
 
             ctx.closePath();
 
-
             ctx.clip();
 
 
@@ -4467,17 +4440,11 @@ img {
                 sourceHeight;
 
 
-            let sx =
-                0;
-
-
-            let sy =
-                0;
-
+            let sx = 0;
+            let sy = 0;
 
             let sw =
                 sourceWidth;
-
 
             let sh =
                 sourceHeight;
@@ -4704,10 +4671,7 @@ const revealObserver =
         },
 
         {
-
-            threshold:
-                .12
-
+            threshold: .12
         }
 
     );
