@@ -2241,7 +2241,7 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 
 
 /* ==========================================================
-   STATEMENT
+   STATEMENT / NEXT EVENT
 ========================================================== */
 
 .statement {
@@ -2262,7 +2262,8 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
             #10291f 100%
         );
 
-    color: var(--cream);
+    color:
+        var(--cream);
 }
 
 
@@ -2280,11 +2281,16 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 
     border:
         1px solid
-        rgba(242, 232, 216,
+        rgba(
+            242,
+            232,
+            216,
             .07
         );
 
     border-radius: 50%;
+
+    pointer-events: none;
 }
 
 
@@ -2303,74 +2309,343 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
     grid-template-columns:
         .45fr 1.55fr;
 
-    gap: 70px;
+    gap: 82px;
+
+    align-items: center;
 }
 
 
-.statement-symbol {
+/* LINKER DATUMSKREIS */
 
-    width: 145px;
-    height: 145px;
+.statement-date {
+
+    width: 158px;
+    height: 158px;
 
     display: flex;
+
+    flex-direction: column;
 
     align-items: center;
     justify-content: center;
 
     border:
         1px solid
-        rgba(242, 232, 216,
-            .17
+        rgba(
+            242,
+            232,
+            216,
+            .23
         );
 
     border-radius: 50%;
 
-    font-family:
-        Georgia,
-        serif;
-
-    font-size: 3.7rem;
-
     color:
-        rgba(242, 232, 216,
-            .88
-        );
+        var(--cream);
+
+    text-align: center;
 }
 
 
-.statement h2 {
+.statement-date-day {
 
-    max-width: 920px;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     font-size:
-        clamp(
-            3.5rem,
-            7vw,
-            7.2rem
-        );
-
-    line-height: .91;
-
-    letter-spacing: -.06em;
-
-    font-weight: 600;
-}
-
-
-.statement h2 span {
-
-    font-family:
-        Georgia,
-        serif;
-
-    font-weight: 400;
+        2.55rem;
 
     font-style: italic;
 
+    font-weight: 400;
+
+    line-height: .95;
+
+    letter-spacing: -.05em;
+}
+
+
+.statement-date-year {
+
+    margin-top: 9px;
+
     color:
-        rgba(242, 232, 216,
-            .68
+        rgba(
+            242,
+            232,
+            216,
+            .55
         );
+
+    font-size: .68rem;
+
+    font-weight: 700;
+
+    letter-spacing: .19em;
+}
+
+
+/* RECHTE EVENTSEITE */
+
+.statement-event {
+
+    max-width: 930px;
+}
+
+
+.statement-event-label {
+
+    margin-bottom: 13px;
+
+    color:
+        rgba(
+            242,
+            232,
+            216,
+            .52
+        );
+
+    font-size: .68rem;
+
+    font-weight: 750;
+
+    text-transform: uppercase;
+
+    letter-spacing: .19em;
+}
+
+
+.statement-event-head {
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 22px;
+
+    margin-bottom: 28px;
+
+    flex-wrap: wrap;
+}
+
+
+.statement-event-title {
+
+    color:
+        var(--cream);
+
+    font-size:
+        clamp(
+            2.15rem,
+            3.8vw,
+            4.15rem
+        );
+
+    line-height: .96;
+
+    letter-spacing: -.048em;
+
+    font-weight: 610;
+}
+
+
+.statement-event-time {
+
+    color:
+        rgba(
+            242,
+            232,
+            216,
+            .67
+        );
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            1.25rem,
+            2vw,
+            1.85rem
+        );
+
+    font-style: italic;
+
+    white-space: nowrap;
+}
+
+
+.statement-slogan {
+
+    max-width: 850px;
+
+    padding-top: 27px;
+
+    border-top:
+        1px solid
+        rgba(
+            242,
+            232,
+            216,
+            .14
+        );
+
+    color:
+        rgba(
+            242,
+            232,
+            216,
+            .78
+        );
+
+    font-size:
+        clamp(
+            2.15rem,
+            4.4vw,
+            4.75rem
+        );
+
+    line-height: .95;
+
+    letter-spacing: -.052em;
+
+    font-weight: 560;
+}
+
+
+.statement-slogan span {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style: italic;
+
+    font-weight: 400;
+
+    color:
+        rgba(
+            242,
+            232,
+            216,
+            .58
+        );
+}
+
+
+@media (max-width: 900px) {
+
+    .statement-inner {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 46px;
+    }
+
+
+    .statement-date {
+
+        width: 138px;
+        height: 138px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .statement {
+
+        padding:
+            104px 23px
+            94px;
+    }
+
+
+    .statement-inner {
+
+        gap: 38px;
+    }
+
+
+    .statement-date {
+
+        width: 116px;
+        height: 116px;
+    }
+
+
+    .statement-date-day {
+
+        font-size: 2rem;
+    }
+
+
+    .statement-date-year {
+
+        margin-top: 7px;
+
+        font-size: .58rem;
+    }
+
+
+    .statement-event-label {
+
+        margin-bottom: 10px;
+
+        font-size: .59rem;
+    }
+
+
+    .statement-event-head {
+
+        display: block;
+
+        margin-bottom: 23px;
+    }
+
+
+    .statement-event-title {
+
+        font-size:
+            clamp(
+                2rem,
+                10.5vw,
+                3.2rem
+            );
+    }
+
+
+    .statement-event-time {
+
+        display: block;
+
+        margin-top: 10px;
+
+        font-size: 1.2rem;
+    }
+
+
+    .statement-slogan {
+
+        padding-top: 22px;
+
+        font-size:
+            clamp(
+                1.85rem,
+                8.7vw,
+                2.85rem
+            );
+
+        line-height: .98;
+    }
+
 }
 
 
@@ -3891,8 +4166,7 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 
 
     .about-title,
-    .info-title,
-    .statement h2 {
+    .info-title {
 
         font-size:
             clamp(
@@ -3939,21 +4213,6 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
         height: 330px;
     }
 
-
-    .statement {
-
-        padding:
-            90px 23px;
-    }
-
-
-    .statement-symbol {
-
-        width: 120px;
-        height: 120px;
-
-        font-size: 3rem;
-    }
 
 
     .footer {
@@ -4238,7 +4497,7 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 </a>
 </div>
 </div>
-<div aria-hidden="true" class="section-transition to-cream"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></header>
+<div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></header>
 <!-- ==========================================================
      EVENT BANNER
 ========================================================== -->
@@ -4322,7 +4581,6 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
      FOTO-GALERIE
 ========================================================== -->
 <section class="photo-collage has-transition" id="galerie">
-
 <div class="photo-collage-grid">
 <figure class="photo-card reveal">
 <img alt="Allerweil am Friedensplatz" decoding="async" loading="lazy" src="Allerweil am Friedensplatz.jpg?v=2"/>
@@ -4364,12 +4622,11 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 <img alt="Allerweil Bild 13" decoding="async" loading="lazy" src="Bild 13.png"/>
 </figure>
 </div>
-<div aria-hidden="true" class="section-transition to-green"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
+<div aria-hidden="true" class="section-transition to-green"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      ÖFFNUNGSZEITEN – GRÜNE SEITE
 ========================================================== -->
 <section class="hours-feature has-transition" id="oeffnungszeiten">
-
 <div class="hours-feature-inner">
 <div class="hours-feature-copy reveal">
 <div class="hours-feature-label">
@@ -4436,12 +4693,11 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 </div>
 </div>
 </div>
-<div aria-hidden="true" class="section-transition to-cream"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
+<div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      ABOUT
 ========================================================== -->
 <section class="section about has-transition" id="allerweil">
-
 <div class="container">
 <div class="about-grid">
 <div class="reveal">
@@ -4486,41 +4742,15 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 </div>
 </div>
 </div>
-<div aria-hidden="true" class="section-transition to-green"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
+<div aria-hidden="true" class="section-transition to-green"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      STATEMENT
 ========================================================== -->
-<section class="statement has-transition">
-
-<div class="statement-inner">
-<div class="reveal">
-<div class="statement-symbol">
-
-                A.
-
-            </div>
-</div>
-<div class="reveal">
-<h2>
-
-                Daydrinking.
-
-                Feierabend.
-
-                Freunde.
-
-                <span>
-                    Allerweil.
-                </span>
-</h2>
-</div>
-</div>
-<div aria-hidden="true" class="section-transition to-cream"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
+<section class="statement has-transition"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">03.09.</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">Next Event</div><div class="statement-event-head"><div class="statement-event-title">Afterwork × Pregame</div><div class="statement-event-time">ab 18 Uhr</div></div><div class="statement-slogan">Daydrinking. Feierabend. Freunde. <span>Allerweil.</span></div></div></div><div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      INFOS
 ========================================================== -->
 <section class="section info" id="standort">
-
 <div class="container">
 <div class="info-header">
 <div class="reveal">
@@ -4618,7 +4848,6 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
      CTA
 ========================================================== -->
 <section class="big-cta has-transition">
-
 <div class="big-cta-inner reveal">
 <div class="big-cta-label">
 
@@ -4640,12 +4869,11 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 
         </a>
 </div>
-<div aria-hidden="true" class="section-transition to-green"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
+<div aria-hidden="true" class="section-transition to-green"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      FOOTER
 ========================================================== -->
 <footer class="footer">
-
 <div class="footer-inner">
 <div class="footer-logo">
 <img alt="Allerweil Stehausschank" src="Allerweil Logo.png"/>
