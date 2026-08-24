@@ -1,1231 +1,4979 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Allerweil Darmstadt | Bier, Wein & gute Zeit am Friedensplatz</title>
-
-    <meta
-        name="description"
-        content="Allerweil Darmstadt – Bier, Wein, Spritz und entspannte Abende mitten am Friedensplatz."
-    >
-
-    <style>
-        :root {
-            --cream: #f2eadf;
-            --cream-light: #faf6ef;
-            --dark: #151515;
-            --muted: #6f6a63;
-            --orange: #e55d2d;
-            --orange-dark: #c8471d;
-            --border: rgba(21, 21, 21, 0.12);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Helvetica Neue",
-                Helvetica,
-                Arial,
-                sans-serif;
-
-            background: var(--cream-light);
-            color: var(--dark);
-            line-height: 1.5;
-
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button,
-        input,
-        textarea {
-            font: inherit;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* =========================================
-           NAVIGATION
-        ========================================= */
-
-        .nav {
-            position: fixed;
-            top: 18px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-
-            width: calc(100% - 40px);
-            max-width: 1180px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 12px 14px 12px 22px;
-
-            background: rgba(250, 246, 239, 0.82);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            border: 1px solid rgba(255,255,255,.65);
-            border-radius: 999px;
-
-            box-shadow:
-                0 10px 40px rgba(0,0,0,.08),
-                inset 0 1px 0 rgba(255,255,255,.7);
-        }
-
-        .logo {
-            font-size: 1.05rem;
-            font-weight: 900;
-            letter-spacing: -0.03em;
-        }
-
-        .logo span {
-            color: var(--orange);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            font-size: .9rem;
-            font-weight: 600;
-        }
-
-        .nav-links a {
-            transition: opacity .2s ease;
-        }
-
-        .nav-links a:hover {
-            opacity: .55;
-        }
-
-        .nav-button {
-            padding: 12px 18px;
-            background: var(--dark);
-            color: #fff;
-            border-radius: 999px;
-            font-size: .88rem;
-            font-weight: 700;
-        }
-
-        /* =========================================
-           HERO
-        ========================================= */
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: flex-end;
-            position: relative;
-            overflow: hidden;
-
-            padding: 130px 6vw 70px;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(0,0,0,.10),
-                    rgba(0,0,0,.55)
-                ),
-                url("hero.jpg") center / cover no-repeat;
-
-            color: white;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(
-                    circle at 80% 20%,
-                    rgba(229, 93, 45, .28),
-                    transparent 35%
-                );
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1100px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-
-            margin-bottom: 22px;
-
-            font-size: .82rem;
-            text-transform: uppercase;
-            letter-spacing: .16em;
-            font-weight: 800;
-        }
-
-        .eyebrow::before {
-            content: "";
-            width: 30px;
-            height: 2px;
-            background: currentColor;
-        }
-
-        .hero h1 {
-            max-width: 1000px;
-
-            font-size: clamp(4.2rem, 10vw, 9rem);
-            line-height: .86;
-
-            letter-spacing: -.07em;
-            font-weight: 900;
-        }
-
-        .hero h1 span {
-            color: #ff7341;
-        }
-
-        .hero-bottom {
-            margin-top: 36px;
-
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        .hero-text {
-            max-width: 480px;
-            font-size: clamp(1.05rem, 1.7vw, 1.35rem);
-            color: rgba(255,255,255,.88);
-        }
-
-        .scroll-hint {
-            font-size: .8rem;
-            text-transform: uppercase;
-            letter-spacing: .14em;
-            opacity: .65;
-        }
-
-        /* =========================================
-           GENERELL
-        ========================================= */
-
-        .section {
-            padding: 120px 6vw;
-        }
-
-        .section-inner {
-            width: 100%;
-            max-width: 1180px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: .75rem;
-            text-transform: uppercase;
-            letter-spacing: .16em;
-            font-weight: 800;
-            color: var(--orange);
-            margin-bottom: 24px;
-        }
-
-        .section-title {
-            font-size: clamp(3rem, 6vw, 6.2rem);
-            line-height: .95;
-            letter-spacing: -.055em;
-            font-weight: 900;
-        }
-
-        .section-text {
-            font-size: clamp(1.15rem, 2vw, 1.55rem);
-            line-height: 1.55;
-            color: var(--muted);
-        }
-
-        /* =========================================
-           ÜBER UNS
-        ========================================= */
-
-        .about {
-            background: var(--cream-light);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: end;
-        }
-
-        .about-copy {
-            max-width: 540px;
-        }
-
-        .quote {
-            margin-top: 70px;
-            padding-top: 30px;
-
-            border-top: 1px solid var(--border);
-
-            font-size: clamp(1.6rem, 3vw, 2.8rem);
-            line-height: 1.1;
-            letter-spacing: -.04em;
-            font-weight: 700;
-        }
-
-        /* =========================================
-           IMAGE STRIP
-        ========================================= */
-
-        .visual {
-            padding: 0 6vw 120px;
-            background: var(--cream-light);
-        }
-
-        .visual-grid {
-            max-width: 1180px;
-            margin: auto;
-
-            display: grid;
-            grid-template-columns: 1.2fr .8fr;
-            gap: 18px;
-        }
-
-        .visual-card {
-            min-height: 600px;
-            border-radius: 32px;
-            overflow: hidden;
-            position: relative;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    transparent,
-                    rgba(0,0,0,.35)
-                ),
-                url("allerweil-1.jpg") center / cover no-repeat;
-        }
-
-        .visual-card.small {
-            background-image:
-                linear-gradient(
-                    to bottom,
-                    transparent,
-                    rgba(0,0,0,.28)
-                ),
-                url("allerweil-2.jpg");
-        }
-
-        .visual-caption {
-            position: absolute;
-            left: 30px;
-            bottom: 28px;
-
-            color: white;
-            font-size: 1.15rem;
-            font-weight: 700;
-        }
-
-        /* =========================================
-           INFOS
-        ========================================= */
-
-        .info-section {
-            background: var(--dark);
-            color: white;
-        }
-
-        .info-header {
-            margin-bottom: 70px;
-        }
-
-        .info-header .section-label {
-            color: #ff7341;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .info-card {
-            min-height: 390px;
-
-            padding: 34px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            border-radius: 28px;
-
-            background: rgba(255,255,255,.055);
-            border: 1px solid rgba(255,255,255,.09);
-
-            transition:
-                transform .3s ease,
-                background .3s ease;
-        }
-
-        .info-card:hover {
-            transform: translateY(-6px);
-            background: rgba(255,255,255,.08);
-        }
-
-        .info-number {
-            font-size: .75rem;
-            letter-spacing: .13em;
-            opacity: .5;
-        }
-
-        .info-card h3 {
-            font-size: 2rem;
-            letter-spacing: -.04em;
-            margin-bottom: 20px;
-        }
-
-        .info-card p,
-        .info-card a {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: rgba(255,255,255,.72);
-        }
-
-        .info-link {
-            display: inline-flex;
-            margin-top: 24px;
-            color: white !important;
-            font-weight: 700;
-        }
-
-        /* =========================================
-           OPENING HOURS
-        ========================================= */
-
-        .hours-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-
-            padding: 13px 0;
-
-            border-bottom: 1px solid rgba(255,255,255,.1);
-        }
-
-        .hours-row:last-child {
-            border-bottom: none;
-        }
-
-        /* =========================================
-           CTA
-        ========================================= */
-
-        .cta {
-            background: var(--orange);
-            color: white;
-        }
-
-        .cta-box {
-            min-height: 70vh;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: clamp(4rem, 9vw, 9rem);
-            line-height: .87;
-            letter-spacing: -.065em;
-            font-weight: 900;
-        }
-
-        .cta p {
-            max-width: 560px;
-            margin: 30px auto 0;
-
-            font-size: 1.25rem;
-            color: rgba(255,255,255,.82);
-        }
-
-        .cta-button {
-            display: inline-block;
-            margin-top: 34px;
-
-            padding: 16px 25px;
-
-            border-radius: 999px;
-            background: white;
-            color: var(--dark);
-
-            font-weight: 800;
-
-            transition: transform .2s ease;
-        }
-
-        .cta-button:hover {
-            transform: scale(1.04);
-        }
-
-        /* =========================================
-           FOOTER
-        ========================================= */
-
-        footer {
-            background: var(--dark);
-            color: white;
-
-            padding: 70px 6vw 35px;
-        }
-
-        .footer-inner {
-            max-width: 1180px;
-            margin: auto;
-        }
-
-        .footer-top {
-            display: flex;
-            justify-content: space-between;
-            gap: 60px;
-        }
-
-        .footer-logo {
-            font-size: clamp(3rem, 7vw, 6rem);
-            letter-spacing: -.06em;
-            font-weight: 900;
-        }
-
-        .footer-logo span {
-            color: var(--orange);
-        }
-
-        .footer-links {
-            display: grid;
-            grid-template-columns: repeat(2, auto);
-            gap: 12px 40px;
-
-            align-content: end;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,.68);
-            transition: color .2s ease;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            margin-top: 70px;
-            padding-top: 24px;
-
-            border-top: 1px solid rgba(255,255,255,.1);
-
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-
-            font-size: .8rem;
-            color: rgba(255,255,255,.45);
-        }
-
-        /* =========================================
-           COOKIE BANNER
-        ========================================= */
-
-        .cookie-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 5000;
-
-            display: none;
-            align-items: flex-end;
-            justify-content: center;
-
-            padding: 22px;
-
-            background: rgba(0,0,0,.35);
-            backdrop-filter: blur(7px);
-        }
-
-        .cookie-overlay.show {
-            display: flex;
-        }
-
-        .cookie-box {
-            width: 100%;
-            max-width: 720px;
-
-            padding: 30px;
-
-            background: white;
-
-            border-radius: 26px;
-
-            box-shadow: 0 25px 80px rgba(0,0,0,.25);
-        }
-
-        .cookie-box h3 {
-            font-size: 1.55rem;
-            margin-bottom: 12px;
-            letter-spacing: -.03em;
-        }
-
-        .cookie-box p {
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        .cookie-actions {
-            display: flex;
-            gap: 10px;
-
-            margin-top: 24px;
-        }
-
-        .cookie-button {
-            border: none;
-            cursor: pointer;
-
-            padding: 13px 17px;
-
-            border-radius: 999px;
-
-            font-weight: 700;
-        }
-
-        .cookie-button.primary {
-            background: var(--dark);
-            color: white;
-        }
-
-        .cookie-button.secondary {
-            background: #eee9e2;
-            color: var(--dark);
-        }
-
-        .cookie-note {
-            margin-top: 15px;
-            font-size: .78rem;
-        }
-
-        /* =========================================
-           RESPONSIVE
-        ========================================= */
-
-        @media (max-width: 850px) {
-
-            .nav {
-                top: 10px;
-                width: calc(100% - 20px);
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding:
-                    120px 24px
-                    40px;
-            }
-
-            .hero h1 {
-                font-size: clamp(4rem, 19vw, 6.7rem);
-            }
-
-            .hero-bottom {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .section {
-                padding: 85px 24px;
-            }
-
-            .about-grid,
-            .info-grid,
-            .visual-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-grid {
-                gap: 50px;
-            }
-
-            .visual {
-                padding:
-                    0 24px
-                    85px;
-            }
-
-            .visual-card {
-                min-height: 460px;
-            }
-
-            .info-card {
-                min-height: 330px;
-            }
-
-            .footer-top {
-                flex-direction: column;
-            }
-
-            .footer-links {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-            }
-
-            .cookie-actions {
-                flex-direction: column;
-            }
-
-            .cookie-button {
-                width: 100%;
-            }
-        }
-
-    </style>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Allerweil Darmstadt | Stehausschank am Friedensplatz</title>
+
+<meta
+    name="description"
+    content="Allerweil Darmstadt – Stehausschank, Bier, Wein, Spritz und gute Zeit mitten am Friedensplatz."
+>
+
+<meta name="theme-color" content="#8e1421">
+
+<style>
+
+/* =====================================================
+   ALLERWEIL
+   MODERN REDESIGN
+===================================================== */
+
+
+/* =====================================================
+   FARBEN
+===================================================== */
+
+:root {
+
+    --red: #a91024;
+    --red-dark: #7c0d1b;
+
+    --wine: #331315;
+
+    --cream: #f5eee3;
+    --cream-light: #fbf7f0;
+
+    --text: #231b19;
+    --muted: #766d67;
+
+    --white: #ffffff;
+
+    --border-dark:
+        rgba(35, 27, 25, 0.13);
+
+    --border-light:
+        rgba(255,255,255,.16);
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    background: var(--cream);
+
+    color: var(--text);
+
+    overflow-x: hidden;
+
+    -webkit-font-smoothing:
+        antialiased;
+
+    text-rendering:
+        optimizeLegibility;
+
+}
+
+
+body.no-scroll {
+
+    overflow: hidden;
+
+}
+
+
+a {
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+
+button {
+
+    font: inherit;
+
+}
+
+
+img {
+
+    width: 100%;
+
+    display: block;
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.nav {
+
+    position: fixed;
+
+    top: 18px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 1000;
+
+
+    width:
+        calc(100% - 36px);
+
+    max-width: 1260px;
+
+
+    height: 70px;
+
+
+    padding:
+        0 13px
+        0 22px;
+
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+
+    border-radius: 100px;
+
+
+    background:
+        rgba(
+            245,
+            238,
+            227,
+            .89
+        );
+
+
+    backdrop-filter:
+        blur(22px);
+
+    -webkit-backdrop-filter:
+        blur(22px);
+
+
+    border:
+        1px solid
+        rgba(255,255,255,.65);
+
+
+    box-shadow:
+        0 14px 50px
+        rgba(30,10,10,.10);
+
+}
+
+
+/* LOGO */
+
+.nav-logo {
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.nav-logo img {
+
+    height: 43px;
+
+    width: auto;
+
+}
+
+
+/* Falls Logo noch nicht vorhanden */
+
+.logo-fallback {
+
+    display: none;
+
+    color: var(--red);
+
+    font-weight: 800;
+
+    letter-spacing:
+        -.04em;
+
+    font-size: 1.5rem;
+
+}
+
+
+/* LINKS */
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 31px;
+
+
+    font-size: .88rem;
+
+    font-weight: 600;
+
+}
+
+
+.nav-links a {
+
+    position: relative;
+
+}
+
+
+.nav-links a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -5px;
+
+
+    width: 100%;
+
+    height: 1px;
+
+
+    background:
+        var(--red);
+
+
+    transform:
+        scaleX(0);
+
+    transform-origin:
+        right;
+
+
+    transition:
+        transform .3s ease;
+
+}
+
+
+.nav-links a:hover::after {
+
+    transform:
+        scaleX(1);
+
+    transform-origin:
+        left;
+
+}
+
+
+/* NAV BUTTON */
+
+.nav-cta {
+
+    padding:
+        14px 21px;
+
+
+    border-radius:
+        100px;
+
+
+    background:
+        var(--red);
+
+
+    color:
+        var(--white);
+
+
+    font-size:
+        .87rem;
+
+
+    font-weight:
+        700;
+
+
+    transition:
+        transform .25s ease,
+        background .25s ease;
+
+}
+
+
+.nav-cta:hover {
+
+    transform:
+        scale(1.035);
+
+
+    background:
+        var(--red-dark);
+
+}
+
+
+/* MOBILE MENU */
+
+.menu-button {
+
+    display: none;
+
+
+    border: 0;
+
+    background:
+        var(--red);
+
+
+    color: white;
+
+
+    width: 45px;
+
+    height: 45px;
+
+
+    border-radius:
+        50%;
+
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    min-height:
+        100svh;
+
+
+    position:
+        relative;
+
+
+    display:
+        flex;
+
+
+    align-items:
+        flex-end;
+
+
+    padding:
+        150px 5vw
+        55px;
+
+
+    overflow:
+        hidden;
+
+
+    background:
+        var(--wine);
+
+
+    color:
+        white;
+
+}
+
+
+/* FOTO */
+
+.hero-media {
+
+    position:
+        absolute;
+
+
+    inset: 0;
+
+
+    z-index: 0;
+
+}
+
+
+.hero-media img {
+
+    width: 100%;
+
+    height: 100%;
+
+
+    object-fit:
+        cover;
+
+
+    transform:
+        scale(1.03);
+
+
+    animation:
+        heroZoom 13s ease-out forwards;
+
+}
+
+
+@keyframes heroZoom {
+
+    from {
+
+        transform:
+            scale(1.09);
+
+    }
+
+    to {
+
+        transform:
+            scale(1.03);
+
+    }
+
+}
+
+
+/* OVERLAYS */
+
+.hero::before {
+
+    content: "";
+
+
+    position:
+        absolute;
+
+
+    inset: 0;
+
+
+    z-index: 1;
+
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(20,5,7,.22) 0%,
+            rgba(20,5,7,.12) 30%,
+            rgba(20,5,7,.70) 100%
+        );
+
+}
+
+
+.hero::after {
+
+    content: "";
+
+
+    position:
+        absolute;
+
+
+    inset: 0;
+
+
+    z-index: 1;
+
+
+    background:
+
+        radial-gradient(
+            circle at 75% 30%,
+            rgba(180,20,45,.13),
+            transparent 40%
+        );
+
+}
+
+
+/* CONTENT */
+
+.hero-content {
+
+    position:
+        relative;
+
+
+    z-index: 3;
+
+
+    width:
+        100%;
+
+
+    max-width:
+        1260px;
+
+
+    margin:
+        0 auto;
+
+}
+
+
+/* HERO LOGO */
+
+.hero-logo {
+
+    margin-bottom:
+        35px;
+
+}
+
+
+.hero-logo img {
+
+    width:
+        min(660px, 72vw);
+
+
+    height:
+        auto;
+
+
+    filter:
+        brightness(0)
+        invert(1);
+
+
+    opacity:
+        .99;
+
+}
+
+
+/* KLEINER TEXT */
+
+.hero-eyebrow {
+
+    display:
+        flex;
+
+
+    align-items:
+        center;
+
+
+    gap:
+        12px;
+
+
+    margin-bottom:
+        18px;
+
+
+    font-size:
+        .77rem;
+
+
+    font-weight:
+        700;
+
+
+    text-transform:
+        uppercase;
+
+
+    letter-spacing:
+        .18em;
+
+
+    color:
+        rgba(255,255,255,.78);
+
+}
+
+
+.hero-eyebrow::before {
+
+    content: "";
+
+
+    width:
+        34px;
+
+
+    height:
+        1px;
+
+
+    background:
+        white;
+
+}
+
+
+/* HEADLINE */
+
+.hero h1 {
+
+    max-width:
+        1050px;
+
+
+    font-size:
+        clamp(
+            4rem,
+            9.4vw,
+            9.7rem
+        );
+
+
+    line-height:
+        .86;
+
+
+    letter-spacing:
+        -.075em;
+
+
+    font-weight:
+        800;
+
+}
+
+
+.hero h1 em {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+
+    font-weight:
+        400;
+
+
+    letter-spacing:
+        -.055em;
+
+}
+
+
+/* BOTTOM */
+
+.hero-bottom {
+
+    margin-top:
+        43px;
+
+
+    display:
+        flex;
+
+
+    justify-content:
+        space-between;
+
+
+    align-items:
+        flex-end;
+
+
+    gap:
+        50px;
+
+}
+
+
+.hero-description {
+
+    max-width:
+        520px;
+
+
+    font-size:
+        clamp(
+            1rem,
+            1.6vw,
+            1.32rem
+        );
+
+
+    line-height:
+        1.48;
+
+
+    color:
+        rgba(255,255,255,.82);
+
+}
+
+
+/* BUTTON */
+
+.hero-button {
+
+    display:
+        inline-flex;
+
+
+    align-items:
+        center;
+
+
+    gap:
+        13px;
+
+
+    padding:
+        16px 22px;
+
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+
+    border-radius:
+        100px;
+
+
+    background:
+        rgba(255,255,255,.10);
+
+
+    backdrop-filter:
+        blur(15px);
+
+
+    transition:
+        background .25s ease,
+        transform .25s ease;
+
+}
+
+
+.hero-button:hover {
+
+    background:
+        white;
+
+
+    color:
+        var(--text);
+
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =====================================================
+   MARQUEE
+===================================================== */
+
+.marquee {
+
+    overflow:
+        hidden;
+
+
+    background:
+        var(--red);
+
+
+    color:
+        var(--cream);
+
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.2);
+
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.2);
+
+}
+
+
+.marquee-inner {
+
+    width:
+        max-content;
+
+
+    display:
+        flex;
+
+
+    align-items:
+        center;
+
+
+    animation:
+        marqueeMove
+        24s linear infinite;
+
+}
+
+
+.marquee span {
+
+    display:
+        inline-flex;
+
+
+    align-items:
+        center;
+
+
+    gap:
+        32px;
+
+
+    padding:
+        19px 18px;
+
+
+    font-size:
+        .82rem;
+
+
+    font-weight:
+        700;
+
+
+    text-transform:
+        uppercase;
+
+
+    letter-spacing:
+        .16em;
+
+}
+
+
+.marquee span::after {
+
+    content:
+        "●";
+
+
+    font-size:
+        .5rem;
+
+}
+
+
+@keyframes marqueeMove {
+
+    from {
+
+        transform:
+            translateX(0);
+
+    }
+
+
+    to {
+
+        transform:
+            translateX(-50%);
+
+    }
+
+}
+
+
+/* =====================================================
+   STANDARD SECTION
+===================================================== */
+
+.section {
+
+    padding:
+        125px 5vw;
+
+}
+
+
+.container {
+
+    width:
+        100%;
+
+
+    max-width:
+        1260px;
+
+
+    margin:
+        0 auto;
+
+}
+
+
+.label {
+
+    margin-bottom:
+        24px;
+
+
+    color:
+        var(--red);
+
+
+    font-size:
+        .74rem;
+
+
+    font-weight:
+        800;
+
+
+    text-transform:
+        uppercase;
+
+
+    letter-spacing:
+        .18em;
+
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about {
+
+    position:
+        relative;
+
+
+    background:
+        var(--cream);
+
+}
+
+
+.about-grid {
+
+    display:
+        grid;
+
+
+    grid-template-columns:
+        1.25fr .75fr;
+
+
+    gap:
+        100px;
+
+
+    align-items:
+        start;
+
+}
+
+
+.about-title {
+
+    font-size:
+        clamp(
+            3.3rem,
+            7vw,
+            7rem
+        );
+
+
+    line-height:
+        .91;
+
+
+    letter-spacing:
+        -.065em;
+
+
+    font-weight:
+        800;
+
+}
+
+
+.about-title em {
+
+    color:
+        var(--red);
+
+
+    font-family:
+        Georgia,
+        serif;
+
+
+    font-weight:
+        400;
+
+}
+
+
+.about-text {
+
+    padding-top:
+        95px;
+
+
+    max-width:
+        500px;
+
+}
+
+
+.about-text p {
+
+    color:
+        var(--muted);
+
+
+    font-size:
+        clamp(
+            1.12rem,
+            1.6vw,
+            1.4rem
+        );
+
+
+    line-height:
+        1.55;
+
+}
+
+
+/* QUOTE */
+
+.quote {
+
+    margin-top:
+        54px;
+
+
+    padding-top:
+        27px;
+
+
+    border-top:
+        1px solid
+        var(--border-dark);
+
+
+    font-family:
+        Georgia,
+        serif;
+
+
+    font-size:
+        clamp(
+            1.45rem,
+            2.4vw,
+            2.2rem
+        );
+
+
+    line-height:
+        1.17;
+
+
+    letter-spacing:
+        -.025em;
+
+}
+
+
+.quote-small {
+
+    margin-top:
+        17px;
+
+
+    color:
+        var(--muted);
+
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+
+    font-size:
+        .72rem;
+
+
+    text-transform:
+        uppercase;
+
+
+    letter-spacing:
+        .12em;
+
+}
+
+
+/* =====================================================
+   FOTO COLLAGE
+===================================================== */
+
+.gallery {
+
+    padding:
+        0 5vw
+        125px;
+
+
+    background:
+        var(--cream);
+
+}
+
+
+.gallery-grid {
+
+    max-width:
+        1260px;
+
+
+    margin:
+        auto;
+
+
+    display:
+        grid;
+
+
+    grid-template-columns:
+        1.4fr .8fr;
+
+
+    gap:
+        18px;
+
+}
+
+
+.gallery-main,
+.gallery-side {
+
+    position:
+        relative;
+
+
+    overflow:
+        hidden;
+
+
+    border-radius:
+        24px;
+
+
+    background:
+        #ddd;
+
+}
+
+
+.gallery-main {
+
+    height:
+        690px;
+
+}
+
+
+.gallery-side {
+
+    height:
+        690px;
+
+}
+
+
+.gallery-main img,
+.gallery-side img {
+
+    width:
+        100%;
+
+
+    height:
+        100%;
+
+
+    object-fit:
+        cover;
+
+
+    transition:
+        transform .8s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+.gallery-main:hover img,
+.gallery-side:hover img {
+
+    transform:
+        scale(1.035);
+
+}
+
+
+/* =====================================================
+   EVENT TEASER
+===================================================== */
+
+.event {
+
+    background:
+        var(--wine);
+
+
+    color:
+        white;
+
+
+    overflow:
+        hidden;
+
+}
+
+
+.event-grid {
+
+    display:
+        grid;
+
+
+    grid-template-columns:
+        .72fr 1.28fr;
+
+
+    gap:
+        90px;
+
+
+    align-items:
+        center;
+
+}
+
+
+.event-date {
+
+    width:
+        220px;
+
+
+    aspect-ratio:
+        1;
+
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+
+    border-radius:
+        50%;
+
+
+    display:
+        flex;
+
+
+    flex-direction:
+        column;
+
+
+    align-items:
+        center;
+
+
+    justify-content:
+        center;
+
+
+    text-align:
+        center;
+
+}
+
+
+.event-date strong {
+
+    display:
+        block;
+
+
+    font-family:
+        Georgia,
+        serif;
+
+
+    font-size:
+        5rem;
+
+
+    line-height:
+        .9;
+
+
+    font-weight:
+        400;
+
+}
+
+
+.event-date span {
+
+    margin-top:
+        10px;
+
+
+    font-size:
+        .72rem;
+
+
+    text-transform:
+        uppercase;
+
+
+    letter-spacing:
+        .15em;
+
+
+    opacity:
+        .65;
+
+}
+
+
+.event .label {
+
+    color:
+        #ee4158;
+
+}
+
+
+.event-title {
+
+    font-size:
+        clamp(
+            3.3rem,
+            7vw,
+            7rem
+        );
+
+
+    line-height:
+        .9;
+
+
+    letter-spacing:
+        -.065em;
+
+
+    font-weight:
+        800;
+
+}
+
+
+.event-title em {
+
+    color:
+        #e53950;
+
+
+    font-family:
+        Georgia,
+        serif;
+
+
+    font-weight:
+        400;
+
+}
+
+
+.event-meta {
+
+    margin-top:
+        32px;
+
+
+    color:
+        rgba(255,255,255,.64);
+
+
+    font-size:
+        1.04rem;
+
+}
+
+
+/* =====================================================
+   INFO BEREICH
+===================================================== */
+
+.info {
+
+    background:
+        var(--cream-light);
+
+}
+
+
+.info-header {
+
+    display:
+        grid;
+
+
+    grid-template-columns:
+        1fr 1fr;
+
+
+    gap:
+        80px;
+
+
+    align-items:
+        end;
+
+
+    margin-bottom:
+        75px;
+
+}
+
+
+.info-title {
+
+    font-size:
+        clamp(
+            3.3rem,
+            6vw,
+            6.4rem
+        );
+
+
+    line-height:
+        .91;
+
+
+    letter-spacing:
+        -.06em;
+
+
+    font-weight:
+        800;
+
+}
+
+
+.info-intro {
+
+    max-width:
+        500px;
+
+
+    color:
+        var(--muted);
+
+
+    font-size:
+        1.17rem;
+
+
+    line-height:
+        1.55;
+
+}
+
+
+/* CARDS */
+
+.info-grid {
+
+    display:
+        grid;
+
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+
+    border-top:
+        1px solid
+        var(--border-dark);
+
+
+    border-bottom:
+        1px solid
+        var(--border-dark);
+
+}
+
+
+.info-card {
+
+    min-height:
+        460px;
+
+
+    padding:
+        35px;
+
+
+    display:
+        flex;
+
+
+    flex-direction:
+        column;
+
+
+    justify-content:
+        space-between;
+
+
+    border-right:
+        1px solid
+        var(--border-dark);
+
+
+    transition:
+        background .3s ease;
+
+}
+
+
+.info-card:last-child {
+
+    border-right:
+        none;
+
+}
+
+
+.info-card:hover {
+
+    background:
+        #eee3d5;
+
+}
+
+
+.info-number {
+
+    color:
+        var(--red);
+
+
+    font-size:
+        .7rem;
+
+
+    font-weight:
+        800;
+
+
+    letter-spacing:
+        .15em;
+
+}
+
+
+.info-card h3 {
+
+    margin-bottom:
+        25px;
+
+
+    font-size:
+        clamp(
+            2rem,
+            3vw,
+            3rem
+        );
+
+
+    letter-spacing:
+        -.045em;
+
+
+    line-height:
+        1;
+
+}
+
+
+.info-card p,
+.info-card a {
+
+    color:
+        var(--muted);
+
+
+    font-size:
+        1rem;
+
+
+    line-height:
+        1.7;
+
+}
+
+
+.info-card a:hover {
+
+    color:
+        var(--red);
+
+}
+
+
+/* HOURS */
+
+.hours {
+
+    width:
+        100%;
+
+}
+
+
+.hours-line {
+
+    display:
+        flex;
+
+
+    justify-content:
+        space-between;
+
+
+    gap:
+        15px;
+
+
+    padding:
+        11px 0;
+
+
+    border-bottom:
+        1px solid
+        var(--border-dark);
+
+
+    font-size:
+        .94rem;
+
+}
+
+
+.hours-line:last-child {
+
+    border-bottom:
+        0;
+
+}
+
+
+.hours-line span:last-child {
+
+    text-align:
+        right;
+
+
+    color:
+        var(--muted);
+
+}
+
+
+/* LINK BUTTON */
+
+.text-link {
+
+    margin-top:
+        24px;
+
+
+    display:
+        inline-flex;
+
+
+    align-items:
+        center;
+
+
+    gap:
+        9px;
+
+
+    color:
+        var(--text) !important;
+
+
+    font-weight:
+        700;
+
+
+    transition:
+        gap .25s ease,
+        color .25s ease;
+
+}
+
+
+.text-link:hover {
+
+    gap:
+        14px;
+
+
+    color:
+        var(--red) !important;
+
+}
+
+
+/* =====================================================
+   BIG CTA
+===================================================== */
+
+.big-cta {
+
+    position:
+        relative;
+
+
+    min-height:
+        82vh;
+
+
+    overflow:
+        hidden;
+
+
+    display:
+        flex;
+
+
+    align-items:
+        center;
+
+
+    justify-content:
+        center;
+
+
+    text-align:
+        center;
+
+
+    background:
+        var(--red);
+
+
+    color:
+        white;
+
+}
+
+
+.big-cta::before {
+
+    content:
+        "";
+
+
+    position:
+        absolute;
+
+
+    width:
+        700px;
+
+
+    height:
+        700px;
+
+
+    border-radius:
+        50%;
+
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+}
+
+
+.big-cta::after {
+
+    content:
+        "";
+
+
+    position:
+        absolute;
+
+
+    width:
+        970px;
+
+
+    height:
+        970px;
+
+
+    border-radius:
+        50%;
+
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+}
+
+
+.big-cta-content {
+
+    position:
+        relative;
+
+
+    z-index:
+        2;
+
+}
+
+
+.big-cta-small {
+
+    margin-bottom:
+        22px;
+
+
+    text-transform:
+        uppercase;
+
+
+    letter-spacing:
+        .18em;
+
+
+    font-size:
+        .72rem;
+
+
+    font-weight:
+        700;
+
+
+    opacity:
+        .7;
+
+}
+
+
+.big-cta h2 {
+
+    font-size:
+        clamp(
+            5rem,
+            12vw,
+            12rem
+        );
+
+
+    line-height:
+        .78;
+
+
+    letter-spacing:
+        -.08em;
+
+
+    font-weight:
+        800;
+
+}
+
+
+.big-cta h2 em {
+
+    font-family:
+        Georgia,
+        serif;
+
+
+    font-weight:
+        400;
+
+}
+
+
+/* CTA BUTTON */
+
+.white-button {
+
+    display:
+        inline-flex;
+
+
+    align-items:
+        center;
+
+
+    margin-top:
+        43px;
+
+
+    padding:
+        16px 23px;
+
+
+    border-radius:
+        100px;
+
+
+    background:
+        white;
+
+
+    color:
+        var(--red);
+
+
+    font-weight:
+        700;
+
+
+    transition:
+        transform .25s ease;
+
+}
+
+
+.white-button:hover {
+
+    transform:
+        scale(1.04);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    padding:
+        80px 5vw
+        30px;
+
+
+    background:
+        var(--wine);
+
+
+    color:
+        white;
+
+}
+
+
+.footer-inner {
+
+    max-width:
+        1260px;
+
+
+    margin:
+        auto;
+
+}
+
+
+.footer-logo {
+
+    padding-bottom:
+        65px;
+
+
+    border-bottom:
+        1px solid
+        var(--border-light);
+
+}
+
+
+.footer-logo img {
+
+    width:
+        min(
+            520px,
+            85vw
+        );
+
+
+    filter:
+        brightness(0)
+        invert(1);
+
+}
+
+
+.footer-grid {
+
+    padding:
+        55px 0;
+
+
+    display:
+        grid;
+
+
+    grid-template-columns:
+        1.2fr
+        .8fr
+        .8fr;
+
+
+    gap:
+        70px;
+
+}
+
+
+.footer-heading {
+
+    margin-bottom:
+        15px;
+
+
+    color:
+        rgba(255,255,255,.45);
+
+
+    font-size:
+        .7rem;
+
+
+    text-transform:
+        uppercase;
+
+
+    letter-spacing:
+        .15em;
+
+}
+
+
+.footer p,
+.footer a {
+
+    color:
+        rgba(255,255,255,.7);
+
+
+    line-height:
+        1.75;
+
+
+    font-size:
+        .95rem;
+
+}
+
+
+.footer a:hover {
+
+    color:
+        white;
+
+}
+
+
+.footer-bottom {
+
+    padding-top:
+        23px;
+
+
+    border-top:
+        1px solid
+        var(--border-light);
+
+
+    display:
+        flex;
+
+
+    align-items:
+        center;
+
+
+    justify-content:
+        space-between;
+
+
+    gap:
+        30px;
+
+
+    color:
+        rgba(255,255,255,.37);
+
+
+    font-size:
+        .75rem;
+
+}
+
+
+.footer-legal {
+
+    display:
+        flex;
+
+
+    gap:
+        22px;
+
+}
+
+
+/* =====================================================
+   COOKIE BANNER
+===================================================== */
+
+.cookie-layer {
+
+    position:
+        fixed;
+
+
+    inset: 0;
+
+
+    z-index:
+        10000;
+
+
+    padding:
+        20px;
+
+
+    display:
+        none;
+
+
+    align-items:
+        flex-end;
+
+
+    justify-content:
+        center;
+
+
+    background:
+        rgba(24,7,9,.44);
+
+
+    backdrop-filter:
+        blur(8px);
+
+}
+
+
+.cookie-layer.visible {
+
+    display:
+        flex;
+
+}
+
+
+.cookie-box {
+
+    width:
+        100%;
+
+
+    max-width:
+        760px;
+
+
+    padding:
+        31px;
+
+
+    border:
+        1px solid
+        rgba(255,255,255,.7);
+
+
+    border-radius:
+        25px;
+
+
+    background:
+        rgba(
+            251,
+            247,
+            240,
+            .97
+        );
+
+
+    box-shadow:
+        0 25px 100px
+        rgba(0,0,0,.25);
+
+}
+
+
+.cookie-top {
+
+    display:
+        flex;
+
+
+    justify-content:
+        space-between;
+
+
+    gap:
+        35px;
+
+}
+
+
+.cookie-title {
+
+    font-size:
+        1.6rem;
+
+
+    line-height:
+        1.1;
+
+
+    letter-spacing:
+        -.04em;
+
+}
+
+
+.cookie-text {
+
+    margin-top:
+        13px;
+
+
+    color:
+        var(--muted);
+
+
+    line-height:
+        1.55;
+
+
+    font-size:
+        .93rem;
+
+}
+
+
+.cookie-settings {
+
+    margin-top:
+        21px;
+
+
+    padding:
+        17px 0;
+
+
+    border-top:
+        1px solid
+        var(--border-dark);
+
+
+    border-bottom:
+        1px solid
+        var(--border-dark);
+
+}
+
+
+.cookie-row {
+
+    display:
+        flex;
+
+
+    align-items:
+        center;
+
+
+    justify-content:
+        space-between;
+
+
+    gap:
+        20px;
+
+
+    padding:
+        7px 0;
+
+}
+
+
+.cookie-row strong {
+
+    font-size:
+        .9rem;
+
+}
+
+
+.cookie-row small {
+
+    display:
+        block;
+
+
+    margin-top:
+        2px;
+
+
+    color:
+        var(--muted);
+
+}
+
+
+/* SWITCH */
+
+.switch {
+
+    position:
+        relative;
+
+
+    width:
+        48px;
+
+
+    height:
+        27px;
+
+
+    flex-shrink:
+        0;
+
+}
+
+
+.switch input {
+
+    opacity:
+        0;
+
+
+    width:
+        0;
+
+
+    height:
+        0;
+
+}
+
+
+.slider {
+
+    position:
+        absolute;
+
+
+    inset:
+        0;
+
+
+    border-radius:
+        100px;
+
+
+    background:
+        #d0c7bc;
+
+
+    cursor:
+        pointer;
+
+
+    transition:
+        .2s;
+
+}
+
+
+.slider::before {
+
+    content:
+        "";
+
+
+    position:
+        absolute;
+
+
+    width:
+        21px;
+
+
+    height:
+        21px;
+
+
+    left:
+        3px;
+
+
+    top:
+        3px;
+
+
+    border-radius:
+        50%;
+
+
+    background:
+        white;
+
+
+    transition:
+        .2s;
+
+}
+
+
+.switch input:checked + .slider {
+
+    background:
+        var(--red);
+
+}
+
+
+.switch input:checked + .slider::before {
+
+    transform:
+        translateX(21px);
+
+}
+
+
+.switch input:disabled + .slider {
+
+    opacity:
+        .55;
+
+
+    cursor:
+        default;
+
+}
+
+
+/* COOKIE BUTTONS */
+
+.cookie-actions {
+
+    margin-top:
+        21px;
+
+
+    display:
+        grid;
+
+
+    grid-template-columns:
+        1fr 1fr 1fr;
+
+
+    gap:
+        9px;
+
+}
+
+
+.cookie-button {
+
+    min-height:
+        48px;
+
+
+    border:
+        0;
+
+
+    border-radius:
+        100px;
+
+
+    padding:
+        12px 17px;
+
+
+    cursor:
+        pointer;
+
+
+    font-weight:
+        700;
+
+
+    font-size:
+        .85rem;
+
+}
+
+
+.cookie-button.accept {
+
+    background:
+        var(--red);
+
+
+    color:
+        white;
+
+}
+
+
+.cookie-button.save {
+
+    background:
+        var(--wine);
+
+
+    color:
+        white;
+
+}
+
+
+.cookie-button.necessary {
+
+    background:
+        #e9e1d7;
+
+
+    color:
+        var(--text);
+
+}
+
+
+.cookie-legal {
+
+    margin-top:
+        16px;
+
+
+    color:
+        var(--muted);
+
+
+    font-size:
+        .75rem;
+
+
+    line-height:
+        1.45;
+
+}
+
+
+.cookie-legal a {
+
+    text-decoration:
+        underline;
+
+}
+
+
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
+
+.reveal {
+
+    opacity:
+        0;
+
+
+    transform:
+        translateY(38px);
+
+
+    transition:
+        opacity .9s ease,
+        transform .9s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+
+}
+
+
+.reveal.visible {
+
+    opacity:
+        1;
+
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (
+    max-width: 950px
+) {
+
+    .nav-links {
+
+        display:
+            none;
+
+    }
+
+
+    .nav-cta {
+
+        display:
+            none;
+
+    }
+
+
+    .menu-button {
+
+        display:
+            block;
+
+    }
+
+
+    .about-grid {
+
+        grid-template-columns:
+            1fr;
+
+
+        gap:
+            30px;
+
+    }
+
+
+    .about-text {
+
+        padding-top:
+            0;
+
+    }
+
+
+    .info-header {
+
+        grid-template-columns:
+            1fr;
+
+
+        gap:
+            25px;
+
+    }
+
+
+    .info-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .info-card {
+
+        min-height:
+            340px;
+
+
+        border-right:
+            0;
+
+
+        border-bottom:
+            1px solid
+            var(--border-dark);
+
+    }
+
+
+    .info-card:last-child {
+
+        border-bottom:
+            0;
+
+    }
+
+
+    .event-grid {
+
+        grid-template-columns:
+            1fr;
+
+
+        gap:
+            50px;
+
+    }
+
+
+    .event-date {
+
+        width:
+            165px;
+
+    }
+
+
+    .footer-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+}
+
+
+@media (
+    max-width: 700px
+) {
+
+    .nav {
+
+        top:
+            9px;
+
+
+        width:
+            calc(100% - 18px);
+
+
+        height:
+            62px;
+
+
+        padding-left:
+            16px;
+
+    }
+
+
+    .nav-logo img {
+
+        height:
+            35px;
+
+    }
+
+
+    .hero {
+
+        padding:
+            120px 23px
+            36px;
+
+    }
+
+
+    .hero-logo img {
+
+        width:
+            min(
+                520px,
+                88vw
+            );
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                4rem,
+                17vw,
+                6.3rem
+            );
+
+    }
+
+
+    .hero-bottom {
+
+        flex-direction:
+            column;
+
+
+        align-items:
+            flex-start;
+
+
+        gap:
+            27px;
+
+    }
+
+
+    .section {
+
+        padding:
+            88px 23px;
+
+    }
+
+
+    .gallery {
+
+        padding:
+            0 23px
+            88px;
+
+    }
+
+
+    .gallery-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .gallery-main {
+
+        height:
+            480px;
+
+    }
+
+
+    .gallery-side {
+
+        height:
+            390px;
+
+    }
+
+
+    .about-title,
+    .info-title,
+    .event-title {
+
+        font-size:
+            clamp(
+                3.2rem,
+                14vw,
+                5rem
+            );
+
+    }
+
+
+    .footer {
+
+        padding:
+            65px 23px
+            25px;
+
+    }
+
+
+    .footer-grid {
+
+        grid-template-columns:
+            1fr;
+
+
+        gap:
+            37px;
+
+    }
+
+
+    .footer-bottom {
+
+        flex-direction:
+            column;
+
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .cookie-box {
+
+        padding:
+            23px;
+
+    }
+
+
+    .cookie-actions {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE MENU OVERLAY
+===================================================== */
+
+.mobile-menu {
+
+    position:
+        fixed;
+
+
+    inset:
+        0;
+
+
+    z-index:
+        9000;
+
+
+    display:
+        flex;
+
+
+    flex-direction:
+        column;
+
+
+    justify-content:
+        center;
+
+
+    align-items:
+        center;
+
+
+    gap:
+        16px;
+
+
+    background:
+        var(--cream);
+
+
+    opacity:
+        0;
+
+
+    visibility:
+        hidden;
+
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+
+}
+
+
+.mobile-menu.open {
+
+    opacity:
+        1;
+
+
+    visibility:
+        visible;
+
+}
+
+
+.mobile-menu a {
+
+    font-size:
+        clamp(
+            2.7rem,
+            12vw,
+            5rem
+        );
+
+
+    font-weight:
+        800;
+
+
+    line-height:
+        1;
+
+
+    letter-spacing:
+        -.06em;
+
+}
+
+
+.mobile-close {
+
+    position:
+        absolute;
+
+
+    top:
+        20px;
+
+
+    right:
+        20px;
+
+
+    width:
+        48px;
+
+
+    height:
+        48px;
+
+
+    border:
+        0;
+
+
+    border-radius:
+        50%;
+
+
+    background:
+        var(--red);
+
+
+    color:
+        white;
+
+
+    cursor:
+        pointer;
+
+}
+
+
+</style>
+
 </head>
+
 
 <body>
 
-    <!-- NAVIGATION -->
-    <nav class="nav">
 
-        <a href="#home" class="logo">
-            ALLERWEIL<span>.</span>
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="nav">
+
+    <a
+        href="#home"
+        class="nav-logo"
+        aria-label="Allerweil Startseite"
+    >
+
+        <!--
+        WICHTIG:
+        Lege das ORIGINAL ALLERWEIL LOGO
+        als "allerweil-logo.svg"
+        im gleichen GitHub-Ordner ab.
+        -->
+
+        <img
+            src="allerweil-logo.svg"
+            alt="Allerweil Stehausschank"
+            onerror="
+                this.style.display='none';
+                this.nextElementSibling.style.display='block';
+            "
+        >
+
+        <span class="logo-fallback">
+            ALLERWEIL
+        </span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="#ueber-uns">
+            Allerweil
         </a>
 
-        <div class="nav-links">
-            <a href="#ueber-uns">Über uns</a>
-            <a href="#infos">Standort</a>
-            <a href="#infos">Öffnungszeiten</a>
-            <a href="#kontakt">Kontakt</a>
-        </div>
-
-        <a href="#infos" class="nav-button">
-            Vorbeikommen
+        <a href="#event">
+            Events
         </a>
 
-    </nav>
+        <a href="#infos">
+            Standort
+        </a>
+
+        <a href="#infos">
+            Öffnungszeiten
+        </a>
+
+        <a href="#kontakt">
+            Kontakt
+        </a>
+
+    </div>
 
 
-    <!-- HERO -->
-    <header class="hero" id="home">
+    <a
+        class="nav-cta"
+        href="#infos"
+    >
 
-        <div class="hero-content">
+        Vorbeikommen
 
-            <div class="eyebrow">
-                Friedensplatz · Darmstadt
-            </div>
+    </a>
 
-            <h1>
-                Bleib doch<br>
-                <span>Allerweil.</span>
-            </h1>
 
-            <div class="hero-bottom">
+    <button
+        class="menu-button"
+        onclick="openMenu()"
+        aria-label="Menü öffnen"
+    >
 
-                <p class="hero-text">
-                    Bier, Wein, Spritz und gute Gesellschaft.
-                    Mitten in Darmstadt. Ohne viel Schnickschnack.
-                </p>
+        ☰
 
-                <div class="scroll-hint">
-                    ↓ Mehr entdecken
-                </div>
+    </button>
 
-            </div>
+</nav>
+
+
+
+<!-- =====================================================
+     MOBILE MENU
+===================================================== -->
+
+<div
+    class="mobile-menu"
+    id="mobileMenu"
+>
+
+    <button
+        class="mobile-close"
+        onclick="closeMenu()"
+        aria-label="Menü schließen"
+    >
+
+        ✕
+
+    </button>
+
+
+    <a
+        href="#ueber-uns"
+        onclick="closeMenu()"
+    >
+        Allerweil
+    </a>
+
+
+    <a
+        href="#event"
+        onclick="closeMenu()"
+    >
+        Events
+    </a>
+
+
+    <a
+        href="#infos"
+        onclick="closeMenu()"
+    >
+        Standort
+    </a>
+
+
+    <a
+        href="#kontakt"
+        onclick="closeMenu()"
+    >
+        Kontakt
+    </a>
+
+</div>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header
+    class="hero"
+    id="home"
+>
+
+
+    <div class="hero-media">
+
+        <!--
+        Eigenes Allerweil Foto:
+        hero.jpg
+        -->
+
+        <img
+            src="hero.jpg"
+            alt="Allerweil Darmstadt"
+        >
+
+    </div>
+
+
+    <div class="hero-content">
+
+
+        <div class="hero-eyebrow">
+
+            Stehausschank
+            · Friedensplatz
+            · Darmstadt
 
         </div>
 
-    </header>
 
+        <!-- ORIGINAL LOGO GROSS -->
 
-    <!-- ÜBER UNS -->
-    <section class="section about" id="ueber-uns">
+        <div class="hero-logo">
 
-        <div class="section-inner">
-
-            <div class="about-grid">
-
-                <div>
-
-                    <div class="section-label">
-                        Über Allerweil
-                    </div>
-
-                    <h2 class="section-title">
-                        Ein Platz zum
-                        Ankommen.
-                        Und Bleiben.
-                    </h2>
-
-                </div>
-
-                <div class="about-copy">
-
-                    <p class="section-text">
-                        Das Allerweil ist ein Stehausschank mitten am
-                        Darmstädter Friedensplatz.
-
-                        Ein Ort für ein schnelles Feierabendbier,
-                        ein Glas Wein in der Sonne oder einen Abend,
-                        der eigentlich nur ganz kurz werden sollte.
-                    </p>
-
-                    <div class="quote">
-                        „Wir wollten nur kurz stehen bleiben.
-                        Jetzt stehen wir allerweil hier.“
-                    </div>
-
-                </div>
-
-            </div>
+            <img
+                src="allerweil-logo.svg"
+                alt="Allerweil Stehausschank"
+            >
 
         </div>
 
-    </section>
 
+        <h1>
 
-    <!-- BILDER -->
-    <section class="visual">
+            Ankommen.<br>
 
-        <div class="visual-grid">
+            Abschalten.
 
-            <div class="visual-card">
+            <em>
+                Bleiben.
+            </em>
 
-                <div class="visual-caption">
-                    Gute Drinks. Gute Leute.
-                </div>
+        </h1>
 
-            </div>
 
-            <div class="visual-card small">
+        <div class="hero-bottom">
 
-                <div class="visual-caption">
-                    Mitten in Darmstadt.
-                </div>
 
-            </div>
+            <p class="hero-description">
 
-        </div>
+                Bier, Wein, Spritz,
+                Musik und gute Leute.
 
-    </section>
+                Ein Stehausschank
+                mitten in Darmstadt
+                für Nachmittage,
+                Feierabende und Abende,
+                die eigentlich nur kurz
+                werden sollten.
 
-
-    <!-- INFOS -->
-    <section class="section info-section" id="infos">
-
-        <div class="section-inner">
-
-            <div class="info-header">
-
-                <div class="section-label">
-                    Alles Wichtige
-                </div>
-
-                <h2 class="section-title">
-                    Komm einfach
-                    vorbei.
-                </h2>
-
-            </div>
-
-
-            <div class="info-grid">
-
-
-                <!-- STANDORT -->
-                <article class="info-card">
-
-                    <div class="info-number">
-                        01 · STANDORT
-                    </div>
-
-                    <div>
-
-                        <h3>
-                            Friedensplatz
-                        </h3>
-
-                        <p>
-                            Friedensplatz 4<br>
-                            64283 Darmstadt
-                        </p>
-
-                        <p style="margin-top:10px;">
-                            Im ehemaligen
-                            Lilienshop / Asphaltgold
-                        </p>
-
-                        <a
-                            class="info-link"
-                            href="https://www.google.com/maps/search/?api=1&query=Friedensplatz+4+64283+Darmstadt"
-                            target="_blank"
-                            rel="noopener"
-                        >
-                            Route öffnen ↗
-                        </a>
-
-                    </div>
-
-                </article>
-
-
-                <!-- ÖFFNUNGSZEITEN -->
-                <article class="info-card">
-
-                    <div class="info-number">
-                        02 · ÖFFNUNGSZEITEN
-                    </div>
-
-                    <div>
-
-                        <h3>
-                            Wann?
-                        </h3>
-
-                        <div class="hours-row">
-                            <span>So – Mo</span>
-                            <span>geschlossen</span>
-                        </div>
-
-                        <div class="hours-row">
-                            <span>Di – Do</span>
-                            <span>15 – 22 Uhr</span>
-                        </div>
-
-                        <div class="hours-row">
-                            <span>Freitag</span>
-                            <span>15 – 00 Uhr</span>
-                        </div>
-
-                        <div class="hours-row">
-                            <span>Samstag</span>
-                            <span>11 – 00 Uhr</span>
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- KONTAKT -->
-                <article class="info-card" id="kontakt">
-
-                    <div class="info-number">
-                        03 · KONTAKT
-                    </div>
-
-                    <div>
-
-                        <h3>
-                            Sag Hallo.
-                        </h3>
-
-                        <p>
-                            Fragen, Veranstaltungen
-                            oder einfach mal Hallo sagen?
-                        </p>
-
-                        <p style="margin-top:18px;">
-
-                            <a href="mailto:info@ratskeller-darmstadt.de">
-                                info@ratskeller-darmstadt.de
-                            </a>
-
-                            <br>
-
-                            <a href="tel:+49615126444">
-                                06151 26444
-                            </a>
-
-                        </p>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CTA -->
-    <section class="section cta">
-
-        <div class="section-inner">
-
-            <div class="cta-box">
-
-                <h2>
-                    Bis<br>
-                    allerweil.
-                </h2>
-
-                <p>
-                    Keine Reservierung.
-                    Kein großes Tamtam.
-                    Einfach vorbeikommen und bleiben.
-                </p>
-
-                <a
-                    href="https://www.google.com/maps/search/?api=1&query=Friedensplatz+4+64283+Darmstadt"
-                    target="_blank"
-                    rel="noopener"
-                    class="cta-button"
-                >
-                    Zum Friedensplatz →
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer>
-
-        <div class="footer-inner">
-
-            <div class="footer-top">
-
-                <div class="footer-logo">
-                    ALLERWEIL<span>.</span>
-                </div>
-
-                <div class="footer-links">
-
-                    <a href="#ueber-uns">
-                        Über uns
-                    </a>
-
-                    <a href="#infos">
-                        Öffnungszeiten
-                    </a>
-
-                    <a href="#infos">
-                        Standort
-                    </a>
-
-                    <a href="#kontakt">
-                        Kontakt
-                    </a>
-
-                    <a href="impressum.html">
-                        Impressum
-                    </a>
-
-                    <a href="datenschutz.html">
-                        Datenschutz
-                    </a>
-
-                    <a href="#" onclick="openCookieSettings(); return false;">
-                        Cookie-Einstellungen
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="footer-bottom">
-
-                <span>
-                    © <span id="year"></span> Allerweil Darmstadt
-                </span>
-
-                <span>
-                    Friedensplatz 4 · 64283 Darmstadt
-                </span>
-
-            </div>
-
-        </div>
-
-    </footer>
-
-
-    <!-- COOKIE BANNER -->
-    <div class="cookie-overlay" id="cookieOverlay">
-
-        <div class="cookie-box">
-
-            <h3>
-                Cookies & Datenschutz
-            </h3>
-
-            <p>
-                Diese Website verwendet technisch notwendige
-                Funktionen. Optionale Dienste und externe Inhalte
-                werden nur geladen, wenn du ihnen zustimmst.
             </p>
 
-            <div class="cookie-actions">
 
-                <button
-                    class="cookie-button primary"
-                    onclick="acceptCookies()"
-                >
-                    Alle akzeptieren
-                </button>
+            <a
+                class="hero-button"
+                href="#ueber-uns"
+            >
 
-                <button
-                    class="cookie-button secondary"
-                    onclick="necessaryCookiesOnly()"
-                >
-                    Nur notwendige
-                </button>
+                Allerweil entdecken
 
-            </div>
+                <span>
+                    ↓
+                </span>
 
-            <p class="cookie-note">
-                Deine Auswahl kannst du jederzeit über
-                „Cookie-Einstellungen“ im Footer ändern.
-                Weitere Informationen findest du in unserer
-                Datenschutzerklärung.
-            </p>
+            </a>
+
 
         </div>
 
     </div>
 
-
-    <script>
-
-        /*
-        ===============================================
-        JAHR
-        ===============================================
-        */
-
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
+</header>
 
 
 
-        /*
-        ===============================================
-        COOKIE CONSENT
-        ===============================================
+<!-- =====================================================
+     LAUFTEXT
+===================================================== -->
 
-        Dieses Beispiel setzt aktuell KEINE
-        Tracking-Cookies.
+<section class="marquee">
 
-        Wenn später Google Analytics,
-        Meta Pixel, eingebettete Maps,
-        Instagram, YouTube usw. verwendet werden,
-        müssen diese Dienste erst NACH Zustimmung
-        initialisiert werden.
-        */
+    <div class="marquee-inner">
 
-        const COOKIE_KEY = "allerweil-cookie-consent";
+        <span>
+            Bier
+        </span>
 
-        function showCookieBanner() {
+        <span>
+            Wein
+        </span>
 
-            const consent =
-                localStorage.getItem(COOKIE_KEY);
+        <span>
+            Spritz
+        </span>
 
-            if (!consent) {
+        <span>
+            Daydrinking
+        </span>
 
-                document
-                    .getElementById("cookieOverlay")
-                    .classList.add("show");
+        <span>
+            Darmstadt
+        </span>
 
-            }
+        <span>
+            Friedensplatz
+        </span>
 
-        }
+        <span>
+            Allerweil
+        </span>
 
 
-        function acceptCookies() {
+        <!-- Kopie für Endlosschleife -->
 
-            localStorage.setItem(
-                COOKIE_KEY,
-                "all"
+        <span>
+            Bier
+        </span>
+
+        <span>
+            Wein
+        </span>
+
+        <span>
+            Spritz
+        </span>
+
+        <span>
+            Daydrinking
+        </span>
+
+        <span>
+            Darmstadt
+        </span>
+
+        <span>
+            Friedensplatz
+        </span>
+
+        <span>
+            Allerweil
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ÜBER UNS
+===================================================== -->
+
+<section
+    class="section about"
+    id="ueber-uns"
+>
+
+    <div class="container">
+
+
+        <div class="about-grid">
+
+
+            <div class="reveal">
+
+
+                <div class="label">
+
+                    01 · Allerweil
+
+                </div>
+
+
+                <h2 class="about-title">
+
+                    Eigentlich nur
+                    kurz auf
+
+                    <em>
+                        ein Getränk.
+                    </em>
+
+                </h2>
+
+
+            </div>
+
+
+            <div
+                class="about-text reveal"
+            >
+
+
+                <p>
+
+                    Das Allerweil ist
+                    Stehausschank,
+                    Treffpunkt und
+                    Feierabendgefühl
+                    mitten auf dem
+                    Darmstädter
+                    Friedensplatz.
+
+                    Ohne großes Tamtam.
+
+                    Dafür mit guten
+                    Getränken,
+                    entspannter Musik
+                    und Menschen,
+                    bei denen aus
+                    „nur ganz kurz“
+                    gerne mal etwas
+                    länger wird.
+
+                </p>
+
+
+                <div class="quote">
+
+                    „Wir wollten nur
+                    kurz stehen bleiben.
+
+                    Jetzt stehen wir
+                    allerweil hier.“
+
+                </div>
+
+
+                <div class="quote-small">
+
+                    – der erste Gast,
+                    der eigentlich
+                    nur kurz bleiben
+                    wollte
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     BILDER
+===================================================== -->
+
+<section class="gallery">
+
+    <div class="gallery-grid">
+
+
+        <div
+            class="gallery-main reveal"
+        >
+
+            <img
+                src="allerweil-1.jpg"
+                alt="Gäste im Allerweil Darmstadt"
+                loading="lazy"
+            >
+
+        </div>
+
+
+        <div
+            class="gallery-side reveal"
+        >
+
+            <img
+                src="allerweil-2.jpg"
+                alt="Getränke im Allerweil Darmstadt"
+                loading="lazy"
+            >
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EVENT
+===================================================== -->
+
+<section
+    class="section event"
+    id="event"
+>
+
+    <div class="container">
+
+
+        <div class="event-grid">
+
+
+            <div class="reveal">
+
+                <div class="event-date">
+
+                    <strong>
+                        03
+                    </strong>
+
+                    <span>
+                        September
+                        2026
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="reveal">
+
+
+                <div class="label">
+
+                    Nächstes Event
+
+                </div>
+
+
+                <h2 class="event-title">
+
+                    Afterwork
+                    <em>
+                        ×
+                    </em>
+                    PREGAME
+
+                </h2>
+
+
+                <p class="event-meta">
+
+                    03. September
+                    · ab 18:00 Uhr
+                    · Sound by PREGAME
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     STANDORT / ÖFFNUNGSZEITEN / KONTAKT
+===================================================== -->
+
+<section
+    class="section info"
+    id="infos"
+>
+
+    <div class="container">
+
+
+        <div class="info-header">
+
+
+            <div class="reveal">
+
+
+                <div class="label">
+
+                    02 · Gut zu wissen
+
+                </div>
+
+
+                <h2 class="info-title">
+
+                    Komm einfach
+                    vorbei.
+
+                </h2>
+
+
+            </div>
+
+
+            <p
+                class="info-intro reveal"
+            >
+
+                Kein kompliziertes
+                Konzept.
+
+                Kein großes Tamtam.
+
+                Einfach Freunde
+                schnappen,
+                Richtung Friedensplatz
+                laufen und schauen,
+                wie lange aus
+                „nur einem“
+                am Ende wird.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="info-grid">
+
+
+            <!-- =====================
+                 STANDORT
+            ====================== -->
+
+            <article
+                class="info-card reveal"
+            >
+
+
+                <div class="info-number">
+
+                    01 / STANDORT
+
+                </div>
+
+
+                <div>
+
+
+                    <h3>
+
+                        Mitten in
+                        Darmstadt.
+
+                    </h3>
+
+
+                    <p>
+
+                        Friedensplatz 4
+
+                        <br>
+
+                        64283 Darmstadt
+
+                    </p>
+
+
+                    <p
+                        style="
+                            margin-top:
+                            13px;
+                        "
+                    >
+
+                        Im alten
+                        Lilienshop /
+                        Asphaltgold
+
+                    </p>
+
+
+                    <!--
+                    Nur normaler Link.
+                    KEIN Google Maps Embed.
+                    Daher wird beim
+                    Websitebesuch noch
+                    nichts von Google geladen.
+                    -->
+
+                    <a
+                        class="text-link"
+                        href="https://www.google.com/maps/search/?api=1&query=Friedensplatz+4+64283+Darmstadt"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        Route öffnen
+
+                        →
+
+                    </a>
+
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =====================
+                 ÖFFNUNGSZEITEN
+            ====================== -->
+
+            <article
+                class="info-card reveal"
+            >
+
+
+                <div class="info-number">
+
+                    02 / ÖFFNUNGSZEITEN
+
+                </div>
+
+
+                <div>
+
+
+                    <h3>
+
+                        Wann sehen
+                        wir uns?
+
+                    </h3>
+
+
+                    <div class="hours">
+
+
+                        <div class="hours-line">
+
+                            <span>
+                                Sonntag
+                            </span>
+
+                            <span>
+                                geschlossen
+                            </span>
+
+                        </div>
+
+
+                        <div class="hours-line">
+
+                            <span>
+                                Montag
+                            </span>
+
+                            <span>
+                                geschlossen
+                            </span>
+
+                        </div>
+
+
+                        <div class="hours-line">
+
+                            <span>
+                                Dienstag
+                                – Donnerstag
+                            </span>
+
+                            <span>
+                                15:00
+                                – 22:00
+                            </span>
+
+                        </div>
+
+
+                        <div class="hours-line">
+
+                            <span>
+                                Freitag
+                            </span>
+
+                            <span>
+                                15:00
+                                – 00:00
+                            </span>
+
+                        </div>
+
+
+                        <div class="hours-line">
+
+                            <span>
+                                Samstag
+                            </span>
+
+                            <span>
+                                11:00
+                                – 00:00
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =====================
+                 KONTAKT
+            ====================== -->
+
+            <article
+                class="info-card reveal"
+                id="kontakt"
+            >
+
+
+                <div class="info-number">
+
+                    03 / KONTAKT
+
+                </div>
+
+
+                <div>
+
+
+                    <h3>
+
+                        Sag Hallo.
+
+                    </h3>
+
+
+                    <p>
+
+                        Fragen,
+                        Veranstaltungen,
+                        Specials oder
+                        einfach mal
+                        Hallo sagen?
+
+                    </p>
+
+
+                    <p
+                        style="
+                            margin-top:
+                            22px;
+                        "
+                    >
+
+
+                        <a
+                            href="mailto:info@ratskeller-darmstadt.de"
+                        >
+
+                            info@ratskeller-darmstadt.de
+
+                        </a>
+
+
+                        <br>
+
+
+                        <a
+                            href="tel:+49615126444"
+                        >
+
+                            06151 – 26444
+
+                        </a>
+
+
+                    </p>
+
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     GROSSER ABSCHLUSS
+===================================================== -->
+
+<section class="big-cta">
+
+
+    <div class="big-cta-content reveal">
+
+
+        <div class="big-cta-small">
+
+            Friedensplatz
+            · Darmstadt
+
+        </div>
+
+
+        <h2>
+
+            Bis
+
+            <br>
+
+            <em>
+                allerweil.
+            </em>
+
+        </h2>
+
+
+        <a
+            class="white-button"
+            href="https://www.google.com/maps/search/?api=1&query=Friedensplatz+4+64283+Darmstadt"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            Zum Friedensplatz
+            &nbsp;→
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+
+    <div class="footer-inner">
+
+
+        <div class="footer-logo">
+
+
+            <img
+                src="allerweil-logo.svg"
+                alt="Allerweil Stehausschank"
+            >
+
+
+        </div>
+
+
+        <div class="footer-grid">
+
+
+            <div>
+
+
+                <div class="footer-heading">
+
+                    Allerweil
+
+                </div>
+
+
+                <p>
+
+                    Stehausschank
+                    am Friedensplatz.
+
+                    <br>
+
+                    Bier · Wein · Spritz
+                    · gute Zeit.
+
+                </p>
+
+
+            </div>
+
+
+            <div>
+
+
+                <div class="footer-heading">
+
+                    Besuchen
+
+                </div>
+
+
+                <p>
+
+                    Friedensplatz 4
+
+                    <br>
+
+                    64283 Darmstadt
+
+                </p>
+
+
+            </div>
+
+
+            <div>
+
+
+                <div class="footer-heading">
+
+                    Mehr
+
+                </div>
+
+
+                <p>
+
+                    <a
+                        href="mailto:info@ratskeller-darmstadt.de"
+                    >
+
+                        Kontakt
+
+                    </a>
+
+                    <br>
+
+
+                    <a
+                        href="impressum.html"
+                    >
+
+                        Impressum
+
+                    </a>
+
+                    <br>
+
+
+                    <a
+                        href="datenschutz.html"
+                    >
+
+                        Datenschutz
+
+                    </a>
+
+                    <br>
+
+
+                    <a
+                        href="#"
+                        onclick="
+                            openCookieSettings();
+                            return false;
+                        "
+                    >
+
+                        Cookie-Einstellungen
+
+                    </a>
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+
+            <span>
+
+                ©
+                <span id="year"></span>
+                Allerweil Darmstadt
+
+            </span>
+
+
+            <div class="footer-legal">
+
+                <a href="impressum.html">
+
+                    Impressum
+
+                </a>
+
+
+                <a href="datenschutz.html">
+
+                    Datenschutz
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     COOKIE / CONSENT
+===================================================== -->
+
+<div
+    class="cookie-layer"
+    id="cookieLayer"
+>
+
+
+    <div
+        class="cookie-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookieTitle"
+    >
+
+
+        <div class="cookie-top">
+
+
+            <div>
+
+
+                <h2
+                    class="cookie-title"
+                    id="cookieTitle"
+                >
+
+                    Deine Privatsphäre.
+
+                </h2>
+
+
+                <p class="cookie-text">
+
+                    Wir verwenden
+                    technisch notwendige
+                    Speicherungen,
+                    damit diese Website
+                    zuverlässig
+                    funktioniert.
+
+                    Optionale Dienste
+                    oder externe Inhalte
+                    dürfen erst nach
+                    deiner Zustimmung
+                    geladen werden.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="cookie-settings">
+
+
+            <!-- NOTWENDIG -->
+
+            <div class="cookie-row">
+
+
+                <div>
+
+                    <strong>
+
+                        Notwendig
+
+                    </strong>
+
+
+                    <small>
+
+                        Für grundlegende
+                        Funktionen der
+                        Website.
+
+                    </small>
+
+                </div>
+
+
+                <label class="switch">
+
+
+                    <input
+                        type="checkbox"
+                        checked
+                        disabled
+                    >
+
+
+                    <span class="slider">
+
+                    </span>
+
+
+                </label>
+
+
+            </div>
+
+
+
+            <!-- EXTERNE MEDIEN -->
+
+            <div class="cookie-row">
+
+
+                <div>
+
+                    <strong>
+
+                        Externe Medien
+
+                    </strong>
+
+
+                    <small>
+
+                        Zum Beispiel
+                        eingebettete
+                        Karten oder
+                        Social-Media-Inhalte.
+
+                    </small>
+
+                </div>
+
+
+                <label class="switch">
+
+
+                    <input
+                        type="checkbox"
+                        id="externalMediaConsent"
+                    >
+
+
+                    <span class="slider">
+
+                    </span>
+
+
+                </label>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="cookie-actions">
+
+
+            <button
+                class="
+                    cookie-button
+                    necessary
+                "
+                onclick="
+                    acceptNecessary()
+                "
+            >
+
+                Nur notwendige
+
+            </button>
+
+
+            <button
+                class="
+                    cookie-button
+                    save
+                "
+                onclick="
+                    saveCookieSettings()
+                "
+            >
+
+                Auswahl speichern
+
+            </button>
+
+
+            <button
+                class="
+                    cookie-button
+                    accept
+                "
+                onclick="
+                    acceptAll()
+                "
+            >
+
+                Alle akzeptieren
+
+            </button>
+
+
+        </div>
+
+
+        <p class="cookie-legal">
+
+            Deine Auswahl kannst du
+            jederzeit über
+            „Cookie-Einstellungen“
+            im Footer ändern.
+
+            Weitere Informationen
+            findest du in unserer
+
+            <a href="datenschutz.html">
+
+                Datenschutzerklärung
+
+            </a>.
+
+        </p>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   JAHR
+===================================================== */
+
+document
+    .getElementById("year")
+    .textContent =
+    new Date().getFullYear();
+
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const mobileMenu =
+    document.getElementById(
+        "mobileMenu"
+    );
+
+
+function openMenu() {
+
+    mobileMenu
+        .classList
+        .add("open");
+
+
+    document.body
+        .classList
+        .add("no-scroll");
+
+}
+
+
+function closeMenu() {
+
+    mobileMenu
+        .classList
+        .remove("open");
+
+
+    document.body
+        .classList
+        .remove("no-scroll");
+
+}
+
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const revealElements =
+    document.querySelectorAll(
+        ".reveal"
+    );
+
+
+const observer =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target
+                            .classList
+                            .add(
+                                "visible"
+                            );
+
+                        observer
+                            .unobserve(
+                                entry.target
+                            );
+
+                    }
+
+                }
             );
 
-            document
-                .getElementById("cookieOverlay")
-                .classList.remove("show");
+        },
 
+        {
 
-            /*
-            HIER könnten später optionale Dienste
-            geladen werden.
-
-            Beispiel:
-
-            loadGoogleAnalytics();
-            loadInstagram();
-            */
+            threshold: .13
 
         }
 
+    );
 
-        function necessaryCookiesOnly() {
 
-            localStorage.setItem(
-                COOKIE_KEY,
-                "necessary"
+revealElements.forEach(
+
+    element => {
+
+        observer.observe(
+            element
+        );
+
+    }
+
+);
+
+
+
+/* =====================================================
+   COOKIE CONSENT
+===================================================== */
+
+/*
+
+WICHTIG:
+
+Die aktuelle Seite in diesem Code
+lädt KEINE Analyse-Tools,
+KEIN Meta Pixel,
+KEINE eingebettete Google Map,
+KEIN Instagram-Embed
+und KEINE externen Google Fonts.
+
+Dadurch ist sie technisch
+bereits deutlich datensparsamer.
+
+Wenn später z.B.
+
+- Google Analytics
+- Meta Pixel
+- Instagram
+- YouTube
+- Google Maps Embed
+
+hinzukommen,
+
+dürfen diese Dienste grundsätzlich
+nicht einfach sofort geladen werden.
+
+Sie sollten erst nach entsprechender
+Einwilligung aktiviert werden.
+
+*/
+
+
+const CONSENT_KEY =
+    "allerweilConsentV1";
+
+
+const cookieLayer =
+    document.getElementById(
+        "cookieLayer"
+    );
+
+
+const externalMediaCheckbox =
+    document.getElementById(
+        "externalMediaConsent"
+    );
+
+
+
+function showCookieLayer() {
+
+    cookieLayer
+        .classList
+        .add("visible");
+
+}
+
+
+
+function hideCookieLayer() {
+
+    cookieLayer
+        .classList
+        .remove("visible");
+
+}
+
+
+
+/* =========================================
+   ALLE AKZEPTIEREN
+========================================= */
+
+function acceptAll() {
+
+
+    externalMediaCheckbox.checked =
+        true;
+
+
+    const settings = {
+
+        necessary: true,
+
+        externalMedia: true
+
+    };
+
+
+    saveConsent(settings);
+
+
+    activateAllowedServices(
+        settings
+    );
+
+
+    hideCookieLayer();
+
+}
+
+
+
+/* =========================================
+   NUR NOTWENDIGE
+========================================= */
+
+function acceptNecessary() {
+
+
+    externalMediaCheckbox.checked =
+        false;
+
+
+    const settings = {
+
+        necessary: true,
+
+        externalMedia: false
+
+    };
+
+
+    saveConsent(settings);
+
+
+    hideCookieLayer();
+
+}
+
+
+
+/* =========================================
+   AUSWAHL SPEICHERN
+========================================= */
+
+function saveCookieSettings() {
+
+
+    const settings = {
+
+        necessary: true,
+
+        externalMedia:
+            externalMediaCheckbox
+                .checked
+
+    };
+
+
+    saveConsent(settings);
+
+
+    activateAllowedServices(
+        settings
+    );
+
+
+    hideCookieLayer();
+
+}
+
+
+
+/* =========================================
+   EINSTELLUNGEN ÖFFNEN
+========================================= */
+
+function openCookieSettings() {
+
+
+    const saved =
+        loadConsent();
+
+
+    if (saved) {
+
+        externalMediaCheckbox
+            .checked =
+            !!saved.externalMedia;
+
+    }
+
+
+    showCookieLayer();
+
+}
+
+
+
+/* =========================================
+   LOCAL STORAGE
+========================================= */
+
+function saveConsent(
+    settings
+) {
+
+    const consentObject = {
+
+        settings:
+            settings,
+
+        timestamp:
+            Date.now(),
+
+        version:
+            1
+
+    };
+
+
+    localStorage.setItem(
+
+        CONSENT_KEY,
+
+        JSON.stringify(
+            consentObject
+        )
+
+    );
+
+}
+
+
+
+function loadConsent() {
+
+
+    const saved =
+        localStorage.getItem(
+            CONSENT_KEY
+        );
+
+
+    if (!saved) {
+
+        return null;
+
+    }
+
+
+    try {
+
+        return JSON
+            .parse(saved)
+            .settings;
+
+    }
+
+    catch (error) {
+
+        localStorage
+            .removeItem(
+                CONSENT_KEY
             );
 
-            document
-                .getElementById("cookieOverlay")
-                .classList.remove("show");
 
-        }
+        return null;
 
+    }
 
-        function openCookieSettings() {
-
-            document
-                .getElementById("cookieOverlay")
-                .classList.add("show");
-
-        }
+}
 
 
-        showCookieBanner();
 
-    </script>
+/* =========================================
+   OPTIONALE DIENSTE
+========================================= */
+
+function activateAllowedServices(
+    settings
+) {
+
+
+    if (
+        settings.externalMedia
+    ) {
+
+        /*
+
+        Hier können später
+        externe Inhalte aktiviert
+        werden.
+
+        Beispiel:
+
+        loadGoogleMaps();
+        loadInstagram();
+
+        Solange diese Funktionen
+        NICHT eingebaut sind,
+        werden auch keine
+        externen Dienste geladen.
+
+        */
+
+    }
+
+}
+
+
+
+/* =========================================
+   INITIALISIERUNG
+========================================= */
+
+(function initConsent() {
+
+
+    const saved =
+        loadConsent();
+
+
+    if (!saved) {
+
+        setTimeout(
+
+            showCookieLayer,
+
+            650
+
+        );
+
+        return;
+
+    }
+
+
+    externalMediaCheckbox
+        .checked =
+        !!saved.externalMedia;
+
+
+    activateAllowedServices(
+        saved
+    );
+
+
+})();
+
+
+</script>
+
 
 </body>
+
 </html>
