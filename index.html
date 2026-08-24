@@ -723,7 +723,7 @@ img {
 
     width: 100%;
 
-    max-width: 1050px;
+    max-width: 1180px;
 
     margin: 0 auto;
 
@@ -732,6 +732,7 @@ img {
     flex-direction: column;
 
     align-items: center;
+    justify-content: center;
 
     text-align: center;
 }
@@ -796,29 +797,41 @@ img {
 
     width:
         clamp(
-            380px,
-            47vw,
-            670px
+            430px,
+            51vw,
+            760px
         );
 
     margin:
         0 auto
-        45px;
+        38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    align-self: center;
 }
 
 
 .hero-logo img {
+
+    display: block;
 
     width: 100%;
     height: auto;
 
     margin: 0 auto;
 
+    object-fit: contain;
+    object-position: center;
+
     filter:
         brightness(0)
         invert(1);
 
-    opacity: .99;
+    opacity: 1;
 }
 
 
@@ -828,22 +841,23 @@ img {
 
 .hero-quote {
 
-    max-width: 940px;
+    width: 100%;
+    max-width: 820px;
 
     margin: 0 auto;
 
     font-size:
         clamp(
-            2rem,
-            3.6vw,
-            3.8rem
+            1.8rem,
+            3.15vw,
+            3.3rem
         );
 
-    line-height: 1.04;
+    line-height: 1.07;
 
-    letter-spacing: -.047em;
+    letter-spacing: -.038em;
 
-    font-weight: 520;
+    font-weight: 470;
 
     text-align: center;
 
@@ -852,7 +866,7 @@ img {
             255,
             255,
             255,
-            .97
+            .86
         );
 }
 
@@ -885,7 +899,7 @@ img {
             255,
             255,
             255,
-            .55
+            .43
         );
 
     font-size: .76rem;
@@ -2766,24 +2780,24 @@ Eventleiste wird nicht mehr benötigt.
 
         width:
             clamp(
-                360px,
-                43vw,
-                590px
+                390px,
+                46vw,
+                640px
             );
 
-        margin-bottom: 25px;
+        margin-bottom: 22px;
     }
 
 
     .hero-quote {
 
-        max-width: 820px;
+        max-width: 760px;
 
         font-size:
             clamp(
-                1.7rem,
-                3vw,
-                3rem
+                1.55rem,
+                2.7vw,
+                2.65rem
             );
     }
 
@@ -2837,22 +2851,24 @@ Eventleiste wird nicht mehr benötigt.
 
         width:
             clamp(
-                330px,
-                39vw,
-                500px
+                350px,
+                42vw,
+                550px
             );
 
-        margin-bottom: 17px;
+        margin-bottom: 15px;
     }
 
 
     .hero-quote {
 
+        max-width: 690px;
+
         font-size:
             clamp(
-                1.5rem,
-                2.65vw,
-                2.45rem
+                1.4rem,
+                2.35vw,
+                2.15rem
             );
     }
 
@@ -3060,26 +3076,26 @@ Eventleiste wird nicht mehr benötigt.
 
         width:
             min(
-                390px,
-                88vw
+                420px,
+                92vw
             );
 
-        margin-bottom: 34px;
+        margin-bottom: 29px;
     }
 
 
     .hero-quote {
 
-        max-width: 95%;
+        max-width: 92%;
 
         font-size:
             clamp(
-                1.65rem,
-                7.4vw,
-                2.6rem
+                1.5rem,
+                6.8vw,
+                2.35rem
             );
 
-        line-height: 1.06;
+        line-height: 1.08;
     }
 
 
