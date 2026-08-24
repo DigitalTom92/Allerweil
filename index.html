@@ -1261,6 +1261,17 @@ img {
 
 
 /* ==========================================================
+   MOBILE EVENTLEISTE
+   DESKTOP: AUSGEBLENDET
+========================================================== */
+
+.mobile-hero-marquee {
+
+    display: none;
+}
+
+
+/* ==========================================================
    STANDARD
 ========================================================== */
 
@@ -3011,6 +3022,31 @@ img {
     }
 
 
+    /* Event-Leiste auf Mobil direkt unter der festen Menüleiste */
+    .mobile-hero-marquee {
+
+        display: block;
+
+        position: absolute;
+
+        top: var(--nav-height);
+        left: 0;
+
+        width: 100%;
+
+        z-index: 8;
+
+        border-top: 0;
+    }
+
+
+    /* Die normale Event-Leiste unter dem Hero mobil nicht doppelt anzeigen */
+    .desktop-event-marquee {
+
+        display: none;
+    }
+
+
     .event-marquee {
 
         gap: 18px;
@@ -3343,6 +3379,139 @@ img {
     id="home"
 >
 
+    <!-- ======================================================
+         EVENT BANNER – NUR MOBIL DIREKT UNTER DER MENÜLEISTE
+    ======================================================= -->
+
+    <div
+        class="marquee mobile-hero-marquee"
+        aria-label="Nächstes Event"
+    >
+
+        <div class="marquee-track">
+
+
+            <div class="event-marquee">
+
+                <span class="event-small">
+                    Next Event
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-title">
+                    Afterwork × PREGAME
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-date">
+                    03.09.2026
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-time">
+                    ab 18 Uhr
+                </span>
+
+                <span class="event-dot"></span>
+
+            </div>
+
+
+            <div class="event-marquee">
+
+                <span class="event-small">
+                    Next Event
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-title">
+                    Afterwork × PREGAME
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-date">
+                    03.09.2026
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-time">
+                    ab 18 Uhr
+                </span>
+
+                <span class="event-dot"></span>
+
+            </div>
+
+
+            <div class="event-marquee">
+
+                <span class="event-small">
+                    Next Event
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-title">
+                    Afterwork × PREGAME
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-date">
+                    03.09.2026
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-time">
+                    ab 18 Uhr
+                </span>
+
+                <span class="event-dot"></span>
+
+            </div>
+
+
+            <div class="event-marquee">
+
+                <span class="event-small">
+                    Next Event
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-title">
+                    Afterwork × PREGAME
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-date">
+                    03.09.2026
+                </span>
+
+                <span class="event-dot"></span>
+
+                <span class="event-time">
+                    ab 18 Uhr
+                </span>
+
+                <span class="event-dot"></span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
     <div class="hero-inner">
 
 
@@ -3434,7 +3603,7 @@ img {
 ========================================================== -->
 
 <div
-    class="marquee"
+    class="marquee desktop-event-marquee"
     aria-label="Nächstes Event"
 >
 
