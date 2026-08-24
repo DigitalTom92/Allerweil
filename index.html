@@ -53,7 +53,7 @@
     --cream: #f3eee5;
     --cream-light: #faf7f1;
 
-    --white: #ffffff;
+    --var(--cream): #f3eee5;
 
     --text: #182019;
     --muted: #74716b;
@@ -168,10 +168,7 @@ img {
 
     border-bottom:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .10
         );
 
@@ -231,10 +228,7 @@ img {
         );
 
     border-bottom-color:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .13
         );
 
@@ -273,7 +267,13 @@ img {
 
     filter:
         brightness(0)
-        invert(1);
+        saturate(100%)
+        invert(93%)
+        sepia(8%)
+        saturate(365%)
+        hue-rotate(347deg)
+        brightness(104%)
+        contrast(92%);
 }
 
 
@@ -298,10 +298,7 @@ img {
     position: relative;
 
     color:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .78
         );
 
@@ -318,7 +315,7 @@ img {
 
 .nav-links a:hover {
 
-    color: white;
+    color: var(--cream);
 }
 
 
@@ -336,7 +333,7 @@ img {
 
     border-radius: 50%;
 
-    background: white;
+    background: var(--cream);
 
     opacity: 0;
 
@@ -381,10 +378,7 @@ img {
     border-radius: 14px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .94
         );
 
@@ -412,7 +406,7 @@ img {
 
 .nav-button:hover {
 
-    background: white;
+    background: var(--cream);
 
     transform:
         translateY(-1px);
@@ -434,24 +428,18 @@ img {
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .17
         );
 
     border-radius: 13px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .08
         );
 
-    color: white;
+    color: var(--cream);
 
     cursor: pointer;
 
@@ -488,7 +476,7 @@ img {
             var(--green-dark)
         );
 
-    color: white;
+    color: var(--cream);
 
     opacity: 0;
 
@@ -519,7 +507,13 @@ img {
 
     filter:
         brightness(0)
-        invert(1);
+        saturate(100%)
+        invert(93%)
+        sepia(8%)
+        saturate(365%)
+        hue-rotate(347deg)
+        brightness(104%)
+        contrast(92%);
 }
 
 
@@ -554,22 +548,16 @@ img {
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .14
         );
 
     background:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .07
         );
 
-    color: white;
+    color: var(--cream);
 
     cursor: pointer;
 }
@@ -606,7 +594,7 @@ img {
         5vw
         28px;
 
-    color: white;
+    color: var(--cream);
 
     background:
 
@@ -665,10 +653,7 @@ img {
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .035
         );
 
@@ -698,10 +683,7 @@ img {
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .045
         );
 
@@ -762,10 +744,7 @@ img {
     letter-spacing: .20em;
 
     color:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .67
         );
 }
@@ -780,10 +759,7 @@ img {
     height: 1px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .45
         );
 }
@@ -829,7 +805,13 @@ img {
 
     filter:
         brightness(0)
-        invert(1);
+        saturate(100%)
+        invert(93%)
+        sepia(8%)
+        saturate(365%)
+        hue-rotate(347deg)
+        brightness(104%)
+        contrast(92%);
 
     opacity: 1;
 }
@@ -862,10 +844,7 @@ img {
     text-align: center;
 
     color:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .86
         );
 }
@@ -895,10 +874,7 @@ img {
     margin-top: 24px;
 
     color:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .43
         );
 
@@ -944,10 +920,7 @@ img {
     border-radius: 15px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .94
         );
 
@@ -978,7 +951,7 @@ img {
     transform:
         translateY(-2px);
 
-    background: white;
+    background: var(--cream);
 }
 
 
@@ -998,22 +971,16 @@ img {
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .17
         );
 
     background:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .08
         );
 
-    color: white;
+    color: var(--cream);
 
     backdrop-filter:
         blur(16px);
@@ -1034,10 +1001,7 @@ img {
 .secondary-button:hover {
 
     background:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .15
         );
 
@@ -1618,7 +1582,7 @@ Eventleiste wird nicht mehr benötigt.
     left: 24px;
     bottom: 22px;
 
-    color: white;
+    color: var(--cream);
 
     font-size: .83rem;
 
@@ -1648,7 +1612,7 @@ Eventleiste wird nicht mehr benötigt.
             var(--green-dark) 100%
         );
 
-    color: white;
+    color: var(--cream);
 }
 
 
@@ -1666,10 +1630,7 @@ Eventleiste wird nicht mehr benötigt.
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .07
         );
 
@@ -1708,10 +1669,7 @@ Eventleiste wird nicht mehr benötigt.
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .17
         );
 
@@ -1724,10 +1682,7 @@ Eventleiste wird nicht mehr benötigt.
     font-size: 3.7rem;
 
     color:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .88
         );
 }
@@ -1763,10 +1718,7 @@ Eventleiste wird nicht mehr benötigt.
     font-style: italic;
 
     color:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .68
         );
 }
@@ -2149,7 +2101,7 @@ Eventleiste wird nicht mehr benötigt.
     background:
         var(--green);
 
-    color: white;
+    color: var(--cream);
 
     font-size: .88rem;
 
@@ -2205,14 +2157,11 @@ Eventleiste wird nicht mehr benötigt.
             #10291f 100%
         );
 
-    color: white;
+    color: var(--cream);
 
     border-top:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .08
         );
 }
@@ -2268,10 +2217,7 @@ Eventleiste wird nicht mehr benötigt.
 
     border-bottom:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .12
         );
 }
@@ -2287,7 +2233,13 @@ Eventleiste wird nicht mehr benötigt.
 
     filter:
         brightness(0)
-        invert(1);
+        saturate(100%)
+        invert(93%)
+        sepia(8%)
+        saturate(365%)
+        hue-rotate(347deg)
+        brightness(104%)
+        contrast(92%);
 
     opacity: .96;
 }
@@ -2312,10 +2264,7 @@ Eventleiste wird nicht mehr benötigt.
     margin-bottom: 15px;
 
     color:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .42
         );
 
@@ -2333,10 +2282,7 @@ Eventleiste wird nicht mehr benötigt.
 .footer a {
 
     color:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .68
         );
 
@@ -2355,7 +2301,7 @@ Eventleiste wird nicht mehr benötigt.
 
 .footer a:hover {
 
-    color: white;
+    color: var(--cream);
 }
 
 
@@ -2365,10 +2311,7 @@ Eventleiste wird nicht mehr benötigt.
 
     border-top:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .10
         );
 
@@ -2382,10 +2325,7 @@ Eventleiste wird nicht mehr benötigt.
     gap: 30px;
 
     color:
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .37
         );
 
@@ -2459,10 +2399,7 @@ Eventleiste wird nicht mehr benötigt.
 
     border:
         1px solid
-        rgba(
-            255,
-            255,
-            255,
+        rgba(243, 238, 229,
             .7
         );
 
@@ -2614,7 +2551,7 @@ Eventleiste wird nicht mehr benötigt.
 
     border-radius: 50%;
 
-    background: white;
+    background: var(--cream);
 
     transition: .2s;
 }
@@ -2685,7 +2622,7 @@ Eventleiste wird nicht mehr benötigt.
     background:
         var(--green-soft);
 
-    color: white;
+    color: var(--cream);
 }
 
 
@@ -2694,7 +2631,7 @@ Eventleiste wird nicht mehr benötigt.
     background:
         var(--green);
 
-    color: white;
+    color: var(--cream);
 }
 
 
@@ -3180,10 +3117,7 @@ Eventleiste wird nicht mehr benötigt.
         display: block;
 
         color:
-            rgba(
-                255,
-                255,
-                255,
+            rgba(243, 238, 229,
                 .88
             );
 
