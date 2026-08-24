@@ -2283,7 +2283,8 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 
 
 /* ==========================================================
-   STATEMENT / NEXT EVENT
+   EVENT-SLIDER
+   ZWEI EVENTSEITEN MIT WISCHEN + PUNKTELEISTE
 ========================================================== */
 
 .statement {
@@ -2292,8 +2293,9 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 
     overflow: hidden;
 
-    padding:
-        145px 5vw;
+    min-height: 78svh;
+
+    padding: 0;
 
     background:
         linear-gradient(
@@ -2321,6 +2323,8 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
     right: -180px;
     top: -180px;
 
+    z-index: 0;
+
     border:
         1px solid
         rgba(
@@ -2336,12 +2340,85 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 }
 
 
+/* ==========================================================
+   SLIDER
+========================================================== */
+
+.event-slider {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling: touch;
+
+    touch-action: pan-x pan-y;
+
+    cursor: grab;
+}
+
+
+.event-slider:active {
+
+    cursor: grabbing;
+}
+
+
+.event-slider::-webkit-scrollbar {
+
+    display: none;
+}
+
+
+.event-track {
+
+    display: flex;
+
+    width: 100%;
+}
+
+
+.event-slide {
+
+    flex:
+        0 0 100%;
+
+    width: 100%;
+
+    min-width: 100%;
+
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
+    display: flex;
+
+    align-items: center;
+
+    min-height: 78svh;
+
+    padding:
+        145px 5vw
+        150px;
+}
+
+
 .statement-inner {
 
     position: relative;
 
     z-index: 2;
 
+    width: 100%;
     max-width: 1260px;
 
     margin: auto;
@@ -2357,7 +2434,9 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 }
 
 
-/* LINKER DATUMSKREIS */
+/* ==========================================================
+   DATUMSKREIS
+========================================================== */
 
 .statement-date {
 
@@ -2429,7 +2508,9 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 }
 
 
-/* RECHTE EVENTSEITE */
+/* ==========================================================
+   EVENT-INHALT
+========================================================== */
 
 .statement-event {
 
@@ -2580,7 +2661,152 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 }
 
 
+/* ==========================================================
+   PUNKTELEISTE UNTEN
+========================================================== */
+
+.event-pagination {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 77px;
+
+    z-index: 30;
+
+    transform:
+        translateX(-50%);
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 11px;
+
+    padding:
+        10px 14px;
+
+    border:
+        1px solid
+        rgba(
+            242,
+            232,
+            216,
+            .13
+        );
+
+    border-radius: 999px;
+
+    background:
+        rgba(
+            16,
+            41,
+            31,
+            .34
+        );
+
+    box-shadow:
+        0 8px 28px
+        rgba(
+            0,
+            0,
+            0,
+            .10
+        );
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+}
+
+
+.event-page-dot {
+
+    width: 9px;
+    height: 9px;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            242,
+            232,
+            216,
+            .30
+        );
+
+    cursor: pointer;
+
+    transition:
+        transform .28s ease,
+        background .28s ease,
+        box-shadow .28s ease;
+}
+
+
+.event-page-dot:hover {
+
+    background:
+        rgba(
+            242,
+            232,
+            216,
+            .58
+        );
+}
+
+
+.event-page-dot.active {
+
+    transform:
+        scale(1.16);
+
+    background:
+        var(--cream);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(
+            242,
+            232,
+            216,
+            .08
+        );
+}
+
+
+.event-page-dot:focus-visible {
+
+    outline:
+        2px solid
+        var(--cream);
+
+    outline-offset: 4px;
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
 @media (max-width: 900px) {
+
+    .event-slide {
+
+        min-height: 78svh;
+
+        padding:
+            128px 5vw
+            145px;
+    }
+
 
     .statement-inner {
 
@@ -2600,13 +2826,26 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 }
 
 
+/* ==========================================================
+   MOBILE
+========================================================== */
+
 @media (max-width: 700px) {
 
     .statement {
 
+        min-height: auto;
+    }
+
+
+    .event-slide {
+
+        min-height:
+            78svh;
+
         padding:
             104px 23px
-            94px;
+            128px;
     }
 
 
@@ -2686,6 +2925,24 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
             );
 
         line-height: .98;
+    }
+
+
+    .event-pagination {
+
+        bottom: 59px;
+
+        gap: 10px;
+
+        padding:
+            9px 13px;
+    }
+
+
+    .event-page-dot {
+
+        width: 8px;
+        height: 8px;
     }
 
 }
@@ -4788,7 +5045,7 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 <!-- ==========================================================
      STATEMENT
 ========================================================== -->
-<section class="statement has-transition" id="event"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">03. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">Next Event</div><div class="statement-event-head"><div class="statement-event-title">Afterwork × Pregame</div><div class="statement-event-time">ab 18 Uhr</div></div><div class="statement-slogan">Daydrinking. Feierabend. Freunde. <span>Allerweil.</span></div></div></div><div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
+<section class="statement has-transition" id="event"><div aria-label="Kommende Events" class="event-slider" id="eventSlider"><div class="event-track"><article aria-label="Event 1 von 2" class="event-slide" data-event-slide="0"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">03. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">Next Event</div><div class="statement-event-head"><div class="statement-event-title">Afterwork × Pregame</div><div class="statement-event-time">ab 18 Uhr</div></div><div class="statement-slogan">Daydrinking. Feierabend. Freunde. <span>Allerweil.</span></div></div></div></article><article aria-label="Event 2 von 2" class="event-slide" data-event-slide="1"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">17. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">Next Event</div><div class="statement-event-head"><div class="statement-event-title">Afterwork x DJ Dan</div><div class="statement-event-time">ab 18:00 Uhr</div></div><div class="statement-slogan">Daydrinking. Feierabend. Freunde. <span>Allerweil.</span></div></div></div></article></div></div><div aria-label="Event-Seite auswählen" class="event-pagination"><button aria-current="true" aria-label="Event 1 anzeigen" class="event-page-dot active" data-event-dot="0" type="button"></button><button aria-current="false" aria-label="Event 2 anzeigen" class="event-page-dot" data-event-dot="1" type="button"></button></div><div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      INFOS
 ========================================================== -->
@@ -5850,6 +6107,307 @@ function activateExternalServices(
 })();
 </script>
 
+<script>
+/* ==========================================================
+   EVENT-SLIDER
+   WISCHEN / TRACKPAD / PUNKTELEISTE
+========================================================== */
+
+(function () {
+
+    const slider =
+        document.getElementById(
+            "eventSlider"
+        );
+
+    if (!slider) {
+        return;
+    }
+
+
+    const slides =
+        Array.from(
+            slider.querySelectorAll(
+                ".event-slide"
+            )
+        );
+
+    const dots =
+        Array.from(
+            document.querySelectorAll(
+                ".event-page-dot"
+            )
+        );
+
+
+    if (
+        slides.length < 2 ||
+        dots.length !== slides.length
+    ) {
+        return;
+    }
+
+
+    let activeIndex = 0;
+    let scrollTimer = null;
+
+
+    function setActiveDot(index) {
+
+        activeIndex = index;
+
+        dots.forEach(
+            (dot, dotIndex) => {
+
+                const isActive =
+                    dotIndex === index;
+
+                dot.classList.toggle(
+                    "active",
+                    isActive
+                );
+
+                dot.setAttribute(
+                    "aria-current",
+                    isActive
+                        ? "true"
+                        : "false"
+                );
+            }
+        );
+    }
+
+
+    function goToEvent(index) {
+
+        const safeIndex =
+            Math.max(
+                0,
+                Math.min(
+                    index,
+                    slides.length - 1
+                )
+            );
+
+        const reduceMotion =
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+        slides[safeIndex].scrollIntoView({
+            behavior:
+                reduceMotion
+                    ? "auto"
+                    : "smooth",
+            block:
+                "nearest",
+            inline:
+                "start"
+        });
+
+        setActiveDot(
+            safeIndex
+        );
+    }
+
+
+    dots.forEach(
+        (dot, index) => {
+
+            dot.addEventListener(
+                "click",
+                function () {
+
+                    goToEvent(
+                        index
+                    );
+                }
+            );
+        }
+    );
+
+
+    /*
+    Aktiven Punkt beim Wischen / Scrollen aktualisieren.
+    */
+
+    slider.addEventListener(
+        "scroll",
+        function () {
+
+            window.clearTimeout(
+                scrollTimer
+            );
+
+            scrollTimer =
+                window.setTimeout(
+                    function () {
+
+                        const slideWidth =
+                            slider.clientWidth;
+
+                        if (!slideWidth) {
+                            return;
+                        }
+
+                        const index =
+                            Math.round(
+                                slider.scrollLeft /
+                                slideWidth
+                            );
+
+                        setActiveDot(
+                            Math.max(
+                                0,
+                                Math.min(
+                                    index,
+                                    slides.length - 1
+                                )
+                            )
+                        );
+                    },
+                    70
+                );
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /*
+    Mausziehen auf Desktop zusätzlich unterstützen.
+    Touch und Trackpad funktionieren nativ über overflow-x.
+    */
+
+    let dragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+
+    slider.addEventListener(
+        "pointerdown",
+        function (event) {
+
+            if (
+                event.pointerType !== "mouse"
+            ) {
+                return;
+            }
+
+            dragging = true;
+
+            startX =
+                event.clientX;
+
+            startScrollLeft =
+                slider.scrollLeft;
+
+            slider.setPointerCapture(
+                event.pointerId
+            );
+        }
+    );
+
+
+    slider.addEventListener(
+        "pointermove",
+        function (event) {
+
+            if (!dragging) {
+                return;
+            }
+
+            const distance =
+                event.clientX -
+                startX;
+
+            slider.scrollLeft =
+                startScrollLeft -
+                distance;
+        }
+    );
+
+
+    function finishDrag() {
+
+        if (!dragging) {
+            return;
+        }
+
+        dragging = false;
+
+        goToEvent(
+            Math.round(
+                slider.scrollLeft /
+                slider.clientWidth
+            )
+        );
+    }
+
+
+    slider.addEventListener(
+        "pointerup",
+        finishDrag
+    );
+
+
+    slider.addEventListener(
+        "pointercancel",
+        finishDrag
+    );
+
+
+    slider.addEventListener(
+        "mouseleave",
+        finishDrag
+    );
+
+
+    /*
+    Tastatur: links / rechts.
+    */
+
+    slider.setAttribute(
+        "tabindex",
+        "0"
+    );
+
+
+    slider.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "ArrowRight"
+            ) {
+
+                event.preventDefault();
+
+                goToEvent(
+                    activeIndex + 1
+                );
+            }
+
+
+            if (
+                event.key === "ArrowLeft"
+            ) {
+
+                event.preventDefault();
+
+                goToEvent(
+                    activeIndex - 1
+                );
+            }
+        }
+    );
+
+
+    setActiveDot(0);
+
+})();
+</script>
 
 </body>
 </html>
