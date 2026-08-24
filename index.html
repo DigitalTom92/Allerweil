@@ -1132,37 +1132,68 @@ img {
 
 /* ==========================================================
    EVENT BANNER
+   BEIDE EVENTS EINZELN KLICKBAR
 ========================================================== */
 
+.event-banner-bar {
 
-.event-banner-link {
+    color: inherit;
+
+    text-decoration: none;
+}
+
+
+.event-banner-item {
 
     color: inherit;
 
     text-decoration: none;
 
     cursor: pointer;
+
+    margin:
+        0 14px;
+
+    border-radius: 12px;
+
+    transition:
+        opacity .22s ease,
+        background .22s ease;
 }
 
 
-.event-banner-link:visited {
+.event-banner-item:visited {
 
     color: inherit;
 }
 
 
-.event-banner-link:focus-visible {
+.event-banner-item:hover {
+
+    opacity: .72;
+
+    background:
+        rgba(
+            23,
+            58,
+            43,
+            .035
+        );
+}
+
+
+.event-banner-item:focus-visible {
 
     outline:
         2px solid
         rgba(
-            242,
-            232,
-            216,
-            .72
+            23,
+            58,
+            43,
+            .38
         );
 
-    outline-offset: -3px;
+    outline-offset: -2px;
 }
 
 
@@ -1254,7 +1285,7 @@ img {
 
     animation:
         marqueeMove
-        24s
+        30s
         linear
         infinite;
 
@@ -4403,6 +4434,15 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
     }
 
 
+    .event-banner-item {
+
+        margin:
+            0 9px;
+
+        border-radius: 10px;
+    }
+
+
     .event-small {
 
         font-size: .58rem;
@@ -4674,82 +4714,7 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 <!-- ======================================================
          EVENT BANNER – DESKTOP UND MOBIL DIREKT UNTER DER MENÜLEISTE
     ======================================================= -->
-<a aria-label="Zum Afterwork Event" class="marquee mobile-hero-marquee event-banner-link" href="#event">
-<div class="marquee-track">
-<div class="event-marquee">
-<span class="event-small">
-                    Next Event
-                </span>
-<span class="event-dot"></span>
-<span class="event-title">
-                    Afterwork × PREGAME
-                </span>
-<span class="event-dot"></span>
-<span class="event-date">
-                    03.09.2026
-                </span>
-<span class="event-dot"></span>
-<span class="event-time">
-                    ab 18 Uhr
-                </span>
-<span class="event-dot"></span>
-</div>
-<div class="event-marquee">
-<span class="event-small">
-                    Next Event
-                </span>
-<span class="event-dot"></span>
-<span class="event-title">
-                    Afterwork × PREGAME
-                </span>
-<span class="event-dot"></span>
-<span class="event-date">
-                    03.09.2026
-                </span>
-<span class="event-dot"></span>
-<span class="event-time">
-                    ab 18 Uhr
-                </span>
-<span class="event-dot"></span>
-</div>
-<div class="event-marquee">
-<span class="event-small">
-                    Next Event
-                </span>
-<span class="event-dot"></span>
-<span class="event-title">
-                    Afterwork × PREGAME
-                </span>
-<span class="event-dot"></span>
-<span class="event-date">
-                    03.09.2026
-                </span>
-<span class="event-dot"></span>
-<span class="event-time">
-                    ab 18 Uhr
-                </span>
-<span class="event-dot"></span>
-</div>
-<div class="event-marquee">
-<span class="event-small">
-                    Next Event
-                </span>
-<span class="event-dot"></span>
-<span class="event-title">
-                    Afterwork × PREGAME
-                </span>
-<span class="event-dot"></span>
-<span class="event-date">
-                    03.09.2026
-                </span>
-<span class="event-dot"></span>
-<span class="event-time">
-                    ab 18 Uhr
-                </span>
-<span class="event-dot"></span>
-</div>
-</div>
-</a>
+<div aria-label="Kommende Events" class="marquee mobile-hero-marquee event-banner-bar"><div class="marquee-track"><a aria-label="Zum Afterwork Pregame am 03. September" class="event-marquee event-banner-item" data-event-index="0" href="#event"><span class="event-small">Next Event</span><span class="event-dot"></span><span class="event-title">Afterwork × PREGAME</span><span class="event-dot"></span><span class="event-date">03.09.2026</span><span class="event-dot"></span><span class="event-time">ab 18 Uhr</span><span class="event-dot"></span></a><a aria-label="Zum Afterwork mit DJ Dan am 17. September" class="event-marquee event-banner-item" data-event-index="1" href="#event"><span class="event-small">Next Event</span><span class="event-dot"></span><span class="event-title">Afterwork x DJ Dan</span><span class="event-dot"></span><span class="event-date">17.09.2026</span><span class="event-dot"></span><span class="event-time">ab 18:00 Uhr</span><span class="event-dot"></span></a><a aria-label="Zum Afterwork Pregame am 03. September" class="event-marquee event-banner-item" data-event-index="0" href="#event"><span class="event-small">Next Event</span><span class="event-dot"></span><span class="event-title">Afterwork × PREGAME</span><span class="event-dot"></span><span class="event-date">03.09.2026</span><span class="event-dot"></span><span class="event-time">ab 18 Uhr</span><span class="event-dot"></span></a><a aria-label="Zum Afterwork mit DJ Dan am 17. September" class="event-marquee event-banner-item" data-event-index="1" href="#event"><span class="event-small">Next Event</span><span class="event-dot"></span><span class="event-title">Afterwork x DJ Dan</span><span class="event-dot"></span><span class="event-date">17.09.2026</span><span class="event-dot"></span><span class="event-time">ab 18:00 Uhr</span><span class="event-dot"></span></a></div></div>
 <div class="hero-inner">
 <div class="hero-eyebrow">
 
@@ -6053,60 +6018,80 @@ function activateExternalServices(
 </script>
 <script>
 /* ==========================================================
-   EVENTBANNER → EVENT
+   EVENTBANNER → PASSENDE EVENT-SEITE
 ========================================================== */
 
 (function () {
 
-    const eventBanner =
-        document.querySelector(
-            ".event-banner-link"
+    const eventLinks =
+        Array.from(
+            document.querySelectorAll(
+                ".event-banner-item"
+            )
         );
 
-    const eventSection =
-        document.getElementById(
-            "event"
-        );
 
-    if (
-        !eventBanner ||
-        !eventSection
-    ) {
+    if (!eventLinks.length) {
         return;
     }
 
 
-    eventBanner.addEventListener(
-        "click",
-        function (event) {
+    eventLinks.forEach(
+        function (link) {
 
-            event.preventDefault();
+            link.addEventListener(
+                "click",
+                function (event) {
 
-            const reduceMotion =
-                window.matchMedia(
-                    "(prefers-reduced-motion: reduce)"
-                ).matches;
+                    event.preventDefault();
 
-            eventSection.scrollIntoView({
-                behavior:
-                    reduceMotion
-                        ? "auto"
-                        : "smooth",
-                block:
-                    "start"
-            });
+                    const index =
+                        Number(
+                            link.dataset.eventIndex
+                        ) || 0;
 
-            history.replaceState(
-                null,
-                "",
-                "#event"
+
+                    if (
+                        typeof window.goToAllerweilEvent
+                        === "function"
+                    ) {
+
+                        window.goToAllerweilEvent(
+                            index
+                        );
+
+                        return;
+                    }
+
+
+                    const eventSection =
+                        document.getElementById(
+                            "event"
+                        );
+
+                    if (eventSection) {
+
+                        const reduceMotion =
+                            window.matchMedia(
+                                "(prefers-reduced-motion: reduce)"
+                            ).matches;
+
+                        eventSection.scrollIntoView({
+                            behavior:
+                                reduceMotion
+                                    ? "auto"
+                                    : "smooth",
+                            block:
+                                "start"
+                        });
+                    }
+                }
             );
         }
     );
 
 })();
 </script>
-
 <script>
 /* ==========================================================
    EVENT-SLIDER
@@ -6178,7 +6163,10 @@ function activateExternalServices(
     }
 
 
-    function goToEvent(index) {
+    function goToEvent(
+        index,
+        scrollToSection = false
+    ) {
 
         const safeIndex =
             Math.max(
@@ -6194,15 +6182,31 @@ function activateExternalServices(
                 "(prefers-reduced-motion: reduce)"
             ).matches;
 
-        slides[safeIndex].scrollIntoView({
+
+        if (
+            scrollToSection &&
+            eventSection
+        ) {
+
+            eventSection.scrollIntoView({
+                behavior:
+                    reduceMotion
+                        ? "auto"
+                        : "smooth",
+                block:
+                    "start"
+            });
+        }
+
+
+        slider.scrollTo({
+            left:
+                safeIndex *
+                slider.clientWidth,
             behavior:
                 reduceMotion
                     ? "auto"
-                    : "smooth",
-            block:
-                "nearest",
-            inline:
-                "start"
+                    : "smooth"
         });
 
         setActiveDot(
@@ -6473,10 +6477,29 @@ function activateExternalServices(
     }
 
 
+    /*
+    Öffentliche Sprungfunktion für den oberen Eventbanner.
+    */
+
+    window.goToAllerweilEvent =
+        function (index) {
+
+            goToEvent(
+                index,
+                true
+            );
+
+            history.replaceState(
+                null,
+                "",
+                "#event"
+            );
+        };
+
+
     setActiveDot(0);
 
 })();
 </script>
-
 </body>
 </html>
