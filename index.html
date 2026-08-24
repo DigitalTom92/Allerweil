@@ -1023,6 +1023,18 @@ img {
 }
 
 
+
+/* ==========================================================
+   MOBILE SCROLL PFEIL
+   AUF DESKTOP AUSGEBLENDET
+========================================================== */
+
+.mobile-scroll-arrow {
+
+    display: none;
+}
+
+
 /* ==========================================================
    EVENT BANNER
 ========================================================== */
@@ -2900,12 +2912,102 @@ img {
     }
 
 
-    .primary-button,
-    .secondary-button {
+    /* Vorbeikommen nur mobil ausblenden */
+    .hero-actions .primary-button {
 
-        width: 100%;
+        display: none;
+    }
 
-        max-width: 280px;
+
+    /* Allerweil entdecken wird mobil nur zum Scroll-Pfeil */
+    .hero-actions .secondary-button {
+
+        width: 56px;
+        height: 56px;
+
+        min-height: 56px;
+        max-width: none;
+
+        padding: 0;
+
+        border: 0;
+
+        border-radius: 50%;
+
+        background: transparent;
+
+        box-shadow: none;
+
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        transform: none;
+    }
+
+
+    .hero-actions .secondary-button:hover {
+
+        background: transparent;
+
+        transform: none;
+    }
+
+
+    .hero-actions .desktop-scroll-label {
+
+        display: none;
+    }
+
+
+    .hero-actions .mobile-scroll-arrow {
+
+        display: block;
+
+        color:
+            rgba(
+                255,
+                255,
+                255,
+                .88
+            );
+
+        font-size: 2.2rem;
+
+        font-weight: 300;
+
+        line-height: 1;
+
+        animation:
+            mobileScrollHint
+            1.65s
+            ease-in-out
+            infinite;
+    }
+
+
+    @keyframes mobileScrollHint {
+
+        0%,
+        100% {
+
+            transform:
+                translateY(-3px);
+
+            opacity: .58;
+        }
+
+        50% {
+
+            transform:
+                translateY(7px);
+
+            opacity: 1;
+        }
     }
 
 
@@ -3300,9 +3402,19 @@ img {
             <a
                 class="secondary-button"
                 href="#allerweil"
+                aria-label="Weiter zu Allerweil"
             >
 
-                Allerweil entdecken ↓
+                <span class="desktop-scroll-label">
+                    Allerweil entdecken ↓
+                </span>
+
+                <span
+                    class="mobile-scroll-arrow"
+                    aria-hidden="true"
+                >
+                    ↓
+                </span>
 
             </a>
 
