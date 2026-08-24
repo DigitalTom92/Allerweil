@@ -1550,6 +1550,407 @@ Eventleiste wird nicht mehr benötigt.
 
 
 /* ==========================================================
+   ÖFFNUNGSZEITEN – EIGENE GRÜNE SEITE MIT WEICHEM ÜBERGANG
+========================================================== */
+
+.hours-feature {
+
+    position: relative;
+
+    min-height: 92svh;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        150px 5vw
+        110px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #173a2b 0%,
+            #143326 48%,
+            #10291f 100%
+        );
+
+    color:
+        var(--cream);
+}
+
+
+.hours-wave {
+
+    position: absolute;
+
+    top: -1px;
+    left: 0;
+
+    width: 100%;
+    height: 105px;
+
+    line-height: 0;
+
+    pointer-events: none;
+}
+
+
+.hours-wave svg {
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    preserveAspectRatio: none;
+}
+
+
+.hours-feature::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 720px;
+    height: 720px;
+
+    right: -270px;
+    bottom: -390px;
+
+    border:
+        1px solid
+        rgba(
+            242,
+            232,
+            216,
+            .07
+        );
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+.hours-feature-inner {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    max-width: 1120px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        .95fr 1.05fr;
+
+    gap: 110px;
+
+    align-items: center;
+}
+
+
+.hours-feature-copy {
+
+    max-width: 520px;
+}
+
+
+.hours-feature-label {
+
+    margin-bottom: 23px;
+
+    color:
+        rgba(
+            242,
+            232,
+            216,
+            .58
+        );
+
+    font-size: .7rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .19em;
+}
+
+
+.hours-feature-title {
+
+    font-size:
+        clamp(
+            3.6rem,
+            7vw,
+            7rem
+        );
+
+    line-height: .9;
+
+    letter-spacing: -.06em;
+
+    font-weight: 600;
+
+    color:
+        var(--cream);
+}
+
+
+.hours-feature-title span {
+
+    display: block;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style: italic;
+
+    font-weight: 400;
+
+    color:
+        rgba(
+            242,
+            232,
+            216,
+            .72
+        );
+}
+
+
+.hours-feature-note {
+
+    max-width: 450px;
+
+    margin-top: 31px;
+
+    color:
+        rgba(
+            242,
+            232,
+            216,
+            .58
+        );
+
+    font-size: 1rem;
+
+    line-height: 1.65;
+}
+
+
+.hours-feature-list {
+
+    width: 100%;
+
+    border-top:
+        1px solid
+        rgba(
+            242,
+            232,
+            216,
+            .16
+        );
+}
+
+
+.hours-feature-row {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding:
+        21px 0;
+
+    border-bottom:
+        1px solid
+        rgba(
+            242,
+            232,
+            216,
+            .16
+        );
+}
+
+
+.hours-feature-day {
+
+    color:
+        var(--cream);
+
+    font-size:
+        clamp(
+            1.05rem,
+            1.6vw,
+            1.35rem
+        );
+
+    font-weight: 560;
+
+    letter-spacing: -.02em;
+}
+
+
+.hours-feature-time {
+
+    color:
+        rgba(
+            242,
+            232,
+            216,
+            .66
+        );
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style: italic;
+
+    font-size:
+        clamp(
+            1.1rem,
+            1.7vw,
+            1.45rem
+        );
+
+    text-align: right;
+}
+
+
+@media (max-width: 900px) {
+
+    .hours-feature {
+
+        min-height: auto;
+
+        padding:
+            135px 23px
+            95px;
+    }
+
+
+    .hours-feature-inner {
+
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+    }
+
+
+    .hours-feature-copy {
+
+        max-width: 690px;
+    }
+
+
+    .hours-feature-title {
+
+        max-width: 720px;
+    }
+
+
+    .hours-feature-note {
+
+        max-width: 620px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .hours-feature {
+
+        padding:
+            112px 23px
+            78px;
+    }
+
+
+    .hours-wave {
+
+        height: 70px;
+    }
+
+
+    .hours-feature-inner {
+
+        gap: 42px;
+    }
+
+
+    .hours-feature-label {
+
+        margin-bottom: 16px;
+
+        font-size: .61rem;
+
+        letter-spacing: .16em;
+    }
+
+
+    .hours-feature-title {
+
+        font-size:
+            clamp(
+                3rem,
+                14vw,
+                4.7rem
+            );
+
+        line-height: .91;
+    }
+
+
+    .hours-feature-note {
+
+        margin-top: 22px;
+
+        font-size: .92rem;
+    }
+
+
+    .hours-feature-row {
+
+        padding:
+            17px 0;
+
+        gap: 18px;
+    }
+
+
+    .hours-feature-day {
+
+        font-size: 1rem;
+    }
+
+
+    .hours-feature-time {
+
+        font-size: 1.04rem;
+    }
+
+}
+
+
+/* ==========================================================
    ABOUT
 ========================================================== */
 
@@ -2018,7 +2419,7 @@ Eventleiste wird nicht mehr benötigt.
 
     grid-template-columns:
         repeat(
-            3,
+            2,
             1fr
         );
 
@@ -4326,6 +4727,145 @@ Eventleiste wird nicht mehr benötigt.
 
 
 <!-- ==========================================================
+     ÖFFNUNGSZEITEN – GRÜNE SEITE
+========================================================== -->
+
+<section
+    class="hours-feature"
+    id="oeffnungszeiten"
+>
+
+    <div
+        class="hours-wave"
+        aria-hidden="true"
+    >
+
+        <svg
+            viewBox="0 0 1440 110"
+            preserveAspectRatio="none"
+        >
+
+            <path
+                d="M0,0 H1440 V22 C1120,95 790,18 470,62 C290,87 145,68 0,42 Z"
+                fill="#f2e8d8"
+            />
+
+        </svg>
+
+    </div>
+
+
+    <div class="hours-feature-inner">
+
+
+        <div class="hours-feature-copy reveal">
+
+            <div class="hours-feature-label">
+
+                Öffnungszeiten · Friedensplatz
+
+            </div>
+
+
+            <h2 class="hours-feature-title">
+
+                Wann sehen
+
+                <span>
+                    wir uns?
+                </span>
+
+            </h2>
+
+
+            <p class="hours-feature-note">
+
+                Für den Feierabend, das erste Getränk
+                oder den Samstag, der gern etwas länger
+                dauern darf.
+
+            </p>
+
+        </div>
+
+
+        <div class="hours-feature-list reveal">
+
+
+            <div class="hours-feature-row">
+
+                <span class="hours-feature-day">
+                    Sonntag
+                </span>
+
+                <span class="hours-feature-time">
+                    geschlossen
+                </span>
+
+            </div>
+
+
+            <div class="hours-feature-row">
+
+                <span class="hours-feature-day">
+                    Montag
+                </span>
+
+                <span class="hours-feature-time">
+                    geschlossen
+                </span>
+
+            </div>
+
+
+            <div class="hours-feature-row">
+
+                <span class="hours-feature-day">
+                    Dienstag – Donnerstag
+                </span>
+
+                <span class="hours-feature-time">
+                    15 – 22 Uhr
+                </span>
+
+            </div>
+
+
+            <div class="hours-feature-row">
+
+                <span class="hours-feature-day">
+                    Freitag
+                </span>
+
+                <span class="hours-feature-time">
+                    15 – 00 Uhr
+                </span>
+
+            </div>
+
+
+            <div class="hours-feature-row">
+
+                <span class="hours-feature-day">
+                    Samstag
+                </span>
+
+                <span class="hours-feature-time">
+                    11 – 00 Uhr
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================================
      ABOUT
 ========================================================== -->
 
@@ -4558,103 +5098,6 @@ Eventleiste wird nicht mehr benötigt.
 
 
 
-            <!-- ÖFFNUNGSZEITEN -->
-
-            <article
-                class="info-card reveal"
-                id="oeffnungszeiten"
-            >
-
-
-                <div class="info-number">
-
-                    02 / ÖFFNUNGSZEITEN
-
-                </div>
-
-
-                <div>
-
-
-                    <h3>
-
-                        Wann sehen wir uns?
-
-                    </h3>
-
-
-                    <div class="hours-row">
-
-                        <span>
-                            Sonntag
-                        </span>
-
-                        <span>
-                            geschlossen
-                        </span>
-
-                    </div>
-
-
-                    <div class="hours-row">
-
-                        <span>
-                            Montag
-                        </span>
-
-                        <span>
-                            geschlossen
-                        </span>
-
-                    </div>
-
-
-                    <div class="hours-row">
-
-                        <span>
-                            Di – Do
-                        </span>
-
-                        <span>
-                            15 – 22 Uhr
-                        </span>
-
-                    </div>
-
-
-                    <div class="hours-row">
-
-                        <span>
-                            Freitag
-                        </span>
-
-                        <span>
-                            15 – 00 Uhr
-                        </span>
-
-                    </div>
-
-
-                    <div class="hours-row">
-
-                        <span>
-                            Samstag
-                        </span>
-
-                        <span>
-                            11 – 00 Uhr
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-
-            </article>
-
-
-
             <!-- KONTAKT -->
 
             <article
@@ -4665,7 +5108,7 @@ Eventleiste wird nicht mehr benötigt.
 
                 <div class="info-number">
 
-                    03 / KONTAKT
+                    02 / KONTAKT
 
                 </div>
 
