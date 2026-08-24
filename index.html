@@ -26,7 +26,6 @@
    ALLERWEIL – MODERN REDESIGN
 ========================================================== */
 
-
 :root {
 
     --green: #163b2b;
@@ -55,11 +54,9 @@
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
-
 
 body {
 
@@ -79,23 +76,19 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-
 body.no-scroll {
     overflow: hidden;
 }
-
 
 a {
     color: inherit;
     text-decoration: none;
 }
 
-
 img {
     display: block;
     max-width: 100%;
 }
-
 
 button {
     font: inherit;
@@ -128,30 +121,23 @@ button {
     align-items: center;
     justify-content: space-between;
 
-    background:
-        rgba(20, 55, 40, .91);
+    background: rgba(20, 55, 40, .91);
 
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
 
-    border:
-        1px solid
-        rgba(255,255,255,.13);
+    border: 1px solid rgba(255,255,255,.13);
 
     border-radius: 22px;
 
     box-shadow:
         0 14px 45px
         rgba(0,0,0,.14);
-
-    transition:
-        background .3s ease,
-        box-shadow .3s ease;
 }
 
 
 /* ==========================================================
-   ORIGINAL ALLERWEIL LOGO
+   LOGO OBEN
 ========================================================== */
 
 .nav-logo {
@@ -160,13 +146,14 @@ button {
     align-items: center;
 
     height: 100%;
-}
 
+    flex-shrink: 0;
+}
 
 .nav-logo img {
 
+    height: 58px;
     width: auto;
-    height: 57px;
 
     object-fit: contain;
 }
@@ -187,26 +174,21 @@ button {
     margin-right: 28px;
 }
 
-
 .nav-links a {
 
     position: relative;
 
-    color:
-        rgba(255,255,255,.82);
+    color: rgba(255,255,255,.82);
 
     font-size: .88rem;
     font-weight: 600;
 
-    transition:
-        color .25s ease;
+    transition: color .25s ease;
 }
-
 
 .nav-links a:hover {
     color: white;
 }
-
 
 .nav-links a::after {
 
@@ -225,10 +207,8 @@ button {
     transform: scaleX(0);
     transform-origin: right;
 
-    transition:
-        transform .3s ease;
+    transition: transform .3s ease;
 }
-
 
 .nav-links a:hover::after {
 
@@ -262,7 +242,6 @@ button {
         background .25s ease;
 }
 
-
 .nav-button:hover {
 
     transform: scale(1.035);
@@ -272,7 +251,7 @@ button {
 
 
 /* ==========================================================
-   MOBILE MENU BUTTON
+   MOBILE BUTTON
 ========================================================== */
 
 .menu-button {
@@ -283,7 +262,6 @@ button {
     height: 47px;
 
     border: 0;
-
     border-radius: 50%;
 
     background: var(--cream);
@@ -296,7 +274,7 @@ button {
 
 
 /* ==========================================================
-   MOBILE NAVIGATION
+   MOBILE MENU
 ========================================================== */
 
 .mobile-menu {
@@ -326,13 +304,11 @@ button {
         visibility .35s ease;
 }
 
-
 .mobile-menu.open {
 
     opacity: 1;
     visibility: visible;
 }
-
 
 .mobile-menu-logo {
 
@@ -341,9 +317,9 @@ button {
     top: 25px;
     left: 25px;
 
-    width: 210px;
+    width: 230px;
+    height: auto;
 }
-
 
 .mobile-menu a {
 
@@ -357,7 +333,6 @@ button {
     letter-spacing: -.065em;
 }
 
-
 .mobile-close {
 
     position: absolute;
@@ -370,12 +345,9 @@ button {
 
     border-radius: 50%;
 
-    border:
-        1px solid
-        rgba(255,255,255,.2);
+    border: 1px solid rgba(255,255,255,.2);
 
-    background:
-        rgba(255,255,255,.08);
+    background: rgba(255,255,255,.08);
 
     color: white;
 
@@ -409,7 +381,7 @@ button {
 
 
 /* ==========================================================
-   HERO BACKGROUND IMAGE
+   HERO FOTO
 ========================================================== */
 
 .hero-background {
@@ -419,7 +391,6 @@ button {
 
     z-index: 0;
 }
-
 
 .hero-background img {
 
@@ -431,7 +402,6 @@ button {
     animation:
         heroImage 13s ease-out forwards;
 }
-
 
 @keyframes heroImage {
 
@@ -446,7 +416,7 @@ button {
 
 
 /* ==========================================================
-   HERO OVERLAYS
+   HERO OVERLAY
 ========================================================== */
 
 .hero::before {
@@ -467,7 +437,6 @@ button {
             rgba(7,30,20,.88) 100%
         );
 }
-
 
 .hero::after {
 
@@ -506,7 +475,7 @@ button {
 
 
 /* ==========================================================
-   HERO BRAND
+   GROSSES LOGO IM HERO
 ========================================================== */
 
 .hero-brand {
@@ -514,21 +483,20 @@ button {
     display: inline-flex;
     align-items: center;
 
-    margin-bottom: 32px;
+    margin-bottom: 35px;
 }
-
 
 .hero-brand img {
 
-    width:
-        clamp(250px, 36vw, 475px);
-
+    width: clamp(320px, 44vw, 620px);
     height: auto;
+
+    object-fit: contain;
 }
 
 
 /* ==========================================================
-   HERO SMALL LABEL
+   HERO LABEL
 ========================================================== */
 
 .hero-label {
@@ -538,10 +506,9 @@ button {
 
     gap: 12px;
 
-    margin-bottom: 21px;
+    margin-bottom: 22px;
 
-    color:
-        rgba(255,255,255,.72);
+    color: rgba(255,255,255,.72);
 
     font-size: .74rem;
 
@@ -552,7 +519,6 @@ button {
     letter-spacing: .19em;
 }
 
-
 .hero-label::before {
 
     content: "";
@@ -560,8 +526,7 @@ button {
     width: 36px;
     height: 1px;
 
-    background:
-        rgba(255,255,255,.75);
+    background: rgba(255,255,255,.75);
 }
 
 
@@ -582,7 +547,6 @@ button {
 
     font-weight: 750;
 }
-
 
 .hero h1 em {
 
@@ -612,7 +576,6 @@ button {
     gap: 50px;
 }
 
-
 .hero-description {
 
     max-width: 520px;
@@ -622,10 +585,8 @@ button {
 
     line-height: 1.55;
 
-    color:
-        rgba(255,255,255,.78);
+    color: rgba(255,255,255,.78);
 }
-
 
 .hero-scroll {
 
@@ -634,17 +595,13 @@ button {
 
     gap: 13px;
 
-    padding:
-        15px 21px;
+    padding: 15px 21px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.26);
+    border: 1px solid rgba(255,255,255,.26);
 
     border-radius: 100px;
 
-    background:
-        rgba(255,255,255,.08);
+    background: rgba(255,255,255,.08);
 
     backdrop-filter: blur(12px);
 
@@ -652,7 +609,6 @@ button {
         background .25s ease,
         transform .25s ease;
 }
-
 
 .hero-scroll:hover {
 
@@ -664,7 +620,7 @@ button {
 
 
 /* ==========================================================
-   RUNNING TEXT
+   LAUFTEXT
 ========================================================== */
 
 .marquee {
@@ -673,11 +629,8 @@ button {
 
     background: var(--cream);
 
-    border-bottom:
-        1px solid
-        var(--border);
+    border-bottom: 1px solid var(--border);
 }
-
 
 .marquee-track {
 
@@ -690,7 +643,6 @@ button {
         26s linear infinite;
 }
 
-
 .marquee-item {
 
     display: flex;
@@ -698,8 +650,7 @@ button {
 
     gap: 30px;
 
-    padding:
-        22px 24px;
+    padding: 22px 24px;
 
     color: var(--green);
 
@@ -711,14 +662,12 @@ button {
     text-transform: uppercase;
 }
 
-
 .marquee-item::after {
 
     content: "●";
 
     font-size: .4rem;
 }
-
 
 @keyframes marqueeAnimation {
 
@@ -742,7 +691,6 @@ button {
         130px 5vw;
 }
 
-
 .container {
 
     width: 100%;
@@ -750,7 +698,6 @@ button {
 
     margin: 0 auto;
 }
-
 
 .section-label {
 
@@ -768,14 +715,13 @@ button {
 
 
 /* ==========================================================
-   ABOUT
+   ÜBER ALLERWEIL
 ========================================================== */
 
 .about {
 
     background: var(--cream);
 }
-
 
 .about-grid {
 
@@ -786,7 +732,6 @@ button {
 
     gap: 110px;
 }
-
 
 .about-title {
 
@@ -802,7 +747,6 @@ button {
     font-weight: 750;
 }
 
-
 .about-title em {
 
     color: var(--green);
@@ -814,14 +758,12 @@ button {
     font-weight: 400;
 }
 
-
 .about-text {
 
     padding-top: 95px;
 
     max-width: 510px;
 }
-
 
 .about-text p {
 
@@ -833,16 +775,13 @@ button {
     line-height: 1.6;
 }
 
-
 .about-quote {
 
     margin-top: 52px;
 
     padding-top: 28px;
 
-    border-top:
-        1px solid
-        var(--border);
+    border-top: 1px solid var(--border);
 
     font-family:
         Georgia,
@@ -858,7 +797,7 @@ button {
 
 
 /* ==========================================================
-   GALLERY
+   BILDER
 ========================================================== */
 
 .gallery {
@@ -867,10 +806,8 @@ button {
         0 5vw
         130px;
 
-    background:
-        var(--cream);
+    background: var(--cream);
 }
-
 
 .gallery-grid {
 
@@ -886,7 +823,6 @@ button {
     gap: 18px;
 }
 
-
 .gallery-card {
 
     position: relative;
@@ -898,16 +834,11 @@ button {
     background: #ddd;
 }
 
-
-.gallery-card.large {
-    height: 690px;
-}
-
-
+.gallery-card.large,
 .gallery-card.small {
+
     height: 690px;
 }
-
 
 .gallery-card img {
 
@@ -921,11 +852,10 @@ button {
         cubic-bezier(.16,1,.3,1);
 }
 
-
 .gallery-card:hover img {
+
     transform: scale(1.035);
 }
-
 
 .gallery-caption {
 
@@ -934,13 +864,11 @@ button {
     left: 28px;
     bottom: 26px;
 
-    padding:
-        10px 16px;
+    padding: 10px 16px;
 
     border-radius: 100px;
 
-    background:
-        rgba(20,50,35,.70);
+    background: rgba(20,50,35,.70);
 
     backdrop-filter: blur(12px);
 
@@ -951,7 +879,7 @@ button {
 
 
 /* ==========================================================
-   GREEN STATEMENT
+   STATEMENT
 ========================================================== */
 
 .statement {
@@ -963,7 +891,6 @@ button {
 
     color: white;
 }
-
 
 .statement-inner {
 
@@ -981,7 +908,6 @@ button {
     align-items: start;
 }
 
-
 .statement-number {
 
     width: 180px;
@@ -991,17 +917,16 @@ button {
     align-items: center;
     justify-content: center;
 
-    border:
-        1px solid
-        rgba(255,255,255,.22);
+    border: 1px solid rgba(255,255,255,.22);
 
     border-radius: 50%;
 
-    font-family: Georgia, serif;
+    font-family:
+        Georgia,
+        serif;
 
     font-size: 4.6rem;
 }
-
 
 .statement-title {
 
@@ -1017,7 +942,6 @@ button {
     font-weight: 740;
 }
 
-
 .statement-title em {
 
     font-family:
@@ -1031,14 +955,13 @@ button {
 
 
 /* ==========================================================
-   INFORMATION
+   INFOS
 ========================================================== */
 
 .info {
 
     background: var(--cream-light);
 }
-
 
 .info-header {
 
@@ -1054,7 +977,6 @@ button {
     margin-bottom: 75px;
 }
 
-
 .info-title {
 
     font-size:
@@ -1066,7 +988,6 @@ button {
 
     font-weight: 750;
 }
-
 
 .info-intro {
 
@@ -1091,15 +1012,9 @@ button {
     grid-template-columns:
         repeat(3,1fr);
 
-    border-top:
-        1px solid
-        var(--border);
-
-    border-bottom:
-        1px solid
-        var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
-
 
 .info-card {
 
@@ -1111,38 +1026,30 @@ button {
     flex-direction: column;
     justify-content: space-between;
 
-    border-right:
-        1px solid
-        var(--border);
+    border-right: 1px solid var(--border);
 
     transition:
         background .3s ease;
 }
 
-
 .info-card:last-child {
     border-right: 0;
 }
 
-
 .info-card:hover {
 
-    background:
-        #eee8dd;
+    background: #eee8dd;
 }
-
 
 .info-number {
 
     color: var(--green);
 
     font-size: .69rem;
-
     font-weight: 800;
 
     letter-spacing: .15em;
 }
-
 
 .info-card h3 {
 
@@ -1156,7 +1063,6 @@ button {
     letter-spacing: -.05em;
 }
 
-
 .info-card p,
 .info-card a {
 
@@ -1167,14 +1073,14 @@ button {
     line-height: 1.7;
 }
 
-
 .info-card a:hover {
+
     color: var(--green);
 }
 
 
 /* ==========================================================
-   HOURS
+   ÖFFNUNGSZEITEN
 ========================================================== */
 
 .hours-row {
@@ -1185,21 +1091,16 @@ button {
 
     gap: 20px;
 
-    padding:
-        11px 0;
+    padding: 11px 0;
 
-    border-bottom:
-        1px solid
-        var(--border);
+    border-bottom: 1px solid var(--border);
 
     font-size: .92rem;
 }
 
-
 .hours-row:last-child {
     border-bottom: 0;
 }
-
 
 .hours-row span:last-child {
 
@@ -1227,18 +1128,17 @@ button {
 
     font-weight: 700;
 
-    transition:
-        gap .25s ease;
+    transition: gap .25s ease;
 }
 
-
 .text-link:hover {
+
     gap: 14px;
 }
 
 
 /* ==========================================================
-   BIG CTA
+   CTA
 ========================================================== */
 
 .big-cta {
@@ -1261,7 +1161,6 @@ button {
     color: var(--green);
 }
 
-
 .big-cta::before {
 
     content: "";
@@ -1271,13 +1170,10 @@ button {
     width: 680px;
     height: 680px;
 
-    border:
-        1px solid
-        rgba(22,59,43,.14);
+    border: 1px solid rgba(22,59,43,.14);
 
     border-radius: 50%;
 }
-
 
 .big-cta::after {
 
@@ -1288,13 +1184,10 @@ button {
     width: 950px;
     height: 950px;
 
-    border:
-        1px solid
-        rgba(22,59,43,.08);
+    border: 1px solid rgba(22,59,43,.08);
 
     border-radius: 50%;
 }
-
 
 .big-cta-inner {
 
@@ -1302,7 +1195,6 @@ button {
 
     z-index: 2;
 }
-
 
 .big-cta-label {
 
@@ -1317,7 +1209,6 @@ button {
     text-transform: uppercase;
 }
 
-
 .big-cta h2 {
 
     font-size:
@@ -1330,7 +1221,6 @@ button {
     font-weight: 760;
 }
 
-
 .big-cta h2 em {
 
     font-family:
@@ -1340,15 +1230,13 @@ button {
     font-weight: 400;
 }
 
-
 .cta-button {
 
     display: inline-flex;
 
     margin-top: 42px;
 
-    padding:
-        16px 24px;
+    padding: 16px 24px;
 
     border-radius: 100px;
 
@@ -1362,7 +1250,6 @@ button {
         transform .25s ease,
         background .25s ease;
 }
-
 
 .cta-button:hover {
 
@@ -1386,14 +1273,12 @@ button {
     color: white;
 }
 
-
 .footer-inner {
 
     max-width: 1280px;
 
     margin: auto;
 }
-
 
 .footer-logo {
 
@@ -1404,20 +1289,18 @@ button {
         rgba(255,255,255,.13);
 }
 
-
 .footer-logo img {
 
-    width:
-        min(500px,85vw);
+    width: min(520px,85vw);
 
     height: auto;
-}
 
+    object-fit: contain;
+}
 
 .footer-grid {
 
-    padding:
-        55px 0;
+    padding: 55px 0;
 
     display: grid;
 
@@ -1427,16 +1310,13 @@ button {
     gap: 70px;
 }
 
-
 .footer-heading {
 
     margin-bottom: 15px;
 
-    color:
-        rgba(255,255,255,.38);
+    color: rgba(255,255,255,.38);
 
     font-size: .69rem;
-
     font-weight: 800;
 
     letter-spacing: .15em;
@@ -1444,23 +1324,19 @@ button {
     text-transform: uppercase;
 }
 
-
 .footer p,
 .footer a {
 
-    color:
-        rgba(255,255,255,.67);
+    color: rgba(255,255,255,.67);
 
     line-height: 1.8;
 
     font-size: .94rem;
 }
 
-
 .footer a:hover {
     color: white;
 }
-
 
 .footer-bottom {
 
@@ -1476,12 +1352,10 @@ button {
 
     gap: 30px;
 
-    color:
-        rgba(255,255,255,.35);
+    color: rgba(255,255,255,.35);
 
     font-size: .75rem;
 }
-
 
 .footer-legal {
 
@@ -1509,17 +1383,15 @@ button {
     align-items: flex-end;
     justify-content: center;
 
-    background:
-        rgba(7,26,18,.43);
+    background: rgba(7,26,18,.43);
 
     backdrop-filter: blur(8px);
 }
 
-
 .cookie-layer.visible {
+
     display: flex;
 }
-
 
 .cookie-box {
 
@@ -1530,14 +1402,12 @@ button {
 
     border-radius: 25px;
 
-    background:
-        rgba(250,247,241,.98);
+    background: rgba(250,247,241,.98);
 
     box-shadow:
         0 25px 90px
         rgba(0,0,0,.25);
 }
-
 
 .cookie-title {
 
@@ -1547,7 +1417,6 @@ button {
 
     letter-spacing: -.035em;
 }
-
 
 .cookie-text {
 
@@ -1560,23 +1429,15 @@ button {
     line-height: 1.6;
 }
 
-
 .cookie-settings {
 
     margin-top: 22px;
 
-    padding:
-        16px 0;
+    padding: 16px 0;
 
-    border-top:
-        1px solid
-        var(--border);
-
-    border-bottom:
-        1px solid
-        var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
-
 
 .cookie-row {
 
@@ -1587,10 +1448,8 @@ button {
 
     gap: 20px;
 
-    padding:
-        9px 0;
+    padding: 9px 0;
 }
-
 
 .cookie-row strong {
 
@@ -1598,7 +1457,6 @@ button {
 
     font-size: .9rem;
 }
-
 
 .cookie-row small {
 
@@ -1610,9 +1468,7 @@ button {
 }
 
 
-/* ==========================================================
-   SWITCH
-========================================================== */
+/* SWITCH */
 
 .switch {
 
@@ -1624,7 +1480,6 @@ button {
     flex-shrink: 0;
 }
 
-
 .switch input {
 
     opacity: 0;
@@ -1632,7 +1487,6 @@ button {
     width: 0;
     height: 0;
 }
-
 
 .slider {
 
@@ -1648,7 +1502,6 @@ button {
 
     transition: .2s;
 }
-
 
 .slider::before {
 
@@ -1669,25 +1522,23 @@ button {
     transition: .2s;
 }
 
-
 .switch input:checked + .slider {
+
     background: var(--green);
 }
 
-
 .switch input:checked + .slider::before {
+
     transform: translateX(21px);
 }
 
-
 .switch input:disabled + .slider {
+
     opacity: .55;
 }
 
 
-/* ==========================================================
-   COOKIE BUTTONS
-========================================================== */
+/* COOKIE BUTTONS */
 
 .cookie-actions {
 
@@ -1700,7 +1551,6 @@ button {
 
     gap: 9px;
 }
-
 
 .cookie-button {
 
@@ -1717,14 +1567,12 @@ button {
     font-weight: 700;
 }
 
-
 .cookie-button.necessary {
 
     background: #e8e3da;
 
     color: var(--text);
 }
-
 
 .cookie-button.save {
 
@@ -1733,14 +1581,12 @@ button {
     color: white;
 }
 
-
 .cookie-button.accept {
 
     background: var(--green);
 
     color: white;
 }
-
 
 .cookie-legal {
 
@@ -1753,22 +1599,21 @@ button {
     line-height: 1.5;
 }
 
-
 .cookie-legal a {
+
     text-decoration: underline;
 }
 
 
 /* ==========================================================
-   REVEAL
+   SCROLL ANIMATION
 ========================================================== */
 
 .reveal {
 
     opacity: 0;
 
-    transform:
-        translateY(40px);
+    transform: translateY(40px);
 
     transition:
         opacity .9s ease,
@@ -1776,18 +1621,16 @@ button {
         cubic-bezier(.16,1,.3,1);
 }
 
-
 .reveal.visible {
 
     opacity: 1;
 
-    transform:
-        translateY(0);
+    transform: translateY(0);
 }
 
 
 /* ==========================================================
-   RESPONSIVE TABLET
+   TABLET
 ========================================================== */
 
 @media (max-width: 960px) {
@@ -1798,11 +1641,10 @@ button {
         display: none;
     }
 
-
     .menu-button {
+
         display: block;
     }
-
 
     .about-grid {
 
@@ -1811,11 +1653,10 @@ button {
         gap: 30px;
     }
 
-
     .about-text {
+
         padding-top: 0;
     }
-
 
     .statement-inner {
 
@@ -1824,7 +1665,6 @@ button {
         gap: 45px;
     }
 
-
     .info-header {
 
         grid-template-columns: 1fr;
@@ -1832,12 +1672,10 @@ button {
         gap: 25px;
     }
 
-
     .info-grid {
 
         grid-template-columns: 1fr;
     }
-
 
     .info-card {
 
@@ -1850,23 +1688,21 @@ button {
             var(--border);
     }
 
-
     .info-card:last-child {
+
         border-bottom: 0;
     }
-
 
     .footer-grid {
 
         grid-template-columns:
             1fr 1fr;
     }
-
 }
 
 
 /* ==========================================================
-   MOBILE
+   SMARTPHONE
 ========================================================== */
 
 @media (max-width: 700px) {
@@ -1875,8 +1711,7 @@ button {
 
         top: 9px;
 
-        width:
-            calc(100% - 18px);
+        width: calc(100% - 18px);
 
         height: 68px;
 
@@ -1886,11 +1721,10 @@ button {
         border-radius: 18px;
     }
 
-
     .nav-logo img {
-        height: 45px;
-    }
 
+        height: 47px;
+    }
 
     .hero {
 
@@ -1899,20 +1733,17 @@ button {
             38px;
     }
 
-
     .hero-brand img {
 
         width:
-            min(330px,82vw);
+            min(400px, 88vw);
     }
-
 
     .hero h1 {
 
         font-size:
             clamp(4rem,17vw,6.3rem);
     }
-
 
     .hero-bottom {
 
@@ -1923,13 +1754,11 @@ button {
         gap: 28px;
     }
 
-
     .section {
 
         padding:
             90px 23px;
     }
-
 
     .about-title,
     .info-title,
@@ -1939,38 +1768,32 @@ button {
             clamp(3.2rem,14vw,5rem);
     }
 
-
     .gallery {
 
         padding:
             0 23px 90px;
     }
 
-
     .gallery-grid {
 
         grid-template-columns: 1fr;
     }
-
 
     .gallery-card.large {
 
         height: 470px;
     }
 
-
     .gallery-card.small {
 
         height: 370px;
     }
-
 
     .statement {
 
         padding:
             90px 23px;
     }
-
 
     .statement-number {
 
@@ -1980,13 +1803,11 @@ button {
         font-size: 3.5rem;
     }
 
-
     .footer {
 
         padding:
             65px 23px 25px;
     }
-
 
     .footer-grid {
 
@@ -1995,7 +1816,6 @@ button {
         gap: 38px;
     }
 
-
     .footer-bottom {
 
         flex-direction: column;
@@ -2003,18 +1823,15 @@ button {
         align-items: flex-start;
     }
 
-
     .cookie-box {
 
         padding: 23px;
     }
 
-
     .cookie-actions {
 
         grid-template-columns: 1fr;
     }
-
 }
 
 
@@ -2059,7 +1876,7 @@ button {
     >
 
         <img
-            src="allerweil-logo-transparent.png"
+            src="Allerweil Logo.png"
             alt="Allerweil Stehausschank"
         >
 
@@ -2091,9 +1908,7 @@ button {
         href="#standort"
         class="nav-button"
     >
-
         Vorbeikommen
-
     </a>
 
 
@@ -2102,9 +1917,7 @@ button {
         onclick="openMobileMenu()"
         aria-label="Menü öffnen"
     >
-
         ☰
-
     </button>
 
 </nav>
@@ -2122,7 +1935,7 @@ button {
 
     <img
         class="mobile-menu-logo"
-        src="allerweil-logo-transparent.png"
+        src="Allerweil Logo.png"
         alt="Allerweil Stehausschank"
     >
 
@@ -2132,9 +1945,7 @@ button {
         onclick="closeMobileMenu()"
         aria-label="Menü schließen"
     >
-
         ✕
-
     </button>
 
 
@@ -2182,7 +1993,6 @@ button {
     id="home"
 >
 
-
     <div class="hero-background">
 
         <img
@@ -2198,16 +2008,19 @@ button {
 
         <div class="hero-label">
 
-            Friedensplatz
-            · Darmstadt
+            Friedensplatz · Darmstadt
 
         </div>
 
 
+        <!--
+        DEIN ALLERWEIL LOGO
+        -->
+
         <div class="hero-brand">
 
             <img
-                src="allerweil-logo-transparent.png"
+                src="Allerweil Logo.png"
                 alt="Allerweil Stehausschank"
             >
 
@@ -2251,9 +2064,7 @@ button {
                 class="hero-scroll"
             >
 
-                Mehr entdecken
-
-                ↓
+                Mehr entdecken ↓
 
             </a>
 
@@ -2274,66 +2085,21 @@ button {
 
     <div class="marquee-track">
 
+        <div class="marquee-item">Allerweil</div>
+        <div class="marquee-item">Bier</div>
+        <div class="marquee-item">Wein</div>
+        <div class="marquee-item">Spritz</div>
+        <div class="marquee-item">Daydrinking</div>
+        <div class="marquee-item">Friedensplatz</div>
+        <div class="marquee-item">Darmstadt</div>
 
-        <div class="marquee-item">
-            Allerweil
-        </div>
-
-        <div class="marquee-item">
-            Bier
-        </div>
-
-        <div class="marquee-item">
-            Wein
-        </div>
-
-        <div class="marquee-item">
-            Spritz
-        </div>
-
-        <div class="marquee-item">
-            Daydrinking
-        </div>
-
-        <div class="marquee-item">
-            Friedensplatz
-        </div>
-
-        <div class="marquee-item">
-            Darmstadt
-        </div>
-
-
-        <!-- Wiederholung -->
-
-        <div class="marquee-item">
-            Allerweil
-        </div>
-
-        <div class="marquee-item">
-            Bier
-        </div>
-
-        <div class="marquee-item">
-            Wein
-        </div>
-
-        <div class="marquee-item">
-            Spritz
-        </div>
-
-        <div class="marquee-item">
-            Daydrinking
-        </div>
-
-        <div class="marquee-item">
-            Friedensplatz
-        </div>
-
-        <div class="marquee-item">
-            Darmstadt
-        </div>
-
+        <div class="marquee-item">Allerweil</div>
+        <div class="marquee-item">Bier</div>
+        <div class="marquee-item">Wein</div>
+        <div class="marquee-item">Spritz</div>
+        <div class="marquee-item">Daydrinking</div>
+        <div class="marquee-item">Friedensplatz</div>
+        <div class="marquee-item">Darmstadt</div>
 
     </div>
 
@@ -2469,7 +2235,6 @@ button {
         </div>
 
 
-
         <div
             class="
                 gallery-card
@@ -2553,14 +2318,13 @@ button {
 
 
 <!-- ==========================================================
-     INFORMATIONEN
+     INFOS
 ========================================================== -->
 
 <section
     class="section info"
     id="standort"
 >
-
 
     <div class="container">
 
@@ -2699,65 +2463,45 @@ button {
 
                         <div class="hours-row">
 
-                            <span>
-                                Sonntag
-                            </span>
+                            <span>Sonntag</span>
 
-                            <span>
-                                geschlossen
-                            </span>
+                            <span>geschlossen</span>
 
                         </div>
 
 
                         <div class="hours-row">
 
-                            <span>
-                                Montag
-                            </span>
+                            <span>Montag</span>
 
-                            <span>
-                                geschlossen
-                            </span>
+                            <span>geschlossen</span>
 
                         </div>
 
 
                         <div class="hours-row">
 
-                            <span>
-                                Di – Do
-                            </span>
+                            <span>Di – Do</span>
 
-                            <span>
-                                15 – 22 Uhr
-                            </span>
+                            <span>15 – 22 Uhr</span>
 
                         </div>
 
 
                         <div class="hours-row">
 
-                            <span>
-                                Freitag
-                            </span>
+                            <span>Freitag</span>
 
-                            <span>
-                                15 – 00 Uhr
-                            </span>
+                            <span>15 – 00 Uhr</span>
 
                         </div>
 
 
                         <div class="hours-row">
 
-                            <span>
-                                Samstag
-                            </span>
+                            <span>Samstag</span>
 
-                            <span>
-                                11 – 00 Uhr
-                            </span>
+                            <span>11 – 00 Uhr</span>
 
                         </div>
 
@@ -2909,11 +2653,15 @@ button {
     <div class="footer-inner">
 
 
+        <!--
+        DEIN LOGO AUCH UNTEN
+        -->
+
         <div class="footer-logo">
 
 
             <img
-                src="allerweil-logo-transparent.png"
+                src="Allerweil Logo.png"
                 alt="Allerweil Stehausschank"
             >
 
@@ -2950,7 +2698,6 @@ button {
             </div>
 
 
-
             <div>
 
 
@@ -2973,7 +2720,6 @@ button {
 
 
             </div>
-
 
 
             <div>
@@ -3201,13 +2947,8 @@ button {
 
 
             <button
-                class="
-                    cookie-button
-                    necessary
-                "
-                onclick="
-                    acceptNecessary()
-                "
+                class="cookie-button necessary"
+                onclick="acceptNecessary()"
             >
 
                 Nur notwendige
@@ -3216,13 +2957,8 @@ button {
 
 
             <button
-                class="
-                    cookie-button
-                    save
-                "
-                onclick="
-                    saveSelection()
-                "
+                class="cookie-button save"
+                onclick="saveSelection()"
             >
 
                 Auswahl speichern
@@ -3231,13 +2967,8 @@ button {
 
 
             <button
-                class="
-                    cookie-button
-                    accept
-                "
-                onclick="
-                    acceptAll()
-                "
+                class="cookie-button accept"
+                onclick="acceptAll()"
             >
 
                 Alle akzeptieren
@@ -3321,7 +3052,7 @@ function closeMobileMenu() {
 
 
 /* ==========================================================
-   SCROLL ANIMATIONS
+   SCROLL ANIMATION
 ========================================================== */
 
 const revealElements =
@@ -3384,23 +3115,21 @@ revealElements.forEach(
 
 /*
 
-Aktuell sind in dieser Website:
+Aktuell lädt diese Seite selbst:
 
-- keine Google Fonts
 - kein Google Analytics
 - kein Meta Pixel
-- kein Google Maps Embed
-- kein Instagram Embed
-- kein YouTube Embed
+- keine Google Fonts
+- kein eingebettetes Google Maps
+- kein Instagram
+- kein YouTube
 
-eingebaut.
+Google Maps wird lediglich über
+einen normalen externen Link geöffnet.
 
-Der Google-Maps-Link ist lediglich
-ein normaler Link.
-
-Falls später externe Dienste
-eingebaut werden, sollten diese
-erst nach Einwilligung geladen werden.
+Wenn später externe Dienste
+eingebaut werden, müssen sie entsprechend
+der gewählten Einwilligung aktiviert werden.
 
 */
 
@@ -3596,10 +3325,10 @@ function activateExternalServices(
     ) {
 
         /*
-        Später könnten hier
-        z.B. Google Maps,
-        Instagram oder YouTube
-        geladen werden.
+        Hier können später
+        Google Maps Embeds,
+        Instagram, YouTube usw.
+        nach Zustimmung geladen werden.
         */
 
     }
