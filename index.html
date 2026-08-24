@@ -1022,6 +1022,139 @@ img {
 }
 
 
+
+/* ==========================================================
+   HERO NAVIGATION – DESKTOP
+   NUR SCHRIFTZUG + ANIMIERTER PFEIL
+========================================================== */
+
+@media (min-width: 701px) {
+
+    .hero-actions {
+
+        margin-top: 34px;
+    }
+
+
+    .hero-actions .primary-button {
+
+        display: none;
+    }
+
+
+    .hero-actions .secondary-button {
+
+        min-height: 0;
+
+        padding: 6px 12px;
+
+        border: 0;
+
+        border-radius: 0;
+
+        background: transparent;
+
+        box-shadow: none;
+
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+
+        color:
+            var(--cream);
+
+        display: inline-flex;
+
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 7px;
+
+        transition:
+            opacity .25s ease;
+    }
+
+
+    .hero-actions .secondary-button:hover {
+
+        background: transparent;
+
+        transform: none;
+
+        opacity: .72;
+    }
+
+
+    .desktop-scroll-label {
+
+        display: block;
+
+        font-size: .82rem;
+
+        font-weight: 550;
+
+        letter-spacing: .04em;
+
+        color:
+            rgba(
+                242,
+                232,
+                216,
+                .78
+            );
+    }
+
+
+    .desktop-scroll-arrow {
+
+        display: block;
+
+        font-size: 1.15rem;
+
+        font-weight: 300;
+
+        line-height: 1;
+
+        color:
+            rgba(
+                242,
+                232,
+                216,
+                .82
+            );
+
+        animation:
+            desktopScrollHint
+            1.65s
+            ease-in-out
+            infinite;
+    }
+
+
+    @keyframes desktopScrollHint {
+
+        0%,
+        100% {
+
+            transform:
+                translateY(-2px);
+
+            opacity: .48;
+        }
+
+        50% {
+
+            transform:
+                translateY(5px);
+
+            opacity: 1;
+        }
+    }
+
+}
+
+
 /* ==========================================================
    EVENT BANNER
 ========================================================== */
@@ -3112,6 +3245,13 @@ Eventleiste wird nicht mehr benötigt.
     }
 
 
+
+    .hero-actions .desktop-scroll-arrow {
+
+        display: none;
+    }
+
+
     .hero-actions .mobile-scroll-arrow {
 
         display: block;
@@ -3690,11 +3830,18 @@ Eventleiste wird nicht mehr benötigt.
             <a
                 class="secondary-button"
                 href="#allerweil"
-                aria-label="Weiter zu Allerweil"
+                aria-label="Allerweil entdecken"
             >
 
                 <span class="desktop-scroll-label">
-                    Allerweil entdecken ↓
+                    Allerweil entdecken
+                </span>
+
+                <span
+                    class="desktop-scroll-arrow"
+                    aria-hidden="true"
+                >
+                    ↓
                 </span>
 
                 <span
