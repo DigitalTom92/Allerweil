@@ -1462,7 +1462,7 @@ Eventleiste wird nicht mehr benötigt.
 .photo-collage {
 
     padding:
-        36px 5vw 115px;
+        108px 5vw 115px;
 
     background:
         var(--cream);
@@ -1583,30 +1583,93 @@ Eventleiste wird nicht mehr benötigt.
 }
 
 
-.hours-wave {
+/* ==========================================================
+   EINHEITLICHE WELLEN-ÜBERGÄNGE ZWISCHEN ALLEN BEREICHEN
+========================================================== */
+
+.wave-section {
+
+    position: relative;
+}
+
+
+.wave-divider {
 
     position: absolute;
 
     top: -1px;
     left: 0;
 
+    z-index: 4;
+
     width: 100%;
-    height: 105px;
+    height: 82px;
 
     line-height: 0;
+
+    overflow: hidden;
 
     pointer-events: none;
 }
 
 
-.hours-wave svg {
+.wave-divider svg {
 
     display: block;
 
     width: 100%;
     height: 100%;
+}
 
-    preserveAspectRatio: none;
+
+.wave-divider path {
+
+    fill: currentColor;
+}
+
+
+.wave-divider.green {
+
+    color:
+        #10291f;
+}
+
+
+.wave-divider.cream {
+
+    color:
+        var(--cream);
+}
+
+
+/* Übergang zwischen zwei gleichfarbigen Creme-Bereichen:
+   dieselbe Welle, nur mit einem extrem dezenten Schatten,
+   damit die Form trotzdem leicht sichtbar bleibt. */
+
+.wave-divider.cream-subtle {
+
+    color:
+        var(--cream);
+
+    filter:
+        drop-shadow(
+            0 4px 7px
+            rgba(
+                23,
+                58,
+                43,
+                .07
+            )
+        );
+}
+
+
+
+.wave-section > *:not(.wave-divider) {
+
+    position: relative;
+
+    z-index: 5;
 }
 
 
@@ -1876,17 +1939,16 @@ Eventleiste wird nicht mehr benötigt.
 
 @media (max-width: 700px) {
 
+    .wave-divider {
+
+        height: 58px;
+    }
+
     .hours-feature {
 
         padding:
             112px 23px
             78px;
-    }
-
-
-    .hours-wave {
-
-        height: 70px;
     }
 
 
@@ -2609,7 +2671,8 @@ Eventleiste wird nicht mehr benötigt.
     justify-content: center;
 
     padding:
-        80px 5vw;
+        125px 5vw
+        80px;
 
     text-align: center;
 
@@ -3844,7 +3907,7 @@ Eventleiste wird nicht mehr benötigt.
     .photo-collage {
 
         padding:
-            20px 10px 86px;
+            76px 10px 86px;
     }
 
 
@@ -4560,9 +4623,27 @@ Eventleiste wird nicht mehr benötigt.
 ========================================================== -->
 
 <section
-    class="photo-collage"
+    class="photo-collage wave-section"
     id="galerie"
 >
+
+    <div
+        class="wave-divider green"
+        aria-hidden="true"
+    >
+
+        <svg
+            viewBox="0 0 1440 110"
+            preserveAspectRatio="none"
+        >
+
+            <path
+                d="M0,0 H1440 V22 C1120,95 790,18 470,62 C290,87 145,68 0,42 Z"
+            />
+
+        </svg>
+
+    </div>
 
     <div class="photo-collage-grid">
 
@@ -4731,12 +4812,12 @@ Eventleiste wird nicht mehr benötigt.
 ========================================================== -->
 
 <section
-    class="hours-feature"
+    class="hours-feature wave-section"
     id="oeffnungszeiten"
 >
 
     <div
-        class="hours-wave"
+        class="wave-divider cream"
         aria-hidden="true"
     >
 
@@ -4747,7 +4828,6 @@ Eventleiste wird nicht mehr benötigt.
 
             <path
                 d="M0,0 H1440 V22 C1120,95 790,18 470,62 C290,87 145,68 0,42 Z"
-                fill="#f2e8d8"
             />
 
         </svg>
@@ -4870,9 +4950,27 @@ Eventleiste wird nicht mehr benötigt.
 ========================================================== -->
 
 <section
-    class="section about"
+    class="section about wave-section"
     id="allerweil"
 >
+
+    <div
+        class="wave-divider green"
+        aria-hidden="true"
+    >
+
+        <svg
+            viewBox="0 0 1440 110"
+            preserveAspectRatio="none"
+        >
+
+            <path
+                d="M0,0 H1440 V22 C1120,95 790,18 470,62 C290,87 145,68 0,42 Z"
+            />
+
+        </svg>
+
+    </div>
 
     <div class="container">
 
@@ -4950,7 +5048,26 @@ Eventleiste wird nicht mehr benötigt.
      STATEMENT
 ========================================================== -->
 
-<section class="statement">
+<section class="statement wave-section">
+
+    <div
+        class="wave-divider cream"
+        aria-hidden="true"
+    >
+
+        <svg
+            viewBox="0 0 1440 110"
+            preserveAspectRatio="none"
+        >
+
+            <path
+                d="M0,0 H1440 V22 C1120,95 790,18 470,62 C290,87 145,68 0,42 Z"
+            />
+
+        </svg>
+
+    </div>
+
 
     <div class="statement-inner">
 
@@ -4996,9 +5113,27 @@ Eventleiste wird nicht mehr benötigt.
 ========================================================== -->
 
 <section
-    class="section info"
+    class="section info wave-section"
     id="standort"
 >
+
+    <div
+        class="wave-divider green"
+        aria-hidden="true"
+    >
+
+        <svg
+            viewBox="0 0 1440 110"
+            preserveAspectRatio="none"
+        >
+
+            <path
+                d="M0,0 H1440 V22 C1120,95 790,18 470,62 C290,87 145,68 0,42 Z"
+            />
+
+        </svg>
+
+    </div>
 
     <div class="container">
 
@@ -5177,7 +5312,26 @@ Eventleiste wird nicht mehr benötigt.
      CTA
 ========================================================== -->
 
-<section class="big-cta">
+<section class="big-cta wave-section">
+
+    <div
+        class="wave-divider cream-subtle"
+        aria-hidden="true"
+    >
+
+        <svg
+            viewBox="0 0 1440 110"
+            preserveAspectRatio="none"
+        >
+
+            <path
+                d="M0,0 H1440 V22 C1120,95 790,18 470,62 C290,87 145,68 0,42 Z"
+            />
+
+        </svg>
+
+    </div>
+
 
 
     <div class="big-cta-inner reveal">
@@ -5226,7 +5380,26 @@ Eventleiste wird nicht mehr benötigt.
      FOOTER
 ========================================================== -->
 
-<footer class="footer">
+<footer class="footer wave-section">
+
+    <div
+        class="wave-divider cream"
+        aria-hidden="true"
+    >
+
+        <svg
+            viewBox="0 0 1440 110"
+            preserveAspectRatio="none"
+        >
+
+            <path
+                d="M0,0 H1440 V22 C1120,95 790,18 470,62 C290,87 145,68 0,42 Z"
+            />
+
+        </svg>
+
+    </div>
+
 
 
     <div class="footer-inner">
