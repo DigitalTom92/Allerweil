@@ -1455,6 +1455,221 @@ Eventleiste wird nicht mehr benötigt.
 
 
 /* ==========================================================
+   FOTO-COLLAGE
+   DIREKT NACH DEM HERO / EVENTBANNER
+   APPLE / IPHONE GALERIE-ANMUTUNG
+========================================================== */
+
+.photo-collage {
+
+    padding:
+        34px 5vw 115px;
+
+    background:
+        var(--cream);
+}
+
+
+.photo-collage-header {
+
+    max-width: 1260px;
+
+    margin: 0 auto 28px;
+}
+
+
+.photo-collage-label {
+
+    margin-bottom: 14px;
+
+    color:
+        var(--green);
+
+    font-size: .72rem;
+
+    font-weight: 750;
+
+    text-transform: uppercase;
+
+    letter-spacing: .18em;
+}
+
+
+.photo-collage-title {
+
+    max-width: 860px;
+
+    font-size:
+        clamp(
+            2.5rem,
+            4.7vw,
+            5.3rem
+        );
+
+    line-height: .94;
+
+    letter-spacing: -.055em;
+
+    font-weight: 620;
+}
+
+
+.photo-collage-title span {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style: italic;
+
+    font-weight: 400;
+
+    color:
+        var(--green);
+}
+
+
+.photo-collage-grid {
+
+    max-width: 1260px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+
+    grid-auto-rows: 112px;
+
+    gap: 12px;
+}
+
+
+.photo-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background:
+        rgba(
+            23,
+            58,
+            43,
+            .06
+        );
+
+    isolation: isolate;
+}
+
+
+.photo-card img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    transition:
+        transform .7s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
+}
+
+
+.photo-card:hover img {
+
+    transform:
+        scale(1.03);
+}
+
+
+.photo-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(
+                0,
+                0,
+                0,
+                .18
+            ),
+            transparent 42%
+        );
+
+    opacity: .72;
+
+    pointer-events: none;
+}
+
+
+.photo-card.span-3x3 {
+
+    grid-column: span 3;
+    grid-row: span 3;
+}
+
+
+.photo-card.span-2x3 {
+
+    grid-column: span 2;
+    grid-row: span 3;
+}
+
+
+.photo-card.span-3x2 {
+
+    grid-column: span 3;
+    grid-row: span 2;
+}
+
+
+.photo-card.span-2x2 {
+
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+
+.photo-card.span-2x1 {
+
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+
+.photo-card.span-1x2 {
+
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+
+.photo-card.span-1x1 {
+
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+
+/* ==========================================================
    ABOUT
 ========================================================== */
 
@@ -3345,6 +3560,104 @@ Eventleiste wird nicht mehr benötigt.
     }
 
 
+    .photo-collage {
+
+        padding:
+            22px 14px 86px;
+    }
+
+
+    .photo-collage-header {
+
+        margin-bottom: 18px;
+
+        padding: 0 9px;
+    }
+
+
+    .photo-collage-label {
+
+        margin-bottom: 10px;
+
+        font-size: .62rem;
+
+        letter-spacing: .14em;
+    }
+
+
+    .photo-collage-title {
+
+        font-size:
+            clamp(
+                2rem,
+                9vw,
+                3.1rem
+            );
+
+        line-height: .98;
+    }
+
+
+    .photo-collage-grid {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        grid-auto-rows: 94px;
+
+        gap: 8px;
+    }
+
+
+    .photo-card {
+
+        border-radius: 16px;
+    }
+
+
+    /* Mobil wie iPhone Galerie */
+    .photo-card.span-3x3 {
+
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+
+    .photo-card.span-2x3 {
+
+        grid-column: span 2;
+        grid-row: span 3;
+    }
+
+
+    .photo-card.span-3x2 {
+
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+
+    .photo-card.span-2x2 {
+
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+
+    .photo-card.span-2x1 {
+
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+
+    .photo-card.span-1x2 {
+
+        grid-column: span 1;
+        grid-row: span 2;
+    }
+
+
     .section {
 
         padding:
@@ -3522,6 +3835,11 @@ Eventleiste wird nicht mehr benötigt.
             </a>
 
 
+            <a href="#galerie">
+                Galerie
+            </a>
+
+
             <a href="#standort">
                 Standort
             </a>
@@ -3599,6 +3917,14 @@ Eventleiste wird nicht mehr benötigt.
         onclick="closeMobileMenu()"
     >
         Allerweil
+    </a>
+
+
+    <a
+        href="#galerie"
+        onclick="closeMobileMenu()"
+    >
+        Galerie
     </a>
 
 
@@ -3999,6 +4325,94 @@ Eventleiste wird nicht mehr benötigt.
 
 
 <!-- ==========================================================
+     FOTO-COLLAGE
+========================================================== -->
+
+<section
+    class="photo-collage"
+    id="galerie"
+>
+
+    <div class="photo-collage-header reveal">
+
+        <div class="photo-collage-label">
+
+            Galerie · Allerweil
+
+        </div>
+
+        <h2 class="photo-collage-title">
+
+            Mehr <span>Allerweil</span>.
+            Mehr Stimmung.
+            Mehr Einblicke.
+
+        </h2>
+
+    </div>
+
+
+    <div class="photo-collage-grid">
+
+
+        <div class="photo-card span-3x3 reveal">
+            <img src="Allerweil am Friedensplatz.jpg?v=2" alt="Allerweil am Friedensplatz" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-2x2 reveal">
+            <img src="Getränke im Allerweil.jpg" alt="Getränke im Allerweil" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-1x1 reveal">
+            <img src="Bild 3.png" alt="Bild 3" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-1x2 reveal">
+            <img src="Bild 4.png" alt="Bild 4" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-2x1 reveal">
+            <img src="Bild 5.png" alt="Bild 5" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-1x1 reveal">
+            <img src="Bild 6.png" alt="Bild 6" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-2x2 reveal">
+            <img src="Bild 7.png" alt="Bild 7" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-1x1 reveal">
+            <img src="Bild 8.png" alt="Bild 8" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-1x2 reveal">
+            <img src="Bild 9.png" alt="Bild 9" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-2x1 reveal">
+            <img src="Bild 10.png" alt="Bild 10" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-1x1 reveal">
+            <img src="Bild 11.png" alt="Bild 11" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-1x1 reveal">
+            <img src="Bild 12.png" alt="Bild 12" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card span-2x2 reveal">
+            <img src="Bild 13.png" alt="Bild 13" loading="lazy" decoding="async">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================================
      ABOUT
 ========================================================== -->
 
@@ -4069,58 +4483,6 @@ Eventleiste wird nicht mehr benötigt.
 
             </div>
 
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- ==========================================================
-     GALERIE
-========================================================== -->
-
-<section class="gallery">
-
-    <div class="gallery-grid">
-
-
-        <div class="gallery-card reveal">
-
-            <img
-                src="Allerweil am Friedensplatz.jpg?v=2"
-                alt="Allerweil am Friedensplatz"
-                loading="lazy"
-                decoding="async"
-            >
-
-            <div class="gallery-caption">
-
-                Friedensplatz · Darmstadt
-
-            </div>
-
-        </div>
-
-
-
-        <div class="gallery-card reveal">
-
-            <img
-                src="Getränke im Allerweil.jpg"
-                alt="Getränke im Allerweil"
-                loading="lazy"
-                decoding="async"
-            >
-
-            <div class="gallery-caption">
-
-                Drinks & gute Zeit
-
-            </div>
 
         </div>
 
