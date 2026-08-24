@@ -241,7 +241,6 @@ img {
 .nav-logo img {
 
     width: auto;
-
     height: 46px;
 
     object-fit: contain;
@@ -293,8 +292,6 @@ img {
     color: white;
 }
 
-
-/* kleiner Punkt beim Hover */
 
 .nav-links a::after {
 
@@ -450,7 +447,6 @@ img {
     gap: 17px;
 
     background:
-
         linear-gradient(
             145deg,
             var(--green),
@@ -493,7 +489,6 @@ img {
 .mobile-menu a {
 
     font-size:
-
         clamp(
             2.7rem,
             12vw,
@@ -696,7 +691,7 @@ img {
 
 
 /* ==========================================================
-   HERO INNER – JETZT KOMPLETT MITTIG
+   HERO INNER
 ========================================================== */
 
 .hero-inner {
@@ -727,7 +722,6 @@ img {
 
     display: inline-flex;
     align-items: center;
-
     justify-content: center;
 
     gap: 11px;
@@ -770,13 +764,12 @@ img {
 
 
 /* ==========================================================
-   HERO LOGO – MITTIG
+   HERO LOGO
 ========================================================== */
 
 .hero-logo {
 
     width:
-
         clamp(
             380px,
             47vw,
@@ -815,7 +808,6 @@ img {
     margin: 0 auto;
 
     font-size:
-
         clamp(
             2.3rem,
             4.4vw,
@@ -839,8 +831,6 @@ img {
         );
 }
 
-
-/* "allerweil hier" leicht eleganter */
 
 .hero-quote span {
 
@@ -872,8 +862,7 @@ img {
             .55
         );
 
-    font-size:
-        .76rem;
+    font-size: .76rem;
 
     font-weight: 500;
 
@@ -945,8 +934,7 @@ img {
 
 .primary-button:hover {
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 
     background: white;
 }
@@ -986,7 +974,6 @@ img {
     color: white;
 
     backdrop-filter: blur(16px);
-
     -webkit-backdrop-filter: blur(16px);
 
     font-size: .88rem;
@@ -1008,21 +995,26 @@ img {
             .15
         );
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
 
 
 /* ==========================================================
-   MARQUEE
+   EVENT MARQUEE / BEWEGTER BANNER
 ========================================================== */
 
 .marquee {
+
+    position: relative;
 
     overflow: hidden;
 
     background:
         var(--cream);
+
+    border-top:
+        1px solid
+        rgba(23, 58, 43, .08);
 
     border-bottom:
         1px solid
@@ -1030,60 +1022,200 @@ img {
 }
 
 
-.marquee-track {
+/* leichter Verlauf am Rand */
 
-    display: flex;
+.marquee::before,
+.marquee::after {
 
-    width: max-content;
+    content: "";
 
-    animation:
-        marqueeMove
-        28s linear infinite;
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    width: 80px;
+
+    z-index: 2;
+
+    pointer-events: none;
 }
 
 
-.marquee-item {
+.marquee::before {
+
+    left: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cream),
+            transparent
+        );
+}
+
+
+.marquee::after {
+
+    right: 0;
+
+    background:
+        linear-gradient(
+            -90deg,
+            var(--cream),
+            transparent
+        );
+}
+
+
+.marquee-track {
 
     display: flex;
 
     align-items: center;
 
-    gap: 28px;
+    width: max-content;
 
-    padding:
-        21px 22px;
+    animation:
+        marqueeMove
+        24s linear infinite;
 
-    color: var(--green);
-
-    font-size: .72rem;
-
-    font-weight: 700;
-
-    text-transform: uppercase;
-
-    letter-spacing: .17em;
+    will-change: transform;
 }
 
 
-.marquee-item::after {
+.event-marquee {
 
-    content: "•";
+    display: flex;
 
-    opacity: .4;
+    align-items: center;
+
+    gap: 25px;
+
+    flex-shrink: 0;
+
+    padding:
+        21px 24px;
+}
+
+
+.event-small {
+
+    color:
+        rgba(
+            23,
+            58,
+            43,
+            .55
+        );
+
+    font-size: .66rem;
+
+    font-weight: 750;
+
+    text-transform: uppercase;
+
+    letter-spacing: .20em;
+}
+
+
+.event-title {
+
+    color:
+        var(--green);
+
+    font-size: .82rem;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: .12em;
+}
+
+
+.event-date {
+
+    color:
+        var(--green);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: .95rem;
+
+    font-style: italic;
+
+    font-weight: 400;
+
+    letter-spacing: .02em;
+}
+
+
+.event-time {
+
+    color:
+        rgba(
+            23,
+            58,
+            43,
+            .74
+        );
+
+    font-size: .74rem;
+
+    font-weight: 650;
+
+    text-transform: uppercase;
+
+    letter-spacing: .13em;
+}
+
+
+.event-dot {
+
+    width: 4px;
+    height: 4px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            23,
+            58,
+            43,
+            .40
+        );
 }
 
 
 @keyframes marqueeMove {
 
     from {
+
         transform:
             translateX(0);
     }
 
     to {
+
         transform:
             translateX(-50%);
     }
+}
+
+
+/* Banner hält beim Hover an */
+
+.marquee:hover
+.marquee-track {
+
+    animation-play-state:
+        paused;
 }
 
 
@@ -1150,7 +1282,6 @@ img {
     max-width: 730px;
 
     font-size:
-
         clamp(
             3.3rem,
             6.5vw,
@@ -1195,7 +1326,6 @@ img {
         var(--muted);
 
     font-size:
-
         clamp(
             1.07rem,
             1.5vw,
@@ -1226,7 +1356,6 @@ img {
     font-style: italic;
 
     font-size:
-
         clamp(
             1.45rem,
             2.2vw,
@@ -1289,7 +1418,6 @@ img {
     object-fit: cover;
 
     transition:
-
         transform 1s
         cubic-bezier(
             .16,
@@ -1365,15 +1493,10 @@ img {
         145px 5vw;
 
     background:
-
         linear-gradient(
             135deg,
-
-            var(--green)
-            0%,
-
-            var(--green-dark)
-            100%
+            var(--green) 0%,
+            var(--green-dark) 100%
         );
 
     color: white;
@@ -1466,7 +1589,6 @@ img {
     max-width: 920px;
 
     font-size:
-
         clamp(
             3.5rem,
             7vw,
@@ -1530,7 +1652,6 @@ img {
 .info-title {
 
     font-size:
-
         clamp(
             3.2rem,
             6vw,
@@ -1645,7 +1766,6 @@ img {
     margin-bottom: 25px;
 
     font-size:
-
         clamp(
             2rem,
             3vw,
@@ -1839,7 +1959,6 @@ img {
 .big-cta h2 {
 
     font-size:
-
         clamp(
             4.7rem,
             11vw,
@@ -1953,8 +2072,6 @@ img {
 }
 
 
-/* leichter grüner Lichtverlauf */
-
 .footer::before {
 
     content: "";
@@ -1970,7 +2087,6 @@ img {
     border-radius: 50%;
 
     background:
-
         radial-gradient(
             circle,
 
@@ -2019,7 +2135,6 @@ img {
 .footer-logo img {
 
     width:
-
         min(
             470px,
             80vw
@@ -2157,7 +2272,6 @@ img {
     display: none;
 
     align-items: flex-end;
-
     justify-content: center;
 
     background:
@@ -2182,7 +2296,6 @@ img {
 .cookie-box {
 
     width: 100%;
-
     max-width: 730px;
 
     padding: 28px;
@@ -2266,9 +2379,7 @@ img {
     display: flex;
 
     align-items: center;
-
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
     gap: 20px;
 
@@ -2637,7 +2748,6 @@ img {
     .hero-logo {
 
         width:
-
             min(
                 390px,
                 88vw
@@ -2652,7 +2762,6 @@ img {
         max-width: 95%;
 
         font-size:
-
             clamp(
                 2rem,
                 9.5vw,
@@ -2696,6 +2805,46 @@ img {
     }
 
 
+    .event-marquee {
+
+        gap: 18px;
+
+        padding:
+            18px 18px;
+    }
+
+
+    .event-small {
+
+        font-size: .58rem;
+    }
+
+
+    .event-title {
+
+        font-size: .72rem;
+    }
+
+
+    .event-date {
+
+        font-size: .84rem;
+    }
+
+
+    .event-time {
+
+        font-size: .65rem;
+    }
+
+
+    .marquee::before,
+    .marquee::after {
+
+        width: 35px;
+    }
+
+
     .section {
 
         padding:
@@ -2708,7 +2857,6 @@ img {
     .statement h2 {
 
         font-size:
-
             clamp(
                 3rem,
                 13vw,
@@ -2983,8 +3131,6 @@ img {
 
 
 
-        <!-- ORIGINAL ALLERWEIL LOGO MITTIG -->
-
         <div class="hero-logo">
 
             <img
@@ -2996,12 +3142,9 @@ img {
 
 
 
-        <!-- NEUES ZITAT -->
-
         <div class="hero-quote">
 
             Wir wollten nur kurz
-
             stehen bleiben.
 
             <br>
@@ -3054,69 +3197,136 @@ img {
 
 
 <!-- ==========================================================
-     MARQUEE
+     EVENT BANNER
 ========================================================== -->
 
-<div class="marquee">
+<div
+    class="marquee"
+    aria-label="Nächstes Event"
+>
 
     <div class="marquee-track">
 
-        <div class="marquee-item">
-            Allerweil
+
+        <!-- ERSTER BLOCK -->
+
+        <div class="event-marquee">
+
+            <span class="event-small">
+                Next Event
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-title">
+                Afterwork × PREGAME
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-date">
+                03.09.2026
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-time">
+                ab 18 Uhr
+            </span>
+
+            <span class="event-dot"></span>
+
         </div>
 
-        <div class="marquee-item">
-            Bier
+
+        <div class="event-marquee">
+
+            <span class="event-small">
+                Next Event
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-title">
+                Afterwork × PREGAME
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-date">
+                03.09.2026
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-time">
+                ab 18 Uhr
+            </span>
+
+            <span class="event-dot"></span>
+
         </div>
 
-        <div class="marquee-item">
-            Wein
+
+        <!-- IDENTISCHE KOPIE FÜR NAHTLOSE ANIMATION -->
+
+        <div class="event-marquee">
+
+            <span class="event-small">
+                Next Event
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-title">
+                Afterwork × PREGAME
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-date">
+                03.09.2026
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-time">
+                ab 18 Uhr
+            </span>
+
+            <span class="event-dot"></span>
+
         </div>
 
-        <div class="marquee-item">
-            Spritz
+
+        <div class="event-marquee">
+
+            <span class="event-small">
+                Next Event
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-title">
+                Afterwork × PREGAME
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-date">
+                03.09.2026
+            </span>
+
+            <span class="event-dot"></span>
+
+            <span class="event-time">
+                ab 18 Uhr
+            </span>
+
+            <span class="event-dot"></span>
+
         </div>
 
-        <div class="marquee-item">
-            Daydrinking
-        </div>
-
-        <div class="marquee-item">
-            Friedensplatz
-        </div>
-
-        <div class="marquee-item">
-            Darmstadt
-        </div>
-
-
-        <div class="marquee-item">
-            Allerweil
-        </div>
-
-        <div class="marquee-item">
-            Bier
-        </div>
-
-        <div class="marquee-item">
-            Wein
-        </div>
-
-        <div class="marquee-item">
-            Spritz
-        </div>
-
-        <div class="marquee-item">
-            Daydrinking
-        </div>
-
-        <div class="marquee-item">
-            Friedensplatz
-        </div>
-
-        <div class="marquee-item">
-            Darmstadt
-        </div>
 
     </div>
 
@@ -3366,9 +3576,7 @@ img {
 
 
                     <h3>
-
                         Mitten in Darmstadt.
-
                     </h3>
 
 
@@ -3421,9 +3629,7 @@ img {
 
 
                     <h3>
-
                         Wann sehen wir uns?
-
                     </h3>
 
 
@@ -3518,9 +3724,7 @@ img {
 
 
                     <h3>
-
                         Sag Hallo.
-
                     </h3>
 
 
@@ -3846,9 +4050,7 @@ img {
                     </strong>
 
                     <small>
-
                         Grundlegende Website-Funktionen.
-
                     </small>
 
                 </div>
@@ -3856,16 +4058,13 @@ img {
 
                 <label class="switch">
 
-
                     <input
                         type="checkbox"
                         checked
                         disabled
                     >
 
-
                     <span class="slider"></span>
-
 
                 </label>
 
@@ -3895,15 +4094,12 @@ img {
 
                 <label class="switch">
 
-
                     <input
                         type="checkbox"
                         id="externalConsent"
                     >
 
-
                     <span class="slider"></span>
-
 
                 </label>
 
@@ -3922,9 +4118,7 @@ img {
                 class="cookie-button necessary"
                 onclick="acceptNecessary()"
             >
-
                 Nur notwendige
-
             </button>
 
 
@@ -3932,9 +4126,7 @@ img {
                 class="cookie-button save"
                 onclick="saveSelection()"
             >
-
                 Auswahl speichern
-
             </button>
 
 
@@ -3942,9 +4134,7 @@ img {
                 class="cookie-button accept"
                 onclick="acceptAll()"
             >
-
                 Alle akzeptieren
-
             </button>
 
 
@@ -3959,9 +4149,7 @@ img {
             Weitere Informationen findest du in unserer
 
             <a href="datenschutz.html">
-
                 Datenschutzerklärung
-
             </a>.
 
         </p>
@@ -4118,9 +4306,7 @@ const revealObserver =
         },
 
         {
-
             threshold: .12
-
         }
 
     );
