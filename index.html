@@ -1,42 +1,17 @@
 <!DOCTYPE html>
+
 <html lang="de">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Allerweil Darmstadt | Stehausschank am Friedensplatz</title>
-
-<meta
-    name="description"
-    content="Allerweil Darmstadt – Stehausschank, Bier, Wein, Spritz und gute Zeit mitten am Friedensplatz."
->
-
-<meta name="theme-color" content="#173a2b">
-
-
+<meta content="Allerweil Darmstadt – Stehausschank, Bier, Wein, Spritz und gute Zeit mitten am Friedensplatz." name="description"/>
+<meta content="#173a2b" name="theme-color"/>
 <!-- ==========================================================
      FAVICON
 ========================================================== -->
-
-<link
-    id="favicon"
-    rel="icon"
-    type="image/png"
-    href="favicon.png?v=3"
->
-
-<link
-    rel="apple-touch-icon"
-    href="favicon.png?v=3"
->
-
-
+<link href="favicon.png?v=3" id="favicon" rel="icon" type="image/png"/>
+<link href="favicon.png?v=3" rel="apple-touch-icon"/>
 <style>
 
 /* ==========================================================
@@ -1572,9 +1547,10 @@ Eventleiste wird nicht mehr benötigt.
 
     background:
         linear-gradient(
-            145deg,
+            180deg,
             #173a2b 0%,
-            #143326 48%,
+            #173a2b 10%,
+            #143326 56%,
             #10291f 100%
         );
 
@@ -1584,36 +1560,49 @@ Eventleiste wird nicht mehr benötigt.
 
 
 /* ==========================================================
-   EINHEITLICHE WELLEN-ÜBERGÄNGE ZWISCHEN ALLEN BEREICHEN
+   SAUBERE WELLEN-ÜBERGÄNGE
+   OHNE BALKEN / OHNE SPALT / OHNE ÜBERLAGERUNGSFEHLER
 ========================================================== */
 
-.wave-section {
+/*
+Die Übergangswelle liegt am unteren Rand der vorherigen Sektion.
+
+Oberhalb der Wellenlinie bleibt alles transparent und zeigt
+dadurch exakt den echten Hintergrund der vorherigen Sektion.
+
+Unterhalb der Wellenlinie wird bereits die Farbe der folgenden
+Sektion dargestellt. Am unteren Rand ist die Fläche vollständig
+gefüllt und trifft damit nahtlos auf die nächste Sektion.
+*/
+
+.has-transition {
 
     position: relative;
 }
 
 
-.wave-divider {
+.section-transition {
 
     position: absolute;
 
-    top: -1px;
     left: 0;
+    right: 0;
+    bottom: -1px;
 
-    z-index: 4;
+    z-index: 20;
 
     width: 100%;
-    height: 72px;
-
-    line-height: 0;
+    height: 62px;
 
     overflow: hidden;
+
+    line-height: 0;
 
     pointer-events: none;
 }
 
 
-.wave-divider svg {
+.section-transition svg {
 
     display: block;
 
@@ -1622,54 +1611,27 @@ Eventleiste wird nicht mehr benötigt.
 }
 
 
-.wave-divider path {
+.section-transition.to-cream path {
 
-    fill: currentColor;
+    fill:
+        #f2e8d8;
 }
 
 
-.wave-divider.green {
+.section-transition.to-green path {
 
-    color:
-        var(--green-dark);
+    fill:
+        #173a2b;
 }
 
 
-.wave-divider.cream {
+@media (max-width: 700px) {
 
-    color:
-        var(--cream);
-}
+    .section-transition {
 
+        height: 42px;
+    }
 
-/* Übergang zwischen zwei gleichfarbigen Creme-Bereichen:
-   dieselbe Welle, nur mit einem extrem dezenten Schatten,
-   damit die Form trotzdem leicht sichtbar bleibt. */
-
-.wave-divider.cream-subtle {
-
-    color:
-        var(--cream);
-
-    filter:
-        drop-shadow(
-            0 3px 6px
-            rgba(
-                23,
-                58,
-                43,
-                .045
-            )
-        );
-}
-
-
-
-.wave-section > *:not(.wave-divider) {
-
-    position: relative;
-
-    z-index: 5;
 }
 
 
@@ -1939,10 +1901,7 @@ Eventleiste wird nicht mehr benötigt.
 
 @media (max-width: 700px) {
 
-    .wave-divider {
-
-        height: 48px;
-    }
+    
 
     .hours-feature {
 
@@ -2296,11 +2255,11 @@ Eventleiste wird nicht mehr benötigt.
 
     background:
         linear-gradient(
-            135deg,
-
-            var(--green) 0%,
-
-            var(--green-dark) 100%
+            180deg,
+            #173a2b 0%,
+            #173a2b 10%,
+            #143326 56%,
+            #10291f 100%
         );
 
     color: var(--cream);
@@ -2657,22 +2616,7 @@ Eventleiste wird nicht mehr benötigt.
    BIG CTA
 ========================================================== */
 
-.big-cta {
-
-    position: relative;
-
-    min-height: 76vh;
-
-    overflow: hidden;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding:
-        125px 5vw
-        80px;
+H5px 5vw 105px;
 
     text-align: center;
 
@@ -2840,12 +2784,10 @@ Eventleiste wird nicht mehr benötigt.
 
     background:
         linear-gradient(
-            145deg,
-
+            180deg,
             #173a2b 0%,
-
-            #143326 48%,
-
+            #173a2b 10%,
+            #143326 56%,
             #10291f 100%
         );
 
@@ -4088,907 +4030,413 @@ Eventleiste wird nicht mehr benötigt.
 }
 
 </style>
-
 </head>
-
-
 <body>
-
-
 <!-- ==========================================================
      NAVIGATION
 ========================================================== -->
-
-<nav
-    class="nav"
-    id="nav"
->
-
-    <div class="nav-inner">
-
-
-        <a
-            href="#home"
-            class="nav-logo"
-            aria-label="Allerweil Startseite"
-        >
-
-            <img
-                src="Allerweil Logo.png"
-                alt="Allerweil Stehausschank"
-            >
-
-        </a>
-
-
-        <div class="nav-links">
-
-
-            <a href="#allerweil">
+<nav class="nav" id="nav">
+<div class="nav-inner">
+<a aria-label="Allerweil Startseite" class="nav-logo" href="#home">
+<img alt="Allerweil Stehausschank" src="Allerweil Logo.png"/>
+</a>
+<div class="nav-links">
+<a href="#allerweil">
                 Allerweil
             </a>
-
-
-            <a href="#galerie">
+<a href="#galerie">
                 Galerie
             </a>
-
-
-            <a href="#standort">
+<a href="#standort">
                 Standort
             </a>
-
-
-            <a href="#oeffnungszeiten">
+<a href="#oeffnungszeiten">
                 Öffnungszeiten
             </a>
-
-
-            <a href="#kontakt">
+<a href="#kontakt">
                 Kontakt
             </a>
-
-
-        </div>
-
-
-        <a
-            href="#standort"
-            class="nav-button"
-        >
+</div>
+<a class="nav-button" href="#standort">
 
             Vorbeikommen
 
         </a>
-
-
-        <button
-            class="menu-button"
-            onclick="openMobileMenu()"
-            aria-label="Menü öffnen"
-        >
+<button aria-label="Menü öffnen" class="menu-button" onclick="openMobileMenu()">
 
             ☰
 
         </button>
-
-
-    </div>
-
+</div>
 </nav>
-
-
-
 <!-- ==========================================================
      MOBILE MENU
 ========================================================== -->
-
-<div
-    class="mobile-menu"
-    id="mobileMenu"
->
-
-    <img
-        src="Allerweil Logo.png"
-        class="mobile-logo"
-        alt="Allerweil Stehausschank"
-    >
-
-
-    <button
-        class="mobile-close"
-        onclick="closeMobileMenu()"
-        aria-label="Menü schließen"
-    >
+<div class="mobile-menu" id="mobileMenu">
+<img alt="Allerweil Stehausschank" class="mobile-logo" src="Allerweil Logo.png"/>
+<button aria-label="Menü schließen" class="mobile-close" onclick="closeMobileMenu()">
 
         ✕
 
     </button>
-
-
-    <a
-        href="#allerweil"
-        onclick="closeMobileMenu()"
-    >
+<a href="#allerweil" onclick="closeMobileMenu()">
         Allerweil
     </a>
-
-
-    <a
-        href="#galerie"
-        onclick="closeMobileMenu()"
-    >
+<a href="#galerie" onclick="closeMobileMenu()">
         Galerie
     </a>
-
-
-    <a
-        href="#standort"
-        onclick="closeMobileMenu()"
-    >
+<a href="#standort" onclick="closeMobileMenu()">
         Standort
     </a>
-
-
-    <a
-        href="#oeffnungszeiten"
-        onclick="closeMobileMenu()"
-    >
+<a href="#oeffnungszeiten" onclick="closeMobileMenu()">
         Zeiten
     </a>
-
-
-    <a
-        href="#kontakt"
-        onclick="closeMobileMenu()"
-    >
+<a href="#kontakt" onclick="closeMobileMenu()">
         Kontakt
     </a>
-
 </div>
-
-
-
 <!-- ==========================================================
      HERO
 ========================================================== -->
-
-<header
-    class="hero"
-    id="home"
->
-
-    <!-- ======================================================
+<header class="hero has-transition" id="home">
+<!-- ======================================================
          EVENT BANNER – DESKTOP UND MOBIL DIREKT UNTER DER MENÜLEISTE
     ======================================================= -->
-
-    <div
-        class="marquee mobile-hero-marquee"
-        aria-label="Nächstes Event"
-    >
-
-        <div class="marquee-track">
-
-
-            <div class="event-marquee">
-
-                <span class="event-small">
+<div aria-label="Nächstes Event" class="marquee mobile-hero-marquee">
+<div class="marquee-track">
+<div class="event-marquee">
+<span class="event-small">
                     Next Event
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-title">
+<span class="event-dot"></span>
+<span class="event-title">
                     Afterwork × PREGAME
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-date">
+<span class="event-dot"></span>
+<span class="event-date">
                     03.09.2026
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-time">
+<span class="event-dot"></span>
+<span class="event-time">
                     ab 18 Uhr
                 </span>
-
-                <span class="event-dot"></span>
-
-            </div>
-
-
-            <div class="event-marquee">
-
-                <span class="event-small">
+<span class="event-dot"></span>
+</div>
+<div class="event-marquee">
+<span class="event-small">
                     Next Event
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-title">
+<span class="event-dot"></span>
+<span class="event-title">
                     Afterwork × PREGAME
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-date">
+<span class="event-dot"></span>
+<span class="event-date">
                     03.09.2026
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-time">
+<span class="event-dot"></span>
+<span class="event-time">
                     ab 18 Uhr
                 </span>
-
-                <span class="event-dot"></span>
-
-            </div>
-
-
-            <div class="event-marquee">
-
-                <span class="event-small">
+<span class="event-dot"></span>
+</div>
+<div class="event-marquee">
+<span class="event-small">
                     Next Event
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-title">
+<span class="event-dot"></span>
+<span class="event-title">
                     Afterwork × PREGAME
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-date">
+<span class="event-dot"></span>
+<span class="event-date">
                     03.09.2026
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-time">
+<span class="event-dot"></span>
+<span class="event-time">
                     ab 18 Uhr
                 </span>
-
-                <span class="event-dot"></span>
-
-            </div>
-
-
-            <div class="event-marquee">
-
-                <span class="event-small">
+<span class="event-dot"></span>
+</div>
+<div class="event-marquee">
+<span class="event-small">
                     Next Event
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-title">
+<span class="event-dot"></span>
+<span class="event-title">
                     Afterwork × PREGAME
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-date">
+<span class="event-dot"></span>
+<span class="event-date">
                     03.09.2026
                 </span>
-
-                <span class="event-dot"></span>
-
-                <span class="event-time">
+<span class="event-dot"></span>
+<span class="event-time">
                     ab 18 Uhr
                 </span>
-
-                <span class="event-dot"></span>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-
-    <div class="hero-inner">
-
-
-        <div class="hero-eyebrow">
+<span class="event-dot"></span>
+</div>
+</div>
+</div>
+<div class="hero-inner">
+<div class="hero-eyebrow">
 
             Friedensplatz · Darmstadt
 
         </div>
-
-
-        <div class="hero-logo">
-
-            <img
-                src="Allerweil Logo.png"
-                alt="Allerweil Stehausschank"
-            >
-
-        </div>
-
-
-        <div class="hero-quote">
+<div class="hero-logo">
+<img alt="Allerweil Stehausschank" src="Allerweil Logo.png"/>
+</div>
+<div class="hero-quote">
 
             Wir wollten nur kurz
             stehen bleiben.
 
-            <br>
+            <br/>
 
             Jetzt stehen wir
 
             <span>
                 allerweil hier.
             </span>
-
-        </div>
-
-
-        <div class="hero-quote-author">
+</div>
+<div class="hero-quote-author">
 
             – der erste Gast, der eigentlich nur kurz bleiben wollte –
 
         </div>
-
-
-        <div class="hero-actions">
-
-
-            <a
-                class="primary-button"
-                href="#standort"
-            >
+<div class="hero-actions">
+<a class="primary-button" href="#standort">
 
                 Vorbeikommen
 
             </a>
-
-
-            <a
-                class="secondary-button"
-                href="#allerweil"
-                aria-label="Allerweil entdecken"
-            >
-
-                <span class="desktop-scroll-label">
+<a aria-label="Allerweil entdecken" class="secondary-button" href="#allerweil">
+<span class="desktop-scroll-label">
                     Allerweil entdecken
                 </span>
-
-                <span
-                    class="desktop-scroll-arrow"
-                    aria-hidden="true"
-                >
+<span aria-hidden="true" class="desktop-scroll-arrow">
                     ↓
                 </span>
-
-                <span
-                    class="mobile-scroll-arrow"
-                    aria-hidden="true"
-                >
+<span aria-hidden="true" class="mobile-scroll-arrow">
                     ↓
                 </span>
-
-            </a>
-
-
-        </div>
-
-
-    </div>
-
-
-</header>
-
-
-
+</a>
+</div>
+</div>
+<div aria-hidden="true" class="section-transition to-cream"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></header>
 <!-- ==========================================================
      EVENT BANNER
 ========================================================== -->
-
-<div
-    class="marquee desktop-event-marquee"
-    aria-label="Nächstes Event"
->
-
-    <div class="marquee-track">
-
-
-        <div class="event-marquee">
-
-            <span class="event-small">
+<div aria-label="Nächstes Event" class="marquee desktop-event-marquee">
+<div class="marquee-track">
+<div class="event-marquee">
+<span class="event-small">
                 Next Event
             </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-title">
+<span class="event-dot"></span>
+<span class="event-title">
                 Afterwork × PREGAME
             </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-date">
+<span class="event-dot"></span>
+<span class="event-date">
                 03.09.2026
             </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-time">
+<span class="event-dot"></span>
+<span class="event-time">
                 ab 18 Uhr
             </span>
-
-            <span class="event-dot"></span>
-
-        </div>
-
-
-        <div class="event-marquee">
-
-            <span class="event-small">
-                Next Event
-            </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-title">
-                Afterwork × PREGAME
-            </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-date">
-                03.09.2026
-            </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-time">
-                ab 18 Uhr
-            </span>
-
-            <span class="event-dot"></span>
-
-        </div>
-
-
-        <div class="event-marquee">
-
-            <span class="event-small">
-                Next Event
-            </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-title">
-                Afterwork × PREGAME
-            </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-date">
-                03.09.2026
-            </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-time">
-                ab 18 Uhr
-            </span>
-
-            <span class="event-dot"></span>
-
-        </div>
-
-
-        <div class="event-marquee">
-
-            <span class="event-small">
-                Next Event
-            </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-title">
-                Afterwork × PREGAME
-            </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-date">
-                03.09.2026
-            </span>
-
-            <span class="event-dot"></span>
-
-            <span class="event-time">
-                ab 18 Uhr
-            </span>
-
-            <span class="event-dot"></span>
-
-        </div>
-
-
-    </div>
-
+<span class="event-dot"></span>
 </div>
-
-
-
+<div class="event-marquee">
+<span class="event-small">
+                Next Event
+            </span>
+<span class="event-dot"></span>
+<span class="event-title">
+                Afterwork × PREGAME
+            </span>
+<span class="event-dot"></span>
+<span class="event-date">
+                03.09.2026
+            </span>
+<span class="event-dot"></span>
+<span class="event-time">
+                ab 18 Uhr
+            </span>
+<span class="event-dot"></span>
+</div>
+<div class="event-marquee">
+<span class="event-small">
+                Next Event
+            </span>
+<span class="event-dot"></span>
+<span class="event-title">
+                Afterwork × PREGAME
+            </span>
+<span class="event-dot"></span>
+<span class="event-date">
+                03.09.2026
+            </span>
+<span class="event-dot"></span>
+<span class="event-time">
+                ab 18 Uhr
+            </span>
+<span class="event-dot"></span>
+</div>
+<div class="event-marquee">
+<span class="event-small">
+                Next Event
+            </span>
+<span class="event-dot"></span>
+<span class="event-title">
+                Afterwork × PREGAME
+            </span>
+<span class="event-dot"></span>
+<span class="event-date">
+                03.09.2026
+            </span>
+<span class="event-dot"></span>
+<span class="event-time">
+                ab 18 Uhr
+            </span>
+<span class="event-dot"></span>
+</div>
+</div>
+</div>
 <!-- ==========================================================
      FOTO-GALERIE
 ========================================================== -->
+<section class="photo-collage has-transition" id="galerie">
 
-<section
-    class="photo-collage wave-section"
-    id="galerie"
->
-
-    <div
-        class="wave-divider green"
-        aria-hidden="true"
-    >
-
-        <svg
-            viewBox="0 0 1440 110"
-            preserveAspectRatio="none"
-        >
-
-            <path
-                d="M0,1 C235,66 475,72 720,21 C965,-28 1208,61 1440,1 L1440,0 L0,0 Z"
-            />
-
-        </svg>
-
-    </div>
-
-    <div class="photo-collage-grid">
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Allerweil am Friedensplatz.jpg?v=2"
-                alt="Allerweil am Friedensplatz"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Getränke im Allerweil.jpg"
-                alt="Getränke im Allerweil"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Bild 3.png"
-                alt="Allerweil Bild 3"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Bild 4.png"
-                alt="Allerweil Bild 4"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Bild 5.png"
-                alt="Allerweil Bild 5"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Bild 6.png"
-                alt="Allerweil Bild 6"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Bild 7.png"
-                alt="Allerweil Bild 7"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Bild 8.png"
-                alt="Allerweil Bild 8"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Bild 9.png"
-                alt="Allerweil Bild 9"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Bild 10.png"
-                alt="Allerweil Bild 10"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Bild 11.png"
-                alt="Allerweil Bild 11"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Bild 12.png"
-                alt="Allerweil Bild 12"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-
-        <figure class="photo-card reveal">
-
-            <img
-                src="Bild 13.png"
-                alt="Allerweil Bild 13"
-                loading="lazy"
-                decoding="async"
-            >
-
-        </figure>
-
-    </div>
-
-</section>
-
-
+<div class="photo-collage-grid">
+<figure class="photo-card reveal">
+<img alt="Allerweil am Friedensplatz" decoding="async" loading="lazy" src="Allerweil am Friedensplatz.jpg?v=2"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Getränke im Allerweil" decoding="async" loading="lazy" src="Getränke im Allerweil.jpg"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Allerweil Bild 3" decoding="async" loading="lazy" src="Bild 3.png"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Allerweil Bild 4" decoding="async" loading="lazy" src="Bild 4.png"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Allerweil Bild 5" decoding="async" loading="lazy" src="Bild 5.png"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Allerweil Bild 6" decoding="async" loading="lazy" src="Bild 6.png"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Allerweil Bild 7" decoding="async" loading="lazy" src="Bild 7.png"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Allerweil Bild 8" decoding="async" loading="lazy" src="Bild 8.png"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Allerweil Bild 9" decoding="async" loading="lazy" src="Bild 9.png"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Allerweil Bild 10" decoding="async" loading="lazy" src="Bild 10.png"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Allerweil Bild 11" decoding="async" loading="lazy" src="Bild 11.png"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Allerweil Bild 12" decoding="async" loading="lazy" src="Bild 12.png"/>
+</figure>
+<figure class="photo-card reveal">
+<img alt="Allerweil Bild 13" decoding="async" loading="lazy" src="Bild 13.png"/>
+</figure>
+</div>
+<div aria-hidden="true" class="section-transition to-green"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      ÖFFNUNGSZEITEN – GRÜNE SEITE
 ========================================================== -->
+<section class="hours-feature has-transition" id="oeffnungszeiten">
 
-<section
-    class="hours-feature wave-section"
-    id="oeffnungszeiten"
->
-
-    <div
-        class="wave-divider cream"
-        aria-hidden="true"
-    >
-
-        <svg
-            viewBox="0 0 1440 110"
-            preserveAspectRatio="none"
-        >
-
-            <path
-                d="M0,1 C235,66 475,72 720,21 C965,-28 1208,61 1440,1 L1440,0 L0,0 Z"
-            />
-
-        </svg>
-
-    </div>
-
-
-    <div class="hours-feature-inner">
-
-
-        <div class="hours-feature-copy reveal">
-
-            <div class="hours-feature-label">
+<div class="hours-feature-inner">
+<div class="hours-feature-copy reveal">
+<div class="hours-feature-label">
 
                 Öffnungszeiten · Friedensplatz
 
             </div>
-
-
-            <h2 class="hours-feature-title">
+<h2 class="hours-feature-title">
 
                 Wann sehen
 
                 <span>
                     wir uns?
                 </span>
-
-            </h2>
-
-
-            <p class="hours-feature-note">
+</h2>
+<p class="hours-feature-note">
 
                 Für den Feierabend, das erste Getränk
                 oder den Samstag, der gern etwas länger
                 dauern darf.
 
             </p>
-
-        </div>
-
-
-        <div class="hours-feature-list reveal">
-
-
-            <div class="hours-feature-row">
-
-                <span class="hours-feature-day">
+</div>
+<div class="hours-feature-list reveal">
+<div class="hours-feature-row">
+<span class="hours-feature-day">
                     Sonntag
                 </span>
-
-                <span class="hours-feature-time">
+<span class="hours-feature-time">
                     geschlossen
                 </span>
-
-            </div>
-
-
-            <div class="hours-feature-row">
-
-                <span class="hours-feature-day">
+</div>
+<div class="hours-feature-row">
+<span class="hours-feature-day">
                     Montag
                 </span>
-
-                <span class="hours-feature-time">
+<span class="hours-feature-time">
                     geschlossen
                 </span>
-
-            </div>
-
-
-            <div class="hours-feature-row">
-
-                <span class="hours-feature-day">
+</div>
+<div class="hours-feature-row">
+<span class="hours-feature-day">
                     Dienstag – Donnerstag
                 </span>
-
-                <span class="hours-feature-time">
+<span class="hours-feature-time">
                     15 – 22 Uhr
                 </span>
-
-            </div>
-
-
-            <div class="hours-feature-row">
-
-                <span class="hours-feature-day">
+</div>
+<div class="hours-feature-row">
+<span class="hours-feature-day">
                     Freitag
                 </span>
-
-                <span class="hours-feature-time">
+<span class="hours-feature-time">
                     15 – 00 Uhr
                 </span>
-
-            </div>
-
-
-            <div class="hours-feature-row">
-
-                <span class="hours-feature-day">
+</div>
+<div class="hours-feature-row">
+<span class="hours-feature-day">
                     Samstag
                 </span>
-
-                <span class="hours-feature-time">
+<span class="hours-feature-time">
                     11 – 00 Uhr
                 </span>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="section-transition to-cream"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      ABOUT
 ========================================================== -->
+<section class="section about has-transition" id="allerweil">
 
-<section
-    class="section about wave-section"
-    id="allerweil"
->
-
-    <div
-        class="wave-divider green"
-        aria-hidden="true"
-    >
-
-        <svg
-            viewBox="0 0 1440 110"
-            preserveAspectRatio="none"
-        >
-
-            <path
-                d="M0,1 C235,66 475,72 720,21 C965,-28 1208,61 1440,1 L1440,0 L0,0 Z"
-            />
-
-        </svg>
-
-    </div>
-
-    <div class="container">
-
-
-        <div class="about-grid">
-
-
-            <div class="reveal">
-
-
-                <div class="section-label">
+<div class="container">
+<div class="about-grid">
+<div class="reveal">
+<div class="section-label">
 
                     01 · Allerweil
 
                 </div>
-
-
-                <h2 class="about-title">
+<h2 class="about-title">
 
                     Eigentlich nur
 
@@ -4997,23 +4445,16 @@ Eventleiste wird nicht mehr benötigt.
                     <span>
                         ein Getränk.
                     </span>
-
-                </h2>
-
-
-            </div>
-
-
-            <div class="about-text reveal">
-
-
-                <p>
+</h2>
+</div>
+<div class="about-text reveal">
+<p>
 
                     Das Allerweil ist Stehausschank,
                     Treffpunkt und Feierabendgefühl
                     mitten auf dem Darmstädter Friedensplatz.
 
-                    <br><br>
+                    <br/><br/>
 
                     Gute Drinks, entspannte Stimmung
                     und Menschen, bei denen aus
@@ -5021,71 +4462,32 @@ Eventleiste wird nicht mehr benötigt.
                     etwas länger wird.
 
                 </p>
-
-
-                <div class="about-quote">
+<div class="about-quote">
 
                     Ankommen.
                     Ein Getränk bestellen.
                     Und allerweil bleiben.
 
                 </div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="section-transition to-green"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      STATEMENT
 ========================================================== -->
+<section class="statement has-transition">
 
-<section class="statement wave-section">
-
-    <div
-        class="wave-divider cream"
-        aria-hidden="true"
-    >
-
-        <svg
-            viewBox="0 0 1440 110"
-            preserveAspectRatio="none"
-        >
-
-            <path
-                d="M0,1 C235,66 475,72 720,21 C965,-28 1208,61 1440,1 L1440,0 L0,0 Z"
-            />
-
-        </svg>
-
-    </div>
-
-
-    <div class="statement-inner">
-
-
-        <div class="reveal">
-
-            <div class="statement-symbol">
+<div class="statement-inner">
+<div class="reveal">
+<div class="statement-symbol">
 
                 A.
 
             </div>
-
-        </div>
-
-
-        <div class="reveal">
-
-            <h2>
+</div>
+<div class="reveal">
+<h2>
 
                 Daydrinking.
 
@@ -5096,74 +4498,32 @@ Eventleiste wird nicht mehr benötigt.
                 <span>
                     Allerweil.
                 </span>
-
-            </h2>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
+</h2>
+</div>
+</div>
+<div aria-hidden="true" class="section-transition to-cream"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      INFOS
 ========================================================== -->
+<section class="section info" id="standort">
 
-<section
-    class="section info wave-section"
-    id="standort"
->
-
-    <div
-        class="wave-divider green"
-        aria-hidden="true"
-    >
-
-        <svg
-            viewBox="0 0 1440 110"
-            preserveAspectRatio="none"
-        >
-
-            <path
-                d="M0,1 C235,66 475,72 720,21 C965,-28 1208,61 1440,1 L1440,0 L0,0 Z"
-            />
-
-        </svg>
-
-    </div>
-
-    <div class="container">
-
-
-        <div class="info-header">
-
-
-            <div class="reveal">
-
-
-                <div class="section-label">
+<div class="container">
+<div class="info-header">
+<div class="reveal">
+<div class="section-label">
 
                     02 · Gut zu wissen
 
                 </div>
-
-
-                <h2 class="info-title">
+<h2 class="info-title">
 
                     Komm einfach
 
                     vorbei.
 
                 </h2>
-
-
-            </div>
-
-
-            <p class="info-intro reveal">
+</div>
+<p class="info-intro reveal">
 
                 Freunde schnappen,
                 Richtung Friedensplatz laufen
@@ -5172,430 +4532,207 @@ Eventleiste wird nicht mehr benötigt.
                 am Ende wird.
 
             </p>
-
-
-        </div>
-
-
-
-        <div class="info-grid">
-
-
-            <!-- STANDORT -->
-
-            <article class="info-card reveal">
-
-
-                <div class="info-number">
+</div>
+<div class="info-grid">
+<!-- STANDORT -->
+<article class="info-card reveal">
+<div class="info-number">
 
                     01 / STANDORT
 
                 </div>
-
-
-                <div>
-
-
-                    <h3>
+<div>
+<h3>
 
                         Mitten in Darmstadt.
 
                     </h3>
-
-
-                    <p>
+<p>
 
                         Friedensplatz 4
 
-                        <br>
+                        <br/>
 
                         64283 Darmstadt
 
                     </p>
-
-
-                    <a
-                        class="text-link"
-                        href="https://www.google.com/maps/search/?api=1&query=Friedensplatz+4+64283+Darmstadt"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+<a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Friedensplatz+4+64283+Darmstadt" rel="noopener noreferrer" target="_blank">
 
                         Route öffnen →
 
                     </a>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- KONTAKT -->
-
-            <article
-                class="info-card reveal"
-                id="kontakt"
-            >
-
-
-                <div class="info-number">
+</div>
+</article>
+<!-- KONTAKT -->
+<article class="info-card reveal" id="kontakt">
+<div class="info-number">
 
                     02 / KONTAKT
 
                 </div>
-
-
-                <div>
-
-
-                    <h3>
+<div>
+<h3>
 
                         Sag Hallo.
 
                     </h3>
-
-
-                    <p>
+<p>
 
                         Fragen, Veranstaltungen
                         oder einfach mal Hallo sagen?
 
                     </p>
-
-
-                    <p style="margin-top:22px;">
-
-
-                        <a
-                            href="mailto:info@ratskeller-darmstadt.de"
-                        >
+<p style="margin-top:22px;">
+<a href="mailto:info@ratskeller-darmstadt.de">
 
                             info@ratskeller-darmstadt.de
 
                         </a>
-
-
-                        <br>
-
-
-                        <a
-                            href="tel:+49615126444"
-                        >
+<br/>
+<a href="tel:+49615126444">
 
                             06151 – 26444
 
                         </a>
-
-
-                    </p>
-
-
-                </div>
-
-
-            </article>
-
-
-        </div>
-
-
-    </div>
-
+</p>
+</div>
+</article>
+</div>
+</div>
 </section>
-
-
-
 <!-- ==========================================================
      CTA
 ========================================================== -->
+<section class="big-cta has-transition">
 
-<section class="big-cta wave-section">
-
-    <div
-        class="wave-divider cream-subtle"
-        aria-hidden="true"
-    >
-
-        <svg
-            viewBox="0 0 1440 110"
-            preserveAspectRatio="none"
-        >
-
-            <path
-                d="M0,1 C235,66 475,72 720,21 C965,-28 1208,61 1440,1 L1440,0 L0,0 Z"
-            />
-
-        </svg>
-
-    </div>
-
-
-
-    <div class="big-cta-inner reveal">
-
-
-        <div class="big-cta-label">
+<div class="big-cta-inner reveal">
+<div class="big-cta-label">
 
             Friedensplatz · Darmstadt
 
         </div>
-
-
-        <h2>
+<h2>
 
             Bis
 
-            <br>
-
-            <span>
+            <br/>
+<span>
                 allerweil.
             </span>
-
-        </h2>
-
-
-        <a
-            class="cta-button"
-            href="https://www.google.com/maps/search/?api=1&query=Friedensplatz+4+64283+Darmstadt"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
+</h2>
+<a class="cta-button" href="https://www.google.com/maps/search/?api=1&amp;query=Friedensplatz+4+64283+Darmstadt" rel="noopener noreferrer" target="_blank">
 
             Zum Friedensplatz →
 
         </a>
-
-
-    </div>
-
-
-</section>
-
-
-
+</div>
+<div aria-hidden="true" class="section-transition to-green"><svg preserveAspectRatio="none" viewBox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      FOOTER
 ========================================================== -->
+<footer class="footer">
 
-<footer class="footer wave-section">
-
-    <div
-        class="wave-divider cream"
-        aria-hidden="true"
-    >
-
-        <svg
-            viewBox="0 0 1440 110"
-            preserveAspectRatio="none"
-        >
-
-            <path
-                d="M0,1 C235,66 475,72 720,21 C965,-28 1208,61 1440,1 L1440,0 L0,0 Z"
-            />
-
-        </svg>
-
-    </div>
-
-
-
-    <div class="footer-inner">
-
-
-        <div class="footer-logo">
-
-            <img
-                src="Allerweil Logo.png"
-                alt="Allerweil Stehausschank"
-            >
-
-        </div>
-
-
-
-        <div class="footer-grid">
-
-
-            <div>
-
-
-                <div class="footer-heading">
+<div class="footer-inner">
+<div class="footer-logo">
+<img alt="Allerweil Stehausschank" src="Allerweil Logo.png"/>
+</div>
+<div class="footer-grid">
+<div>
+<div class="footer-heading">
 
                     Allerweil
 
                 </div>
-
-
-                <p>
+<p>
 
                     Stehausschank am Friedensplatz.
 
-                    <br>
+                    <br/>
 
                     Bier · Wein · Spritz · gute Zeit.
 
                 </p>
-
-
-            </div>
-
-
-
-            <div>
-
-
-                <div class="footer-heading">
+</div>
+<div>
+<div class="footer-heading">
 
                     Hier findest du uns
 
                 </div>
-
-
-                <p>
+<p>
 
                     Friedensplatz 4
 
-                    <br>
+                    <br/>
 
                     64283 Darmstadt
 
                 </p>
-
-
-            </div>
-
-
-
-            <div>
-
-
-                <div class="footer-heading">
+</div>
+<div>
+<div class="footer-heading">
 
                     Rechtliches
 
                 </div>
-
-
-                <p>
-
-
-                    <a href="impressum.html">
+<p>
+<a href="impressum.html">
 
                         Impressum
 
                     </a>
-
-
-                    <br>
-
-
-                    <a href="datenschutz.html">
+<br/>
+<a href="datenschutz.html">
 
                         Datenschutz
 
                     </a>
-
-
-                    <br>
-
-
-                    <a
-                        href="#"
-                        onclick="
+<br/>
+<a href="#" onclick="
                             openCookieSettings();
                             return false;
-                        "
-                    >
+                        ">
 
                         Cookie-Einstellungen
 
                     </a>
-
-
-                </p>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="footer-bottom">
-
-
-            <span>
+</p>
+</div>
+</div>
+<div class="footer-bottom">
+<span>
 
                 ©
                 <span id="year"></span>
                 Allerweil Darmstadt
 
             </span>
-
-
-            <div class="footer-legal">
-
-
-                <a href="impressum.html">
+<div class="footer-legal">
+<a href="impressum.html">
 
                     Impressum
 
                 </a>
-
-
-                <a href="datenschutz.html">
+<a href="datenschutz.html">
 
                     Datenschutz
 
                 </a>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
+</div>
+</div>
+</div>
 </footer>
-
-
-
 <!-- ==========================================================
      COOKIE
 ========================================================== -->
-
-<div
-    class="cookie-layer"
-    id="cookieLayer"
->
-
-
-    <div
-        class="cookie-box"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="cookieTitle"
-    >
-
-
-        <h2
-            class="cookie-title"
-            id="cookieTitle"
-        >
+<div class="cookie-layer" id="cookieLayer">
+<div aria-labelledby="cookieTitle" aria-modal="true" class="cookie-box" role="dialog">
+<h2 class="cookie-title" id="cookieTitle">
 
             Deine Privatsphäre.
 
         </h2>
-
-
-        <p class="cookie-text">
+<p class="cookie-text">
 
             Diese Website verwendet technisch notwendige
             Speicherungen.
@@ -5606,128 +4743,59 @@ Eventleiste wird nicht mehr benötigt.
             wenn du ihnen zustimmst.
 
         </p>
-
-
-
-        <div class="cookie-settings">
-
-
-            <div class="cookie-row">
-
-
-                <div>
-
-                    <strong>
+<div class="cookie-settings">
+<div class="cookie-row">
+<div>
+<strong>
                         Notwendig
                     </strong>
-
-                    <small>
+<small>
 
                         Grundlegende Website-Funktionen.
 
                     </small>
-
-                </div>
-
-
-                <label class="switch">
-
-
-                    <input
-                        type="checkbox"
-                        checked
-                        disabled
-                    >
-
-
-                    <span class="slider"></span>
-
-
-                </label>
-
-
-            </div>
-
-
-
-            <div class="cookie-row">
-
-
-                <div>
-
-                    <strong>
+</div>
+<label class="switch">
+<input checked="" disabled="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<div class="cookie-row">
+<div>
+<strong>
                         Externe Medien
                     </strong>
-
-                    <small>
+<small>
 
                         Zum Beispiel Karten
                         oder Social-Media-Inhalte.
 
                     </small>
-
-                </div>
-
-
-                <label class="switch">
-
-
-                    <input
-                        type="checkbox"
-                        id="externalConsent"
-                    >
-
-
-                    <span class="slider"></span>
-
-
-                </label>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="cookie-actions">
-
-
-            <button
-                class="cookie-button necessary"
-                onclick="acceptNecessary()"
-            >
+</div>
+<label class="switch">
+<input id="externalConsent" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+</div>
+<div class="cookie-actions">
+<button class="cookie-button necessary" onclick="acceptNecessary()">
 
                 Nur notwendige
 
             </button>
-
-
-            <button
-                class="cookie-button save"
-                onclick="saveSelection()"
-            >
+<button class="cookie-button save" onclick="saveSelection()">
 
                 Auswahl speichern
 
             </button>
-
-
-            <button
-                class="cookie-button accept"
-                onclick="acceptAll()"
-            >
+<button class="cookie-button accept" onclick="acceptAll()">
 
                 Alle akzeptieren
 
             </button>
-
-
-        </div>
-
-
-        <p class="cookie-legal">
+</div>
+<p class="cookie-legal">
 
             Deine Auswahl kannst du jederzeit
             über „Cookie-Einstellungen“ ändern.
@@ -5741,15 +4809,8 @@ Eventleiste wird nicht mehr benötigt.
             </a>.
 
         </p>
-
-
-    </div>
-
-
 </div>
-
-
-
+</div>
 <script>
 
 /* ==========================================================
@@ -6449,8 +5510,5 @@ function activateExternalServices(
 })();
 
 </script>
-
-
 </body>
-
 </html>
