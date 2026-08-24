@@ -6404,6 +6404,75 @@ function activateExternalServices(
     );
 
 
+    /*
+    Sobald die komplette Event-Sektion verlassen wird,
+    springt der Slider unsichtbar wieder auf Event 1 zurück.
+
+    Wenn man später wieder zur Event-Sektion scrollt oder
+    über den Eventbanner dorthin springt, startet sie dadurch
+    immer auf der ersten Event-Seite.
+    */
+
+    const eventSection =
+        document.getElementById(
+            "event"
+        );
+
+
+    if (eventSection) {
+
+        let eventWasVisible = false;
+
+
+        const eventResetObserver =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(
+                        function (entry) {
+
+                            if (entry.isIntersecting) {
+
+                                eventWasVisible = true;
+
+                                return;
+                            }
+
+
+                            if (!eventWasVisible) {
+                                return;
+                            }
+
+
+                            eventWasVisible = false;
+
+                            /*
+                            Ohne Animation zurücksetzen,
+                            da die Event-Sektion zu diesem
+                            Zeitpunkt ohnehin nicht sichtbar ist.
+                            */
+
+                            slider.scrollTo({
+                                left: 0,
+                                behavior: "auto"
+                            });
+
+                            setActiveDot(0);
+                        }
+                    );
+                },
+                {
+                    threshold: 0.02
+                }
+            );
+
+
+        eventResetObserver.observe(
+            eventSection
+        );
+    }
+
+
     setActiveDot(0);
 
 })();
