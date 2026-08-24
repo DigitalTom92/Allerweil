@@ -1134,6 +1134,48 @@ img {
    EVENT BANNER
 ========================================================== */
 
+
+.event-banner-link {
+
+    color: inherit;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+.event-banner-link:visited {
+
+    color: inherit;
+}
+
+
+.event-banner-link:focus-visible {
+
+    outline:
+        2px solid
+        rgba(
+            242,
+            232,
+            216,
+            .72
+        );
+
+    outline-offset: -3px;
+}
+
+
+#event {
+
+    scroll-margin-top:
+        calc(
+            var(--nav-height)
+            + 22px
+        );
+}
+
+
 .marquee {
 
     position: relative;
@@ -4375,7 +4417,7 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 <!-- ======================================================
          EVENT BANNER – DESKTOP UND MOBIL DIREKT UNTER DER MENÜLEISTE
     ======================================================= -->
-<div aria-label="Nächstes Event" class="marquee mobile-hero-marquee">
+<a aria-label="Zum Afterwork Event" class="marquee mobile-hero-marquee event-banner-link" href="#event">
 <div class="marquee-track">
 <div class="event-marquee">
 <span class="event-small">
@@ -4450,7 +4492,7 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 <span class="event-dot"></span>
 </div>
 </div>
-</div>
+</a>
 <div class="hero-inner">
 <div class="hero-eyebrow">
 
@@ -4746,7 +4788,7 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
 <!-- ==========================================================
      STATEMENT
 ========================================================== -->
-<section class="statement has-transition"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">03.09.</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">Next Event</div><div class="statement-event-head"><div class="statement-event-title">Afterwork × Pregame</div><div class="statement-event-time">ab 18 Uhr</div></div><div class="statement-slogan">Daydrinking. Feierabend. Freunde. <span>Allerweil.</span></div></div></div><div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
+<section class="statement has-transition" id="event"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">03. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">Next Event</div><div class="statement-event-head"><div class="statement-event-title">Afterwork × Pregame</div><div class="statement-event-time">ab 18 Uhr</div></div><div class="statement-slogan">Daydrinking. Feierabend. Freunde. <span>Allerweil.</span></div></div></div><div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      INFOS
 ========================================================== -->
@@ -5752,5 +5794,62 @@ function activateExternalServices(
 })();
 
 </script>
+<script>
+/* ==========================================================
+   EVENTBANNER → EVENT
+========================================================== */
+
+(function () {
+
+    const eventBanner =
+        document.querySelector(
+            ".event-banner-link"
+        );
+
+    const eventSection =
+        document.getElementById(
+            "event"
+        );
+
+    if (
+        !eventBanner ||
+        !eventSection
+    ) {
+        return;
+    }
+
+
+    eventBanner.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+            const reduceMotion =
+                window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches;
+
+            eventSection.scrollIntoView({
+                behavior:
+                    reduceMotion
+                        ? "auto"
+                        : "smooth",
+                block:
+                    "start"
+            });
+
+            history.replaceState(
+                null,
+                "",
+                "#event"
+            );
+        }
+    );
+
+})();
+</script>
+
+
 </body>
 </html>
