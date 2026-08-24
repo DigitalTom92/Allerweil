@@ -287,6 +287,7 @@ img {
         );
 
     font-size: .84rem;
+
     font-weight: 550;
 
     letter-spacing: -.01em;
@@ -370,6 +371,7 @@ img {
     color: var(--green-dark);
 
     font-size: .83rem;
+
     font-weight: 650;
 
     box-shadow:
@@ -550,7 +552,7 @@ img {
 
 /* ==========================================================
    HERO
-   DESKTOP = EXAKT BILDSCHIRMHOCH
+   EXAKT EINE BILDSCHIRMHÖHE
 ========================================================== */
 
 .hero {
@@ -560,7 +562,8 @@ img {
     width: 100%;
 
     height: 100svh;
-    min-height: 620px;
+
+    min-height: 650px;
 
     overflow: hidden;
 
@@ -570,9 +573,9 @@ img {
     justify-content: center;
 
     padding:
-        calc(var(--nav-height) + 34px)
+        calc(var(--nav-height) + 22px)
         5vw
-        38px;
+        32px;
 
     color: white;
 
@@ -619,11 +622,16 @@ img {
 
     position: absolute;
 
-    width: min(820px, 72vw);
+    width:
+        min(
+            900px,
+            76vw
+        );
+
     aspect-ratio: 1;
 
     left: 50%;
-    top: 53%;
+    top: 49%;
 
     transform:
         translate(
@@ -652,11 +660,16 @@ img {
 
     position: absolute;
 
-    width: min(590px, 54vw);
+    width:
+        min(
+            650px,
+            57vw
+        );
+
     aspect-ratio: 1;
 
     left: 50%;
-    top: 53%;
+    top: 49%;
 
     transform:
         translate(
@@ -670,7 +683,7 @@ img {
             255,
             255,
             255,
-            .045
+            .05
         );
 
     border-radius: 50%;
@@ -681,6 +694,7 @@ img {
 
 /* ==========================================================
    HERO INNER
+   ETWAS NACH OBEN + MEHR VERTIKALE LUFT
 ========================================================== */
 
 .hero-inner {
@@ -690,16 +704,25 @@ img {
     z-index: 3;
 
     width: 100%;
-    max-width: 1100px;
+    max-width: 1160px;
 
     margin: 0 auto;
 
-    display: flex;
-    flex-direction: column;
+    display: grid;
 
-    align-items: center;
+    justify-items: center;
+
+    gap:
+        clamp(
+            18px,
+            2.8vh,
+            34px
+        );
 
     text-align: center;
+
+    transform:
+        translateY(-1.5vh);
 }
 
 
@@ -716,7 +739,7 @@ img {
 
     gap: 11px;
 
-    margin-bottom: 22px;
+    margin: 0;
 
     font-size: .69rem;
 
@@ -731,7 +754,7 @@ img {
             255,
             255,
             255,
-            .62
+            .61
         );
 }
 
@@ -756,21 +779,19 @@ img {
 
 /* ==========================================================
    HERO LOGO
-   JETZT DEUTLICH PRÄSENTER
+   GRÖSSER + HAUPTBLICKFANG
 ========================================================== */
 
 .hero-logo {
 
     width:
         clamp(
-            450px,
-            52vw,
-            760px
+            520px,
+            58vw,
+            850px
         );
 
-    margin:
-        0 auto
-        30px;
+    margin: 0;
 }
 
 
@@ -791,20 +812,19 @@ img {
 
 /* ==========================================================
    HERO ZITAT
-   BEWUSST KLEINER ALS VORHER
 ========================================================== */
 
 .hero-quote {
 
-    max-width: 790px;
+    max-width: 810px;
 
     margin: 0 auto;
 
     font-size:
         clamp(
-            1.85rem,
-            2.8vw,
-            3.15rem
+            1.8rem,
+            2.55vw,
+            3rem
         );
 
     line-height: 1.08;
@@ -846,14 +866,14 @@ img {
 
 .hero-quote-author {
 
-    margin-top: 17px;
+    margin: 0;
 
     color:
         rgba(
             255,
             255,
             255,
-            .48
+            .47
         );
 
     font-size: .69rem;
@@ -872,7 +892,7 @@ img {
 
 .hero-actions {
 
-    margin-top: 27px;
+    margin: 0;
 
     display: flex;
 
@@ -2641,8 +2661,7 @@ img {
 
 
 /* ==========================================================
-   FLACHERE DESKTOP / NOTEBOOK DISPLAYS
-   DAMIT DER HERO IMMER KOMPLETT PASST
+   FLACHERE DESKTOPS / NOTEBOOKS
 ========================================================== */
 
 @media
@@ -2654,17 +2673,23 @@ img {
         min-height: 0;
 
         padding:
-            calc(var(--nav-height) + 20px)
+            calc(var(--nav-height) + 14px)
             5vw
-            24px;
+            20px;
     }
 
 
-    .hero-eyebrow {
+    .hero-inner {
 
-        margin-bottom: 14px;
+        gap:
+            clamp(
+                12px,
+                1.7vh,
+                18px
+            );
 
-        font-size: .62rem;
+        transform:
+            translateY(-6px);
     }
 
 
@@ -2672,41 +2697,29 @@ img {
 
         width:
             clamp(
-                390px,
-                44vw,
-                620px
+                450px,
+                49vw,
+                690px
             );
-
-        margin-bottom: 19px;
     }
 
 
     .hero-quote {
 
-        max-width: 720px;
+        max-width: 730px;
 
         font-size:
             clamp(
-                1.6rem,
-                2.35vw,
-                2.55rem
+                1.55rem,
+                2.2vw,
+                2.45rem
             );
-
-        line-height: 1.06;
     }
 
 
     .hero-quote-author {
 
-        margin-top: 12px;
-
         font-size: .62rem;
-    }
-
-
-    .hero-actions {
-
-        margin-top: 18px;
     }
 
 
@@ -2716,6 +2729,80 @@ img {
         min-height: 44px;
 
         font-size: .81rem;
+    }
+
+}
+
+
+/* ==========================================================
+   SEHR FLACHE DESKTOPS
+========================================================== */
+
+@media
+    (min-width: 701px)
+    and (max-height: 700px) {
+
+    .hero {
+
+        padding:
+            calc(var(--nav-height) + 9px)
+            5vw
+            14px;
+    }
+
+
+    .hero-inner {
+
+        gap: 10px;
+
+        transform:
+            translateY(-3px);
+    }
+
+
+    .hero-eyebrow {
+
+        font-size: .58rem;
+    }
+
+
+    .hero-logo {
+
+        width:
+            clamp(
+                390px,
+                43vw,
+                560px
+            );
+    }
+
+
+    .hero-quote {
+
+        max-width: 650px;
+
+        font-size:
+            clamp(
+                1.4rem,
+                2vw,
+                2.05rem
+            );
+    }
+
+
+    .hero-quote-author {
+
+        font-size: .58rem;
+    }
+
+
+    .primary-button,
+    .secondary-button {
+
+        min-height: 41px;
+
+        padding:
+            0 17px;
     }
 
 }
@@ -2791,7 +2878,6 @@ img {
 
 
     .info-card:last-child {
-
         border-bottom: 0;
     }
 
@@ -2845,26 +2931,38 @@ img {
         min-height: 100svh;
 
         padding:
-            calc(var(--nav-height) + 48px)
+            calc(var(--nav-height) + 40px)
             22px
-            55px;
+            48px;
 
-        align-items:
-            center;
+        align-items: center;
+    }
+
+
+    .hero-inner {
+
+        display: grid;
+
+        gap: 22px;
+
+        transform:
+            translateY(-5px);
     }
 
 
     .hero::before {
 
-        width: 500px;
-        height: 500px;
+        width: 520px;
+
+        top: 48%;
     }
 
 
     .hero::after {
 
-        width: 360px;
-        height: 360px;
+        width: 370px;
+
+        top: 48%;
     }
 
 
@@ -2873,8 +2971,6 @@ img {
         font-size: .60rem;
 
         letter-spacing: .14em;
-
-        margin-bottom: 21px;
     }
 
 
@@ -2889,11 +2985,9 @@ img {
 
         width:
             min(
-                420px,
-                91vw
+                450px,
+                94vw
             );
-
-        margin-bottom: 28px;
     }
 
 
@@ -2903,9 +2997,9 @@ img {
 
         font-size:
             clamp(
-                1.75rem,
-                7.8vw,
-                2.7rem
+                1.7rem,
+                7.7vw,
+                2.65rem
             );
 
         line-height: 1.07;
@@ -2916,9 +3010,7 @@ img {
 
         max-width: 330px;
 
-        margin-top: 17px;
-
-        font-size: .64rem;
+        font-size: .63rem;
 
         line-height: 1.55;
     }
@@ -2927,8 +3019,6 @@ img {
     .hero-actions {
 
         width: 100%;
-
-        margin-top: 25px;
 
         flex-direction: column;
 
@@ -3174,7 +3264,9 @@ img {
             href="#standort"
             class="nav-button"
         >
+
             Vorbeikommen
+
         </a>
 
 
@@ -3183,7 +3275,9 @@ img {
             onclick="openMobileMenu()"
             aria-label="Menü öffnen"
         >
+
             ☰
+
         </button>
 
 
@@ -3214,7 +3308,9 @@ img {
         onclick="closeMobileMenu()"
         aria-label="Menü schließen"
     >
+
         ✕
+
     </button>
 
 
@@ -3311,7 +3407,9 @@ img {
                 class="primary-button"
                 href="#standort"
             >
+
                 Vorbeikommen
+
             </a>
 
 
@@ -3319,7 +3417,9 @@ img {
                 class="secondary-button"
                 href="#allerweil"
             >
+
                 Allerweil entdecken ↓
+
             </a>
 
 
@@ -3699,6 +3799,8 @@ img {
         <div class="info-grid">
 
 
+            <!-- STANDORT -->
+
             <article class="info-card reveal">
 
 
@@ -3749,6 +3851,8 @@ img {
 
 
 
+            <!-- ÖFFNUNGSZEITEN -->
+
             <article
                 class="info-card reveal"
                 id="oeffnungszeiten"
@@ -3774,45 +3878,65 @@ img {
 
                     <div class="hours-row">
 
-                        <span>Sonntag</span>
+                        <span>
+                            Sonntag
+                        </span>
 
-                        <span>geschlossen</span>
-
-                    </div>
-
-
-                    <div class="hours-row">
-
-                        <span>Montag</span>
-
-                        <span>geschlossen</span>
+                        <span>
+                            geschlossen
+                        </span>
 
                     </div>
 
 
                     <div class="hours-row">
 
-                        <span>Di – Do</span>
+                        <span>
+                            Montag
+                        </span>
 
-                        <span>15 – 22 Uhr</span>
-
-                    </div>
-
-
-                    <div class="hours-row">
-
-                        <span>Freitag</span>
-
-                        <span>15 – 00 Uhr</span>
+                        <span>
+                            geschlossen
+                        </span>
 
                     </div>
 
 
                     <div class="hours-row">
 
-                        <span>Samstag</span>
+                        <span>
+                            Di – Do
+                        </span>
 
-                        <span>11 – 00 Uhr</span>
+                        <span>
+                            15 – 22 Uhr
+                        </span>
+
+                    </div>
+
+
+                    <div class="hours-row">
+
+                        <span>
+                            Freitag
+                        </span>
+
+                        <span>
+                            15 – 00 Uhr
+                        </span>
+
+                    </div>
+
+
+                    <div class="hours-row">
+
+                        <span>
+                            Samstag
+                        </span>
+
+                        <span>
+                            11 – 00 Uhr
+                        </span>
 
                     </div>
 
@@ -3823,6 +3947,8 @@ img {
             </article>
 
 
+
+            <!-- KONTAKT -->
 
             <article
                 class="info-card reveal"
@@ -4245,7 +4371,9 @@ img {
                 class="cookie-button necessary"
                 onclick="acceptNecessary()"
             >
+
                 Nur notwendige
+
             </button>
 
 
@@ -4253,7 +4381,9 @@ img {
                 class="cookie-button save"
                 onclick="saveSelection()"
             >
+
                 Auswahl speichern
+
             </button>
 
 
@@ -4261,7 +4391,9 @@ img {
                 class="cookie-button accept"
                 onclick="acceptAll()"
             >
+
                 Alle akzeptieren
+
             </button>
 
 
@@ -4276,7 +4408,9 @@ img {
             Weitere Informationen findest du in unserer
 
             <a href="datenschutz.html">
+
                 Datenschutzerklärung
+
             </a>.
 
         </p>
@@ -4781,9 +4915,7 @@ function loadConsent() {
 
 
     if (!saved) {
-
         return null;
-
     }
 
 
