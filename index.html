@@ -4916,6 +4916,163 @@ gefüllt und trifft damit nahtlos auf die nächste Sektion.
     background: rgba(123, 133, 106, .42);
 }
 
+
+
+/* ==========================================================
+   LOGO WIE AUF DER GETRÄNKEKARTE
+   Icon + STEHAUSSCHANK: #243421
+   ALLERWEIL:            #fee6ca
+========================================================== */
+
+.hero-logo,
+.nav-logo {
+    position: relative;
+}
+
+
+/*
+Fallback:
+Falls CSS-Masking im Browser nicht unterstützt wird,
+bleibt das bisherige Logo sichtbar.
+*/
+
+@supports ((-webkit-mask-image: url("Allerweil Logo.png")) or
+           (mask-image: url("Allerweil Logo.png"))) {
+
+    .hero-logo img,
+    .nav-logo img {
+        opacity: 0;
+    }
+
+
+    .hero-logo::before,
+    .hero-logo::after,
+    .nav-logo::before,
+    .nav-logo::after {
+        content: "";
+
+        position: absolute;
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        pointer-events: none;
+
+        -webkit-mask-image:
+            url("Allerweil Logo.png");
+
+        mask-image:
+            url("Allerweil Logo.png");
+
+        -webkit-mask-repeat:
+            no-repeat;
+
+        mask-repeat:
+            no-repeat;
+
+        -webkit-mask-position:
+            center;
+
+        mask-position:
+            center;
+
+        -webkit-mask-size:
+            contain;
+
+        mask-size:
+            contain;
+    }
+
+
+    /*
+    Komplette Logoform zunächst dunkel:
+    Icon + ALLERWEIL + STEHAUSSCHANK
+    */
+
+    .hero-logo::before,
+    .nav-logo::before {
+        background:
+            #243421;
+    }
+
+
+    /*
+    Nur den mittleren/rechten Bereich mit ALLERWEIL
+    cremefarben darüberlegen.
+
+    Das linke Icon und die untere Zeile STEHAUSSCHANK
+    bleiben dadurch dunkelgrün – wie auf der Getränkekarte.
+    */
+
+    .hero-logo::after,
+    .nav-logo::after {
+        background:
+            #fee6ca;
+
+        clip-path:
+            inset(
+                23% 0
+                29% 27%
+            );
+    }
+}
+
+
+/* ==========================================================
+   EVENTBANNER – SCHRIFT DUNKLER
+========================================================== */
+
+.mobile-hero-marquee .event-small {
+    color:
+        rgba(
+            36,
+            52,
+            33,
+            .72
+        );
+}
+
+
+.mobile-hero-marquee .event-title {
+    color:
+        #243421;
+
+    font-weight:
+        850;
+}
+
+
+.mobile-hero-marquee .event-date {
+    color:
+        #243421;
+}
+
+
+.mobile-hero-marquee .event-time {
+    color:
+        rgba(
+            36,
+            52,
+            33,
+            .88
+        );
+
+    font-weight:
+        700;
+}
+
+
+.mobile-hero-marquee .event-banner-separator {
+    background:
+        rgba(
+            36,
+            52,
+            33,
+            .52
+        );
+}
+
 </style>
 </head>
 <body>
