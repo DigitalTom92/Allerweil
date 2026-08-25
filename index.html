@@ -8957,6 +8957,109 @@ input:focus-visible
         );
 }
 
+
+
+/* ==========================================================
+   HERO – KREISE NUR AUSSEN ALS SICHTBARE BÖGEN
+   Sie laufen nicht mehr hinter Logo oder Schrift.
+========================================================== */
+
+.hero {
+    overflow: hidden;
+}
+
+.hero::before {
+    width: 820px;
+    height: 820px;
+
+    left: -610px;
+    right: auto;
+
+    top: 54%;
+
+    transform:
+        translateY(-50%);
+
+    border-color:
+        rgba(
+            254,
+            230,
+            202,
+            .11
+        );
+}
+
+.hero::after {
+    width: 590px;
+    height: 590px;
+
+    left: auto;
+    right: -430px;
+
+    top: 39%;
+
+    transform:
+        translateY(-50%);
+
+    border-color:
+        rgba(
+            254,
+            230,
+            202,
+            .15
+        );
+}
+
+
+/* Tablet */
+@media (max-width: 900px) {
+
+    .hero::before {
+        width: 650px;
+        height: 650px;
+
+        left: -505px;
+
+        top: 58%;
+    }
+
+
+    .hero::after {
+        width: 460px;
+        height: 460px;
+
+        right: -355px;
+
+        top: 36%;
+    }
+
+}
+
+
+/* Mobil */
+@media (max-width: 700px) {
+
+    .hero::before {
+        width: 500px;
+        height: 500px;
+
+        left: -395px;
+
+        top: 61%;
+    }
+
+
+    .hero::after {
+        width: 360px;
+        height: 360px;
+
+        right: -285px;
+
+        top: 32%;
+    }
+
+}
+
 </style>
 </head>
 <body>
