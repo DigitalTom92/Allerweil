@@ -8019,6 +8019,660 @@ dürfen die Google-Karte nicht überlagern.
 
 }
 
+
+
+/* ==========================================================
+   06 · KONTAKT
+========================================================== */
+
+.contact-section {
+
+    position: relative;
+
+    background:
+        var(--green);
+
+    color:
+        var(--cream);
+}
+
+
+.contact-top {
+
+    display: grid;
+
+    grid-template-columns:
+        1.05fr .95fr;
+
+    gap: 100px;
+
+    align-items: start;
+
+    margin-bottom: 82px;
+}
+
+
+.contact-section-label {
+
+    margin-bottom: 28px;
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .52
+        );
+
+    font-size: .68rem;
+
+    font-weight: 730;
+
+    letter-spacing: .16em;
+
+    text-transform: uppercase;
+}
+
+
+.contact-title {
+
+    max-width: 760px;
+
+    color:
+        var(--cream);
+
+    font-size:
+        clamp(
+            3.3rem,
+            6.5vw,
+            6.8rem
+        );
+
+    line-height: .93;
+
+    letter-spacing: -.06em;
+
+    font-weight: 620;
+}
+
+
+.contact-title span {
+
+    display: block;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style: italic;
+
+    font-weight: 400;
+
+    color:
+        var(--cream);
+}
+
+
+.contact-intro {
+
+    max-width: 570px;
+
+    padding-top: 80px;
+}
+
+
+.contact-intro p {
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .76
+        );
+
+    font-size:
+        clamp(
+            1.08rem,
+            1.5vw,
+            1.34rem
+        );
+
+    line-height: 1.72;
+}
+
+
+.contact-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        .72fr 1.28fr;
+
+    gap: 72px;
+
+    align-items: start;
+
+    padding-top: 38px;
+
+    border-top:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .18
+        );
+}
+
+
+.contact-details {
+
+    min-width: 0;
+}
+
+
+.contact-detail-label {
+
+    margin-bottom: 25px;
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .46
+        );
+
+    font-size: .68rem;
+
+    font-weight: 720;
+
+    letter-spacing: .15em;
+
+    text-transform: uppercase;
+}
+
+
+.contact-detail-link {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    padding:
+        19px 0;
+
+    border-bottom:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .16
+        );
+
+    transition:
+        transform .22s ease,
+        opacity .22s ease;
+}
+
+
+.contact-detail-link:first-of-type {
+
+    border-top:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .16
+        );
+}
+
+
+.contact-detail-link:hover {
+
+    transform:
+        translateX(4px);
+
+    opacity: .78;
+}
+
+
+.contact-detail-link span {
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .45
+        );
+
+    font-size: .67rem;
+
+    font-weight: 700;
+
+    letter-spacing: .11em;
+
+    text-transform: uppercase;
+}
+
+
+.contact-detail-link strong {
+
+    color:
+        var(--cream);
+
+    font-size:
+        clamp(
+            1rem,
+            1.35vw,
+            1.18rem
+        );
+
+    line-height: 1.4;
+
+    font-weight: 570;
+
+    word-break: break-word;
+}
+
+
+.contact-detail-note {
+
+    max-width: 370px;
+
+    margin-top: 31px;
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .58
+        );
+
+    font-size: .88rem;
+
+    line-height: 1.65;
+}
+
+
+/* FORMULAR */
+
+.contact-form {
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+.contact-form-row {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+}
+
+
+.contact-field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+.contact-field > span {
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .50
+        );
+
+    font-size: .67rem;
+
+    font-weight: 700;
+
+    letter-spacing: .11em;
+
+    text-transform: uppercase;
+}
+
+
+.contact-field input,
+.contact-field textarea {
+
+    width: 100%;
+
+    border:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .22
+        );
+
+    border-radius: 14px;
+
+    outline: none;
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .075
+        );
+
+    color:
+        var(--cream);
+
+    font-family: inherit;
+
+    font-size: 1rem;
+
+    line-height: 1.5;
+
+    -webkit-appearance: none;
+
+    appearance: none;
+
+    transition:
+        border-color .22s ease,
+        background .22s ease,
+        box-shadow .22s ease;
+}
+
+
+.contact-field input {
+
+    min-height: 54px;
+
+    padding:
+        0 16px;
+}
+
+
+.contact-field textarea {
+
+    min-height: 180px;
+
+    padding:
+        15px 16px;
+
+    resize: vertical;
+}
+
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+
+    border-color:
+        rgba(
+            254,
+            230,
+            202,
+            .58
+        );
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .11
+        );
+
+    box-shadow:
+        0 0 0 3px
+        rgba(
+            254,
+            230,
+            202,
+            .07
+        );
+}
+
+
+.contact-form-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+    margin-top: 5px;
+}
+
+
+.contact-form-footer p {
+
+    max-width: 390px;
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .45
+        );
+
+    font-size: .75rem;
+
+    line-height: 1.5;
+}
+
+
+.contact-submit {
+
+    min-height: 50px;
+
+    padding:
+        0 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    border:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .16
+        );
+
+    border-radius: 14px;
+
+    background:
+        var(--cream);
+
+    color:
+        var(--text);
+
+    font-size: .84rem;
+
+    font-weight: 680;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 28px
+        rgba(
+            41,
+            43,
+            38,
+            .10
+        );
+
+    transition:
+        transform .24s ease,
+        opacity .24s ease,
+        box-shadow .24s ease;
+}
+
+
+.contact-submit span {
+
+    font-size: 1rem;
+
+    font-weight: 400;
+}
+
+
+.contact-submit:hover {
+
+    transform:
+        translateY(-2px);
+
+    opacity: .92;
+
+    box-shadow:
+        0 14px 34px
+        rgba(
+            41,
+            43,
+            38,
+            .14
+        );
+}
+
+
+.contact-submit:active {
+
+    transform:
+        translateY(0)
+        scale(.98);
+}
+
+
+.contact-submit:focus-visible {
+
+    outline:
+        2px solid
+        var(--cream);
+
+    outline-offset: 4px;
+}
+
+
+@media (max-width: 900px) {
+
+    .contact-top {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 30px;
+
+        margin-bottom: 62px;
+    }
+
+
+    .contact-intro {
+
+        padding-top: 0;
+
+        max-width: 680px;
+    }
+
+
+    .contact-layout {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 54px;
+    }
+
+
+    .contact-detail-note {
+
+        max-width: 580px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .contact-title {
+
+        font-size:
+            clamp(
+                3rem,
+                15vw,
+                4.7rem
+            );
+    }
+
+
+    .contact-top {
+
+        margin-bottom: 48px;
+    }
+
+
+    .contact-layout {
+
+        padding-top: 27px;
+
+        gap: 44px;
+    }
+
+
+    .contact-form-row {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .contact-form-footer {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+    }
+
+
+    .contact-submit {
+
+        width: 100%;
+    }
+
+}
+
 </style>
 </head>
 <body>
@@ -8352,7 +9006,7 @@ dürfen die Google-Karte nicht überlagern.
 <!-- ==========================================================
      05 · STANDORT
 ========================================================== -->
-<section class="section location-section" id="standort">
+<section class="section location-section has-transition" id="standort">
 <div class="container">
 <div class="location-top">
 <div class="reveal">
@@ -8367,7 +9021,7 @@ dürfen die Google-Karte nicht überlagern.
 </div>
 </div>
 <div class="location-content">
-<div class="location-details reveal" id="kontakt">
+<div class="location-details reveal">
 <div class="location-detail-label">
                     Friedensplatz · Darmstadt
                 </div>
@@ -8385,7 +9039,6 @@ dürfen die Google-Karte nicht überlagern.
         und genau richtig für den ersten oder letzten Drink des Abends.
     </p>
 </div>
-
 <button aria-controls="routePlannerModal" aria-haspopup="dialog" class="location-route-button" id="routePlannerButton" type="button">
                     Route planen
                 </button>
@@ -8407,7 +9060,11 @@ dürfen die Google-Karte nicht überlagern.
 </div>
 </div>
 </div>
-</section><div aria-hidden="true" class="route-planner-modal" id="routePlannerModal">
+<div aria-hidden="true" class="section-transition to-green">
+<svg preserveaspectratio="none" viewbox="0 0 1440 100">
+<path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path>
+</svg>
+</div></section><div aria-hidden="true" class="route-planner-modal" id="routePlannerModal">
 <div class="route-planner-backdrop" data-route-close=""></div>
 <div aria-labelledby="routePlannerTitle" aria-modal="true" class="route-planner-sheet" role="dialog">
 <button aria-label="Route-Auswahl schließen" class="route-planner-close" data-route-close="" type="button">
@@ -8439,7 +9096,89 @@ dürfen die Google-Karte nicht überlagern.
 <!-- ==========================================================
      CTA
 ========================================================== -->
-<section class="big-cta has-transition">
+<section class="section contact-section has-transition" id="kontakt">
+<div class="container">
+<div class="contact-top">
+<div class="reveal">
+<div class="contact-section-label">
+                    06 · Kontakt
+                </div>
+<h2 class="contact-title">
+                    Was im Kopf?
+                    <span>Schreib uns.</span>
+</h2>
+</div>
+<div class="contact-intro reveal">
+<p>
+                    Ob Feier, Brand-Event oder einfach eine gute Idee:
+                    <br/>
+                    Wenn du was im Kopf hast, schreib uns.
+                    <br/>
+                    Auch Initiativbewerbungen sind willkommen.
+                </p>
+</div>
+</div>
+<div class="contact-layout">
+<div class="contact-details reveal">
+<div class="contact-detail-label">
+                    Direkt erreichbar
+                </div>
+<a class="contact-detail-link" href="tel:+49615126444">
+<span>Telefon</span>
+<strong>06151 – 26444</strong>
+</a>
+<a class="contact-detail-link" href="mailto:info@ratskeller-darmstadt.de">
+<span>E-Mail</span>
+<strong>info@ratskeller-darmstadt.de</strong>
+</a>
+<p class="contact-detail-note">
+                    Für Feiern, Events, Kooperationen,
+                    Bewerbungen oder alles, was nicht in
+                    eine Schublade passt.
+                </p>
+</div>
+<form class="contact-form reveal" id="contactForm">
+<div class="contact-form-row">
+<label class="contact-field">
+<span>Name</span>
+<input autocomplete="given-name" name="firstName" required="" type="text"/>
+</label>
+<label class="contact-field">
+<span>Nachname</span>
+<input autocomplete="family-name" name="lastName" required="" type="text"/>
+</label>
+</div>
+<label class="contact-field">
+<span>E-Mail-Adresse</span>
+<input autocomplete="email" name="email" required="" type="email"/>
+</label>
+<label class="contact-field">
+<span>Betreff</span>
+<input name="subject" required="" type="text"/>
+</label>
+<label class="contact-field contact-field-message">
+<span>Nachricht</span>
+<textarea name="message" required="" rows="7"></textarea>
+</label>
+<div class="contact-form-footer">
+<p>
+                        Beim Senden öffnet sich dein
+                        E-Mail-Programm mit der fertigen Nachricht.
+                    </p>
+<button class="contact-submit" type="submit">
+                        Senden
+                        <span aria-hidden="true">↗</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<div aria-hidden="true" class="section-transition to-cream">
+<svg preserveaspectratio="none" viewbox="0 0 1440 100">
+<path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path>
+</svg>
+</div>
+</section><section class="big-cta has-transition">
 <div class="big-cta-inner reveal">
 <div class="big-cta-label">
 
@@ -10329,5 +11068,127 @@ function activateExternalServices(
     );
 
 })();
-</script></body>
+</script>
+<script>
+/* ==========================================================
+   KONTAKTFORMULAR
+   Statische Website: öffnet das lokale E-Mail-Programm.
+========================================================== */
+
+(function () {
+
+    const form =
+        document.getElementById(
+            "contactForm"
+        );
+
+
+    if (!form) {
+        return;
+    }
+
+
+    form.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            if (
+                !form.reportValidity()
+            ) {
+                return;
+            }
+
+
+            const data =
+                new FormData(
+                    form
+                );
+
+
+            const firstName =
+                String(
+                    data.get(
+                        "firstName"
+                    ) || ""
+                ).trim();
+
+
+            const lastName =
+                String(
+                    data.get(
+                        "lastName"
+                    ) || ""
+                ).trim();
+
+
+            const email =
+                String(
+                    data.get(
+                        "email"
+                    ) || ""
+                ).trim();
+
+
+            const subject =
+                String(
+                    data.get(
+                        "subject"
+                    ) || ""
+                ).trim();
+
+
+            const message =
+                String(
+                    data.get(
+                        "message"
+                    ) || ""
+                ).trim();
+
+
+            const fullName =
+                [
+                    firstName,
+                    lastName
+                ]
+                .filter(Boolean)
+                .join(" ");
+
+
+            const mailSubject =
+                subject ||
+                "Anfrage über allerweil-darmstadt.de";
+
+
+            const mailBody = [
+                "Name: " + fullName,
+                "E-Mail: " + email,
+                "",
+                "Nachricht:",
+                message
+            ].join("\n");
+
+
+            const mailto =
+                "mailto:info@ratskeller-darmstadt.de" +
+                "?subject=" +
+                encodeURIComponent(
+                    mailSubject
+                ) +
+                "&body=" +
+                encodeURIComponent(
+                    mailBody
+                );
+
+
+            window.location.href =
+                mailto;
+        }
+    );
+
+})();
+</script>
+</body>
 </html>
