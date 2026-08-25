@@ -7546,6 +7546,134 @@ die sichtbare Karte überlagert.
 
 }
 
+
+
+/* ==========================================================
+   STANDORT – GOOGLE MAPS
+   Hochwertige Live-Karte, direkt auf Allerweil Stehausschank
+========================================================== */
+
+.location-map-frame {
+
+    position: relative;
+
+    min-height: 520px;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background:
+        rgba(
+            123,
+            133,
+            106,
+            .08
+        );
+
+    border:
+        1px solid
+        rgba(
+            123,
+            133,
+            106,
+            .13
+        );
+
+    box-shadow:
+        0 22px 56px
+        rgba(
+            41,
+            43,
+            38,
+            .08
+        );
+}
+
+
+#locationGoogleMap {
+
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    z-index: 4 !important;
+
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    pointer-events: auto !important;
+
+    background:
+        #ece9e1;
+}
+
+
+/*
+Alte Karten-/Grafik-Layer aus früheren Varianten
+dürfen die Google-Karte nicht überlagern.
+*/
+
+#locationMap,
+#locationMapFallback,
+#locationMapPlaceholder,
+.location-map-graphic,
+.location-map-surface,
+.location-map-overlay-copy {
+
+    display: none !important;
+}
+
+
+.location-map-caption {
+
+    padding-top: 13px;
+
+    color:
+        rgba(
+            41,
+            43,
+            38,
+            .50
+        );
+
+    font-size: .72rem;
+
+    letter-spacing: .04em;
+}
+
+
+@media (max-width: 900px) {
+
+    .location-map-frame {
+
+        min-height: 430px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .location-map-frame {
+
+        min-height: 360px;
+
+        border-radius: 19px;
+    }
+
+}
+
 </style>
 </head>
 <body>
@@ -7957,41 +8085,8 @@ die sichtbare Karte überlagert.
                 </button>
 </div>
 <div class="location-map-card reveal">
-<div class="location-map-frame">
-<button aria-controls="routePlannerModal" aria-haspopup="dialog" aria-label="Standort ansehen und Route planen" class="location-map-graphic" id="locationGraphicButton" type="button">
-<span aria-hidden="true" class="location-map-surface">
-<span class="map-block map-block-1"></span>
-<span class="map-block map-block-2"></span>
-<span class="map-block map-block-3"></span>
-<span class="map-block map-block-4"></span>
-<span class="map-street map-street-1"></span>
-<span class="map-street map-street-2"></span>
-<span class="map-street map-street-3"></span>
-<span class="map-street map-street-4"></span>
-<span class="map-circle map-circle-1"></span>
-<span class="map-circle map-circle-2"></span>
-<span class="location-map-point">
-<span class="location-map-point-core"></span>
-</span>
-<span class="location-map-label-card">
-<strong>Allerweil</strong>
-<em>Friedensplatz</em>
-</span>
-</span>
-<span class="location-map-overlay-copy">
-<span class="location-map-overlay-kicker">
-            Standort ansehen
-        </span>
-<span class="location-map-overlay-title">
-            Friedensplatz 4
-        </span>
-<span class="location-map-overlay-subtitle">
-            Tippen für Route oder Karten-App
-        </span>
-</span>
-</button>
-</div>
-<div class="location-map-caption">Dezente Kartenansicht · tippen für Route</div>
+<div class="location-map-frame"><iframe allowfullscreen="" aria-label="Google Maps – Allerweil Stehausschank, Friedensplatz 4, Darmstadt" id="locationGoogleMap" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Allerweil+Stehausschank,+Friedensplatz+4,+64283+Darmstadt&amp;output=embed" title="Google Maps – Allerweil Stehausschank Darmstadt"></iframe></div>
+<div class="location-map-caption">Allerweil Stehausschank · Friedensplatz 4 · Darmstadt</div>
 </div>
 </div>
 </div>
@@ -8007,17 +8102,15 @@ die sichtbare Karte überlagert.
 <h3 id="routePlannerTitle">
             Womit möchtest du los?
         </h3>
-<p>
-            Friedensplatz 4 · 64283 Darmstadt
-        </p>
+<p>Allerweil Stehausschank · Friedensplatz 4 · 64283 Darmstadt</p>
 <div class="route-planner-options">
-<a href="https://www.google.com/maps/dir/?api=1&amp;destination=Friedensplatz+4%2C+64283+Darmstadt" rel="noopener noreferrer" target="_blank">
+<a href="https://www.google.com/maps/dir/?api=1&amp;destination=Allerweil+Stehausschank,+Friedensplatz+4,+64283+Darmstadt" rel="noopener noreferrer" target="_blank">
 <span>
                     Google Maps
                 </span>
 <span aria-hidden="true">↗</span>
 </a>
-<a href="https://maps.apple.com/?daddr=Friedensplatz+4,+64283+Darmstadt&amp;dirflg=d" rel="noopener noreferrer" target="_blank">
+<a href="https://maps.apple.com/?daddr=Allerweil+Stehausschank,+Friedensplatz+4,+64283+Darmstadt&amp;dirflg=d" rel="noopener noreferrer" target="_blank">
 <span>
                     Apple Karten
                 </span>
@@ -9711,11 +9804,6 @@ function activateExternalServices(
             "routePlannerButton"
         );
 
-    const mapButton =
-        document.getElementById(
-            "locationGraphicButton"
-        );
-
     const modal =
         document.getElementById(
             "routePlannerModal"
@@ -9797,14 +9885,6 @@ function activateExternalServices(
         openRoutePlanner
     );
 
-
-    if (mapButton) {
-
-        mapButton.addEventListener(
-            "click",
-            openRoutePlanner
-        );
-    }
 
 
     closeButtons.forEach(
