@@ -9463,6 +9463,45 @@ Hero-Inhalt wird auf Mobil um dieselbe Safe Area nach unten versetzt.
 
 }
 
+
+
+/* ==========================================================
+   EVENTS – TRENNLINIE / SLOGAN AUF BEIDEN SLIDES GLEICHE HÖHE
+========================================================== */
+
+/*
+Auf Event 2 ist der Kopfbereich etwas kompakter.
+Darum wird nur dort der Slogan samt oberer Trennlinie etwas
+nach unten gesetzt. So steht die waagerechte Linie beim Wischen
+auf derselben Höhe wie auf Event 1.
+*/
+.event-slide[data-event-slide="1"] .statement-slogan {
+    margin-top:
+        20px;
+}
+
+
+/* Tablet */
+@media (max-width: 900px) {
+
+    .event-slide[data-event-slide="1"] .statement-slogan {
+        margin-top:
+            18px;
+    }
+
+}
+
+
+/* Mobil */
+@media (max-width: 700px) {
+
+    .event-slide[data-event-slide="1"] .statement-slogan {
+        margin-top:
+            16px;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
