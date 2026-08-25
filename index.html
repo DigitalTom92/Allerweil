@@ -6860,6 +6860,47 @@ jetzt ein DIV für Apple MapKit JS ist.
     pointer-events: none;
 }
 
+
+
+/* ==========================================================
+   STANDORT-KARTE – IMMER SICHTBAR
+   Direkter Karten-Embed ohne Token- oder Consent-Abhängigkeit
+========================================================== */
+
+.location-map-frame {
+    position: relative;
+    overflow: hidden;
+}
+
+#locationMapFallback {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 3 !important;
+
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    border: 0 !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    pointer-events: auto !important;
+
+    background: #e7e2d9;
+}
+
+/*
+Sicherstellen, dass kein alter Apple-/Placeholder-Layer
+die sichtbare Karte überlagert.
+*/
+#locationMap,
+#locationMapPlaceholder {
+    display: none !important;
+}
+
 </style>
 </head>
 <body>
@@ -7272,19 +7313,8 @@ jetzt ein DIV für Apple MapKit JS ist.
 </div>
 <div class="location-map-card reveal">
 <div class="location-map-frame">
-<div aria-label="Apple Karten – Allerweil Darmstadt am Friedensplatz" id="locationMap" role="region"></div><iframe aria-label="Karte – Allerweil Darmstadt, Friedensplatz 4" data-external-src="https://www.openstreetmap.org/export/embed.html?bbox=8.6488%2C49.8712%2C8.6577%2C49.8758&amp;layer=mapnik&amp;marker=49.8734907%2C8.6532364" id="locationMapFallback" loading="lazy" referrerpolicy="no-referrer" title="Karte – Allerweil Darmstadt am Friedensplatz"></iframe>
-<div class="location-map-placeholder" id="locationMapPlaceholder">
-<div aria-hidden="true" class="location-map-pin">
-<span></span>
-</div>
-<div>
-<strong>Allerweil Darmstadt</strong>
-<span>Friedensplatz 4 · 64283 Darmstadt</span>
-</div>
-<button class="location-map-consent" onclick="openCookieSettings()" type="button">
-                            Karte aktivieren
-                        </button>
-</div>
+<iframe aria-label="Karte – Allerweil Darmstadt, Friedensplatz 4" id="locationMapFallback" loading="lazy" referrerpolicy="no-referrer" src="https://www.openstreetmap.org/export/embed.html?bbox=8.6488%2C49.8712%2C8.6577%2C49.8758&amp;layer=mapnik&amp;marker=49.8734907%2C8.6532364" title="Karte – Allerweil Darmstadt am Friedensplatz"></iframe>
+
 </div>
 <div class="location-map-caption">
                     Mitten auf dem Friedensplatz.
@@ -8181,37 +8211,13 @@ function activateExternalServices(
     settings
 ) {
 
-    if (
-        settings.externalMedia
-    ) {
-
-        let appleStarted =
-            false;
-
-
-        if (
-            typeof window.loadAllerweilAppleMap
-            === "function"
-        ) {
-
-            appleStarted =
-                window.loadAllerweilAppleMap()
-                === true;
-        }
-
-
-        if (
-            !appleStarted &&
-            typeof window.loadAllerweilFallbackMap
-                === "function"
-        ) {
-
-            window.loadAllerweilFallbackMap();
-        }
-
-    }
+    /*
+    Platzhalter für weitere externe Dienste.
+    Die Standortkarte wird unabhängig davon direkt angezeigt.
+    */
 
 }
+
 
 
 
@@ -9169,250 +9175,6 @@ function activateExternalServices(
             }
         }
     );
-
-})();
-</script><script>
-/* ==========================================================
-   APPLE MAPS – ALLERWEIL DARMSTADT
-   Für echte Apple-Karten-Darstellung benötigt MapKit JS
-   einen Apple Maps Token.
-
-   Diesen Wert einmal ersetzen:
-   APPLE_MAPS_TOKEN_HIER_EINFUEGEN
-========================================================== */
-
-(function () {
-
-    const APPLE_MAPS_TOKEN =
-        "APPLE_MAPS_TOKEN_HIER_EINFUEGEN";
-
-
-    const ALLERWEIL_COORDINATE = {
-        latitude: 49.8734907,
-        longitude: 8.6532364
-    };
-
-
-    let appleMapStarted =
-        false;
-
-
-    window.initializeAllerweilAppleMap =
-        function () {
-
-            if (
-                !window.mapkit
-            ) {
-                return;
-            }
-
-
-            const coordinate =
-                new mapkit.Coordinate(
-                    ALLERWEIL_COORDINATE.latitude,
-                    ALLERWEIL_COORDINATE.longitude
-                );
-
-
-            const region =
-                new mapkit.CoordinateRegion(
-                    coordinate,
-                    new mapkit.CoordinateSpan(
-                        0.0048,
-                        0.0075
-                    )
-                );
-
-
-            const map =
-                new mapkit.Map(
-                    "locationMap",
-                    {
-                        region:
-                            region
-                    }
-                );
-
-
-            const marker =
-                new mapkit.MarkerAnnotation(
-                    coordinate,
-                    {
-                        title:
-                            "Allerweil Darmstadt",
-
-                        subtitle:
-                            "Friedensplatz 4"
-                    }
-                );
-
-
-            map.addAnnotation(
-                marker
-            );
-
-
-            const mapFrame =
-                document.querySelector(
-                    ".location-map-frame"
-                );
-
-
-            if (mapFrame) {
-
-                mapFrame.classList.add(
-                    "map-loaded"
-                );
-            }
-        };
-
-
-    window.loadAllerweilAppleMap =
-        function () {
-
-            if (
-                appleMapStarted
-            ) {
-                return true;
-            }
-
-
-            if (
-                !APPLE_MAPS_TOKEN ||
-                APPLE_MAPS_TOKEN ===
-                    "APPLE_MAPS_TOKEN_HIER_EINFUEGEN"
-            ) {
-
-                /*
-                Ohne Apple Maps Token bleibt der vorhandene,
-                gestaltete Karten-Platzhalter sichtbar.
-                */
-
-                console.info(
-                    "Apple Maps: Kein Token hinterlegt – Karten-Fallback wird angezeigt."
-                );
-
-                return false;
-            }
-
-
-            appleMapStarted =
-                true;
-
-
-            const script =
-                document.createElement(
-                    "script"
-                );
-
-
-            script.src =
-                "https://cdn.apple-mapkit.com/mk/6/mapkit.core.js";
-
-
-            script.crossOrigin =
-                "anonymous";
-
-
-            script.async =
-                true;
-
-
-            script.dataset.callback =
-                "initializeAllerweilAppleMap";
-
-
-            script.dataset.libraries =
-                "map,annotations";
-
-
-            script.dataset.token =
-                APPLE_MAPS_TOKEN;
-
-
-            script.addEventListener(
-                "error",
-                function () {
-
-                    appleMapStarted =
-                        false;
-                },
-                {
-                    once: true
-                }
-            );
-
-
-            document.head.appendChild(
-                script
-            );
-
-            return true;
-        };
-
-})();
-</script><script>
-/* ==========================================================
-   FALLBACK-KARTE OHNE API-SCHLÜSSEL
-========================================================== */
-
-(function () {
-
-    let fallbackMapStarted =
-        false;
-
-
-    window.loadAllerweilFallbackMap =
-        function () {
-
-            if (
-                fallbackMapStarted
-            ) {
-                return;
-            }
-
-
-            const frame =
-                document.getElementById(
-                    "locationMapFallback"
-                );
-
-
-            if (!frame) {
-                return;
-            }
-
-
-            fallbackMapStarted =
-                true;
-
-
-            frame.addEventListener(
-                "load",
-                function () {
-
-                    const mapFrame =
-                        frame.closest(
-                            ".location-map-frame"
-                        );
-
-
-                    if (mapFrame) {
-
-                        mapFrame.classList.add(
-                            "map-fallback-loaded"
-                        );
-                    }
-                },
-                {
-                    once: true
-                }
-            );
-
-
-            frame.src =
-                frame.dataset.externalSrc;
-        };
 
 })();
 </script></body>
