@@ -8673,6 +8673,240 @@ dürfen die Google-Karte nicht überlagern.
 
 }
 
+
+
+/* ==========================================================
+   KONTAKT – DATENSCHUTZ-CHECKBOX
+========================================================== */
+
+.contact-privacy-consent {
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        22px
+        minmax(0, 1fr);
+
+    gap: 13px;
+
+    align-items: start;
+
+    margin-top: 2px;
+
+    padding:
+        4px 0 2px;
+
+    cursor: pointer;
+}
+
+
+.contact-privacy-consent input {
+
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.contact-privacy-box {
+
+    position: relative;
+
+    width: 20px;
+    height: 20px;
+
+    margin-top: 2px;
+
+    border:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .38
+        );
+
+    border-radius: 6px;
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .07
+        );
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+}
+
+
+.contact-privacy-box::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 6px;
+    top: 3px;
+
+    width: 5px;
+    height: 9px;
+
+    border-right:
+        2px solid
+        var(--green);
+
+    border-bottom:
+        2px solid
+        var(--green);
+
+    opacity: 0;
+
+    transform:
+        rotate(45deg)
+        scale(.7);
+
+    transition:
+        opacity .18s ease,
+        transform .18s ease;
+}
+
+
+.contact-privacy-consent
+input:checked
++
+.contact-privacy-box {
+
+    background:
+        var(--cream);
+
+    border-color:
+        var(--cream);
+}
+
+
+.contact-privacy-consent
+input:checked
++
+.contact-privacy-box::after {
+
+    opacity: 1;
+
+    transform:
+        rotate(45deg)
+        scale(1);
+}
+
+
+.contact-privacy-consent
+input:focus-visible
++
+.contact-privacy-box {
+
+    outline:
+        2px solid
+        var(--cream);
+
+    outline-offset: 4px;
+}
+
+
+.contact-privacy-text {
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .58
+        );
+
+    font-size: .78rem;
+
+    line-height: 1.58;
+}
+
+
+.contact-privacy-text a {
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .88
+        );
+
+    text-decoration:
+        underline;
+
+    text-decoration-thickness:
+        1px;
+
+    text-underline-offset:
+        3px;
+}
+
+
+.contact-privacy-text a:hover {
+
+    color:
+        var(--cream);
+}
+
+
+.contact-submit:disabled {
+
+    opacity: .38;
+
+    cursor: not-allowed;
+
+    transform: none !important;
+
+    box-shadow: none;
+
+    filter:
+        saturate(.45);
+}
+
+
+.contact-submit:disabled:hover {
+
+    opacity: .38;
+
+    transform: none;
+}
+
+
+@media (max-width: 700px) {
+
+    .contact-privacy-consent {
+
+        grid-template-columns:
+            21px
+            minmax(0, 1fr);
+
+        gap: 12px;
+    }
+
+
+    .contact-privacy-text {
+
+        font-size: .76rem;
+    }
+
+}
+
 </style>
 </head>
 <body>
@@ -9159,13 +9393,22 @@ dürfen die Google-Karte nicht überlagern.
 <label class="contact-field contact-field-message">
 <span>Nachricht</span>
 <textarea name="message" required="" rows="7"></textarea>
+</label><label class="contact-privacy-consent">
+<input id="contactPrivacyConsent" name="privacyConsent" required="" type="checkbox"/>
+<span aria-hidden="true" class="contact-privacy-box"></span>
+<span class="contact-privacy-text">
+        Ich habe die
+        <a href="datenschutz.html" rel="noopener noreferrer" target="_blank">Datenschutzerklärung</a>
+        gelesen und stimme zu, dass meine Angaben zur Bearbeitung
+        meiner Anfrage verarbeitet werden.
+    </span>
 </label>
 <div class="contact-form-footer">
 <p>
                         Beim Senden öffnet sich dein
                         E-Mail-Programm mit der fertigen Nachricht.
                     </p>
-<button class="contact-submit" type="submit">
+<button aria-disabled="true" class="contact-submit" disabled="" type="submit">
                         Senden
                         <span aria-hidden="true">↗</span>
 </button>
@@ -11088,11 +11331,74 @@ function activateExternalServices(
     }
 
 
+    const privacyConsent =
+        document.getElementById(
+            "contactPrivacyConsent"
+        );
+
+
+    const submitButton =
+        form.querySelector(
+            ".contact-submit"
+        );
+
+
+    function updateSubmitState() {
+
+        const isAccepted =
+            Boolean(
+                privacyConsent &&
+                privacyConsent.checked
+            );
+
+
+        if (submitButton) {
+
+            submitButton.disabled =
+                !isAccepted;
+
+            submitButton.setAttribute(
+                "aria-disabled",
+                String(
+                    !isAccepted
+                )
+            );
+        }
+    }
+
+
+    if (privacyConsent) {
+
+        privacyConsent.addEventListener(
+            "change",
+            updateSubmitState
+        );
+    }
+
+
+    updateSubmitState();
+
+
     form.addEventListener(
         "submit",
         function (event) {
 
             event.preventDefault();
+
+
+            if (
+                !privacyConsent ||
+                !privacyConsent.checked
+            ) {
+
+                if (privacyConsent) {
+
+                    privacyConsent
+                        .reportValidity();
+                }
+
+                return;
+            }
 
 
             if (
