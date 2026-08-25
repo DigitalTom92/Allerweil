@@ -5183,6 +5183,193 @@ bleibt das bisherige Logo sichtbar.
     }
 }
 
+
+
+/* ==========================================================
+   PREGAME EVENT – ZUSATZTEXT
+========================================================== */
+
+.statement-event-copy {
+
+    width: 100%;
+    max-width: 850px;
+
+    margin-top: 28px;
+    padding-top: 24px;
+
+    border-top:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .18
+        );
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap:
+        24px 34px;
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .72
+        );
+
+    font-size:
+        clamp(
+            .78rem,
+            .92vw,
+            .94rem
+        );
+
+    line-height: 1.55;
+
+    letter-spacing: -.008em;
+}
+
+
+.statement-event-copy-column {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+
+.statement-event-copy p {
+
+    margin: 0;
+}
+
+
+.statement-event-copy p:first-child {
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .88
+        );
+
+    font-weight: 620;
+}
+
+
+.statement-event-copy-close {
+
+    margin-top: 2px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+
+    color:
+        #fee6ca;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            .94rem,
+            1.15vw,
+            1.12rem
+        );
+
+    font-style: italic;
+
+    line-height: 1.35;
+}
+
+
+.event-slide.has-event-copy {
+
+    padding-top: 126px;
+    padding-bottom: 152px;
+}
+
+
+@media (max-width: 900px) {
+
+    .statement-event-copy {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 13px;
+
+        max-width: 680px;
+
+        margin-top: 24px;
+
+        padding-top: 21px;
+    }
+
+
+    .event-slide.has-event-copy {
+
+        padding-top: 112px;
+        padding-bottom: 148px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .statement-event-copy {
+
+        margin-top: 22px;
+
+        padding-top: 19px;
+
+        gap: 12px;
+
+        font-size: .78rem;
+
+        line-height: 1.52;
+    }
+
+
+    .statement-event-copy-column {
+
+        gap: 11px;
+    }
+
+
+    .statement-event-copy-close {
+
+        margin-top: 1px;
+
+        font-size: .96rem;
+    }
+
+
+    .event-slide.has-event-copy {
+
+        padding-top: 96px;
+        padding-bottom: 126px;
+    }
+
+}
+
 </style>
 </head>
 <body>
@@ -5547,7 +5734,7 @@ bleibt das bisherige Logo sichtbar.
 <!-- ==========================================================
      04 · EVENTS
 ========================================================== -->
-<section class="statement has-transition" id="event"><div aria-label="Kommende Events" class="event-slider" id="eventSlider"><div class="event-track"><article aria-label="Event 1 von 2" class="event-slide" data-event-slide="0"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">03. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title">Afterwork × Pregame</div><div class="statement-event-time">ab 18 Uhr</div></div><div class="statement-slogan">Daydrinking. Feierabend. Freunde. <span>Allerweil.</span></div></div></div></article><article aria-label="Event 2 von 2" class="event-slide" data-event-slide="1"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">17. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title">Afterwork x DJ Dan</div><div class="statement-event-time">ab 18:00 Uhr</div></div><div class="statement-slogan">Daydrinking. Feierabend. Freunde. <span>Allerweil.</span></div></div></div></article></div></div><div aria-label="Event-Seite auswählen" class="event-pagination"><button aria-current="true" aria-label="Event 1 anzeigen" class="event-page-dot active" data-event-dot="0" type="button"></button><button aria-current="false" aria-label="Event 2 anzeigen" class="event-page-dot" data-event-dot="1" type="button"></button></div><div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
+<section class="statement has-transition" id="event"><div aria-label="Kommende Events" class="event-slider" id="eventSlider"><div class="event-track"><article aria-label="Event 1 von 2" class="event-slide has-event-copy" data-event-slide="0"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">03. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title">Afterwork × Pregame</div><div class="statement-event-time">ab 18 Uhr</div></div><div class="statement-slogan">Daydrinking. Feierabend. Freunde. <span>Allerweil.</span></div><div class="statement-event-copy"><div class="statement-event-copy-column"><p>PREGAME AFTERWORK at ALLERWEIL DARMSTADT is officially here.</p><p>Starting now, we’ll meet every second Thursday for afterwork drinks, good music and even better company.</p></div><div class="statement-event-copy-column"><p>No pressure. No big plans.</p><p>Just friends, drinks and tunes after work.</p><p>A place to meet, unwind and accidentally stay ALLERWEIL.</p><div class="statement-event-copy-close"><span>Come for one drink.</span><span>Stay for a few more.</span></div></div></div></div></div></article><article aria-label="Event 2 von 2" class="event-slide" data-event-slide="1"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">17. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title">Afterwork x DJ Dan</div><div class="statement-event-time">ab 18:00 Uhr</div></div><div class="statement-slogan">Daydrinking. Feierabend. Freunde. <span>Allerweil.</span></div></div></div></article></div></div><div aria-label="Event-Seite auswählen" class="event-pagination"><button aria-current="true" aria-label="Event 1 anzeigen" class="event-page-dot active" data-event-dot="0" type="button"></button><button aria-current="false" aria-label="Event 2 anzeigen" class="event-page-dot" data-event-dot="1" type="button"></button></div><div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      05 · STANDORT
 ========================================================== -->
