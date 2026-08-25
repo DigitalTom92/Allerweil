@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Impressum | Allerweil Darmstadt</title>
+
+<meta
+    name="description"
+    content="Impressum des Allerweil Stehausschank in Darmstadt."
+>
+
+<meta
+    name="theme-color"
+    content="#7b856a"
+>
+
+<link
+    rel="icon"
+    type="image/png"
+    href="favicon.png?v=3"
+>
+
+<link
+    rel="apple-touch-icon"
+    href="favicon.png?v=3"
+>
+
+
+<style>
+
+:root {
+    --olive: #7b856a;
+    --cream: #fee6ca;
+    --text: #292b26;
+    --muted: rgba(41, 43, 38, .64);
+    --border: rgba(41, 43, 38, .14);
+    --dark-green: #243421;
+    --nav-height: 78px;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    background:
+        var(--cream);
+
+    color:
+        var(--text);
+
+    overflow-x: hidden;
+
+    -webkit-font-smoothing:
+        antialiased;
+
+    text-rendering:
+        optimizeLegibility;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+button {
+    font: inherit;
+}
+
+
+/* ==========================================================
+   NAVIGATION
+========================================================== */
+
+.nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+
+    z-index: 1000;
+
+    height:
+        var(--nav-height);
+
+    background:
+        rgba(
+            123,
+            133,
+            106,
+            .94
+        );
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    backdrop-filter:
+        blur(16px);
+
+    border-bottom:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .10
+        );
+}
+
+
+.nav-inner {
+    width:
+        min(
+            1220px,
+            calc(100% - 44px)
+        );
+
+    height: 100%;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.nav-logo {
+    position: relative;
+
+    display: block;
+
+    width: 176px;
+    height: 54px;
+}
+
+
+.nav-logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    opacity: 0;
+}
+
+
+.nav-logo::before,
+.nav-logo::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    -webkit-mask-image:
+        url("Allerweil Logo.png");
+
+    mask-image:
+        url("Allerweil Logo.png");
+
+    -webkit-mask-repeat:
+        no-repeat;
+
+    mask-repeat:
+        no-repeat;
+
+    -webkit-mask-position:
+        center;
+
+    mask-position:
+        center;
+
+    -webkit-mask-size:
+        contain;
+
+    mask-size:
+        contain;
+}
+
+
+.nav-logo::before {
+    background:
+        #243421;
+}
+
+
+.nav-logo::after {
+    background:
+        #fee6ca;
+
+    clip-path:
+        inset(
+            23% 0
+            29% 27%
+        );
+}
+
+
+.back-link {
+    min-height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .24
+        );
+
+    border-radius: 999px;
+
+    color:
+        var(--cream);
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .08
+        );
+
+    font-size: .8rem;
+    font-weight: 650;
+
+    transition:
+        transform .22s ease,
+        background .22s ease;
+}
+
+
+.back-link:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .14
+        );
+}
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.legal-hero {
+    min-height: 56vh;
+
+    padding:
+        calc(
+            var(--nav-height)
+            + 105px
+        )
+        5vw
+        96px;
+
+    display: flex;
+    align-items: flex-end;
+
+    background:
+        var(--olive);
+
+    color:
+        var(--cream);
+}
+
+
+.legal-hero-inner {
+    width:
+        min(
+            1180px,
+            100%
+        );
+
+    margin:
+        0 auto;
+}
+
+
+.legal-eyebrow {
+    margin-bottom: 22px;
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .58
+        );
+
+    font-size: .68rem;
+    font-weight: 720;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+}
+
+
+.legal-hero h1 {
+    max-width: 920px;
+
+    font-size:
+        clamp(
+            4rem,
+            9vw,
+            8.4rem
+        );
+
+    line-height: .88;
+
+    letter-spacing: -.065em;
+
+    font-weight: 620;
+}
+
+
+.legal-hero h1 span {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style: italic;
+    font-weight: 400;
+}
+
+
+.legal-hero p {
+    max-width: 650px;
+
+    margin-top: 34px;
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .72
+        );
+
+    font-size:
+        clamp(
+            1rem,
+            1.35vw,
+            1.2rem
+        );
+
+    line-height: 1.65;
+}
+
+
+/* ==========================================================
+   INHALT
+========================================================== */
+
+.legal-main {
+    padding:
+        100px 5vw
+        120px;
+
+    background:
+        var(--cream);
+}
+
+
+.legal-layout {
+    width:
+        min(
+            1180px,
+            100%
+        );
+
+    margin:
+        0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        260px
+        minmax(0, 1fr);
+
+    gap: 90px;
+
+    align-items: start;
+}
+
+
+.legal-nav {
+    position: sticky;
+
+    top:
+        calc(
+            var(--nav-height)
+            + 28px
+        );
+
+    padding-top: 4px;
+}
+
+
+.legal-nav-label {
+    margin-bottom: 18px;
+
+    color:
+        rgba(
+            123,
+            133,
+            106,
+            .72
+        );
+
+    font-size: .66rem;
+    font-weight: 720;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+
+.legal-nav a {
+    display: block;
+
+    padding:
+        9px 0;
+
+    color:
+        rgba(
+            41,
+            43,
+            38,
+            .58
+        );
+
+    font-size: .86rem;
+
+    line-height: 1.35;
+
+    transition:
+        color .2s ease,
+        transform .2s ease;
+}
+
+
+.legal-nav a:hover {
+    color:
+        var(--text);
+
+    transform:
+        translateX(3px);
+}
+
+
+.legal-content {
+    min-width: 0;
+}
+
+
+.legal-section {
+    padding:
+        0 0
+        70px;
+
+    margin-bottom: 70px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    scroll-margin-top:
+        calc(
+            var(--nav-height)
+            + 30px
+        );
+}
+
+
+.legal-section:last-child {
+    margin-bottom: 0;
+}
+
+
+.legal-kicker {
+    margin-bottom: 18px;
+
+    color:
+        rgba(
+            123,
+            133,
+            106,
+            .78
+        );
+
+    font-size: .66rem;
+    font-weight: 720;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+
+.legal-section h2 {
+    max-width: 760px;
+
+    margin-bottom: 28px;
+
+    font-size:
+        clamp(
+            2.1rem,
+            4.3vw,
+            4rem
+        );
+
+    line-height: .98;
+
+    letter-spacing: -.052em;
+
+    font-weight: 610;
+}
+
+
+.legal-section h3 {
+    margin:
+        34px 0 13px;
+
+    font-size:
+        clamp(
+            1.24rem,
+            2vw,
+            1.65rem
+        );
+
+    line-height: 1.1;
+
+    letter-spacing: -.025em;
+
+    font-weight: 620;
+}
+
+
+.legal-section p {
+    max-width: 810px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        clamp(
+            .96rem,
+            1.2vw,
+            1.06rem
+        );
+
+    line-height: 1.78;
+}
+
+
+.legal-section p + p {
+    margin-top: 17px;
+}
+
+
+.legal-section a {
+    color:
+        var(--dark-green);
+
+    text-decoration:
+        underline;
+
+    text-decoration-thickness:
+        1px;
+
+    text-underline-offset:
+        3px;
+}
+
+
+.legal-card {
+    margin-top: 28px;
+
+    padding:
+        25px 27px;
+
+    border:
+        1px solid
+        rgba(
+            123,
+            133,
+            106,
+            .15
+        );
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            123,
+            133,
+            106,
+            .065
+        );
+}
+
+
+.legal-card strong {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color:
+        var(--text);
+
+    font-size: 1rem;
+    font-weight: 650;
+}
+
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.footer {
+    padding:
+        64px 5vw
+        30px;
+
+    background:
+        var(--olive);
+
+    color:
+        var(--cream);
+}
+
+
+.footer-inner {
+    width:
+        min(
+            1180px,
+            100%
+        );
+
+    margin: 0 auto;
+}
+
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+
+    gap: 44px;
+
+    text-align: center;
+
+    align-items: start;
+    justify-items: center;
+}
+
+
+.footer-column {
+    width: 100%;
+
+    max-width: 245px;
+}
+
+
+.footer-heading {
+    margin-bottom: 15px;
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .45
+        );
+
+    font-size: .66rem;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+
+.footer p,
+.footer a {
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .78
+        );
+
+    font-size: .86rem;
+
+    line-height: 1.68;
+}
+
+
+.footer-bottom {
+    margin-top: 54px;
+
+    padding-top: 22px;
+
+    border-top:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .12
+        );
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .48
+        );
+
+    font-size: .72rem;
+
+    text-align: center;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 900px) {
+
+    .legal-layout {
+        grid-template-columns:
+            1fr;
+
+        gap: 50px;
+    }
+
+
+    .legal-nav {
+        position: static;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap:
+            0 24px;
+
+        padding:
+            22px 0;
+
+        border-top:
+            1px solid
+            var(--border);
+
+        border-bottom:
+            1px solid
+            var(--border);
+    }
+
+
+    .legal-nav-label {
+        grid-column:
+            1 / -1;
+    }
+
+
+    .footer-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    :root {
+        --nav-height: 66px;
+    }
+
+
+    .nav-inner {
+        width:
+            min(
+                100% - 28px,
+                1220px
+            );
+    }
+
+
+    .nav-logo {
+        width: 145px;
+        height: 48px;
+    }
+
+
+    .back-link {
+        min-height: 38px;
+
+        padding:
+            0 13px;
+
+        font-size: .74rem;
+    }
+
+
+    .legal-hero {
+        min-height: 50vh;
+
+        padding:
+            calc(
+                var(--nav-height)
+                + 80px
+            )
+            23px
+            72px;
+    }
+
+
+    .legal-hero h1 {
+        font-size:
+            clamp(
+                3.6rem,
+                18vw,
+                5.5rem
+            );
+    }
+
+
+    .legal-main {
+        padding:
+            72px 23px
+            92px;
+    }
+
+
+    .legal-nav {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .legal-section {
+        padding-bottom: 52px;
+        margin-bottom: 52px;
+    }
+
+
+    .legal-card {
+        padding:
+            21px 20px;
+
+        border-radius: 17px;
+    }
+
+
+    .footer {
+        padding:
+            56px 23px
+            25px;
+    }
+
+
+    .footer-grid {
+        grid-template-columns:
+            1fr;
+
+        gap: 36px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<nav class="nav">
+    <div class="nav-inner">
+
+        <a
+            class="nav-logo"
+            href="index.html"
+            aria-label="Zur Allerweil Startseite"
+        >
+            <img
+                src="Allerweil Logo.png"
+                alt="Allerweil Stehausschank"
+            >
+        </a>
+
+        <a
+            class="back-link"
+            href="index.html"
+        >
+            ← Zur Website
+        </a>
+
+    </div>
+</nav>
+
+
+<header class="legal-hero">
+
+    <div class="legal-hero-inner">
+
+        <div class="legal-eyebrow">
+            Allerweil Darmstadt · Rechtliches
+        </div>
+
+        <h1>
+            Impres<span>sum.</span>
+        </h1>
+
+        <p>
+            Angaben gemäß § 5 DDG sowie weitere rechtliche
+            Informationen zum Allerweil Stehausschank in Darmstadt.
+        </p>
+
+    </div>
+
+</header>
+
+
+<main class="legal-main">
+
+    <div class="legal-layout">
+
+        <aside class="legal-nav">
+
+            <div class="legal-nav-label">
+                Inhalt
+            </div>
+
+            <a href="#anbieter">
+                Anbieter
+            </a>
+
+            <a href="#kontakt">
+                Kontakt
+            </a>
+
+            <a href="#vertretung">
+                Geschäftsführung
+            </a>
+
+            <a href="#register">
+                Register &amp; Steuern
+            </a>
+
+            <a href="#aufsicht">
+                Aufsichtsbehörde
+            </a>
+
+            <a href="#inhalt">
+                Inhaltlich verantwortlich
+            </a>
+
+            <a href="#streitbeilegung">
+                Verbraucherstreitbeilegung
+            </a>
+
+        </aside>
+
+
+        <div class="legal-content">
+
+
+            <section
+                class="legal-section"
+                id="anbieter"
+            >
+
+                <div class="legal-kicker">
+                    01 · Angaben gemäß § 5 DDG
+                </div>
+
+                <h2>
+                    Anbieter.
+                </h2>
+
+                <div class="legal-card">
+
+                    <strong>
+                        Darmstädter Ratskeller Hausbrauerei GmbH
+                    </strong>
+
+                    <p>
+                        Allerweil Stehausschank<br>
+                        Friedensplatz 4<br>
+                        64283 Darmstadt<br>
+                        Deutschland
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="kontakt"
+            >
+
+                <div class="legal-kicker">
+                    02 · Kontakt
+                </div>
+
+                <h2>
+                    So erreichst du uns.
+                </h2>
+
+                <p>
+                    Telefon:
+                    <a href="tel:+49615126444">
+                        0 61 51 - 2 64 44
+                    </a>
+                </p>
+
+                <p>
+                    E-Mail:
+                    <a href="mailto:info@ratskeller-darmstadt.de">
+                        info@ratskeller-darmstadt.de
+                    </a>
+                </p>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="vertretung"
+            >
+
+                <div class="legal-kicker">
+                    03 · Rechtsform &amp; Vertretung
+                </div>
+
+                <h2>
+                    Unternehmen &amp; Geschäftsführung.
+                </h2>
+
+                <h3>
+                    Rechtsform
+                </h3>
+
+                <p>
+                    Gesellschaft mit beschränkter Haftung (GmbH)
+                </p>
+
+                <h3>
+                    Vertreten durch die Geschäftsführung
+                </h3>
+
+                <p>
+                    Christoph Koehler<br>
+                    Wolfgang Koehler
+                </p>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="register"
+            >
+
+                <div class="legal-kicker">
+                    04 · Register &amp; Steuern
+                </div>
+
+                <h2>
+                    Registereintrag &amp; Steuerdaten.
+                </h2>
+
+                <h3>
+                    Registereintrag
+                </h3>
+
+                <p>
+                    Registergericht: Amtsgericht Darmstadt<br>
+                    Registernummer: HRB 6769
+                </p>
+
+                <h3>
+                    Umsatzsteuer-ID
+                </h3>
+
+                <p>
+                    Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:
+                    DE187030901
+                </p>
+
+                <h3>
+                    Wirtschaftssteuer-ID
+                </h3>
+
+                <p>
+                    00723103973
+                </p>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="aufsicht"
+            >
+
+                <div class="legal-kicker">
+                    05 · Aufsichtsbehörde
+                </div>
+
+                <h2>
+                    Zuständige Behörde.
+                </h2>
+
+                <div class="legal-card">
+
+                    <strong>
+                        Bürger- und Ordnungsamt der Stadt Darmstadt,
+                        Abteilung 4
+                    </strong>
+
+                    <p>
+                        Grafenstraße 30<br>
+                        64283 Darmstadt
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="inhalt"
+            >
+
+                <div class="legal-kicker">
+                    06 · Inhaltlich verantwortlich
+                </div>
+
+                <h2>
+                    Verantwortlich nach § 18 Abs. 2 MStV.
+                </h2>
+
+                <div class="legal-card">
+
+                    <strong>
+                        Darmstädter Ratskeller Hausbrauerei GmbH
+                    </strong>
+
+                    <p>
+                        Marktplatz 8<br>
+                        64283 Darmstadt<br>
+                        Deutschland
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="streitbeilegung"
+            >
+
+                <div class="legal-kicker">
+                    07 · Verbraucherstreitbeilegung
+                </div>
+
+                <h2>
+                    Hinweis zur Streitbeilegung.
+                </h2>
+
+                <p>
+                    Wir sind nicht verpflichtet und nicht bereit,
+                    an Streitbeilegungsverfahren vor einer
+                    Verbraucherschlichtungsstelle teilzunehmen.
+                </p>
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-grid">
+
+            <div class="footer-column">
+
+                <div class="footer-heading">
+                    Allerweil
+                </div>
+
+                <p>
+                    Stehausschank am Friedensplatz.
+                    <br>
+                    Bier · Wein · Spritz · gute Zeit.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <div class="footer-heading">
+                    Öffnungszeiten
+                </div>
+
+                <p>
+                    Di – Do&nbsp;&nbsp;15 – 22 Uhr
+                    <br>
+                    Fr&nbsp;&nbsp;15 – 00 Uhr
+                    <br>
+                    Sa&nbsp;&nbsp;11 – 00 Uhr
+                    <br>
+                    So + Mo&nbsp;&nbsp;geschlossen
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <div class="footer-heading">
+                    Hier findest du uns
+                </div>
+
+                <p>
+                    Friedensplatz 4
+                    <br>
+                    64283 Darmstadt
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <div class="footer-heading">
+                    Rechtliches
+                </div>
+
+                <p>
+                    <a href="impressum.html">
+                        Impressum
+                    </a>
+                    <br>
+
+                    <a href="datenschutz.html">
+                        Datenschutz
+                    </a>
+                    <br>
+
+                    <a href="index.html">
+                        Zur Startseite
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            ©
+            <span id="year"></span>
+            Allerweil Darmstadt
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+document.getElementById(
+    "year"
+).textContent =
+    new Date()
+        .getFullYear();
+
+</script>
+
+</body>
+</html>
