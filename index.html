@@ -6774,6 +6774,55 @@ bleibt das bisherige Logo sichtbar.
 
 }
 
+
+
+/* ==========================================================
+   APPLE KARTEN – MAPKIT JS
+========================================================== */
+
+#locationMap {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    transition:
+        opacity .45s ease;
+
+    background:
+        rgba(
+            123,
+            133,
+            106,
+            .08
+        );
+}
+
+
+.location-map-frame.map-loaded
+#locationMap {
+
+    opacity: 1;
+}
+
+
+#locationMap canvas {
+
+    border-radius: inherit;
+}
+
+
+/*
+Die alte iframe-Regel bleibt im Bestand,
+greift hier aber nicht mehr, da #locationMap
+jetzt ein DIV für Apple MapKit JS ist.
+*/
+
 </style>
 </head>
 <body>
@@ -7186,7 +7235,7 @@ bleibt das bisherige Logo sichtbar.
 </div>
 <div class="location-map-card reveal">
 <div class="location-map-frame">
-<iframe allowfullscreen="" data-external-src="https://www.google.com/maps?q=Friedensplatz+4,+64283+Darmstadt&amp;output=embed" id="locationMap" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Karte – Allerweil Darmstadt am Friedensplatz"></iframe>
+<div aria-label="Apple Karten – Allerweil Darmstadt am Friedensplatz" id="locationMap" role="region"></div>
 <div class="location-map-placeholder" id="locationMapPlaceholder">
 <div aria-hidden="true" class="location-map-pin">
 <span></span>
@@ -8099,46 +8148,13 @@ function activateExternalServices(
         settings.externalMedia
     ) {
 
-        const externalFrames =
-            Array.from(
-                document.querySelectorAll(
-                    "iframe[data-external-src]"
-                )
-            );
+        if (
+            typeof window.loadAllerweilAppleMap
+            === "function"
+        ) {
 
-
-        externalFrames.forEach(
-            function (frame) {
-
-                if (!frame.src) {
-
-                    frame.src =
-                        frame.dataset.externalSrc;
-                }
-
-
-                frame.addEventListener(
-                    "load",
-                    function () {
-
-                        const mapFrame =
-                            frame.closest(
-                                ".location-map-frame"
-                            );
-
-                        if (mapFrame) {
-
-                            mapFrame.classList.add(
-                                "map-loaded"
-                            );
-                        }
-                    },
-                    {
-                        once: true
-                    }
-                );
-            }
-        );
+            window.loadAllerweilAppleMap();
+        }
 
     }
 
@@ -9100,6 +9116,184 @@ function activateExternalServices(
             }
         }
     );
+
+})();
+</script><script>
+/* ==========================================================
+   APPLE MAPS – ALLERWEIL DARMSTADT
+   Für echte Apple-Karten-Darstellung benötigt MapKit JS
+   einen Apple Maps Token.
+
+   Diesen Wert einmal ersetzen:
+   APPLE_MAPS_TOKEN_HIER_EINFUEGEN
+========================================================== */
+
+(function () {
+
+    const APPLE_MAPS_TOKEN =
+        "APPLE_MAPS_TOKEN_HIER_EINFUEGEN";
+
+
+    const ALLERWEIL_COORDINATE = {
+        latitude: 49.8734907,
+        longitude: 8.6532364
+    };
+
+
+    let appleMapStarted =
+        false;
+
+
+    window.initializeAllerweilAppleMap =
+        function () {
+
+            if (
+                !window.mapkit
+            ) {
+                return;
+            }
+
+
+            const coordinate =
+                new mapkit.Coordinate(
+                    ALLERWEIL_COORDINATE.latitude,
+                    ALLERWEIL_COORDINATE.longitude
+                );
+
+
+            const region =
+                new mapkit.CoordinateRegion(
+                    coordinate,
+                    new mapkit.CoordinateSpan(
+                        0.0048,
+                        0.0075
+                    )
+                );
+
+
+            const map =
+                new mapkit.Map(
+                    "locationMap",
+                    {
+                        region:
+                            region
+                    }
+                );
+
+
+            const marker =
+                new mapkit.MarkerAnnotation(
+                    coordinate,
+                    {
+                        title:
+                            "Allerweil Darmstadt",
+
+                        subtitle:
+                            "Friedensplatz 4"
+                    }
+                );
+
+
+            map.addAnnotation(
+                marker
+            );
+
+
+            const mapFrame =
+                document.querySelector(
+                    ".location-map-frame"
+                );
+
+
+            if (mapFrame) {
+
+                mapFrame.classList.add(
+                    "map-loaded"
+                );
+            }
+        };
+
+
+    window.loadAllerweilAppleMap =
+        function () {
+
+            if (
+                appleMapStarted
+            ) {
+                return;
+            }
+
+
+            if (
+                !APPLE_MAPS_TOKEN ||
+                APPLE_MAPS_TOKEN ===
+                    "APPLE_MAPS_TOKEN_HIER_EINFUEGEN"
+            ) {
+
+                /*
+                Ohne Apple Maps Token bleibt der vorhandene,
+                gestaltete Karten-Platzhalter sichtbar.
+                */
+
+                console.info(
+                    "Apple Maps: Bitte APPLE_MAPS_TOKEN_HIER_EINFUEGEN durch deinen Maps Token ersetzen."
+                );
+
+                return;
+            }
+
+
+            appleMapStarted =
+                true;
+
+
+            const script =
+                document.createElement(
+                    "script"
+                );
+
+
+            script.src =
+                "https://cdn.apple-mapkit.com/mk/6/mapkit.core.js";
+
+
+            script.crossOrigin =
+                "anonymous";
+
+
+            script.async =
+                true;
+
+
+            script.dataset.callback =
+                "initializeAllerweilAppleMap";
+
+
+            script.dataset.libraries =
+                "map,annotations";
+
+
+            script.dataset.token =
+                APPLE_MAPS_TOKEN;
+
+
+            script.addEventListener(
+                "error",
+                function () {
+
+                    appleMapStarted =
+                        false;
+                },
+                {
+                    once: true
+                }
+            );
+
+
+            document.head.appendChild(
+                script
+            );
+        };
 
 })();
 </script></body>
