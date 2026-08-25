@@ -5370,6 +5370,241 @@ bleibt das bisherige Logo sichtbar.
 
 }
 
+
+
+/* ==========================================================
+   EVENT-SLIDER – WISCHRICHTUNG + KLICKBERE PFEILE
+========================================================== */
+
+.event-nav-arrow {
+
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 45;
+
+    width: 52px;
+    height: 52px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .28
+        );
+
+    border-radius: 999px;
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .10
+        );
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .90
+        );
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    backdrop-filter:
+        blur(12px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            41,
+            43,
+            38,
+            .10
+        );
+
+    cursor: pointer;
+
+    transform:
+        translateY(-50%);
+
+    transition:
+        opacity .24s ease,
+        transform .24s ease,
+        background .24s ease,
+        border-color .24s ease;
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+.event-nav-arrow span {
+
+    display: block;
+
+    font-size: 1.35rem;
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    transform:
+        translateY(-1px);
+}
+
+
+.event-nav-prev {
+
+    left: 24px;
+}
+
+
+.event-nav-next {
+
+    right: 24px;
+}
+
+
+.event-nav-arrow:hover {
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .18
+        );
+
+    border-color:
+        rgba(
+            254,
+            230,
+            202,
+            .42
+        );
+}
+
+
+.event-nav-prev:hover {
+
+    transform:
+        translateY(-50%)
+        translateX(-3px);
+}
+
+
+.event-nav-next:hover {
+
+    transform:
+        translateY(-50%)
+        translateX(3px);
+}
+
+
+.event-nav-arrow:focus-visible {
+
+    outline:
+        2px solid
+        rgba(
+            254,
+            230,
+            202,
+            .82
+        );
+
+    outline-offset: 4px;
+}
+
+
+.event-nav-arrow.is-hidden {
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.event-nav-arrow:disabled {
+
+    cursor: default;
+}
+
+
+@media (max-width: 900px) {
+
+    .event-nav-arrow {
+
+        width: 46px;
+        height: 46px;
+    }
+
+
+    .event-nav-prev {
+
+        left: 16px;
+    }
+
+
+    .event-nav-next {
+
+        right: 16px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .event-nav-arrow {
+
+        top: 48%;
+
+        width: 42px;
+        height: 42px;
+
+        background:
+            rgba(
+                254,
+                230,
+                202,
+                .12
+            );
+    }
+
+
+    .event-nav-arrow span {
+
+        font-size: 1.18rem;
+    }
+
+
+    .event-nav-prev {
+
+        left: 10px;
+    }
+
+
+    .event-nav-next {
+
+        right: 10px;
+    }
+
+}
+
 </style>
 </head>
 <body>
@@ -5734,7 +5969,7 @@ bleibt das bisherige Logo sichtbar.
 <!-- ==========================================================
      04 · EVENTS
 ========================================================== -->
-<section class="statement has-transition" id="event"><div aria-label="Kommende Events" class="event-slider" id="eventSlider"><div class="event-track"><article aria-label="Event 1 von 2" class="event-slide has-event-copy" data-event-slide="0"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">03. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title">Afterwork × Pregame</div><div class="statement-event-time">ab 18 Uhr</div></div><div class="statement-slogan">Feierabend. Freunde. Beats &amp; Drinks <span>Allerweil.</span></div><div class="statement-event-copy"><div class="statement-event-copy-column"><p>PREGAME AFTERWORK at ALLERWEIL DARMSTADT is officially here.</p><p>Starting now, we’ll meet every second Thursday for afterwork drinks, good music and even better company.</p></div><div class="statement-event-copy-column"><p>No pressure. No big plans.</p><p>Just friends, drinks and tunes after work.</p><p>A place to meet, unwind and accidentally stay ALLERWEIL.</p><div class="statement-event-copy-close"><span>Come for one drink.</span><span>Stay for a few more.</span></div></div></div></div></div></article><article aria-label="Event 2 von 2" class="event-slide" data-event-slide="1"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">17. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title">Afterwork x DJ Dan</div><div class="statement-event-time">ab 18:00 Uhr</div></div><div class="statement-slogan">Feierabend. Freunde. Beats &amp; Drinks <span>Allerweil.</span></div></div></div></article></div></div><div aria-label="Event-Seite auswählen" class="event-pagination"><button aria-current="true" aria-label="Event 1 anzeigen" class="event-page-dot active" data-event-dot="0" type="button"></button><button aria-current="false" aria-label="Event 2 anzeigen" class="event-page-dot" data-event-dot="1" type="button"></button></div><div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
+<section class="statement has-transition" id="event"><div aria-label="Kommende Events" class="event-slider" id="eventSlider"><div class="event-track"><article aria-label="Event 1 von 2" class="event-slide has-event-copy" data-event-slide="0"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">03. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title">Afterwork × Pregame</div><div class="statement-event-time">ab 18 Uhr</div></div><div class="statement-slogan">Feierabend. Freunde. Beats &amp; Drinks <span>Allerweil.</span></div><div class="statement-event-copy"><div class="statement-event-copy-column"><p>PREGAME AFTERWORK at ALLERWEIL DARMSTADT is officially here.</p><p>Starting now, we’ll meet every second Thursday for afterwork drinks, good music and even better company.</p></div><div class="statement-event-copy-column"><p>No pressure. No big plans.</p><p>Just friends, drinks and tunes after work.</p><p>A place to meet, unwind and accidentally stay ALLERWEIL.</p><div class="statement-event-copy-close"><span>Come for one drink.</span><span>Stay for a few more.</span></div></div></div></div></div></article><article aria-label="Event 2 von 2" class="event-slide" data-event-slide="1"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">17. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title">Afterwork x DJ Dan</div><div class="statement-event-time">ab 18:00 Uhr</div></div><div class="statement-slogan">Feierabend. Freunde. Beats &amp; Drinks <span>Allerweil.</span></div></div></div></article></div></div><button aria-hidden="true" aria-label="Vorheriges Event anzeigen" class="event-nav-arrow event-nav-prev is-hidden" disabled="disabled" tabindex="-1" type="button"><span aria-hidden="true">←</span></button><button aria-hidden="false" aria-label="Nächstes Event anzeigen" class="event-nav-arrow event-nav-next" type="button"><span aria-hidden="true">→</span></button><div aria-label="Event-Seite auswählen" class="event-pagination"><button aria-current="true" aria-label="Event 1 anzeigen" class="event-page-dot active" data-event-dot="0" type="button"></button><button aria-current="false" aria-label="Event 2 anzeigen" class="event-page-dot" data-event-dot="1" type="button"></button></div><div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      05 · STANDORT
 ========================================================== -->
@@ -6845,9 +7080,22 @@ function activateExternalServices(
         );
 
 
+    const prevArrow =
+        document.querySelector(
+            ".event-nav-prev"
+        );
+
+    const nextArrow =
+        document.querySelector(
+            ".event-nav-next"
+        );
+
+
     if (
         slides.length < 2 ||
-        dots.length !== slides.length
+        dots.length !== slides.length ||
+        !prevArrow ||
+        !nextArrow
     ) {
         return;
     }
@@ -6857,9 +7105,71 @@ function activateExternalServices(
     let scrollTimer = null;
 
 
+    function updateEventArrows(index) {
+
+        const canGoBack =
+            index > 0;
+
+        const canGoForward =
+            index < slides.length - 1;
+
+
+        prevArrow.classList.toggle(
+            "is-hidden",
+            !canGoBack
+        );
+
+        nextArrow.classList.toggle(
+            "is-hidden",
+            !canGoForward
+        );
+
+
+        prevArrow.disabled =
+            !canGoBack;
+
+        nextArrow.disabled =
+            !canGoForward;
+
+
+        prevArrow.setAttribute(
+            "aria-hidden",
+            canGoBack
+                ? "false"
+                : "true"
+        );
+
+        nextArrow.setAttribute(
+            "aria-hidden",
+            canGoForward
+                ? "false"
+                : "true"
+        );
+
+
+        prevArrow.setAttribute(
+            "tabindex",
+            canGoBack
+                ? "0"
+                : "-1"
+        );
+
+        nextArrow.setAttribute(
+            "tabindex",
+            canGoForward
+                ? "0"
+                : "-1"
+        );
+    }
+
+
     function setActiveDot(index) {
 
         activeIndex = index;
+
+        updateEventArrows(
+            index
+        );
 
         dots.forEach(
             (dot, dotIndex) => {
@@ -6946,6 +7256,28 @@ function activateExternalServices(
                         index
                     );
                 }
+            );
+        }
+    );
+
+
+    prevArrow.addEventListener(
+        "click",
+        function () {
+
+            goToEvent(
+                activeIndex - 1
+            );
+        }
+    );
+
+
+    nextArrow.addEventListener(
+        "click",
+        function () {
+
+            goToEvent(
+                activeIndex + 1
             );
         }
     );
