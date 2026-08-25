@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Datenschutz | Allerweil Darmstadt</title>
+
+<meta
+    name="description"
+    content="Datenschutzerklärung für die Website des Allerweil Stehausschank in Darmstadt."
+>
+
+<meta
+    name="theme-color"
+    content="#7b856a"
+>
+
+<link
+    rel="icon"
+    type="image/png"
+    href="favicon.png?v=3"
+>
+
+<link
+    rel="apple-touch-icon"
+    href="favicon.png?v=3"
+>
+
+
+<style>
+
+:root {
+    --olive: #7b856a;
+    --cream: #fee6ca;
+    --text: #292b26;
+    --muted: rgba(41, 43, 38, .64);
+    --border: rgba(41, 43, 38, .14);
+    --dark-green: #243421;
+    --nav-height: 78px;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    background:
+        var(--cream);
+
+    color:
+        var(--text);
+
+    overflow-x: hidden;
+
+    -webkit-font-smoothing:
+        antialiased;
+
+    text-rendering:
+        optimizeLegibility;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+button {
+    font: inherit;
+}
+
+
+.nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+
+    z-index: 1000;
+
+    height:
+        var(--nav-height);
+
+    background:
+        rgba(
+            123,
+            133,
+            106,
+            .94
+        );
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    backdrop-filter:
+        blur(16px);
+
+    border-bottom:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .10
+        );
+}
+
+
+.nav-inner {
+    width:
+        min(
+            1220px,
+            calc(100% - 44px)
+        );
+
+    height: 100%;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.nav-logo {
+    position: relative;
+
+    display: block;
+
+    width: 176px;
+    height: 54px;
+}
+
+
+.nav-logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    opacity: 0;
+}
+
+
+.nav-logo::before,
+.nav-logo::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    -webkit-mask-image:
+        url("Allerweil Logo.png");
+
+    mask-image:
+        url("Allerweil Logo.png");
+
+    -webkit-mask-repeat:
+        no-repeat;
+
+    mask-repeat:
+        no-repeat;
+
+    -webkit-mask-position:
+        center;
+
+    mask-position:
+        center;
+
+    -webkit-mask-size:
+        contain;
+
+    mask-size:
+        contain;
+}
+
+
+.nav-logo::before {
+    background:
+        #243421;
+}
+
+
+.nav-logo::after {
+    background:
+        #fee6ca;
+
+    clip-path:
+        inset(
+            23% 0
+            29% 27%
+        );
+}
+
+
+.back-link {
+    min-height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .24
+        );
+
+    border-radius: 999px;
+
+    color:
+        var(--cream);
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .08
+        );
+
+    font-size: .8rem;
+    font-weight: 650;
+
+    transition:
+        transform .22s ease,
+        background .22s ease;
+}
+
+
+.back-link:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .14
+        );
+}
+
+
+.legal-hero {
+    min-height: 56vh;
+
+    padding:
+        calc(
+            var(--nav-height)
+            + 105px
+        )
+        5vw
+        96px;
+
+    display: flex;
+    align-items: flex-end;
+
+    background:
+        var(--olive);
+
+    color:
+        var(--cream);
+}
+
+
+.legal-hero-inner {
+    width:
+        min(
+            1180px,
+            100%
+        );
+
+    margin:
+        0 auto;
+}
+
+
+.legal-eyebrow {
+    margin-bottom: 22px;
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .58
+        );
+
+    font-size: .68rem;
+    font-weight: 720;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+}
+
+
+.legal-hero h1 {
+    max-width: 920px;
+
+    font-size:
+        clamp(
+            4rem,
+            9vw,
+            8.4rem
+        );
+
+    line-height: .88;
+
+    letter-spacing: -.065em;
+
+    font-weight: 620;
+}
+
+
+.legal-hero h1 span {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style: italic;
+    font-weight: 400;
+}
+
+
+.legal-hero p {
+    max-width: 650px;
+
+    margin-top: 34px;
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .72
+        );
+
+    font-size:
+        clamp(
+            1rem,
+            1.35vw,
+            1.2rem
+        );
+
+    line-height: 1.65;
+}
+
+
+.legal-main {
+    padding:
+        100px 5vw
+        120px;
+
+    background:
+        var(--cream);
+}
+
+
+.legal-layout {
+    width:
+        min(
+            1180px,
+            100%
+        );
+
+    margin:
+        0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        260px
+        minmax(0, 1fr);
+
+    gap: 90px;
+
+    align-items: start;
+}
+
+
+.legal-nav {
+    position: sticky;
+
+    top:
+        calc(
+            var(--nav-height)
+            + 28px
+        );
+
+    padding-top: 4px;
+}
+
+
+.legal-nav-label {
+    margin-bottom: 18px;
+
+    color:
+        rgba(
+            123,
+            133,
+            106,
+            .72
+        );
+
+    font-size: .66rem;
+    font-weight: 720;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+
+.legal-nav a {
+    display: block;
+
+    padding:
+        9px 0;
+
+    color:
+        rgba(
+            41,
+            43,
+            38,
+            .58
+        );
+
+    font-size: .86rem;
+
+    line-height: 1.35;
+
+    transition:
+        color .2s ease,
+        transform .2s ease;
+}
+
+
+.legal-nav a:hover {
+    color:
+        var(--text);
+
+    transform:
+        translateX(3px);
+}
+
+
+.legal-content {
+    min-width: 0;
+}
+
+
+.legal-section {
+    padding:
+        0 0
+        70px;
+
+    margin-bottom: 70px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    scroll-margin-top:
+        calc(
+            var(--nav-height)
+            + 30px
+        );
+}
+
+
+.legal-section:last-child {
+    margin-bottom: 0;
+}
+
+
+.legal-kicker {
+    margin-bottom: 18px;
+
+    color:
+        rgba(
+            123,
+            133,
+            106,
+            .78
+        );
+
+    font-size: .66rem;
+    font-weight: 720;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+
+.legal-section h2 {
+    max-width: 760px;
+
+    margin-bottom: 28px;
+
+    font-size:
+        clamp(
+            2.1rem,
+            4.3vw,
+            4rem
+        );
+
+    line-height: .98;
+
+    letter-spacing: -.052em;
+
+    font-weight: 610;
+}
+
+
+.legal-section h3 {
+    margin:
+        34px 0 13px;
+
+    font-size:
+        clamp(
+            1.24rem,
+            2vw,
+            1.65rem
+        );
+
+    line-height: 1.1;
+
+    letter-spacing: -.025em;
+
+    font-weight: 620;
+}
+
+
+.legal-section p,
+.legal-section li {
+    max-width: 810px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        clamp(
+            .96rem,
+            1.2vw,
+            1.06rem
+        );
+
+    line-height: 1.78;
+}
+
+
+.legal-section p + p {
+    margin-top: 17px;
+}
+
+
+.legal-section ul {
+    margin:
+        18px 0 0 20px;
+}
+
+
+.legal-section li + li {
+    margin-top: 8px;
+}
+
+
+.legal-section a {
+    color:
+        var(--dark-green);
+
+    text-decoration:
+        underline;
+
+    text-decoration-thickness:
+        1px;
+
+    text-underline-offset:
+        3px;
+}
+
+
+.legal-card {
+    margin-top: 28px;
+
+    padding:
+        25px 27px;
+
+    border:
+        1px solid
+        rgba(
+            123,
+            133,
+            106,
+            .15
+        );
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            123,
+            133,
+            106,
+            .065
+        );
+}
+
+
+.legal-card strong {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color:
+        var(--text);
+
+    font-size: 1rem;
+    font-weight: 650;
+}
+
+
+.legal-note {
+    margin-top: 22px;
+
+    padding-left: 18px;
+
+    border-left:
+        2px solid
+        rgba(
+            123,
+            133,
+            106,
+            .38
+        );
+}
+
+
+.legal-note p {
+    font-size: .92rem;
+}
+
+
+.footer {
+    padding:
+        64px 5vw
+        30px;
+
+    background:
+        var(--olive);
+
+    color:
+        var(--cream);
+}
+
+
+.footer-inner {
+    width:
+        min(
+            1180px,
+            100%
+        );
+
+    margin: 0 auto;
+}
+
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+
+    gap: 44px;
+
+    text-align: center;
+
+    align-items: start;
+    justify-items: center;
+}
+
+
+.footer-column {
+    width: 100%;
+
+    max-width: 245px;
+}
+
+
+.footer-heading {
+    margin-bottom: 15px;
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .45
+        );
+
+    font-size: .66rem;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+
+.footer p,
+.footer a {
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .78
+        );
+
+    font-size: .86rem;
+
+    line-height: 1.68;
+}
+
+
+.footer-bottom {
+    margin-top: 54px;
+
+    padding-top: 22px;
+
+    border-top:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .12
+        );
+
+    color:
+        rgba(
+            254,
+            230,
+            202,
+            .48
+        );
+
+    font-size: .72rem;
+
+    text-align: center;
+}
+
+
+@media (max-width: 900px) {
+
+    .legal-layout {
+        grid-template-columns:
+            1fr;
+
+        gap: 50px;
+    }
+
+
+    .legal-nav {
+        position: static;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap:
+            0 24px;
+
+        padding:
+            22px 0;
+
+        border-top:
+            1px solid
+            var(--border);
+
+        border-bottom:
+            1px solid
+            var(--border);
+    }
+
+
+    .legal-nav-label {
+        grid-column:
+            1 / -1;
+    }
+
+
+    .footer-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    :root {
+        --nav-height: 66px;
+    }
+
+
+    .nav-inner {
+        width:
+            min(
+                100% - 28px,
+                1220px
+            );
+    }
+
+
+    .nav-logo {
+        width: 145px;
+        height: 48px;
+    }
+
+
+    .back-link {
+        min-height: 38px;
+
+        padding:
+            0 13px;
+
+        font-size: .74rem;
+    }
+
+
+    .legal-hero {
+        min-height: 50vh;
+
+        padding:
+            calc(
+                var(--nav-height)
+                + 80px
+            )
+            23px
+            72px;
+    }
+
+
+    .legal-hero h1 {
+        font-size:
+            clamp(
+                3.6rem,
+                18vw,
+                5.5rem
+            );
+    }
+
+
+    .legal-main {
+        padding:
+            72px 23px
+            92px;
+    }
+
+
+    .legal-nav {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .legal-section {
+        padding-bottom: 52px;
+        margin-bottom: 52px;
+    }
+
+
+    .legal-card {
+        padding:
+            21px 20px;
+
+        border-radius: 17px;
+    }
+
+
+    .footer {
+        padding:
+            56px 23px
+            25px;
+    }
+
+
+    .footer-grid {
+        grid-template-columns:
+            1fr;
+
+        gap: 36px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<nav class="nav">
+    <div class="nav-inner">
+
+        <a
+            class="nav-logo"
+            href="index.html"
+            aria-label="Zur Allerweil Startseite"
+        >
+            <img
+                src="Allerweil Logo.png"
+                alt="Allerweil Stehausschank"
+            >
+        </a>
+
+        <a
+            class="back-link"
+            href="index.html"
+        >
+            ← Zur Website
+        </a>
+
+    </div>
+</nav>
+
+
+<header class="legal-hero">
+
+    <div class="legal-hero-inner">
+
+        <div class="legal-eyebrow">
+            Allerweil Darmstadt · Rechtliches
+        </div>
+
+        <h1>
+            Daten<span>schutz.</span>
+        </h1>
+
+        <p>
+            Hier erfährst du, welche Daten beim Besuch unserer Website
+            verarbeitet werden, welche externen Dienste wir einsetzen
+            und welche Rechte du nach der DSGVO hast.
+        </p>
+
+    </div>
+
+</header>
+
+
+<main class="legal-main">
+
+    <div class="legal-layout">
+
+        <aside class="legal-nav">
+
+            <div class="legal-nav-label">
+                Inhalt
+            </div>
+
+            <a href="#ueberblick">
+                Datenschutz auf einen Blick
+            </a>
+
+            <a href="#verantwortlich">
+                Verantwortliche Stelle
+            </a>
+
+            <a href="#hosting">
+                Hosting
+            </a>
+
+            <a href="#speicherung">
+                Cookies &amp; Local Storage
+            </a>
+
+            <a href="#maps">
+                Google Maps
+            </a>
+
+            <a href="#externe-links">
+                Google / Apple Navigation
+            </a>
+
+            <a href="#kalender">
+                Kalenderfunktion
+            </a>
+
+            <a href="#kontakt">
+                Kontaktaufnahme
+            </a>
+
+            <a href="#rechte">
+                Deine Rechte
+            </a>
+
+            <a href="#aufsicht">
+                Aufsichtsbehörde
+            </a>
+
+        </aside>
+
+
+        <div class="legal-content">
+
+
+            <section
+                class="legal-section"
+                id="ueberblick"
+            >
+
+                <div class="legal-kicker">
+                    01 · Überblick
+                </div>
+
+                <h2>
+                    Datenschutz auf einen Blick.
+                </h2>
+
+                <p>
+                    Personenbezogene Daten sind Informationen, mit denen
+                    eine Person direkt oder indirekt identifiziert werden
+                    kann. Beim Besuch dieser Website können technische
+                    Daten verarbeitet werden, die für die Auslieferung und
+                    Sicherheit der Website erforderlich sind.
+                </p>
+
+                <p>
+                    Darüber hinaus werden externe Inhalte wie Google Maps
+                    nur dann geladen, wenn du ihnen über unsere
+                    Cookie-Einstellungen zustimmst.
+                </p>
+
+                <div class="legal-card">
+                    <strong>Keine Werbe- oder Analyse-Tools</strong>
+                    <p>
+                        Auf der derzeitigen Version dieser Website setzen wir
+                        keine eigenen Analyse-, Tracking- oder Werbeplattformen
+                        wie Google Analytics oder Meta Pixel ein.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="verantwortlich"
+            >
+
+                <div class="legal-kicker">
+                    02 · Verantwortlich
+                </div>
+
+                <h2>
+                    Verantwortliche Stelle.
+                </h2>
+
+                <p>
+                    Verantwortlich für die Verarbeitung personenbezogener
+                    Daten im Zusammenhang mit diesem Internetangebot ist:
+                </p>
+
+                <div class="legal-card">
+
+                    <strong>
+                        Darmstädter Ratskeller Hausbrauerei GmbH
+                    </strong>
+
+                    <p>
+                        Marktplatz 8<br>
+                        64283 Darmstadt<br>
+                        Deutschland
+                    </p>
+
+                    <p>
+                        Telefon:
+                        <a href="tel:+49615126444">
+                            06151 – 26444
+                        </a>
+                        <br>
+
+                        E-Mail:
+                        <a href="mailto:info@ratskeller-darmstadt.de">
+                            info@ratskeller-darmstadt.de
+                        </a>
+                    </p>
+
+                </div>
+
+                <p class="legal-note">
+                    Das Allerweil selbst befindet sich am Friedensplatz 4,
+                    64283 Darmstadt.
+                </p>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="hosting"
+            >
+
+                <div class="legal-kicker">
+                    03 · Hosting
+                </div>
+
+                <h2>
+                    Bereitstellung der Website.
+                </h2>
+
+                <p>
+                    Diese Website wird über GitHub Pages bereitgestellt.
+                    Beim Abruf einer über GitHub Pages bereitgestellten
+                    Website kann GitHub insbesondere die IP-Adresse des
+                    aufrufenden Geräts zu Sicherheitszwecken protokollieren.
+                </p>
+
+                <p>
+                    Weitere Informationen zur Verarbeitung durch GitHub
+                    findest du in den Datenschutzinformationen von GitHub:
+                    <a
+                        href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        GitHub Privacy Statement
+                    </a>.
+                </p>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="speicherung"
+            >
+
+                <div class="legal-kicker">
+                    04 · Cookies &amp; Speicherung
+                </div>
+
+                <h2>
+                    Cookie-Einstellungen &amp; Local Storage.
+                </h2>
+
+                <p>
+                    Wir speichern deine Auswahl aus dem Cookie-Fenster lokal
+                    in deinem Browser. Dazu wird der Browser-Speicher
+                    „Local Storage“ verwendet. Gespeichert werden die
+                    Einwilligungsversion, der Zeitpunkt deiner Auswahl und
+                    die gewählten Einstellungen.
+                </p>
+
+                <p>
+                    Der verwendete Speicherschlüssel lautet
+                    <strong>allerweil-consent-v1</strong>.
+                    Diese Speicherung ist erforderlich, damit deine Auswahl
+                    nicht bei jedem Seitenaufruf erneut abgefragt werden muss.
+                </p>
+
+                <p>
+                    Du kannst deine Auswahl jederzeit über
+                    „Cookie-Einstellungen“ im Footer der Website ändern.
+                    Außerdem kannst du gespeicherte Website-Daten jederzeit
+                    über die Einstellungen deines Browsers löschen.
+                </p>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="maps"
+            >
+
+                <div class="legal-kicker">
+                    05 · Google Maps
+                </div>
+
+                <h2>
+                    Eingebettete Standortkarte.
+                </h2>
+
+                <p>
+                    Im Bereich „Standort“ kann eine Karte von Google Maps
+                    angezeigt werden. Anbieter für Nutzerinnen und Nutzer im
+                    Europäischen Wirtschaftsraum ist grundsätzlich die
+                    Google Ireland Limited, Gordon House, Barrow Street,
+                    Dublin 4, Irland.
+                </p>
+
+                <p>
+                    Die Karte wird erst geladen, wenn du externen Medien
+                    zugestimmt hast. Beim Laden kann eine Verbindung zu
+                    Google hergestellt werden. Dabei können insbesondere
+                    deine IP-Adresse, technische Geräteinformationen und
+                    Informationen über den Seitenaufruf an Google übertragen
+                    werden. Eine Verarbeitung in Staaten außerhalb der EU bzw.
+                    des EWR kann dabei nicht ausgeschlossen werden.
+                </p>
+
+                <p>
+                    Rechtsgrundlage ist deine Einwilligung gemäß
+                    Art. 6 Abs. 1 lit. a DSGVO sowie – soweit auf deinem
+                    Endgerät Informationen gespeichert oder ausgelesen
+                    werden – § 25 Abs. 1 TDDDG. Deine Einwilligung kannst
+                    du jederzeit mit Wirkung für die Zukunft ändern oder
+                    widerrufen.
+                </p>
+
+                <p>
+                    Weitere Informationen:
+                    <a
+                        href="https://policies.google.com/privacy"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Datenschutzerklärung von Google
+                    </a>.
+                </p>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="externe-links"
+            >
+
+                <div class="legal-kicker">
+                    06 · Navigation
+                </div>
+
+                <h2>
+                    Google Maps &amp; Apple Karten.
+                </h2>
+
+                <p>
+                    Über die Schaltfläche „Route planen“ kannst du selbst
+                    entscheiden, ob du Google Maps oder Apple Karten öffnen
+                    möchtest. Erst wenn du den jeweiligen Link anklickst,
+                    verlässt du unsere Website und dein Browser bzw. Gerät
+                    stellt eine Verbindung zum ausgewählten Anbieter her.
+                </p>
+
+                <p>
+                    Für die anschließende Datenverarbeitung gelten die
+                    Datenschutzbestimmungen des jeweiligen Anbieters.
+                    Bei mobilen Geräten kann der Link direkt die passende
+                    Karten- oder Navigations-App öffnen.
+                </p>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="kalender"
+            >
+
+                <div class="legal-kicker">
+                    07 · Kalender
+                </div>
+
+                <h2>
+                    „Add to Calendar“.
+                </h2>
+
+                <p>
+                    Bei unseren Events kannst du eine Kalenderdatei im
+                    iCalendar-Format (.ics) erzeugen. Diese Datei wird direkt
+                    in deinem Browser aus den auf der Website hinterlegten
+                    Eventdaten erstellt.
+                </p>
+
+                <p>
+                    Durch das Erzeugen der Kalenderdatei werden von unserer
+                    Website keine persönlichen Kalenderdaten an uns
+                    übertragen. Die weitere Verarbeitung erfolgt erst in der
+                    von dir verwendeten Kalender-App.
+                </p>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="kontakt"
+            >
+
+                <div class="legal-kicker">
+                    08 · Kontakt
+                </div>
+
+                <h2>
+                    E-Mail &amp; Telefon.
+                </h2>
+
+                <p>
+                    Wenn du uns per E-Mail oder telefonisch kontaktierst,
+                    verarbeiten wir die von dir mitgeteilten Angaben, um
+                    deine Anfrage zu bearbeiten und zu beantworten.
+                </p>
+
+                <p>
+                    Die Verarbeitung erfolgt abhängig vom Inhalt deiner
+                    Anfrage auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO,
+                    wenn es um vorvertragliche oder vertragliche Anliegen
+                    geht, oder auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO
+                    aufgrund unseres berechtigten Interesses an einer
+                    sachgerechten Kommunikation.
+                </p>
+
+                <p>
+                    Die Daten werden gelöscht, sobald der Zweck der
+                    Verarbeitung entfällt und keine gesetzlichen
+                    Aufbewahrungspflichten entgegenstehen.
+                </p>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="rechte"
+            >
+
+                <div class="legal-kicker">
+                    09 · Deine Rechte
+                </div>
+
+                <h2>
+                    Rechte nach der DSGVO.
+                </h2>
+
+                <p>
+                    Soweit die gesetzlichen Voraussetzungen vorliegen,
+                    hast du insbesondere folgende Rechte:
+                </p>
+
+                <ul>
+                    <li>
+                        Recht auf Auskunft nach Art. 15 DSGVO
+                    </li>
+
+                    <li>
+                        Recht auf Berichtigung nach Art. 16 DSGVO
+                    </li>
+
+                    <li>
+                        Recht auf Löschung nach Art. 17 DSGVO
+                    </li>
+
+                    <li>
+                        Recht auf Einschränkung der Verarbeitung
+                        nach Art. 18 DSGVO
+                    </li>
+
+                    <li>
+                        Recht auf Datenübertragbarkeit nach Art. 20 DSGVO
+                    </li>
+
+                    <li>
+                        Recht auf Widerspruch nach Art. 21 DSGVO
+                    </li>
+
+                    <li>
+                        Recht, eine erteilte Einwilligung jederzeit
+                        mit Wirkung für die Zukunft zu widerrufen
+                    </li>
+                </ul>
+
+                <p>
+                    Für Datenschutzanfragen kannst du dich an
+                    <a href="mailto:info@ratskeller-darmstadt.de">
+                        info@ratskeller-darmstadt.de
+                    </a>
+                    wenden.
+                </p>
+
+            </section>
+
+
+            <section
+                class="legal-section"
+                id="aufsicht"
+            >
+
+                <div class="legal-kicker">
+                    10 · Beschwerde
+                </div>
+
+                <h2>
+                    Zuständige Aufsichtsbehörde.
+                </h2>
+
+                <p>
+                    Du hast das Recht, dich bei einer Datenschutz-
+                    Aufsichtsbehörde zu beschweren. Für Hessen ist dies:
+                </p>
+
+                <div class="legal-card">
+
+                    <strong>
+                        Der Hessische Beauftragte für Datenschutz
+                        und Informationsfreiheit
+                    </strong>
+
+                    <p>
+                        Gustav-Stresemann-Ring 1<br>
+                        65189 Wiesbaden
+                    </p>
+
+                    <p>
+                        Telefon:
+                        <a href="tel:+4961114080">
+                            0611 1408-0
+                        </a>
+                        <br>
+
+                        E-Mail:
+                        <a href="mailto:poststelle@datenschutz.hessen.de">
+                            poststelle@datenschutz.hessen.de
+                        </a>
+                    </p>
+
+                </div>
+
+                <h3>
+                    SSL-/TLS-Verschlüsselung
+                </h3>
+
+                <p>
+                    Bei verschlüsselter Bereitstellung über HTTPS werden
+                    Daten zwischen deinem Browser und der Website
+                    verschlüsselt übertragen. Eine verschlüsselte Verbindung
+                    erkennst du in der Regel an „https://“ in der Adresszeile
+                    deines Browsers.
+                </p>
+
+                <h3>
+                    Änderungen dieser Datenschutzerklärung
+                </h3>
+
+                <p>
+                    Wir können diese Datenschutzerklärung anpassen, wenn sich
+                    Funktionen der Website, eingesetzte Dienste oder
+                    rechtliche Anforderungen ändern.
+                </p>
+
+                <p>
+                    Stand: 25. August 2026
+                </p>
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-grid">
+
+            <div class="footer-column">
+
+                <div class="footer-heading">
+                    Allerweil
+                </div>
+
+                <p>
+                    Stehausschank am Friedensplatz.
+                    <br>
+                    Bier · Wein · Spritz · gute Zeit.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <div class="footer-heading">
+                    Öffnungszeiten
+                </div>
+
+                <p>
+                    Di – Do&nbsp;&nbsp;15 – 22 Uhr
+                    <br>
+                    Fr&nbsp;&nbsp;15 – 00 Uhr
+                    <br>
+                    Sa&nbsp;&nbsp;11 – 00 Uhr
+                    <br>
+                    So + Mo&nbsp;&nbsp;geschlossen
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <div class="footer-heading">
+                    Hier findest du uns
+                </div>
+
+                <p>
+                    Friedensplatz 4
+                    <br>
+                    64283 Darmstadt
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <div class="footer-heading">
+                    Rechtliches
+                </div>
+
+                <p>
+                    <a href="impressum.html">
+                        Impressum
+                    </a>
+                    <br>
+
+                    <a href="datenschutz.html">
+                        Datenschutz
+                    </a>
+                    <br>
+
+                    <a href="index.html">
+                        Zur Startseite
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            ©
+            <span id="year"></span>
+            Allerweil Darmstadt
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+document.getElementById(
+    "year"
+).textContent =
+    new Date()
+        .getFullYear();
+
+</script>
+
+</body>
+</html>
