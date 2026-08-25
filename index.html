@@ -7926,6 +7926,99 @@ dürfen die Google-Karte nicht überlagern.
     opacity: .88;
 }
 
+
+
+/* ==========================================================
+   05 · STANDORT – ÖRTLICHKEITSBESCHREIBUNG
+========================================================== */
+
+.location-place-description {
+
+    margin-top: 38px;
+
+    padding-top: 25px;
+
+    border-top:
+        1px solid
+        var(--border);
+
+    max-width: 430px;
+}
+
+
+.location-place-description-label {
+
+    margin-bottom: 11px;
+
+    color:
+        rgba(
+            123,
+            133,
+            106,
+            .78
+        );
+
+    font-size: .68rem;
+
+    font-weight: 720;
+
+    letter-spacing: .14em;
+
+    text-transform: uppercase;
+}
+
+
+.location-place-description p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        clamp(
+            .96rem,
+            1.15vw,
+            1.06rem
+        );
+
+    line-height: 1.68;
+}
+
+
+.location-details
+.location-route-button {
+
+    margin-top: auto;
+}
+
+
+@media (max-width: 900px) {
+
+    .location-place-description {
+
+        max-width: 620px;
+    }
+
+
+    .location-details
+    .location-route-button {
+
+        margin-top: 34px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .location-place-description {
+
+        margin-top: 30px;
+
+        padding-top: 22px;
+    }
+
+}
+
 </style>
 </head>
 <body>
@@ -7956,11 +8049,6 @@ dürfen die Google-Karte nicht überlagern.
         ✕
 
     </button>
-
-
-
-
-
 <a href="#allerweil" onclick="closeMobileMenu()">Allerweil</a><a href="#oeffnungszeiten" onclick="closeMobileMenu()">Öffnungszeiten</a><a href="#galerie" onclick="closeMobileMenu()">Galerie</a><a href="#event" onclick="closeMobileMenu()">Events</a><a href="#standort" onclick="closeMobileMenu()">Standort</a><a href="#kontakt" onclick="closeMobileMenu()">Kontakt</a></div>
 <!-- ==========================================================
      HERO
@@ -8275,11 +8363,7 @@ dürfen die Google-Karte nicht überlagern.
 </h2>
 </div>
 <div class="location-intro reveal">
-<p>
-                    Freunde schnappen, Richtung Friedensplatz laufen
-                    und schauen, wie lange aus „nur einem Getränk“
-                    am Ende wird.
-                </p>
+<p>Freunde schnappen, Richtung Friedensplatz laufen und mitten in Darmstadt dort ankommen, wo aus „nur einem Getränk“ gerne ein bisschen mehr Abend wird.</p>
 </div>
 </div>
 <div class="location-content">
@@ -8291,17 +8375,17 @@ dürfen die Google-Karte nicht überlagern.
                     Friedensplatz 4
                     <br/>
                     64283 Darmstadt
-                </div>
-<div class="location-contact">
-<a href="mailto:info@ratskeller-darmstadt.de">
-<span>E-Mail</span>
-<strong>info@ratskeller-darmstadt.de</strong>
-</a>
-<a href="tel:+49615126444">
-<span>Telefon</span>
-<strong>06151 – 26444</strong>
-</a>
+                </div><div class="location-place-description">
+<div class="location-place-description-label">
+        Mitten in Darmstadt
+    </div>
+<p>
+        Direkt am Friedensplatz – zwischen Schloss, Marktplatz
+        und Innenstadt. Zentral gelegen, schnell zu Fuß erreicht
+        und genau richtig für den ersten oder letzten Drink des Abends.
+    </p>
 </div>
+
 <button aria-controls="routePlannerModal" aria-haspopup="dialog" class="location-route-button" id="routePlannerButton" type="button">
                     Route planen
                 </button>
@@ -8319,7 +8403,7 @@ dürfen die Google-Karte nicht überlagern.
         Karte aktivieren
     </button>
 </div></div>
-<div class="location-map-caption">Allerweil Stehausschank · Friedensplatz 4 · Darmstadt</div>
+<div class="location-map-caption">Allerweil Stehausschank · direkt am Friedensplatz</div>
 </div>
 </div>
 </div>
