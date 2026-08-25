@@ -7758,6 +7758,174 @@ dürfen die Google-Karte nicht überlagern.
 
 }
 
+
+
+/* ==========================================================
+   GOOGLE MAPS – DATENSCHUTZ / EXTERNE MEDIEN
+========================================================== */
+
+.location-map-frame {
+    position: relative;
+}
+
+#locationGoogleMap {
+    opacity: 0 !important;
+    transition: opacity .35s ease;
+}
+
+.location-map-frame.map-loaded #locationGoogleMap {
+    opacity: 1 !important;
+}
+
+.location-map-privacy-placeholder {
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+
+    padding: 34px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 34%,
+            rgba(254, 230, 202, .38),
+            transparent 34%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(123, 133, 106, .16),
+            rgba(123, 133, 106, .07)
+        );
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+}
+
+.location-map-frame.map-loaded
+.location-map-privacy-placeholder {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.location-map-privacy-icon {
+    position: relative;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius:
+        50% 50% 50% 0;
+
+    background:
+        var(--green);
+
+    transform:
+        rotate(-45deg);
+
+    box-shadow:
+        0 12px 28px
+        rgba(123, 133, 106, .20);
+}
+
+.location-map-privacy-icon span {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 13px;
+    height: 13px;
+
+    border-radius: 50%;
+
+    background:
+        var(--cream);
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.location-map-privacy-copy {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.location-map-privacy-copy strong {
+    color:
+        var(--text);
+
+    font-size:
+        clamp(
+            1.35rem,
+            2.1vw,
+            1.95rem
+        );
+
+    letter-spacing:
+        -.035em;
+
+    font-weight: 610;
+}
+
+.location-map-privacy-copy span {
+    color:
+        var(--muted);
+
+    font-size: .86rem;
+
+    line-height: 1.5;
+}
+
+.location-map-privacy-button {
+    min-height: 42px;
+
+    padding:
+        0 15px;
+
+    border:
+        1px solid
+        rgba(123, 133, 106, .20);
+
+    border-radius:
+        12px;
+
+    background:
+        var(--green);
+
+    color:
+        var(--cream);
+
+    font-size:
+        .78rem;
+
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        transform .22s ease,
+        opacity .22s ease;
+}
+
+.location-map-privacy-button:hover {
+    transform:
+        translateY(-2px);
+
+    opacity: .88;
+}
+
 </style>
 </head>
 <body>
@@ -8169,7 +8337,18 @@ dürfen die Google-Karte nicht überlagern.
                 </button>
 </div>
 <div class="location-map-card reveal">
-<div class="location-map-frame"><iframe allowfullscreen="" aria-label="Google Maps – Allerweil Stehausschank, Friedensplatz 4, Darmstadt" id="locationGoogleMap" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Allerweil+Stehausschank,+Friedensplatz+4,+64283+Darmstadt&amp;output=embed" title="Google Maps – Allerweil Stehausschank Darmstadt"></iframe></div>
+<div class="location-map-frame"><iframe allowfullscreen="" aria-label="Google Maps – Allerweil Stehausschank, Friedensplatz 4, Darmstadt" data-external-src="https://www.google.com/maps?q=Allerweil+Stehausschank,+Friedensplatz+4,+64283+Darmstadt&amp;output=embed" id="locationGoogleMap" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps – Allerweil Stehausschank Darmstadt"></iframe><div class="location-map-privacy-placeholder" id="locationMapPrivacyPlaceholder">
+<div aria-hidden="true" class="location-map-privacy-icon">
+<span></span>
+</div>
+<div class="location-map-privacy-copy">
+<strong>Allerweil Stehausschank</strong>
+<span>Google Maps wird nach deiner Zustimmung geladen.</span>
+</div>
+<button class="location-map-privacy-button" onclick="openCookieSettings()" type="button">
+        Karte aktivieren
+    </button>
+</div></div>
 <div class="location-map-caption">Allerweil Stehausschank · Friedensplatz 4 · Darmstadt</div>
 </div>
 </div>
@@ -8367,12 +8546,7 @@ dürfen die Google-Karte nicht überlagern.
 <strong>
                         Externe Medien
                     </strong>
-<small>
-
-                        Zum Beispiel Karten
-                        oder Social-Media-Inhalte.
-
-                    </small>
+<small>Google Maps und andere externe Inhalte.</small>
 </div>
 <label class="switch">
 <input id="externalConsent" type="checkbox"/>
@@ -8956,7 +9130,7 @@ function acceptNecessary() {
         false;
 
 
-    saveConsent({
+    const settings = {
 
         necessary:
             true,
@@ -8964,7 +9138,17 @@ function acceptNecessary() {
         externalMedia:
             false
 
-    });
+    };
+
+
+    saveConsent(
+        settings
+    );
+
+
+    activateExternalServices(
+        settings
+    );
 
 
     hideCookieLayer();
@@ -9062,11 +9246,73 @@ function activateExternalServices(
     settings
 ) {
 
-    /*
-    Platzhalter für weitere externe Dienste.
-    */
+    const frames =
+        Array.from(
+            document.querySelectorAll(
+                "iframe[data-external-src]"
+            )
+        );
+
+
+    frames.forEach(
+        function (frame) {
+
+            const frameWrapper =
+                frame.closest(
+                    ".location-map-frame"
+                );
+
+
+            if (
+                settings.externalMedia
+            ) {
+
+                if (!frame.src) {
+
+                    frame.src =
+                        frame.dataset.externalSrc;
+                }
+
+
+                frame.addEventListener(
+                    "load",
+                    function () {
+
+                        if (frameWrapper) {
+
+                            frameWrapper
+                                .classList
+                                .add(
+                                    "map-loaded"
+                                );
+                        }
+                    },
+                    {
+                        once: true
+                    }
+                );
+
+            } else {
+
+                frame.removeAttribute(
+                    "src"
+                );
+
+
+                if (frameWrapper) {
+
+                    frameWrapper
+                        .classList
+                        .remove(
+                            "map-loaded"
+                        );
+                }
+            }
+        }
+    );
 
 }
+
 
 
 
