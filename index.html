@@ -6823,6 +6823,43 @@ greift hier aber nicht mehr, da #locationMap
 jetzt ein DIV für Apple MapKit JS ist.
 */
 
+
+
+/* ==========================================================
+   SICHTBARE KARTENANSICHT – FALLBACK OHNE APPLE TOKEN
+========================================================== */
+
+#locationMapFallback {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    opacity: 0;
+    background: rgba(123, 133, 106, .08);
+    transition: opacity .45s ease;
+}
+
+.location-map-frame.map-fallback-loaded #locationMapFallback {
+    opacity: 1;
+}
+
+.location-map-frame.map-fallback-loaded .location-map-placeholder {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#locationMap {
+    z-index: 2;
+}
+
+.location-map-frame.map-loaded #locationMapFallback {
+    opacity: 0;
+    pointer-events: none;
+}
+
 </style>
 </head>
 <body>
@@ -7235,7 +7272,7 @@ jetzt ein DIV für Apple MapKit JS ist.
 </div>
 <div class="location-map-card reveal">
 <div class="location-map-frame">
-<div aria-label="Apple Karten – Allerweil Darmstadt am Friedensplatz" id="locationMap" role="region"></div>
+<div aria-label="Apple Karten – Allerweil Darmstadt am Friedensplatz" id="locationMap" role="region"></div><iframe aria-label="Karte – Allerweil Darmstadt, Friedensplatz 4" data-external-src="https://www.openstreetmap.org/export/embed.html?bbox=8.6488%2C49.8712%2C8.6577%2C49.8758&amp;layer=mapnik&amp;marker=49.8734907%2C8.6532364" id="locationMapFallback" loading="lazy" referrerpolicy="no-referrer" title="Karte – Allerweil Darmstadt am Friedensplatz"></iframe>
 <div class="location-map-placeholder" id="locationMapPlaceholder">
 <div aria-hidden="true" class="location-map-pin">
 <span></span>
@@ -8148,12 +8185,28 @@ function activateExternalServices(
         settings.externalMedia
     ) {
 
+        let appleStarted =
+            false;
+
+
         if (
             typeof window.loadAllerweilAppleMap
             === "function"
         ) {
 
-            window.loadAllerweilAppleMap();
+            appleStarted =
+                window.loadAllerweilAppleMap()
+                === true;
+        }
+
+
+        if (
+            !appleStarted &&
+            typeof window.loadAllerweilFallbackMap
+                === "function"
+        ) {
+
+            window.loadAllerweilFallbackMap();
         }
 
     }
@@ -9220,7 +9273,7 @@ function activateExternalServices(
             if (
                 appleMapStarted
             ) {
-                return;
+                return true;
             }
 
 
@@ -9236,10 +9289,10 @@ function activateExternalServices(
                 */
 
                 console.info(
-                    "Apple Maps: Bitte APPLE_MAPS_TOKEN_HIER_EINFUEGEN durch deinen Maps Token ersetzen."
+                    "Apple Maps: Kein Token hinterlegt – Karten-Fallback wird angezeigt."
                 );
 
-                return;
+                return false;
             }
 
 
@@ -9293,6 +9346,72 @@ function activateExternalServices(
             document.head.appendChild(
                 script
             );
+
+            return true;
+        };
+
+})();
+</script><script>
+/* ==========================================================
+   FALLBACK-KARTE OHNE API-SCHLÜSSEL
+========================================================== */
+
+(function () {
+
+    let fallbackMapStarted =
+        false;
+
+
+    window.loadAllerweilFallbackMap =
+        function () {
+
+            if (
+                fallbackMapStarted
+            ) {
+                return;
+            }
+
+
+            const frame =
+                document.getElementById(
+                    "locationMapFallback"
+                );
+
+
+            if (!frame) {
+                return;
+            }
+
+
+            fallbackMapStarted =
+                true;
+
+
+            frame.addEventListener(
+                "load",
+                function () {
+
+                    const mapFrame =
+                        frame.closest(
+                            ".location-map-frame"
+                        );
+
+
+                    if (mapFrame) {
+
+                        mapFrame.classList.add(
+                            "map-fallback-loaded"
+                        );
+                    }
+                },
+                {
+                    once: true
+                }
+            );
+
+
+            frame.src =
+                frame.dataset.externalSrc;
         };
 
 })();
