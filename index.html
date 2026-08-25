@@ -9328,8 +9328,143 @@ Slogan beim Wechsel zwischen Seite 1 und 2 auf derselben Höhe.
         0;
 }
 
+
+
+/* ==========================================================
+   iPHONE / NOTCH – GRÜN WIRKLICH BIS ZUM OBEREN BILDSCHIRMRAND
+========================================================== */
+
+/*
+Wichtig für Safari:
+Die Fläche hinter Statusleiste / Dynamic Island ist immer grün.
+*/
+html,
+body {
+    background-color:
+        #7b856a !important;
+}
+
+
+/*
+Eigene feste Safe-Area-Fläche ganz oben.
+Damit bleibt der Bereich oberhalb der Navigation auch dann grün,
+wenn Safari ihn separat rendert.
+*/
+body::before {
+
+    content:
+        "";
+
+    position:
+        fixed;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    height:
+        env(
+            safe-area-inset-top,
+            0px
+        );
+
+    background:
+        #7b856a;
+
+    z-index:
+        9999;
+
+    pointer-events:
+        none;
+}
+
+
+/*
+Die Navigation selbst reicht ebenfalls bis in die Safe Area.
+*/
+.nav {
+
+    top:
+        0 !important;
+
+    height:
+        calc(
+            var(--nav-height)
+            + env(
+                safe-area-inset-top,
+                0px
+            )
+        ) !important;
+
+    padding-top:
+        env(
+            safe-area-inset-top,
+            0px
+        ) !important;
+
+    background:
+        rgba(
+            123,
+            133,
+            106,
+            .96
+        ) !important;
+}
+
+
+/*
+Der sichtbare Menüinhalt behält seine normale Höhe.
+*/
+.nav-inner {
+
+    height:
+        var(--nav-height) !important;
+}
+
+
+/*
+Eventbanner bleibt direkt unter der kompletten Navigation.
+*/
+.mobile-hero-marquee {
+
+    top:
+        calc(
+            var(--nav-height)
+            + env(
+                safe-area-inset-top,
+                0px
+            )
+        ) !important;
+}
+
+
+/*
+Hero-Inhalt wird auf Mobil um dieselbe Safe Area nach unten versetzt.
+*/
+@media (max-width: 700px) {
+
+    .hero {
+
+        padding-top:
+            calc(
+                var(--nav-height)
+                + env(
+                    safe-area-inset-top,
+                    0px
+                )
+                + 72px
+            ) !important;
+    }
+
+}
+
 </style>
-</head>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
 <!-- ==========================================================
      NAVIGATION
