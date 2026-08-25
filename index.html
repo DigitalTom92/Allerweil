@@ -6901,6 +6901,651 @@ die sichtbare Karte überlagert.
     display: none !important;
 }
 
+
+
+/* ==========================================================
+   STANDORT – DEZENTE KARTENGRAFIK
+========================================================== */
+
+.location-map-frame {
+
+    position: relative;
+
+    min-height: 520px;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(
+                123,
+                133,
+                106,
+                .10
+            ),
+            rgba(
+                123,
+                133,
+                106,
+                .05
+            )
+        );
+
+    border:
+        1px solid
+        rgba(
+            123,
+            133,
+            106,
+            .13
+        );
+}
+
+
+.location-map-graphic {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    overflow: hidden;
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+.location-map-graphic:focus-visible {
+
+    outline:
+        2px solid
+        rgba(
+            123,
+            133,
+            106,
+            .78
+        );
+
+    outline-offset: -6px;
+}
+
+
+.location-map-surface {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: block;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(
+                254,
+                230,
+                202,
+                .92
+            ),
+            rgba(
+                254,
+                230,
+                202,
+                .98
+            )
+        );
+}
+
+
+.map-block,
+.map-street,
+.map-circle {
+
+    position: absolute;
+
+    display: block;
+
+    pointer-events: none;
+}
+
+
+.map-block {
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            123,
+            133,
+            106,
+            .10
+        );
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(
+            123,
+            133,
+            106,
+            .07
+        );
+}
+
+
+.map-block-1 {
+
+    left: 6%;
+    top: 10%;
+
+    width: 28%;
+    height: 22%;
+}
+
+
+.map-block-2 {
+
+    right: 8%;
+    top: 12%;
+
+    width: 26%;
+    height: 19%;
+}
+
+
+.map-block-3 {
+
+    left: 13%;
+    bottom: 15%;
+
+    width: 24%;
+    height: 22%;
+}
+
+
+.map-block-4 {
+
+    right: 10%;
+    bottom: 13%;
+
+    width: 30%;
+    height: 24%;
+}
+
+
+.map-street {
+
+    background:
+        rgba(
+            123,
+            133,
+            106,
+            .28
+        );
+
+    border-radius: 999px;
+}
+
+
+.map-street-1 {
+
+    left: 8%;
+    top: 48%;
+
+    width: 84%;
+    height: 16px;
+
+    transform:
+        rotate(-8deg);
+}
+
+
+.map-street-2 {
+
+    left: 40%;
+    top: 12%;
+
+    width: 16px;
+    height: 78%;
+
+    transform:
+        rotate(7deg);
+}
+
+
+.map-street-3 {
+
+    left: -4%;
+    top: 28%;
+
+    width: 50%;
+    height: 14px;
+
+    transform:
+        rotate(32deg);
+}
+
+
+.map-street-4 {
+
+    right: -2%;
+    bottom: 24%;
+
+    width: 42%;
+    height: 14px;
+
+    transform:
+        rotate(-26deg);
+}
+
+
+.map-circle {
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(
+            123,
+            133,
+            106,
+            .14
+        );
+}
+
+
+.map-circle-1 {
+
+    width: 210px;
+    height: 210px;
+
+    right: -52px;
+    top: -46px;
+}
+
+
+.map-circle-2 {
+
+    width: 170px;
+    height: 170px;
+
+    left: -48px;
+    bottom: -36px;
+}
+
+
+.location-map-point {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 54px;
+    height: 54px;
+
+    border-radius:
+        50% 50% 50% 0;
+
+    background:
+        var(--green);
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-45deg);
+
+    box-shadow:
+        0 16px 34px
+        rgba(
+            123,
+            133,
+            106,
+            .24
+        );
+}
+
+
+.location-map-point-core {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background:
+        var(--cream);
+
+    transform:
+        translate(-50%, -50%);
+}
+
+
+.location-map-label-card {
+
+    position: absolute;
+
+    left: calc(50% + 34px);
+    top: calc(50% - 82px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    min-width: 124px;
+
+    padding:
+        12px 14px;
+
+    border:
+        1px solid
+        rgba(
+            123,
+            133,
+            106,
+            .14
+        );
+
+    border-radius: 14px;
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .90
+        );
+
+    box-shadow:
+        0 14px 34px
+        rgba(
+            41,
+            43,
+            38,
+            .07
+        );
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+}
+
+
+.location-map-label-card strong {
+
+    color:
+        var(--text);
+
+    font-size: .92rem;
+
+    font-weight: 650;
+
+    line-height: 1.1;
+}
+
+
+.location-map-label-card em {
+
+    color:
+        rgba(
+            41,
+            43,
+            38,
+            .56
+        );
+
+    font-size: .74rem;
+
+    font-style: normal;
+
+    line-height: 1.1;
+}
+
+
+.location-map-overlay-copy {
+
+    position: absolute;
+
+    left: 26px;
+    right: 26px;
+    bottom: 24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding:
+        16px 18px;
+
+    border:
+        1px solid
+        rgba(
+            123,
+            133,
+            106,
+            .14
+        );
+
+    border-radius: 18px;
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .72
+        );
+
+    box-shadow:
+        0 18px 42px
+        rgba(
+            41,
+            43,
+            38,
+            .06
+        );
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    transition:
+        transform .24s ease,
+        background .24s ease,
+        box-shadow .24s ease;
+}
+
+
+.location-map-overlay-kicker {
+
+    color:
+        rgba(
+            123,
+            133,
+            106,
+            .78
+        );
+
+    font-size: .68rem;
+
+    font-weight: 730;
+
+    letter-spacing: .14em;
+
+    text-transform: uppercase;
+}
+
+
+.location-map-overlay-title {
+
+    color:
+        var(--text);
+
+    font-size:
+        clamp(
+            1.3rem,
+            2.1vw,
+            1.8rem
+        );
+
+    line-height: 1.04;
+
+    letter-spacing: -.04em;
+
+    font-weight: 620;
+}
+
+
+.location-map-overlay-subtitle {
+
+    color:
+        rgba(
+            41,
+            43,
+            38,
+            .58
+        );
+
+    font-size: .82rem;
+}
+
+
+.location-map-graphic:hover
+.location-map-overlay-copy {
+
+    transform:
+        translateY(-3px);
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .82
+        );
+
+    box-shadow:
+        0 22px 48px
+        rgba(
+            41,
+            43,
+            38,
+            .08
+        );
+}
+
+
+.location-map-graphic:hover
+.location-map-label-card {
+
+    transform:
+        translateY(-2px);
+}
+
+
+@media (max-width: 900px) {
+
+    .location-map-frame {
+
+        min-height: 430px;
+    }
+
+
+    .location-map-label-card {
+
+        left: calc(50% + 22px);
+        top: calc(50% - 76px);
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .location-map-frame {
+
+        min-height: 360px;
+
+        border-radius: 19px;
+    }
+
+
+    .location-map-point {
+
+        width: 48px;
+        height: 48px;
+    }
+
+
+    .location-map-label-card {
+
+        left: 50%;
+        top: calc(50% - 88px);
+
+        min-width: 116px;
+
+        padding:
+            10px 12px;
+
+        transform:
+            translateX(-10%);
+    }
+
+
+    .location-map-overlay-copy {
+
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+
+        padding:
+            14px 15px;
+
+        border-radius: 16px;
+    }
+
+
+    .location-map-overlay-title {
+
+        font-size:
+            1.22rem;
+    }
+
+
+    .location-map-overlay-subtitle {
+
+        font-size: .78rem;
+    }
+
+}
+
 </style>
 </head>
 <body>
@@ -7313,12 +7958,40 @@ die sichtbare Karte überlagert.
 </div>
 <div class="location-map-card reveal">
 <div class="location-map-frame">
-<iframe aria-label="Karte – Allerweil Darmstadt, Friedensplatz 4" id="locationMapFallback" loading="lazy" referrerpolicy="no-referrer" src="https://www.openstreetmap.org/export/embed.html?bbox=8.6488%2C49.8712%2C8.6577%2C49.8758&amp;layer=mapnik&amp;marker=49.8734907%2C8.6532364" title="Karte – Allerweil Darmstadt am Friedensplatz"></iframe>
-
+<button aria-controls="routePlannerModal" aria-haspopup="dialog" aria-label="Standort ansehen und Route planen" class="location-map-graphic" id="locationGraphicButton" type="button">
+<span aria-hidden="true" class="location-map-surface">
+<span class="map-block map-block-1"></span>
+<span class="map-block map-block-2"></span>
+<span class="map-block map-block-3"></span>
+<span class="map-block map-block-4"></span>
+<span class="map-street map-street-1"></span>
+<span class="map-street map-street-2"></span>
+<span class="map-street map-street-3"></span>
+<span class="map-street map-street-4"></span>
+<span class="map-circle map-circle-1"></span>
+<span class="map-circle map-circle-2"></span>
+<span class="location-map-point">
+<span class="location-map-point-core"></span>
+</span>
+<span class="location-map-label-card">
+<strong>Allerweil</strong>
+<em>Friedensplatz</em>
+</span>
+</span>
+<span class="location-map-overlay-copy">
+<span class="location-map-overlay-kicker">
+            Standort ansehen
+        </span>
+<span class="location-map-overlay-title">
+            Friedensplatz 4
+        </span>
+<span class="location-map-overlay-subtitle">
+            Tippen für Route oder Karten-App
+        </span>
+</span>
+</button>
 </div>
-<div class="location-map-caption">
-                    Mitten auf dem Friedensplatz.
-                </div>
+<div class="location-map-caption">Dezente Kartenansicht · tippen für Route</div>
 </div>
 </div>
 </div>
@@ -8213,10 +8886,10 @@ function activateExternalServices(
 
     /*
     Platzhalter für weitere externe Dienste.
-    Die Standortkarte wird unabhängig davon direkt angezeigt.
     */
 
 }
+
 
 
 
@@ -9038,6 +9711,11 @@ function activateExternalServices(
             "routePlannerButton"
         );
 
+    const mapButton =
+        document.getElementById(
+            "locationGraphicButton"
+        );
+
     const modal =
         document.getElementById(
             "routePlannerModal"
@@ -9118,6 +9796,15 @@ function activateExternalServices(
         "click",
         openRoutePlanner
     );
+
+
+    if (mapButton) {
+
+        mapButton.addEventListener(
+            "click",
+            openRoutePlanner
+        );
+    }
 
 
     closeButtons.forEach(
