@@ -9078,6 +9078,70 @@ input:focus-visible
     border-top: 0 !important;
 }
 
+
+
+/* ==========================================================
+   MOBILE HERO – OPTISCH ZENTRIERT & ENTZERRT
+   Nur Smartphone, Desktop bleibt unverändert.
+========================================================== */
+
+@media (max-width: 700px) {
+
+    /* Das Logo wirkt durch die Form optisch etwas rechtslastig.
+       Deshalb auf Mobil minimal nach links versetzt. */
+    .hero-logo {
+        transform:
+            translateX(-10px);
+
+        margin-bottom:
+            43px;
+    }
+
+
+    /* Zitat etwas kleiner und mit mehr Luft unter dem Logo. */
+    .hero-quote {
+        max-width:
+            88%;
+
+        font-size:
+            clamp(
+                1.28rem,
+                5.55vw,
+                1.78rem
+            );
+
+        line-height:
+            1.14;
+
+        letter-spacing:
+            -.03em;
+    }
+
+
+    /* Autorzeile ebenfalls etwas ruhiger und kompakter. */
+    .hero-quote-author {
+        max-width:
+            300px;
+
+        margin-top:
+            18px;
+
+        font-size:
+            .63rem;
+
+        line-height:
+            1.6;
+    }
+
+
+    /* Unten etwas mehr Abstand, damit Hero nicht gedrängt wirkt. */
+    .hero-actions {
+        margin-top:
+            38px;
+    }
+
+}
+
 </style>
 </head>
 <body>
