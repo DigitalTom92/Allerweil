@@ -9304,6 +9304,30 @@ damit sich sonst nichts nach oben zusammenschiebt.
 
 }
 
+
+
+/* ==========================================================
+   EVENTS – BEIDE SLIDES BEGINNEN AUF GLEICHER HÖHE
+   Die zweite, kürzere Eventseite wird nicht mehr vertikal
+   mittig nach unten geschoben.
+========================================================== */
+
+.event-slide {
+    align-items:
+        flex-start;
+}
+
+
+/*
+Der Inhaltsblock beginnt auf beiden Eventseiten direkt an derselben
+oberen Padding-Kante. Dadurch stehen Datum, "04 · Events", Titel und
+Slogan beim Wechsel zwischen Seite 1 und 2 auf derselben Höhe.
+*/
+.event-slide .statement-inner {
+    margin-top:
+        0;
+}
+
 </style>
 </head>
 <body>
