@@ -3,7 +3,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Allerweil Darmstadt | Stehausschank am Friedensplatz</title>
 <meta content="Allerweil Darmstadt – Stehausschank, Bier, Wein, Spritz und gute Zeit mitten am Friedensplatz." name="description"/>
 <meta content="#7b856a" name="theme-color"/>
@@ -9227,6 +9227,79 @@ input:focus-visible
 
         width:
             18px;
+    }
+
+}
+
+
+
+/* ==========================================================
+   iPHONE SAFE AREA / NOTCH
+   Menü-Hintergrund reicht bis ganz an den oberen Bildschirmrand.
+========================================================== */
+
+html {
+    background:
+        var(--olive);
+}
+
+
+/*
+Der feste Header wird um die iPhone-Safe-Area nach oben erweitert.
+Auf normalen Browsern ist env(safe-area-inset-top) automatisch 0px.
+*/
+.nav {
+
+    height:
+        calc(
+            var(--nav-height)
+            + env(safe-area-inset-top, 0px)
+        );
+
+    padding-top:
+        env(safe-area-inset-top, 0px);
+}
+
+
+/*
+Der eigentliche Menüinhalt behält seine bisherige Höhe.
+Nur die grüne Fläche wird nach oben erweitert.
+*/
+.nav-inner {
+
+    height:
+        var(--nav-height);
+}
+
+
+/*
+Der Eventbanner sitzt weiterhin exakt unter der Menüleiste,
+auch auf iPhones mit Notch / Dynamic Island.
+*/
+.mobile-hero-marquee {
+
+    top:
+        calc(
+            var(--nav-height)
+            + env(safe-area-inset-top, 0px)
+        );
+}
+
+
+/*
+Auch der Hero-Inhalt berücksichtigt die zusätzliche Safe-Area,
+damit sich sonst nichts nach oben zusammenschiebt.
+*/
+@media (max-width: 700px) {
+
+    .hero {
+
+        padding-top:
+            calc(
+                var(--nav-height)
+                + env(safe-area-inset-top, 0px)
+                + 72px
+            );
     }
 
 }
