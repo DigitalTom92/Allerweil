@@ -10011,6 +10011,149 @@ auf derselben Höhe wie auf Event 1.
 
 }
 
+
+
+/* ==========================================================
+   MOBILE EVENTS – DEZENTER PFEIL ZUM WISCH-HINWEIS
+   Er erscheint nur während der kurzen Swipe-Animation.
+========================================================== */
+
+.mobile-event-swipe-arrow {
+    display:
+        none;
+}
+
+@media (max-width: 700px) {
+
+    .mobile-event-swipe-arrow {
+
+        display:
+            block;
+
+        position:
+            absolute;
+
+        right:
+            18px;
+
+        top:
+            50%;
+
+        transform:
+            translateY(-50%)
+            translateX(8px);
+
+        z-index:
+            15;
+
+        color:
+            rgba(
+                254,
+                230,
+                202,
+                .72
+            );
+
+        font-size:
+            1.45rem;
+
+        font-weight:
+            300;
+
+        line-height:
+            1;
+
+        opacity:
+            0;
+
+        pointer-events:
+            none;
+
+        text-shadow:
+            0 1px 10px
+            rgba(
+                36,
+                52,
+                33,
+                .16
+            );
+    }
+
+
+    .event-slider.mobile-swipe-hint
+    .mobile-event-swipe-arrow {
+
+        animation:
+            allerweilEventSwipeArrow
+            2.4s
+            ease
+            1;
+    }
+
+
+    @keyframes allerweilEventSwipeArrow {
+
+        0%,
+        12% {
+            opacity:
+                0;
+
+            transform:
+                translateY(-50%)
+                translateX(8px);
+        }
+
+        24% {
+            opacity:
+                .72;
+
+            transform:
+                translateY(-50%)
+                translateX(0);
+        }
+
+        48% {
+            opacity:
+                .48;
+
+            transform:
+                translateY(-50%)
+                translateX(-5px);
+        }
+
+        64% {
+            opacity:
+                .58;
+
+            transform:
+                translateY(-50%)
+                translateX(0);
+        }
+
+        84%,
+        100% {
+            opacity:
+                0;
+
+            transform:
+                translateY(-50%)
+                translateX(-8px);
+        }
+    }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .event-slider.mobile-swipe-hint
+    .mobile-event-swipe-arrow {
+        animation:
+            none !important;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -10350,7 +10493,7 @@ auf derselben Höhe wie auf Event 1.
 <span>Stay for a few more.</span>
 </div>
 </div>
-</div></div></div></article></div></div><button aria-hidden="true" aria-label="Vorheriges Event anzeigen" class="event-nav-arrow event-nav-prev is-hidden" disabled="disabled" tabindex="-1" type="button"><span aria-hidden="true">←</span></button><button aria-hidden="false" aria-label="Nächstes Event anzeigen" class="event-nav-arrow event-nav-next" type="button"><span aria-hidden="true">→</span></button><div aria-label="Event-Seite auswählen" class="event-pagination"><button aria-current="true" aria-label="Event 1 anzeigen" class="event-page-dot active" data-event-dot="0" type="button"></button><button aria-current="false" aria-label="Event 2 anzeigen" class="event-page-dot" data-event-dot="1" type="button"></button></div><div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
+</div></div></div></article></div><div aria-hidden="true" class="mobile-event-swipe-arrow">←</div></div><button aria-hidden="true" aria-label="Vorheriges Event anzeigen" class="event-nav-arrow event-nav-prev is-hidden" disabled="disabled" tabindex="-1" type="button"><span aria-hidden="true">←</span></button><button aria-hidden="false" aria-label="Nächstes Event anzeigen" class="event-nav-arrow event-nav-next" type="button"><span aria-hidden="true">→</span></button><div aria-label="Event-Seite auswählen" class="event-pagination"><button aria-current="true" aria-label="Event 1 anzeigen" class="event-page-dot active" data-event-dot="0" type="button"></button><button aria-current="false" aria-label="Event 2 anzeigen" class="event-page-dot" data-event-dot="1" type="button"></button></div><div aria-hidden="true" class="section-transition to-cream"><svg preserveaspectratio="none" viewbox="0 0 1440 100"><path d="M0 63 C170 28 360 26 555 54 C770 85 1005 83 1190 49 C1290 31 1374 34 1440 43 L1440 100 L0 100 Z"></path></svg></div></section>
 <!-- ==========================================================
      05 · STANDORT
 ========================================================== -->
