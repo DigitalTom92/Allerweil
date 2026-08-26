@@ -12070,6 +12070,28 @@ und zeigt weiterhin den Hand-/Finger-Cursor.
 }
 
 
+
+
+/* ==========================================================
+   WEB – GALERIE BEIM LADEN LAYOUT-STABIL HALTEN
+========================================================== */
+
+@media (min-width: 701px) {
+
+    .photo-card img {
+
+        width:
+            100%;
+
+        height:
+            auto;
+
+        display:
+            block;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -16743,6 +16765,186 @@ function activateExternalServices(
         ]);
 
 
+    /*
+    ==========================================================
+    WEB – BILDER OBERHALB DER EVENTS VORLADEN
+
+    Die Galerie liegt vor der Eventsektion und nutzt Lazy Loading.
+    Wenn man sehr früh auf ein Event klickt, konnten die Bilder
+    erst NACH dem Sprung ihre echte Höhe bekommen. Dadurch wurde
+    der Eventbereich nach unten geschoben und die Scrollposition
+    wirkte plötzlich falsch.
+
+    Lösung:
+    - auf Desktop/Web werden diese Bilder sofort angefordert
+    - Event-Klick wartet auf Laden + Decoding
+    - erst danach wird die endgültige Eventposition berechnet
+    ==========================================================
+    */
+
+    let eventNavigationRequest =
+        0;
+
+
+    function waitForImageReady(
+        image
+    ) {
+
+        return new Promise(
+            function (resolve) {
+
+                function finish() {
+
+                    /*
+                    decode() sorgt dafür, dass das Bild nicht nur
+                    heruntergeladen, sondern auch layoutbereit ist.
+                    */
+                    if (
+                        typeof image.decode ===
+                        "function"
+                    ) {
+
+                        image.decode()
+                            .catch(
+                                function () {}
+                            )
+                            .finally(
+                                resolve
+                            );
+
+                        return;
+                    }
+
+
+                    resolve();
+                }
+
+
+                if (
+                    image.complete &&
+                    image.naturalWidth > 0
+                ) {
+
+                    finish();
+                    return;
+                }
+
+
+                image.addEventListener(
+                    "load",
+                    finish,
+                    {
+                        once:
+                            true
+                    }
+                );
+
+
+                image.addEventListener(
+                    "error",
+                    resolve,
+                    {
+                        once:
+                            true
+                    }
+                );
+            }
+        );
+    }
+
+
+    function preloadImagesBeforeEvents() {
+
+        if (!isWeb()) {
+
+            return Promise.resolve();
+        }
+
+
+        const eventSection =
+            document.getElementById(
+                "event"
+            );
+
+
+        if (!eventSection) {
+
+            return Promise.resolve();
+        }
+
+
+        const images =
+            Array.from(
+                document.querySelectorAll(
+                    "img"
+                )
+            )
+            .filter(
+                function (image) {
+
+                    /*
+                    Nur Bilder, die im DOM VOR der Eventsektion liegen.
+                    */
+                    return Boolean(
+                        image.compareDocumentPosition(
+                            eventSection
+                        )
+                        &
+                        Node.DOCUMENT_POSITION_FOLLOWING
+                    );
+                }
+            );
+
+
+        images.forEach(
+            function (image) {
+
+                /*
+                Lazy Loading für diese Bilder auf Web/Desktop
+                aufheben, damit ihre endgültige Höhe früh feststeht.
+                */
+                image.loading =
+                    "eager";
+            }
+        );
+
+
+        const imagePromises =
+            images.map(
+                waitForImageReady
+            );
+
+
+        const fontPromise =
+            (
+                document.fonts &&
+                document.fonts.ready
+            )
+                ? document.fonts.ready
+                    .catch(
+                        function () {}
+                    )
+                : Promise.resolve();
+
+
+        return Promise.all([
+            Promise.all(
+                imagePromises
+            ),
+            fontPromise
+        ]);
+    }
+
+
+    /*
+    Sofort beim Aufbau der Web-Version mit dem Vorladen beginnen.
+    Wenn der Nutzer später auf ein Event klickt, sind die Bilder
+    meistens bereits fertig.
+    */
+    const imagesBeforeEventsReady =
+        preloadImagesBeforeEvents();
+
+
     function isWeb() {
 
         return (
@@ -17379,92 +17581,133 @@ function activateExternalServices(
                         : 0;
 
 
-                const selectedEventIndex =
-                    selectEventSlide(
-                        eventIndex
-                    );
+                /*
+                Für jeden Event-Klick eine eigene Anfrage-ID.
+                Falls während des Ladens schon ein anderes Event
+                angeklickt wird, gewinnt immer der letzte Klick.
+                */
+                const requestId =
+                    ++eventNavigationRequest;
 
 
+                /*
+                Hash bereits setzen, aber OHNE nativen Sprung.
+                Die eigentliche Scrollbewegung kommt erst, wenn
+                die Bilder oberhalb der Events vollständig stehen.
+                */
                 setHashWithoutJump(
                     "#event",
                     true
                 );
 
 
-                /*
-                Erst horizontale Eventseite setzen,
-                dann vertikal exakt zu diesem Event springen.
-                So führt Event 1 sicher zu Event 1 und
-                Event 2 sicher zu Event 2.
-                */
-                window.requestAnimationFrame(
-                    function () {
+                imagesBeforeEventsReady
+                    .catch(
+                        function () {}
+                    )
+                    .then(
+                        function () {
 
-                        window.requestAnimationFrame(
-                            function () {
+                            if (
+                                requestId !==
+                                eventNavigationRequest
+                            ) {
 
-                                const slides =
-                                    Array.from(
-                                        target.querySelectorAll(
-                                            ".event-slide"
-                                        )
-                                    );
-
-
-                                const selectedSlide =
-                                    slides[
-                                        selectedEventIndex
-                                    ]
-                                    ||
-                                    slides[0]
-                                    ||
-                                    target;
-
-
-                                const selectedContent =
-                                    selectedSlide.querySelector
-                                        ? (
-                                            selectedSlide.querySelector(
-                                                ".statement-inner"
-                                            )
-                                            ||
-                                            selectedSlide
-                                        )
-                                        : target;
-
-
-                                const eventSectionTop =
-                                    window.scrollY +
-                                    target.getBoundingClientRect().top -
-                                    getNavHeight();
-
-
-                                const selectedContentTop =
-                                    window.scrollY +
-                                    selectedContent.getBoundingClientRect().top -
-                                    getNavHeight() -
-                                    28;
-
-
-                                const exactTargetTop =
-                                    Math.max(
-                                        0,
-                                        Math.round(
-                                            Math.max(
-                                                eventSectionTop,
-                                                selectedContentTop
-                                            )
-                                        )
-                                    );
-
-
-                                scrollToPosition(
-                                    exactTargetTop
-                                );
+                                return;
                             }
-                        );
-                    }
-                );
+
+
+                            const selectedEventIndex =
+                                selectEventSlide(
+                                    eventIndex
+                                );
+
+
+                            /*
+                            Zwei Frames nach Bild-Decoding:
+                            So sind Masonry/Galerie und Eventslider
+                            endgültig ausgerechnet, bevor wir die
+                            vertikale Zielposition bestimmen.
+                            */
+                            window.requestAnimationFrame(
+                                function () {
+
+                                    window.requestAnimationFrame(
+                                        function () {
+
+                                            if (
+                                                requestId !==
+                                                eventNavigationRequest
+                                            ) {
+
+                                                return;
+                                            }
+
+
+                                            const slides =
+                                                Array.from(
+                                                    target.querySelectorAll(
+                                                        ".event-slide"
+                                                    )
+                                                );
+
+
+                                            const selectedSlide =
+                                                slides[
+                                                    selectedEventIndex
+                                                ]
+                                                ||
+                                                slides[0]
+                                                ||
+                                                target;
+
+
+                                            const selectedContent =
+                                                selectedSlide.querySelector
+                                                    ? (
+                                                        selectedSlide.querySelector(
+                                                            ".statement-inner"
+                                                        )
+                                                        ||
+                                                        selectedSlide
+                                                    )
+                                                    : target;
+
+
+                                            const eventSectionTop =
+                                                window.scrollY +
+                                                target.getBoundingClientRect().top -
+                                                getNavHeight();
+
+
+                                            const selectedContentTop =
+                                                window.scrollY +
+                                                selectedContent.getBoundingClientRect().top -
+                                                getNavHeight() -
+                                                28;
+
+
+                                            const exactTargetTop =
+                                                Math.max(
+                                                    0,
+                                                    Math.round(
+                                                        Math.max(
+                                                            eventSectionTop,
+                                                            selectedContentTop
+                                                        )
+                                                    )
+                                                );
+
+
+                                            scrollToPosition(
+                                                exactTargetTop
+                                            );
+                                        }
+                                    );
+                                }
+                            );
+                        }
+                    );
 
                 return;
             }
