@@ -9748,6 +9748,161 @@ auf derselben Höhe wie auf Event 1.
 
 }
 
+
+
+/* ==========================================================
+   EVENTS – DATUMSKREIS ALS DEZENT DREHENDE SCHALLPLATTE
+========================================================== */
+
+.statement-date {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    background:
+        rgba(
+            36,
+            52,
+            33,
+            .22
+        );
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(
+            254,
+            230,
+            202,
+            .035
+        );
+}
+
+.statement-date::before {
+    content: "";
+
+    position: absolute;
+    inset: 7px;
+
+    z-index: -1;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            from 0deg,
+            rgba(254, 230, 202, .03) 0deg,
+            rgba(254, 230, 202, .16) 18deg,
+            rgba(254, 230, 202, .035) 38deg,
+            rgba(36, 52, 33, .02) 120deg,
+            rgba(254, 230, 202, .10) 190deg,
+            rgba(36, 52, 33, .02) 250deg,
+            rgba(254, 230, 202, .12) 318deg,
+            rgba(254, 230, 202, .03) 360deg
+        ),
+        repeating-radial-gradient(
+            circle at center,
+            rgba(254, 230, 202, .065) 0px,
+            rgba(254, 230, 202, .065) 1px,
+            transparent 1px,
+            transparent 7px
+        );
+
+    box-shadow:
+        inset 0 0 26px
+        rgba(
+            36,
+            52,
+            33,
+            .20
+        );
+
+    animation:
+        allerweilVinylSpin
+        8s
+        linear
+        infinite;
+
+    pointer-events: none;
+}
+
+.statement-date::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 34px;
+    height: 34px;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: -1;
+
+    border:
+        1px solid
+        rgba(
+            254,
+            230,
+            202,
+            .10
+        );
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            123,
+            133,
+            106,
+            .22
+        );
+
+    box-shadow:
+        0 0 0 5px
+        rgba(
+            36,
+            52,
+            33,
+            .08
+        );
+
+    pointer-events: none;
+}
+
+.statement-date-day,
+.statement-date-year {
+    position: relative;
+    z-index: 2;
+
+    text-shadow:
+        0 1px 8px
+        rgba(
+            36,
+            52,
+            33,
+            .26
+        );
+}
+
+@keyframes allerweilVinylSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .statement-date::before {
+        animation: none;
+    }
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
