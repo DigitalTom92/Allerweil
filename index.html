@@ -10489,6 +10489,160 @@ auf derselben Höhe wie auf Event 1.
         transparent;
 }
 
+
+
+/* ==========================================================
+   MOBILE FOOTER – "ZUM ANFANG"
+   Gleicher dezenter Pfeil-Charakter wie auf der Startseite,
+   nur nach oben.
+========================================================== */
+
+.mobile-back-to-top {
+    display:
+        none;
+}
+
+
+@media (max-width: 700px) {
+
+    .mobile-back-to-top {
+
+        width:
+            max-content;
+
+        margin:
+            38px auto 4px;
+
+        padding:
+            5px 12px 0;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        gap:
+            7px;
+
+        color:
+            var(--cream);
+
+        text-decoration:
+            none;
+
+        -webkit-tap-highlight-color:
+            transparent;
+    }
+
+
+    .mobile-back-to-top-arrow {
+
+        width:
+            56px;
+
+        height:
+            56px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        color:
+            rgba(
+                254,
+                230,
+                202,
+                .88
+            );
+
+        font-size:
+            2.2rem;
+
+        font-weight:
+            300;
+
+        line-height:
+            1;
+
+        animation:
+            mobileScrollHintUp
+            1.65s
+            ease-in-out
+            infinite;
+    }
+
+
+    .mobile-back-to-top-label {
+
+        color:
+            rgba(
+                254,
+                230,
+                202,
+                .66
+            );
+
+        font-size:
+            .68rem;
+
+        font-weight:
+            500;
+
+        line-height:
+            1.2;
+
+        letter-spacing:
+            .08em;
+    }
+
+
+    @keyframes mobileScrollHintUp {
+
+        0%,
+        100% {
+
+            transform:
+                translateY(3px);
+
+            opacity:
+                .58;
+        }
+
+        50% {
+
+            transform:
+                translateY(-7px);
+
+            opacity:
+                1;
+        }
+    }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .mobile-back-to-top-arrow {
+
+        animation:
+            none !important;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -11125,7 +11279,10 @@ auf derselben Höhe wie auf Event 1.
 
             </span>
 </div>
-</div>
+<a aria-label="Zum Anfang der Seite" class="mobile-back-to-top" href="#home">
+<span aria-hidden="true" class="mobile-back-to-top-arrow">↑</span>
+<span class="mobile-back-to-top-label">Zum Anfang</span>
+</a></div>
 </footer>
 <!-- ==========================================================
      COOKIE
@@ -14893,6 +15050,63 @@ function activateExternalServices(
             window.scrollTo({
                 top:
                     targetTop,
+
+                behavior:
+                    reduceMotion
+                        ? "auto"
+                        : "smooth"
+            });
+        }
+    );
+
+})();
+</script><script>
+/* ==========================================================
+   MOBILE FOOTER – "ZUM ANFANG" SMOOTH SCROLL
+========================================================== */
+
+(function () {
+
+    const backToTop =
+        document.querySelector(
+            ".mobile-back-to-top"
+        );
+
+
+    if (!backToTop) {
+        return;
+    }
+
+
+    backToTop.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+
+            /*
+            Genau wie beim Klick auf das Allerweil-Logo:
+            Hash ohne nativen harten Sprung aktualisieren.
+            */
+            history.replaceState(
+                null,
+                "",
+                window.location.pathname +
+                window.location.search +
+                "#home"
+            );
+
+
+            const reduceMotion =
+                window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches;
+
+
+            window.scrollTo({
+                top:
+                    0,
 
                 behavior:
                     reduceMotion
