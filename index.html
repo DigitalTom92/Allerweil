@@ -9558,6 +9558,154 @@ auf derselben Höhe wie auf Event 1.
 
 }
 
+
+
+/* ==========================================================
+   EVENTS – DESKTOP MITTIG + DEZENTE HALBKREISE AUSSEN
+   Mobil / Tablet bleiben unverändert.
+========================================================== */
+
+@media (min-width: 901px) {
+
+    /*
+    Der komplette Event-Inhalt wird als gemeinsame Einheit
+    mittig im Browser ausgerichtet.
+    */
+    .statement-inner {
+
+        max-width:
+            1080px;
+
+        grid-template-columns:
+            170px
+            minmax(
+                0,
+                850px
+            );
+
+        justify-content:
+            center;
+
+        gap:
+            60px;
+    }
+
+
+    .statement-date {
+
+        justify-self:
+            center;
+    }
+
+
+    .statement-event {
+
+        width:
+            100%;
+
+        max-width:
+            850px;
+    }
+
+
+    /*
+    Wie im Hero liegen die Kreise halb außerhalb des Bildschirms.
+    Sie bleiben sehr dezent und sitzen hinter dem Event-Inhalt.
+    */
+
+    .statement::before {
+
+        width:
+            420px;
+
+        height:
+            420px;
+
+        left:
+            -210px;
+
+        right:
+            auto;
+
+        top:
+            62%;
+
+        transform:
+            translateY(-50%);
+
+        z-index:
+            0;
+
+        border:
+            1px solid
+            rgba(
+                254,
+                230,
+                202,
+                .10
+            );
+
+        border-radius:
+            50%;
+
+        background:
+            transparent;
+
+        pointer-events:
+            none;
+    }
+
+
+    .statement::after {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        width:
+            420px;
+
+        height:
+            420px;
+
+        left:
+            auto;
+
+        right:
+            -210px;
+
+        top:
+            36%;
+
+        transform:
+            translateY(-50%);
+
+        z-index:
+            0;
+
+        border:
+            1px solid
+            rgba(
+                254,
+                230,
+                202,
+                .12
+            );
+
+        border-radius:
+            50%;
+
+        background:
+            transparent;
+
+        pointer-events:
+            none;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
