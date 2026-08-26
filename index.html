@@ -13536,5 +13536,279 @@ function activateExternalServices(
     );
 
 })();
+</script><script>
+/* ==========================================================
+   WEB / DESKTOP – EVENT-SPRUNG SO POSITIONIEREN,
+   DASS DIE PUNKTELEISTE UNTEN NOCH SICHTBAR IST
+========================================================== */
+
+(function () {
+
+    const eventSection =
+        document.getElementById(
+            "event"
+        );
+
+    if (!eventSection) {
+        return;
+    }
+
+
+    function prefersReducedMotion() {
+
+        return window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+    }
+
+
+    function scrollEventDesktopIntoPosition() {
+
+        /*
+        Mobil / Tablet bleiben exakt wie bisher.
+        */
+        if (window.innerWidth <= 900) {
+
+            eventSection.scrollIntoView({
+                behavior:
+                    prefersReducedMotion()
+                        ? "auto"
+                        : "smooth",
+
+                block:
+                    "start"
+            });
+
+            return;
+        }
+
+
+        const pagination =
+            eventSection.querySelector(
+                ".event-pagination"
+            );
+
+
+        if (!pagination) {
+
+            eventSection.scrollIntoView({
+                behavior:
+                    prefersReducedMotion()
+                        ? "auto"
+                        : "smooth",
+
+                block:
+                    "start"
+            });
+
+            return;
+        }
+
+
+        /*
+        Ziel:
+        Die Unterkante der Punkteleiste sitzt nach dem Sprung
+        nur ca. 18 px oberhalb des unteren Bildschirmrands.
+
+        Dadurch springt die Web-Version etwas weiter in die
+        Eventsektion hinein und die Punkte sind gerade noch
+        vollständig sichtbar.
+        */
+
+        const paginationRect =
+            pagination.getBoundingClientRect();
+
+
+        const desiredPaginationBottom =
+            window.innerHeight - 18;
+
+
+        const targetY =
+            window.scrollY +
+            paginationRect.bottom -
+            desiredPaginationBottom;
+
+
+        window.scrollTo({
+            top:
+                Math.max(
+                    0,
+                    targetY
+                ),
+
+            behavior:
+                prefersReducedMotion()
+                    ? "auto"
+                    : "smooth"
+        });
+    }
+
+
+    /*
+    Öffentliche Funktion, damit auch der obere Eventbanner
+    dieselbe Desktop-Positionierung verwenden kann.
+    */
+    window.scrollAllerweilEventIntoView =
+        scrollEventDesktopIntoPosition;
+
+
+    /*
+    Navigation / normale Links zu #event auf Desktop.
+    Eventbanner wird separat über goToAllerweilEvent behandelt.
+    */
+    document
+        .querySelectorAll(
+            'a[href="#event"]:not(.event-banner-item)'
+        )
+        .forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function (event) {
+
+                        if (
+                            window.innerWidth <= 900
+                        ) {
+                            return;
+                        }
+
+
+                        event.preventDefault();
+
+
+                        history.replaceState(
+                            null,
+                            "",
+                            "#event"
+                        );
+
+
+                        scrollEventDesktopIntoPosition();
+                    },
+                    true
+                );
+            }
+        );
+
+
+    /*
+    Bestehende Eventbanner-Funktion erweitern:
+    Erst wird wie bisher die passende Eventseite gewählt,
+    anschließend wird auf Desktop exakt so gescrollt,
+    dass die Punkteleiste am unteren Rand sichtbar bleibt.
+    */
+    const originalGoToAllerweilEvent =
+        window.goToAllerweilEvent;
+
+
+    if (
+        typeof originalGoToAllerweilEvent
+        === "function"
+    ) {
+
+        window.goToAllerweilEvent =
+            function (index) {
+
+                if (
+                    window.innerWidth <= 900
+                ) {
+
+                    originalGoToAllerweilEvent(
+                        index
+                    );
+
+                    return;
+                }
+
+
+                /*
+                Passende Eventseite auswählen, ohne den alten
+                Desktop-Sprung dauerhaft zu übernehmen.
+                */
+                const slider =
+                    document.getElementById(
+                        "eventSlider"
+                    );
+
+
+                if (slider) {
+
+                    const slides =
+                        slider.querySelectorAll(
+                            ".event-slide"
+                        );
+
+
+                    const safeIndex =
+                        Math.max(
+                            0,
+                            Math.min(
+                                Number(index) || 0,
+                                slides.length - 1
+                            )
+                        );
+
+
+                    slider.scrollTo({
+                        left:
+                            safeIndex *
+                            slider.clientWidth,
+
+                        behavior:
+                            prefersReducedMotion()
+                                ? "auto"
+                                : "smooth"
+                    });
+
+
+                    const dots =
+                        eventSection.querySelectorAll(
+                            ".event-page-dot"
+                        );
+
+
+                    dots.forEach(
+                        function (dot, dotIndex) {
+
+                            const active =
+                                dotIndex === safeIndex;
+
+
+                            dot.classList.toggle(
+                                "active",
+                                active
+                            );
+
+
+                            dot.setAttribute(
+                                "aria-current",
+                                active
+                                    ? "true"
+                                    : "false"
+                            );
+                        }
+                    );
+                }
+
+
+                history.replaceState(
+                    null,
+                    "",
+                    "#event"
+                );
+
+
+                /*
+                Ein Frame warten, damit Slider/Dot-Layout sicher
+                aktuell ist, dann präzise positionieren.
+                */
+                window.requestAnimationFrame(
+                    scrollEventDesktopIntoPosition
+                );
+            };
+    }
+
+})();
 </script></body>
 </html>
