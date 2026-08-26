@@ -11110,51 +11110,50 @@ auf derselben Höhe wie auf Event 1.
 
 
 /* ==========================================================
-   MOBILE STARTSEITE – LOGO HOCHKANT WIE AUF DER VORLAGE
-   Icon oben, ALLERWEIL darunter, STEHAUSSCHANK darunter.
-   Die Logo-Farben selbst bleiben unverändert.
+   MOBILE STARTSEITE – LOGO AUS "ALLERWEIL LOGO MOBIL.PNG"
+   Nur mobil:
+   - eigenes Logo-Bild auf der Startseite
+   - Farben bleiben wie im Web / in der Datei
+   - Desktop/Web bleibt unverändert
 ========================================================== */
 
-.hero-logo-mobile-stacked,
-.mobile-hero-sign-slogan {
+.hero-logo-mobile-file {
     display:
         none;
 }
 
-
 @media (max-width: 700px) {
 
     /*
-    Das bisherige horizontale Logo wird nur mobil ersetzt.
-    Desktop/Web bleibt exakt wie bisher.
+    Das bisherige Desktop-/Web-Logo ausblenden und stattdessen
+    die mobile Logo-Datei verwenden.
     */
     .hero-logo {
         display:
             none !important;
     }
 
-
-    .hero-logo-mobile-stacked {
-
+    .hero-logo-mobile-file {
         display:
             block;
 
         width:
             min(
                 330px,
-                84vw
+                86vw
             );
 
         margin:
             0 auto 22px;
 
+        text-align:
+            center;
+
         line-height:
             0;
     }
 
-
-    .hero-logo-mobile-stacked img {
-
+    .hero-logo-mobile-file img {
         display:
             block;
 
@@ -11168,104 +11167,11 @@ auf derselben Höhe wie auf Event 1.
             0 auto;
 
         /*
-        Ganz bewusst KEIN Filter:
-        Die bisherigen Logo-Farben werden 1:1 übernommen.
+        Keine Farbveränderung:
+        Die Datei wird so angezeigt, wie sie vorliegt.
         */
         filter:
             none !important;
-    }
-
-
-    /*
-    Das bisherige lange Hero-Zitat + Autor wird mobil durch
-    den Spruch von der Vorlage ersetzt.
-    */
-    .hero-quote,
-    .hero-quote-author {
-
-        display:
-            none !important;
-    }
-
-
-    .mobile-hero-sign-slogan {
-
-        display:
-            flex;
-
-        flex-direction:
-            column;
-
-        align-items:
-            center;
-
-        justify-content:
-            center;
-
-        width:
-            min(
-                315px,
-                86vw
-            );
-
-        margin:
-            0 auto;
-
-        color:
-            #243421;
-
-        font-family:
-            "Arial Narrow",
-            "Helvetica Neue",
-            Arial,
-            sans-serif;
-
-        font-size:
-            clamp(
-                1rem,
-                4.55vw,
-                1.22rem
-            );
-
-        font-weight:
-            400;
-
-        line-height:
-            1.18;
-
-        letter-spacing:
-            .035em;
-
-        text-align:
-            center;
-
-        text-transform:
-            uppercase;
-    }
-
-
-    .mobile-hero-sign-slogan span {
-
-        display:
-            block;
-    }
-
-
-    /*
-    Etwas kompakter, damit Logo + Spruch + Scrollpfeil
-    weiterhin sauber in die mobile Bildschirmhöhe passen.
-    */
-    .hero-eyebrow {
-
-        margin-bottom:
-            19px !important;
-    }
-
-
-    .hero-actions {
-
-        margin-top:
-            29px !important;
     }
 
 }
@@ -11317,7 +11223,7 @@ auf derselben Höhe wie auf Event 1.
         </div>
 <div class="hero-logo">
 <img alt="Allerweil Stehausschank" src="Allerweil Logo.png"/>
-</div><div class="hero-logo-mobile-stacked"><img alt="Allerweil Stehausschank" src="Allerweil Logo Mobile.png"/></div><div class="mobile-hero-sign-slogan"><span>Du kannst sitzen</span><span>oder stehen,</span><span>nur die Zeit fliegt</span></div>
+</div><div class="hero-logo-mobile-file"><img alt="Allerweil Stehausschank" src="Allerweil Logo Mobil.png"/></div>
 <div class="hero-quote">
 
             Wir wollten nur kurz
