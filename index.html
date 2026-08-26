@@ -11841,6 +11841,104 @@ Mobil ebenfalls die komplette Logofläche anklickbar.
 }
 
 
+
+
+/* ==========================================================
+   NAV-LOGO – WIEDER EXAKT WIE VORHER
+   Komplett anklickbar bleibt es trotzdem.
+========================================================== */
+
+.nav-logo {
+
+    /*
+    Die zuletzt ergänzten Mindestmaße haben die CSS-Maske
+    minimal verzogen. Deshalb wieder exakt auf die echte
+    Bildgröße zurücksetzen.
+    */
+    min-width:
+        0 !important;
+
+    min-height:
+        0 !important;
+
+    width:
+        max-content !important;
+
+    height:
+        auto !important;
+
+    display:
+        flex !important;
+
+    align-items:
+        center;
+
+    justify-content:
+        flex-start;
+
+    flex-shrink:
+        0;
+
+    cursor:
+        pointer !important;
+}
+
+
+/*
+Das Bild selbst bestimmt wieder die exakte Logo-Fläche.
+Dadurch sitzen die zweifarbigen Masken wieder sauber.
+*/
+.nav-logo img {
+
+    width:
+        auto !important;
+
+    height:
+        46px;
+
+    object-fit:
+        contain;
+}
+
+
+@media (max-width: 700px) {
+
+    .nav-logo {
+
+        min-width:
+            0 !important;
+
+        min-height:
+            0 !important;
+
+        width:
+            max-content !important;
+    }
+
+
+    .nav-logo img {
+
+        height:
+            40px;
+    }
+
+}
+
+
+/*
+Der komplette sichtbare Logobereich bleibt ein Link
+und zeigt weiterhin den Hand-/Finger-Cursor.
+*/
+.nav-logo,
+.nav-logo *,
+.nav-logo::before,
+.nav-logo::after {
+
+    cursor:
+        pointer !important;
+}
+
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
