@@ -10444,6 +10444,40 @@ auf derselben Höhe wie auf Event 1.
 
 }
 
+
+
+/* ==========================================================
+   MOBILE – STABILES SEITENSCROLLEN / NAVIGATION
+   Kein konkurrierendes natives Smooth-Scrolling.
+========================================================== */
+
+@media (max-width: 700px) {
+
+    html {
+        scroll-behavior:
+            auto !important;
+    }
+
+    #home,
+    #allerweil,
+    #oeffnungszeiten,
+    #galerie,
+    #event,
+    #standort,
+    #kontakt {
+        scroll-margin-top:
+            calc(
+                var(--nav-height)
+                + env(
+                    safe-area-inset-top,
+                    0px
+                )
+                + 6px
+            );
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -10474,7 +10508,7 @@ auf derselben Höhe wie auf Event 1.
         ✕
 
     </button>
-<a href="#allerweil" onclick="closeMobileMenu()">Allerweil</a><a href="#oeffnungszeiten" onclick="closeMobileMenu()">Öffnungszeiten</a><a href="#galerie" onclick="closeMobileMenu()">Galerie</a><a href="#event" onclick="closeMobileMenu()">Events</a><a href="#standort" onclick="closeMobileMenu()">Standort</a><a href="#kontakt" onclick="closeMobileMenu()">Kontakt</a></div>
+<a href="#allerweil">Allerweil</a><a href="#oeffnungszeiten">Öffnungszeiten</a><a href="#galerie">Galerie</a><a href="#event">Events</a><a href="#standort">Standort</a><a href="#kontakt">Kontakt</a></div>
 <!-- ==========================================================
      HERO
 ========================================================== -->
@@ -13859,6 +13893,831 @@ function activateExternalServices(
                 );
             };
     }
+
+})();
+</script><script>
+/* ==========================================================
+   MOBILE – ROBUSTER NAVIGATION- UND REFRESH-FIX
+
+   Verhindert konkurrierende Scrollmechanismen:
+   - native Hash-Sprünge
+   - globales CSS smooth scroll
+   - Browser Scroll-Restoration
+   - Layoutverschiebungen nach dem Laden
+
+   Desktop/Web bleibt unverändert.
+========================================================== */
+
+(function () {
+
+    const MOBILE_MAX =
+        700;
+
+    const SECTION_IDS =
+        new Set([
+            "home",
+            "allerweil",
+            "oeffnungszeiten",
+            "galerie",
+            "event",
+            "standort",
+            "kontakt"
+        ]);
+
+
+    function isMobile() {
+
+        return (
+            window.innerWidth <= MOBILE_MAX
+        );
+    }
+
+
+    if (!isMobile()) {
+        return;
+    }
+
+
+    /*
+    Browser soll auf Mobil nicht parallel seine eigene
+    Scrollposition wiederherstellen.
+    */
+    if (
+        "scrollRestoration"
+        in history
+    ) {
+
+        history.scrollRestoration =
+            "manual";
+    }
+
+
+    const nav =
+        document.getElementById(
+            "nav"
+        );
+
+    const mobileMenu =
+        document.getElementById(
+            "mobileMenu"
+        );
+
+
+    let interactionVersion =
+        0;
+
+    let correctionTimer =
+        null;
+
+
+    function markUserInteraction() {
+
+        interactionVersion +=
+            1;
+
+        window.clearTimeout(
+            correctionTimer
+        );
+    }
+
+
+    /*
+    Nur echte neue Bedienung nach einem programmierten Scroll
+    darf eine spätere Feinkorrektur abbrechen.
+    */
+    window.addEventListener(
+        "touchstart",
+        markUserInteraction,
+        {
+            passive:
+                true
+        }
+    );
+
+    window.addEventListener(
+        "wheel",
+        markUserInteraction,
+        {
+            passive:
+                true
+        }
+    );
+
+
+    function getSafeHashId(
+        hash
+    ) {
+
+        if (
+            !hash ||
+            hash.charAt(0) !== "#"
+        ) {
+            return null;
+        }
+
+
+        let id =
+            hash.slice(1);
+
+
+        try {
+
+            id =
+                decodeURIComponent(
+                    id
+                );
+
+        } catch (_) {
+            return null;
+        }
+
+
+        return SECTION_IDS.has(id)
+            ? id
+            : null;
+    }
+
+
+    function getTarget(
+        hash
+    ) {
+
+        const id =
+            getSafeHashId(
+                hash
+            );
+
+
+        return id
+            ? document.getElementById(id)
+            : null;
+    }
+
+
+    function getNavHeight() {
+
+        if (!nav) {
+            return 0;
+        }
+
+
+        return Math.max(
+            0,
+            nav.getBoundingClientRect().height
+        );
+    }
+
+
+    function getTargetTop(
+        target
+    ) {
+
+        if (
+            !target ||
+            target.id === "home"
+        ) {
+            return 0;
+        }
+
+
+        const absoluteTop =
+            window.scrollY +
+            target.getBoundingClientRect().top;
+
+
+        return Math.max(
+            0,
+            Math.round(
+                absoluteTop -
+                getNavHeight() -
+                6
+            )
+        );
+    }
+
+
+    function closeMenuImmediately() {
+
+        if (mobileMenu) {
+
+            mobileMenu.classList.remove(
+                "open"
+            );
+        }
+
+
+        document.body.classList.remove(
+            "no-scroll"
+        );
+    }
+
+
+    function setHashWithoutNativeJump(
+        hash,
+        replace
+    ) {
+
+        const url =
+            window.location.pathname +
+            window.location.search +
+            hash;
+
+
+        if (replace) {
+
+            history.replaceState(
+                null,
+                "",
+                url
+            );
+
+        } else {
+
+            history.pushState(
+                null,
+                "",
+                url
+            );
+        }
+    }
+
+
+    function selectEventSlide(
+        index
+    ) {
+
+        const slider =
+            document.getElementById(
+                "eventSlider"
+            );
+
+
+        if (!slider) {
+            return;
+        }
+
+
+        const slides =
+            Array.from(
+                slider.querySelectorAll(
+                    ".event-slide"
+                )
+            );
+
+
+        if (!slides.length) {
+            return;
+        }
+
+
+        const safeIndex =
+            Math.max(
+                0,
+                Math.min(
+                    Number(index) || 0,
+                    slides.length - 1
+                )
+            );
+
+
+        slider.scrollTo({
+            left:
+                safeIndex *
+                slider.clientWidth,
+
+            behavior:
+                "auto"
+        });
+
+
+        const dots =
+            Array.from(
+                document.querySelectorAll(
+                    ".event-page-dot"
+                )
+            );
+
+
+        dots.forEach(
+            function (
+                dot,
+                dotIndex
+            ) {
+
+                const active =
+                    dotIndex === safeIndex;
+
+
+                dot.classList.toggle(
+                    "active",
+                    active
+                );
+
+
+                dot.setAttribute(
+                    "aria-current",
+                    active
+                        ? "true"
+                        : "false"
+                );
+            }
+        );
+    }
+
+
+    function scrollToTarget(
+        target,
+        behavior,
+        withFinalCorrection
+    ) {
+
+        if (!target) {
+            return;
+        }
+
+
+        const versionAtStart =
+            interactionVersion;
+
+
+        /*
+        Zwei Frames warten:
+        So ist das mobile Menü sicher geschlossen und
+        body.no-scroll bereits entfernt.
+        */
+        window.requestAnimationFrame(
+            function () {
+
+                window.requestAnimationFrame(
+                    function () {
+
+                        window.scrollTo({
+                            top:
+                                getTargetTop(
+                                    target
+                                ),
+
+                            behavior:
+                                behavior
+                        });
+
+
+                        if (
+                            !withFinalCorrection
+                        ) {
+                            return;
+                        }
+
+
+                        window.clearTimeout(
+                            correctionTimer
+                        );
+
+
+                        correctionTimer =
+                            window.setTimeout(
+                                function () {
+
+                                    /*
+                                    Nur korrigieren, wenn der Nutzer
+                                    inzwischen nicht selbst gewischt hat.
+                                    */
+                                    if (
+                                        interactionVersion !==
+                                        versionAtStart
+                                    ) {
+                                        return;
+                                    }
+
+
+                                    window.scrollTo({
+                                        top:
+                                            getTargetTop(
+                                                target
+                                            ),
+
+                                        behavior:
+                                            "auto"
+                                    });
+
+                                },
+                                620
+                            );
+                    }
+                );
+            }
+        );
+    }
+
+
+    function navigateMobile(
+        hash,
+        options
+    ) {
+
+        const settings =
+            Object.assign(
+                {
+                    replace:
+                        false,
+
+                    smooth:
+                        true,
+
+                    eventIndex:
+                        null
+                },
+                options || {}
+            );
+
+
+        const target =
+            getTarget(
+                hash
+            );
+
+
+        if (!target) {
+            return;
+        }
+
+
+        closeMenuImmediately();
+
+
+        if (
+            target.id === "event" &&
+            settings.eventIndex !== null
+        ) {
+
+            selectEventSlide(
+                settings.eventIndex
+            );
+        }
+
+
+        /*
+        URL aktualisieren, ohne den nativen Hash-Sprung
+        auszulösen.
+        */
+        if (
+            window.location.hash !== hash
+        ) {
+
+            setHashWithoutNativeJump(
+                hash,
+                settings.replace
+            );
+
+        } else if (
+            settings.replace
+        ) {
+
+            setHashWithoutNativeJump(
+                hash,
+                true
+            );
+        }
+
+
+        scrollToTarget(
+            target,
+            settings.smooth
+                ? "smooth"
+                : "auto",
+            settings.smooth
+        );
+    }
+
+
+    /*
+    MOBILE MENÜ:
+    Alle Kategorien bekommen genau EINEN Scrollweg.
+    Die alten nativen Anchor-Sprünge werden verhindert.
+    */
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            const link =
+                event.target.closest(
+                    '.mobile-menu a[href^="#"]'
+                );
+
+
+            if (
+                !link ||
+                !isMobile()
+            ) {
+                return;
+            }
+
+
+            const hash =
+                link.getAttribute(
+                    "href"
+                );
+
+
+            if (!getTarget(hash)) {
+                return;
+            }
+
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+
+            navigateMobile(
+                hash,
+                {
+                    smooth:
+                        true,
+
+                    eventIndex:
+                        hash === "#event"
+                            ? 0
+                            : null
+                }
+            );
+        },
+        true
+    );
+
+
+    /*
+    OBERER EVENTBANNER AUF MOBIL:
+    Ebenfalls stabil scrollen und dabei die angeklickte
+    Eventseite auswählen.
+    */
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            const link =
+                event.target.closest(
+                    ".event-banner-item"
+                );
+
+
+            if (
+                !link ||
+                !isMobile()
+            ) {
+                return;
+            }
+
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+
+            navigateMobile(
+                "#event",
+                {
+                    replace:
+                        true,
+
+                    smooth:
+                        true,
+
+                    eventIndex:
+                        Number(
+                            link.dataset.eventIndex
+                        ) || 0
+                }
+            );
+        },
+        true
+    );
+
+
+    /*
+    Scrollposition vor Verlassen sichern.
+    Wird nur gebraucht, wenn beim Reload kein Abschnitts-Hash
+    vorhanden ist.
+    */
+    window.addEventListener(
+        "pagehide",
+        function () {
+
+            try {
+
+                sessionStorage.setItem(
+                    "allerweil-mobile-scroll-y",
+                    String(
+                        Math.max(
+                            0,
+                            Math.round(
+                                window.scrollY
+                            )
+                        )
+                    )
+                );
+
+            } catch (_) {
+                /* SessionStorage kann in seltenen Modi gesperrt sein. */
+            }
+        }
+    );
+
+
+    function getNavigationType() {
+
+        const entries =
+            performance.getEntriesByType
+                ? performance.getEntriesByType(
+                    "navigation"
+                )
+                : [];
+
+
+        if (
+            entries &&
+            entries[0] &&
+            entries[0].type
+        ) {
+
+            return entries[0].type;
+        }
+
+
+        return "navigate";
+    }
+
+
+    function restoreStablePosition() {
+
+        if (!isMobile()) {
+            return;
+        }
+
+
+        /*
+        Bei BFCache / Zurück-Vorwärts die bestehende
+        Browserposition nicht überschreiben.
+        */
+        if (
+            getNavigationType() ===
+            "back_forward"
+        ) {
+            return;
+        }
+
+
+        const hashTarget =
+            getTarget(
+                window.location.hash
+            );
+
+
+        if (hashTarget) {
+
+            scrollToTarget(
+                hashTarget,
+                "auto",
+                false
+            );
+
+
+            /*
+            Nach komplett geladenen Bildern noch EINMAL
+            exakt an dieselbe Sektion setzen.
+            Dadurch verschieben z.B. Galeriebilder den
+            Zielpunkt nicht nachträglich.
+            */
+            window.setTimeout(
+                function () {
+
+                    window.scrollTo({
+                        top:
+                            getTargetTop(
+                                hashTarget
+                            ),
+
+                        behavior:
+                            "auto"
+                    });
+
+                },
+                180
+            );
+
+
+            return;
+        }
+
+
+        if (
+            getNavigationType() ===
+            "reload"
+        ) {
+
+            let savedY =
+                0;
+
+
+            try {
+
+                savedY =
+                    Number(
+                        sessionStorage.getItem(
+                            "allerweil-mobile-scroll-y"
+                        )
+                    ) || 0;
+
+            } catch (_) {
+                savedY = 0;
+            }
+
+
+            window.scrollTo({
+                top:
+                    Math.max(
+                        0,
+                        savedY
+                    ),
+
+                behavior:
+                    "auto"
+            });
+
+
+            window.setTimeout(
+                function () {
+
+                    window.scrollTo({
+                        top:
+                            Math.max(
+                                0,
+                                savedY
+                            ),
+
+                        behavior:
+                            "auto"
+                    });
+
+                },
+                180
+            );
+        }
+    }
+
+
+    /*
+    Erst nach vollständigem Laden stabilisieren.
+    Damit sind Bildhöhen und Fonts weitgehend endgültig.
+    */
+    if (
+        document.readyState ===
+        "complete"
+    ) {
+
+        window.setTimeout(
+            restoreStablePosition,
+            0
+        );
+
+    } else {
+
+        window.addEventListener(
+            "load",
+            restoreStablePosition,
+            {
+                once:
+                    true
+            }
+        );
+    }
+
+
+    /*
+    iOS Safari kann beim pageshow noch einmal eine eigene
+    Position einspielen. Bei echtem Reload fangen wir das ab.
+    */
+    window.addEventListener(
+        "pageshow",
+        function (event) {
+
+            if (
+                event.persisted
+            ) {
+                return;
+            }
+
+
+            if (
+                getNavigationType() ===
+                "reload"
+            ) {
+
+                window.setTimeout(
+                    restoreStablePosition,
+                    40
+                );
+            }
+        }
+    );
 
 })();
 </script></body>
