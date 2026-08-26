@@ -14810,5 +14810,98 @@ function activateExternalServices(
     );
 
 })();
+</script><script>
+/* ==========================================================
+   STARTSEITE – PFEIL SCROLLT WEICH ZU "01 · ALLERWEIL"
+   Verhindert den harten nativen #allerweil-Sprung.
+========================================================== */
+
+(function () {
+
+    const heroArrow =
+        document.querySelector(
+            '.hero-actions .secondary-button[href="#allerweil"]'
+        );
+
+    const target =
+        document.getElementById(
+            "allerweil"
+        );
+
+    const nav =
+        document.getElementById(
+            "nav"
+        );
+
+
+    if (
+        !heroArrow ||
+        !target
+    ) {
+        return;
+    }
+
+
+    heroArrow.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const reduceMotion =
+                window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches;
+
+
+            const navHeight =
+                nav
+                    ? nav.getBoundingClientRect().height
+                    : 0;
+
+
+            /*
+            Ziel knapp unterhalb der festen Menüleiste,
+            damit "01 · Allerweil" sauber sichtbar beginnt.
+            */
+            const targetTop =
+                Math.max(
+                    0,
+                    Math.round(
+                        window.scrollY +
+                        target.getBoundingClientRect().top -
+                        navHeight -
+                        6
+                    )
+                );
+
+
+            /*
+            Hash aktualisieren, ohne dabei den nativen
+            sofortigen Anchor-Sprung auszulösen.
+            */
+            history.replaceState(
+                null,
+                "",
+                window.location.pathname +
+                window.location.search +
+                "#allerweil"
+            );
+
+
+            window.scrollTo({
+                top:
+                    targetTop,
+
+                behavior:
+                    reduceMotion
+                        ? "auto"
+                        : "smooth"
+            });
+        }
+    );
+
+})();
 </script></body>
 </html>
