@@ -11939,6 +11939,24 @@ und zeigt weiterhin den Hand-/Finger-Cursor.
 }
 
 
+
+
+/* ==========================================================
+   WEB / DESKTOP – EINHEITLICHE INTERNE NAVIGATION
+   Native Hash-Sprünge werden nicht mehr parallel zur
+   eigenen Smooth-Scroll-Logik ausgeführt.
+========================================================== */
+
+@media (min-width: 701px) {
+
+    html {
+        scroll-behavior:
+            auto !important;
+    }
+
+}
+
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -16925,6 +16943,682 @@ function activateExternalServices(
             event.preventDefault();
             event.stopPropagation();
             event.stopImmediatePropagation();
+        },
+        true
+    );
+
+})();
+</script>
+
+
+<script>
+/* ==========================================================
+   WEB / DESKTOP – ROBUSTE ZENTRALE NAVIGATION
+
+   Behebt konkurrierende Scrollmechanismen:
+   - native Hash-Sprünge
+   - ältere einzelne Click-Handler
+   - Eventbanner-Sprung + Eventslider gleichzeitig
+   - fehlerhafte Event-Position vor der Galerie
+
+   Ab 701 px gibt es für interne Seitenlinks genau EINEN
+   kontrollierten Scrollweg.
+========================================================== */
+
+(function () {
+
+    const DESKTOP_MIN =
+        701;
+
+    const VALID_SECTION_IDS =
+        new Set([
+            "home",
+            "allerweil",
+            "oeffnungszeiten",
+            "galerie",
+            "event",
+            "standort",
+            "kontakt"
+        ]);
+
+
+    function isWeb() {
+
+        return (
+            window.innerWidth >=
+            DESKTOP_MIN
+        );
+    }
+
+
+    function prefersReducedMotion() {
+
+        return window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+    }
+
+
+    function getNavHeight() {
+
+        const nav =
+            document.getElementById(
+                "nav"
+            );
+
+
+        if (!nav) {
+            return 0;
+        }
+
+
+        return Math.ceil(
+            nav.getBoundingClientRect().height
+        );
+    }
+
+
+    function getTargetFromHash(hash) {
+
+        if (
+            !hash ||
+            hash === "#" ||
+            hash.charAt(0) !== "#"
+        ) {
+            return null;
+        }
+
+
+        const id =
+            decodeURIComponent(
+                hash.slice(1)
+            );
+
+
+        if (
+            !VALID_SECTION_IDS.has(
+                id
+            )
+        ) {
+            return null;
+        }
+
+
+        return document.getElementById(
+            id
+        );
+    }
+
+
+    function setHashWithoutJump(
+        hash,
+        replace
+    ) {
+
+        const url =
+            window.location.pathname +
+            window.location.search +
+            hash;
+
+
+        if (replace) {
+
+            history.replaceState(
+                null,
+                "",
+                url
+            );
+
+        } else {
+
+            history.pushState(
+                null,
+                "",
+                url
+            );
+        }
+    }
+
+
+    function getNormalTargetTop(
+        target
+    ) {
+
+        if (
+            !target ||
+            target.id === "home"
+        ) {
+            return 0;
+        }
+
+
+        const absoluteTop =
+            window.scrollY +
+            target.getBoundingClientRect().top;
+
+
+        /*
+        Ziel beginnt sauber knapp unter der festen Menüleiste.
+        */
+        return Math.max(
+            0,
+            Math.round(
+                absoluteTop -
+                getNavHeight() -
+                8
+            )
+        );
+    }
+
+
+    function getEventTargetTop(
+        eventSection
+    ) {
+
+        const sectionTop =
+            getNormalTargetTop(
+                eventSection
+            );
+
+
+        const pagination =
+            eventSection.querySelector(
+                ".event-pagination"
+            );
+
+
+        if (!pagination) {
+            return sectionTop;
+        }
+
+
+        const paginationRect =
+            pagination.getBoundingClientRect();
+
+
+        const paginationTarget =
+            window.scrollY +
+            paginationRect.bottom -
+            (
+                window.innerHeight -
+                18
+            );
+
+
+        /*
+        WICHTIGER FIX:
+        Die alte Rechnung konnte bei einer Eventsektion, die
+        niedriger als das Browserfenster ist, VOR den Beginn
+        der Eventsektion springen – also zurück in die Galerie.
+
+        Deshalb darf die Zielposition niemals oberhalb des
+        korrekten Event-Starts liegen.
+        */
+        return Math.max(
+            0,
+            Math.round(
+                Math.max(
+                    sectionTop,
+                    paginationTarget
+                )
+            )
+        );
+    }
+
+
+    function selectEventSlide(
+        index
+    ) {
+
+        const eventSection =
+            document.getElementById(
+                "event"
+            );
+
+        const slider =
+            document.getElementById(
+                "eventSlider"
+            );
+
+
+        if (
+            !eventSection ||
+            !slider
+        ) {
+            return 0;
+        }
+
+
+        const slides =
+            Array.from(
+                slider.querySelectorAll(
+                    ".event-slide"
+                )
+            );
+
+
+        if (!slides.length) {
+            return 0;
+        }
+
+
+        const safeIndex =
+            Math.max(
+                0,
+                Math.min(
+                    Number(index) || 0,
+                    slides.length - 1
+                )
+            );
+
+
+        /*
+        Horizontal sofort auf die gewünschte Eventseite.
+        Dadurch konkurriert keine horizontale Smooth-Animation
+        mit dem vertikalen Seitensprung.
+        */
+        slider.scrollTo({
+            left:
+                safeIndex *
+                slider.clientWidth,
+
+            behavior:
+                "auto"
+        });
+
+
+        eventSection
+            .querySelectorAll(
+                ".event-page-dot"
+            )
+            .forEach(
+                function (
+                    dot,
+                    dotIndex
+                ) {
+
+                    const active =
+                        dotIndex === safeIndex;
+
+
+                    dot.classList.toggle(
+                        "active",
+                        active
+                    );
+
+
+                    dot.setAttribute(
+                        "aria-current",
+                        active
+                            ? "true"
+                            : "false"
+                    );
+                }
+            );
+
+
+        return safeIndex;
+    }
+
+
+    /*
+    Nach einem echten Maus-Drag auf dem oberen Eventbanner
+    darf der darauffolgende synthetische Klick nicht plötzlich
+    eine Navigation auslösen.
+    */
+    let bannerPointerId =
+        null;
+
+    let bannerPointerStartX =
+        0;
+
+    let bannerDidDrag =
+        false;
+
+    let suppressBannerClickUntil =
+        0;
+
+
+    document.addEventListener(
+        "pointerdown",
+        function (event) {
+
+            if (
+                !isWeb() ||
+                event.pointerType !== "mouse" ||
+                event.button !== 0 ||
+                !event.target.closest(
+                    ".event-banner-item"
+                )
+            ) {
+                return;
+            }
+
+
+            bannerPointerId =
+                event.pointerId;
+
+            bannerPointerStartX =
+                event.clientX;
+
+            bannerDidDrag =
+                false;
+        },
+        true
+    );
+
+
+    document.addEventListener(
+        "pointermove",
+        function (event) {
+
+            if (
+                !isWeb() ||
+                bannerPointerId === null ||
+                event.pointerId !==
+                    bannerPointerId
+            ) {
+                return;
+            }
+
+
+            if (
+                Math.abs(
+                    event.clientX -
+                    bannerPointerStartX
+                ) > 6
+            ) {
+
+                bannerDidDrag =
+                    true;
+            }
+        },
+        true
+    );
+
+
+    function finishBannerPointer(
+        event
+    ) {
+
+        if (
+            bannerPointerId === null ||
+            event.pointerId !==
+                bannerPointerId
+        ) {
+            return;
+        }
+
+
+        if (bannerDidDrag) {
+
+            suppressBannerClickUntil =
+                performance.now() +
+                260;
+        }
+
+
+        bannerPointerId =
+            null;
+
+        bannerDidDrag =
+            false;
+    }
+
+
+    document.addEventListener(
+        "pointerup",
+        finishBannerPointer,
+        true
+    );
+
+
+    document.addEventListener(
+        "pointercancel",
+        finishBannerPointer,
+        true
+    );
+
+
+    /*
+    Wenn der Nutzer während eines Smooth-Scrolls selbst
+    eingreift, wird keine spätere Korrektur mehr erzwungen.
+    */
+    let interactionVersion =
+        0;
+
+
+    [
+        "wheel",
+        "touchstart",
+        "pointerdown"
+    ].forEach(
+        function (type) {
+
+            window.addEventListener(
+                type,
+                function () {
+
+                    interactionVersion += 1;
+                },
+                {
+                    passive:
+                        true
+                }
+            );
+        }
+    );
+
+
+    function scrollToPosition(
+        top
+    ) {
+
+        const versionAtStart =
+            interactionVersion;
+
+
+        window.scrollTo({
+            top:
+                top,
+
+            left:
+                0,
+
+            behavior:
+                prefersReducedMotion()
+                    ? "auto"
+                    : "smooth"
+        });
+
+
+        /*
+        Kleine Endkorrektur nach dem Smooth-Scroll.
+        Nur wenn der Nutzer inzwischen nicht selbst gescrollt hat.
+        */
+        if (!prefersReducedMotion()) {
+
+            window.setTimeout(
+                function () {
+
+                    if (
+                        interactionVersion !==
+                        versionAtStart
+                    ) {
+                        return;
+                    }
+
+
+                    window.scrollTo({
+                        top:
+                            top,
+
+                        left:
+                            0,
+
+                        behavior:
+                            "auto"
+                    });
+
+                },
+                650
+            );
+        }
+    }
+
+
+    /*
+    ZENTRALER CAPTURE-HANDLER:
+    Er läuft vor den älteren Element-Handlern und verhindert
+    dadurch doppelte / konkurrierende Scrollbefehle.
+    */
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (!isWeb()) {
+                return;
+            }
+
+
+            const link =
+                event.target.closest(
+                    'a[href^="#"]'
+                );
+
+
+            if (!link) {
+                return;
+            }
+
+
+            const hash =
+                link.getAttribute(
+                    "href"
+                );
+
+
+            const target =
+                getTargetFromHash(
+                    hash
+                );
+
+
+            /*
+            Zum Beispiel Cookie-Einstellungen mit href="#"
+            nicht anfassen.
+            */
+            if (!target) {
+                return;
+            }
+
+
+            const isEventBanner =
+                link.classList.contains(
+                    "event-banner-item"
+                );
+
+
+            if (
+                isEventBanner &&
+                performance.now() <
+                    suppressBannerClickUntil
+            ) {
+
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+
+                return;
+            }
+
+
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+
+
+            if (
+                target.id ===
+                "home"
+            ) {
+
+                setHashWithoutJump(
+                    "#home",
+                    true
+                );
+
+
+                scrollToPosition(
+                    0
+                );
+
+                return;
+            }
+
+
+            if (
+                target.id ===
+                "event"
+            ) {
+
+                const eventIndex =
+                    isEventBanner
+                        ? (
+                            Number(
+                                link.dataset.eventIndex
+                            ) || 0
+                        )
+                        : 0;
+
+
+                selectEventSlide(
+                    eventIndex
+                );
+
+
+                setHashWithoutJump(
+                    "#event",
+                    true
+                );
+
+
+                /*
+                Zwei Frames geben dem Eventslider Zeit, seine
+                horizontale Position und die Punktanzeige sauber
+                zu übernehmen. Erst danach vertikal scrollen.
+                */
+                window.requestAnimationFrame(
+                    function () {
+
+                        window.requestAnimationFrame(
+                            function () {
+
+                                scrollToPosition(
+                                    getEventTargetTop(
+                                        target
+                                    )
+                                );
+                            }
+                        );
+                    }
+                );
+
+                return;
+            }
+
+
+            setHashWithoutJump(
+                hash,
+                false
+            );
+
+
+            scrollToPosition(
+                getNormalTargetTop(
+                    target
+                )
+            );
         },
         true
     );
