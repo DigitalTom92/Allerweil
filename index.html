@@ -1,7 +1,117 @@
 <!DOCTYPE html>
 
 <html lang="de">
-<head>
+<head><script>
+/* ==========================================================
+   MOBILE REFRESH – EARLY HOME RESET
+   Bei echtem Reload (inkl. iPhone Pull-to-Refresh) sofort
+   auf #home / Scrollposition 0 vorbereiten.
+========================================================== */
+
+(function () {
+
+    const MOBILE_MAX = 700;
+
+
+    function isMobile() {
+        return window.innerWidth <= MOBILE_MAX;
+    }
+
+
+    function navigationType() {
+
+        try {
+
+            const entries =
+                performance.getEntriesByType
+                    ? performance.getEntriesByType("navigation")
+                    : [];
+
+
+            if (
+                entries &&
+                entries[0] &&
+                entries[0].type
+            ) {
+                return entries[0].type;
+            }
+
+        } catch (_) {}
+
+
+        /*
+        Fallback für ältere Safari-Versionen:
+        performance.navigation.TYPE_RELOAD === 1
+        */
+        try {
+
+            if (
+                performance.navigation &&
+                performance.navigation.type === 1
+            ) {
+                return "reload";
+            }
+
+        } catch (_) {}
+
+
+        return "navigate";
+    }
+
+
+    if (!isMobile()) {
+        return;
+    }
+
+
+    if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+    }
+
+
+    if (navigationType() !== "reload") {
+        return;
+    }
+
+
+    /*
+    Auf Reload niemals den alten Abschnitt beibehalten.
+    Auch #event / #kontakt usw. werden zu #home.
+    */
+    try {
+
+        history.replaceState(
+            null,
+            "",
+            window.location.pathname +
+            window.location.search +
+            "#home"
+        );
+
+    } catch (_) {}
+
+
+    /*
+    Alte, früher gespeicherte Mobil-Scrollposition entfernen,
+    damit kein alter Code/Safari sie wieder verwenden kann.
+    */
+    try {
+
+        sessionStorage.removeItem(
+            "allerweil-mobile-scroll-y"
+        );
+
+    } catch (_) {}
+
+
+    /*
+    Safari kann die alte Position sehr früh einsetzen.
+    Sofort dagegenhalten.
+    */
+    window.scrollTo(0, 0);
+
+})();
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Allerweil Darmstadt | Stehausschank am Friedensplatz</title>
@@ -15015,33 +15125,9 @@ function activateExternalServices(
 
 
     /*
-    Scrollposition vor Verlassen sichern.
-    Wird nur gebraucht, wenn beim Reload kein Abschnitts-Hash
-    vorhanden ist.
+    Beim Verlassen wird bewusst KEINE mobile Scrollposition mehr
+    gespeichert. Ein echter Refresh soll immer bei #home beginnen.
     */
-    window.addEventListener(
-        "pagehide",
-        function () {
-
-            try {
-
-                sessionStorage.setItem(
-                    "allerweil-mobile-scroll-y",
-                    String(
-                        Math.max(
-                            0,
-                            Math.round(
-                                window.scrollY
-                            )
-                        )
-                    )
-                );
-
-            } catch (_) {
-                /* SessionStorage kann in seltenen Modi gesperrt sein. */
-            }
-        }
-    );
 
 
     function getNavigationType() {
@@ -15064,13 +15150,104 @@ function activateExternalServices(
         }
 
 
+        /*
+        Fallback für ältere Safari-Versionen.
+        performance.navigation.TYPE_RELOAD === 1
+        */
+        if (
+            performance.navigation &&
+            performance.navigation.type === 1
+        ) {
+
+            return "reload";
+        }
+
+
         return "navigate";
+    }
+
+
+    function resetMobileReloadToHome() {
+
+        if (!isMobile()) {
+            return;
+        }
+
+
+        /*
+        Nur bei einem ECHTEN Reload eingreifen.
+        Normales Anklicken, Direktaufruf und Zurück/Vorwärts
+        bleiben davon unberührt.
+        */
+        if (
+            getNavigationType() !==
+            "reload"
+        ) {
+            return;
+        }
+
+
+        closeMenuImmediately();
+
+
+        /*
+        URL ebenfalls auf #home setzen, damit Safari nicht nach
+        dem Aufbau erneut zu einem alten Abschnitt springen kann.
+        */
+        setHashWithoutNativeJump(
+            "#home",
+            true
+        );
+
+
+        /*
+        Eventbereich beim Reload ebenfalls in Grundzustand.
+        */
+        selectEventSlide(
+            0
+        );
+
+
+        try {
+
+            sessionStorage.removeItem(
+                "allerweil-mobile-scroll-y"
+            );
+
+        } catch (_) {}
+
+
+        window.scrollTo({
+            top:
+                0,
+
+            left:
+                0,
+
+            behavior:
+                "auto"
+        });
     }
 
 
     function restoreStablePosition() {
 
         if (!isMobile()) {
+            return;
+        }
+
+
+        /*
+        Reload hat ab jetzt immer Vorrang:
+        unabhängig vom vorhandenen Hash oder der vorherigen
+        Scrollposition geht es auf die Startseite.
+        */
+        if (
+            getNavigationType() ===
+            "reload"
+        ) {
+
+            resetMobileReloadToHome();
             return;
         }
 
@@ -15087,6 +15264,10 @@ function activateExternalServices(
         }
 
 
+        /*
+        Bei normalem erstmaligem Aufruf darf ein bewusst
+        aufgerufener Abschnitts-Hash weiterhin funktionieren.
+        */
         const hashTarget =
             getTarget(
                 window.location.hash
@@ -15102,12 +15283,6 @@ function activateExternalServices(
             );
 
 
-            /*
-            Nach komplett geladenen Bildern noch EINMAL
-            exakt an dieselbe Sektion setzen.
-            Dadurch verschieben z.B. Galeriebilder den
-            Zielpunkt nicht nachträglich.
-            */
             window.setTimeout(
                 function () {
 
@@ -15115,64 +15290,6 @@ function activateExternalServices(
                         top:
                             getTargetTop(
                                 hashTarget
-                            ),
-
-                        behavior:
-                            "auto"
-                    });
-
-                },
-                180
-            );
-
-
-            return;
-        }
-
-
-        if (
-            getNavigationType() ===
-            "reload"
-        ) {
-
-            let savedY =
-                0;
-
-
-            try {
-
-                savedY =
-                    Number(
-                        sessionStorage.getItem(
-                            "allerweil-mobile-scroll-y"
-                        )
-                    ) || 0;
-
-            } catch (_) {
-                savedY = 0;
-            }
-
-
-            window.scrollTo({
-                top:
-                    Math.max(
-                        0,
-                        savedY
-                    ),
-
-                behavior:
-                    "auto"
-            });
-
-
-            window.setTimeout(
-                function () {
-
-                    window.scrollTo({
-                        top:
-                            Math.max(
-                                0,
-                                savedY
                             ),
 
                         behavior:
@@ -15467,6 +15584,172 @@ function activateExternalServices(
                         ? "auto"
                         : "smooth"
             });
+        }
+    );
+
+})();
+</script><script>
+/* ==========================================================
+   MOBILE REFRESH – iOS PULL-TO-REFRESH FINAL RESET
+   Safari kann nach dem ersten Paint noch einmal eine alte
+   Scrollposition einsetzen. Auf echtem Reload wird deshalb
+   einige Male kurz auf 0 nachkorrigiert.
+========================================================== */
+
+(function () {
+
+    const MOBILE_MAX = 700;
+
+
+    function isMobile() {
+        return window.innerWidth <= MOBILE_MAX;
+    }
+
+
+    function navigationType() {
+
+        try {
+
+            const entries =
+                performance.getEntriesByType
+                    ? performance.getEntriesByType("navigation")
+                    : [];
+
+
+            if (
+                entries &&
+                entries[0] &&
+                entries[0].type
+            ) {
+                return entries[0].type;
+            }
+
+        } catch (_) {}
+
+
+        try {
+
+            if (
+                performance.navigation &&
+                performance.navigation.type === 1
+            ) {
+                return "reload";
+            }
+
+        } catch (_) {}
+
+
+        return "navigate";
+    }
+
+
+    if (
+        !isMobile() ||
+        navigationType() !== "reload"
+    ) {
+        return;
+    }
+
+
+    function forceHome() {
+
+        if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual";
+        }
+
+
+        try {
+
+            history.replaceState(
+                null,
+                "",
+                window.location.pathname +
+                window.location.search +
+                "#home"
+            );
+
+        } catch (_) {}
+
+
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "auto"
+        });
+    }
+
+
+    forceHome();
+
+
+    requestAnimationFrame(
+        function () {
+
+            forceHome();
+
+            requestAnimationFrame(
+                forceHome
+            );
+        }
+    );
+
+
+    window.addEventListener(
+        "load",
+        function () {
+
+            forceHome();
+
+            setTimeout(
+                forceHome,
+                60
+            );
+
+            setTimeout(
+                forceHome,
+                180
+            );
+
+            setTimeout(
+                forceHome,
+                420
+            );
+        },
+        {
+            once:
+                true
+        }
+    );
+
+
+    window.addEventListener(
+        "pageshow",
+        function (event) {
+
+            /*
+            BFCache (Zurück/Vorwärts) nicht anfassen.
+            Pull-to-Refresh / Reload ist nicht persisted.
+            */
+            if (event.persisted) {
+                return;
+            }
+
+
+            if (
+                navigationType() ===
+                "reload"
+            ) {
+
+                setTimeout(
+                    forceHome,
+                    20
+                );
+
+                setTimeout(
+                    forceHome,
+                    150
+                );
+            }
         }
     );
 
