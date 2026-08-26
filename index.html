@@ -10478,6 +10478,17 @@ auf derselben Höhe wie auf Event 1.
 
 }
 
+
+
+/* ==========================================================
+   NAV-LOGO – WEICH ZURÜCK ZUM SEITENANFANG
+========================================================== */
+
+.nav-logo {
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -14716,6 +14727,85 @@ function activateExternalServices(
                     40
                 );
             }
+        }
+    );
+
+})();
+</script><script>
+/* ==========================================================
+   NAV-LOGO – SMOOTH SCROLL ZUR STARTSEITE
+   Verhindert den harten nativen #home-Sprung.
+========================================================== */
+
+(function () {
+
+    const logo =
+        document.querySelector(
+            ".nav-logo"
+        );
+
+    if (!logo) {
+        return;
+    }
+
+
+    logo.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+
+            /*
+            Falls das mobile Menü aus irgendeinem Grund offen ist,
+            wird es sauber geschlossen.
+            */
+            const mobileMenu =
+                document.getElementById(
+                    "mobileMenu"
+                );
+
+
+            if (mobileMenu) {
+
+                mobileMenu.classList.remove(
+                    "open"
+                );
+            }
+
+
+            document.body.classList.remove(
+                "no-scroll"
+            );
+
+
+            /*
+            Hash aktualisieren, aber ohne den nativen harten Sprung.
+            */
+            history.replaceState(
+                null,
+                "",
+                window.location.pathname +
+                window.location.search +
+                "#home"
+            );
+
+
+            const reduceMotion =
+                window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches;
+
+
+            window.scrollTo({
+                top:
+                    0,
+
+                behavior:
+                    reduceMotion
+                        ? "auto"
+                        : "smooth"
+            });
         }
     );
 
