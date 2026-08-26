@@ -11332,6 +11332,109 @@ damit der Scrollpfeil weiterhin sicher im sichtbaren Bereich bleibt.
 
 }
 
+
+
+/* ==========================================================
+   WEB / DESKTOP – MOBILE LOGODATEI VERWENDEN
+   WICHTIG:
+   Nur das Logo wird geändert.
+   Der bisherige Satz / das Zitat darunter bleibt im Web
+   exakt wie vorher.
+========================================================== */
+
+@media (min-width: 701px) {
+
+    /*
+    Bisheriges horizontales Hero-Logo im Web ausblenden.
+    */
+    .hero-logo {
+        display:
+            none !important;
+    }
+
+
+    /*
+    Stattdessen dieselbe Datei wie mobil verwenden:
+    "Allerweil Logo Mobil.png"
+    */
+    .hero-logo-mobile-file {
+
+        display:
+            block !important;
+
+        width:
+            min(
+                430px,
+                38vw
+            );
+
+        margin:
+            0 auto 34px;
+
+        text-align:
+            center;
+
+        line-height:
+            0;
+    }
+
+
+    .hero-logo-mobile-file img {
+
+        display:
+            block;
+
+        width:
+            100%;
+
+        height:
+            auto;
+
+        margin:
+            0 auto;
+
+        filter:
+            none !important;
+    }
+
+
+    /*
+    Der neue mobile Spruch bleibt auf Desktop AUS.
+    Dadurch bleibt dort das bisherige Hero-Zitat samt
+    Autor exakt erhalten.
+    */
+    .mobile-hero-new-slogan {
+        display:
+            none !important;
+    }
+
+}
+
+
+
+/* ==========================================================
+   WEB / DESKTOP – ORIGINALSPRUCH UNTER DEM LOGO
+========================================================== */
+
+@media (min-width: 701px) {
+
+    .hero-quote {
+        display:
+            block !important;
+    }
+
+    .hero-quote-author {
+        display:
+            block !important;
+    }
+
+    .mobile-hero-new-slogan {
+        display:
+            none !important;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -11380,19 +11483,7 @@ damit der Scrollpfeil weiterhin sicher im sichtbaren Bereich bleibt.
 <div class="hero-logo">
 <img alt="Allerweil Stehausschank" src="Allerweil Logo.png"/>
 </div><div class="hero-logo-mobile-file"><img alt="Allerweil Stehausschank" src="Allerweil Logo Mobil.png"/></div><div class="mobile-hero-new-slogan">Du kannst sitzen oder stehen. Nur die Zeit fliegt</div>
-<div class="hero-quote">
-
-            Wir wollten nur kurz
-            stehen bleiben.
-
-            <br/>
-
-            Jetzt stehen wir
-
-            <span>
-                allerweil hier.
-            </span>
-</div>
+<div class="hero-quote">Wir wollten nur kurz stehen bleiben.<br/>Jetzt stehen wir <span>allerweil hier.</span></div>
 <div class="hero-quote-author">der erste Gast, der eigentlich nur kurz bleiben wollte</div>
 <div class="hero-actions">
 <a class="primary-button" href="#standort">
