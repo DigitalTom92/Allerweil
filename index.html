@@ -10895,6 +10895,108 @@ auf derselben Höhe wie auf Event 1.
 
 }
 
+
+
+/* ==========================================================
+   MOBILE MENÜ – IMPRESSUM + DATENSCHUTZ
+========================================================== */
+
+.mobile-menu-legal {
+    display:
+        none;
+}
+
+@media (max-width: 700px) {
+
+    .mobile-menu-legal {
+
+        position:
+            absolute;
+
+        left:
+            50%;
+
+        bottom:
+            calc(
+                28px
+                + env(
+                    safe-area-inset-bottom,
+                    0px
+                )
+            );
+
+        transform:
+            translateX(-50%);
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        gap:
+            22px;
+
+        width:
+            max-content;
+
+        max-width:
+            calc(100vw - 40px);
+
+        z-index:
+            2;
+    }
+
+
+    .mobile-menu .mobile-menu-legal a {
+
+        font-size:
+            .72rem;
+
+        font-weight:
+            550;
+
+        line-height:
+            1;
+
+        letter-spacing:
+            .08em;
+
+        color:
+            rgba(
+                254,
+                230,
+                202,
+                .62
+            );
+
+        opacity:
+            1;
+
+        text-transform:
+            none;
+
+        transition:
+            color .2s ease,
+            opacity .2s ease;
+    }
+
+
+    .mobile-menu .mobile-menu-legal a:hover,
+    .mobile-menu .mobile-menu-legal a:focus-visible {
+
+        color:
+            var(--cream);
+
+        opacity:
+            1;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -10925,7 +11027,7 @@ auf derselben Höhe wie auf Event 1.
         ✕
 
     </button>
-<a href="#allerweil">Allerweil</a><a href="#oeffnungszeiten">Öffnungszeiten</a><a href="#galerie">Galerie</a><a href="#event">Events</a><a href="#standort">Standort</a><a href="#kontakt">Kontakt</a></div>
+<a href="#allerweil">Allerweil</a><a href="#oeffnungszeiten">Öffnungszeiten</a><a href="#galerie">Galerie</a><a href="#event">Events</a><a href="#standort">Standort</a><a href="#kontakt">Kontakt</a><div class="mobile-menu-legal"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div></div>
 <!-- ==========================================================
      HERO
 ========================================================== -->
