@@ -11435,6 +11435,145 @@ damit der Scrollpfeil weiterhin sicher im sichtbaren Bereich bleibt.
 
 }
 
+
+
+/* ==========================================================
+   WEB / DESKTOP – HERO FEINJUSTIERUNG
+   - Logo etwas weiter nach unten
+   - Spruch darunter etwas kleiner
+   - "Allerweil entdecken" + Pfeil bleiben sicher sichtbar
+========================================================== */
+
+@media (min-width: 701px) {
+
+    /*
+    Logo etwas tiefer setzen, ohne den kompletten Hero
+    unnötig nach unten zu schieben.
+    */
+    .hero-logo-mobile-file {
+
+        margin-top:
+            26px !important;
+
+        margin-bottom:
+            24px !important;
+    }
+
+
+    /*
+    Originalspruch etwas kompakter.
+    Inhalt bleibt unverändert.
+    */
+    .hero-quote {
+
+        max-width:
+            760px !important;
+
+        font-size:
+            clamp(
+                1.55rem,
+                2.45vw,
+                2.65rem
+            ) !important;
+
+        line-height:
+            1.06 !important;
+    }
+
+
+    .hero-quote-author {
+
+        margin-top:
+            18px !important;
+
+        font-size:
+            .70rem !important;
+    }
+
+
+    /*
+    Der bisher sehr große Abstand zum Scrollhinweis wird
+    reduziert, damit "Allerweil entdecken" samt Pfeil sicher
+    noch auf der grünen Hero-Fläche sitzt.
+    */
+    .hero-actions {
+
+        margin-top:
+            56px !important;
+    }
+
+
+    .hero-actions .secondary-button {
+
+        padding:
+            4px 12px !important;
+    }
+
+
+    .hero-actions .desktop-scroll-label {
+
+        font-size:
+            .78rem !important;
+    }
+
+
+    .hero-actions .desktop-scroll-arrow {
+
+        font-size:
+            1.10rem !important;
+    }
+
+}
+
+
+/*
+Auf niedrigeren Desktop-/Laptop-Höhen noch etwas kompakter,
+damit der Scrollhinweis niemals unter die grüne Fläche rutscht.
+*/
+@media (min-width: 701px) and (max-height: 820px) {
+
+    .hero-logo-mobile-file {
+
+        margin-top:
+            16px !important;
+
+        margin-bottom:
+            18px !important;
+
+        width:
+            min(
+                390px,
+                36vw
+            ) !important;
+    }
+
+
+    .hero-quote {
+
+        font-size:
+            clamp(
+                1.42rem,
+                2.2vw,
+                2.25rem
+            ) !important;
+    }
+
+
+    .hero-quote-author {
+
+        margin-top:
+            14px !important;
+    }
+
+
+    .hero-actions {
+
+        margin-top:
+            38px !important;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
