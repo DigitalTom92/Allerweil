@@ -9526,6 +9526,38 @@ auf derselben Höhe wie auf Event 1.
         #243421 !important;
 }
 
+
+
+/* ==========================================================
+   HERO – MOBIL HALBKREISE WIE VORHER
+   Desktop bleibt dunkelgrün, Mobil wieder hell/dezent.
+========================================================== */
+
+@media (max-width: 700px) {
+
+    .hero::before {
+        border-color:
+            rgba(
+                254,
+                230,
+                202,
+                .13
+            ) !important;
+    }
+
+
+    .hero::after {
+        border-color:
+            rgba(
+                254,
+                230,
+                202,
+                .16
+            ) !important;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
