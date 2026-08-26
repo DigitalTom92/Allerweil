@@ -12114,6 +12114,84 @@ und zeigt weiterhin den Hand-/Finger-Cursor.
 
 }
 
+
+
+/* ==========================================================
+   MOBILE – GLEICHER HERO-SPRUCH WIE IM WEB
+========================================================== */
+
+@media (max-width: 700px) {
+
+    /*
+    Alten mobilen Alternativ-Spruch ausblenden.
+    */
+    .mobile-hero-new-slogan {
+        display:
+            none !important;
+    }
+
+
+    /*
+    Den originalen Web-Spruch auch mobil anzeigen.
+    Gleicher Stil: zentriert, gleiche Typografie,
+    "allerweil hier." kursiv.
+    */
+    .hero-quote {
+
+        display:
+            block !important;
+
+        max-width:
+            340px !important;
+
+        margin:
+            24px auto 0 !important;
+
+        font-size:
+            clamp(
+                1.22rem,
+                5.4vw,
+                1.58rem
+            ) !important;
+
+        line-height:
+            1.14 !important;
+
+        letter-spacing:
+            -.025em !important;
+
+        text-align:
+            center !important;
+    }
+
+
+    .hero-quote span {
+
+        font-style:
+            italic !important;
+    }
+
+
+    /*
+    Die kleine Autorzeile bleibt mobil weiterhin ausgeblendet.
+    */
+    .hero-quote-author {
+        display:
+            none !important;
+    }
+
+
+    /*
+    Etwas harmonischer Abstand bis "Allerweil entdecken".
+    */
+    .hero-actions {
+        margin-top:
+            38px !important;
+    }
+
+}
+
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
