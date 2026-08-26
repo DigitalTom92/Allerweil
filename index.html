@@ -11231,6 +11231,107 @@ damit der Scrollpfeil weiterhin sicher im sichtbaren Bereich bleibt.
 
 }
 
+
+
+/* ==========================================================
+   MOBILE STARTSEITE – NEUER SPRUCH UNTER DEM LOGO
+========================================================== */
+
+.mobile-hero-new-slogan {
+    display:
+        none;
+}
+
+
+@media (max-width: 700px) {
+
+    /*
+    "Friedensplatz · Darmstadt" auf Mobil komplett ausblenden.
+    */
+    .hero-eyebrow {
+        display:
+            none !important;
+    }
+
+
+    /*
+    Bisheriges Startseiten-Zitat + Autor auf Mobil ausblenden.
+    */
+    .hero-quote,
+    .hero-quote-author {
+        display:
+            none !important;
+    }
+
+
+    /*
+    Neuer Spruch direkt unter dem mobilen Allerweil-Logo.
+    */
+    .mobile-hero-new-slogan {
+
+        display:
+            block;
+
+        width:
+            min(
+                340px,
+                88vw
+            );
+
+        margin:
+            24px auto 0;
+
+        color:
+            rgba(
+                254,
+                230,
+                202,
+                .86
+            );
+
+        font-size:
+            clamp(
+                1.22rem,
+                5.4vw,
+                1.58rem
+            );
+
+        font-weight:
+            470;
+
+        line-height:
+            1.18;
+
+        letter-spacing:
+            -.025em;
+
+        text-align:
+            center;
+    }
+
+
+    /*
+    Durch das entfernte Friedensplatz-Label bekommt das Logo
+    oben bewusst etwas mehr Luft.
+    */
+    .hero-logo-mobile-file {
+
+        margin-top:
+            18px !important;
+
+        margin-bottom:
+            0 !important;
+    }
+
+
+    .hero-actions {
+
+        margin-top:
+            38px !important;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -11278,7 +11379,7 @@ damit der Scrollpfeil weiterhin sicher im sichtbaren Bereich bleibt.
         </div>
 <div class="hero-logo">
 <img alt="Allerweil Stehausschank" src="Allerweil Logo.png"/>
-</div><div class="hero-logo-mobile-file"><img alt="Allerweil Stehausschank" src="Allerweil Logo Mobil.png"/></div>
+</div><div class="hero-logo-mobile-file"><img alt="Allerweil Stehausschank" src="Allerweil Logo Mobil.png"/></div><div class="mobile-hero-new-slogan">Du kannst sitzen oder stehen. Nur die Zeit fliegt</div>
 <div class="hero-quote">
 
             Wir wollten nur kurz
