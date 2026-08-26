@@ -13436,82 +13436,7 @@ function activateExternalServices(
 })();
 
 </script>
-<script>
-/* ==========================================================
-   EVENTBANNER → PASSENDE EVENT-SEITE
-========================================================== */
 
-(function () {
-
-    const eventLinks =
-        Array.from(
-            document.querySelectorAll(
-                ".event-banner-item"
-            )
-        );
-
-
-    if (!eventLinks.length) {
-        return;
-    }
-
-
-    eventLinks.forEach(
-        function (link) {
-
-            link.addEventListener(
-                "click",
-                function (event) {
-
-                    event.preventDefault();
-
-                    const index =
-                        Number(
-                            link.dataset.eventIndex
-                        ) || 0;
-
-
-                    if (
-                        typeof window.goToAllerweilEvent
-                        === "function"
-                    ) {
-
-                        window.goToAllerweilEvent(
-                            index
-                        );
-
-                        return;
-                    }
-
-
-                    const eventSection =
-                        document.getElementById(
-                            "event"
-                        );
-
-                    if (eventSection) {
-
-                        const reduceMotion =
-                            window.matchMedia(
-                                "(prefers-reduced-motion: reduce)"
-                            ).matches;
-
-                        eventSection.scrollIntoView({
-                            behavior:
-                                reduceMotion
-                                    ? "auto"
-                                    : "smooth",
-                            block:
-                                "start"
-                        });
-                    }
-                }
-            );
-        }
-    );
-
-})();
-</script>
 <script>
 /* ==========================================================
    EVENT-SLIDER
@@ -15089,280 +15014,6 @@ function activateExternalServices(
             passive: true
         }
     );
-
-})();
-</script><script>
-/* ==========================================================
-   WEB / DESKTOP – EVENT-SPRUNG SO POSITIONIEREN,
-   DASS DIE PUNKTELEISTE UNTEN NOCH SICHTBAR IST
-========================================================== */
-
-(function () {
-
-    const eventSection =
-        document.getElementById(
-            "event"
-        );
-
-    if (!eventSection) {
-        return;
-    }
-
-
-    function prefersReducedMotion() {
-
-        return window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
-    }
-
-
-    function scrollEventDesktopIntoPosition() {
-
-        /*
-        Mobil / Tablet bleiben exakt wie bisher.
-        */
-        if (window.innerWidth <= 900) {
-
-            eventSection.scrollIntoView({
-                behavior:
-                    prefersReducedMotion()
-                        ? "auto"
-                        : "smooth",
-
-                block:
-                    "start"
-            });
-
-            return;
-        }
-
-
-        const pagination =
-            eventSection.querySelector(
-                ".event-pagination"
-            );
-
-
-        if (!pagination) {
-
-            eventSection.scrollIntoView({
-                behavior:
-                    prefersReducedMotion()
-                        ? "auto"
-                        : "smooth",
-
-                block:
-                    "start"
-            });
-
-            return;
-        }
-
-
-        /*
-        Ziel:
-        Die Unterkante der Punkteleiste sitzt nach dem Sprung
-        nur ca. 18 px oberhalb des unteren Bildschirmrands.
-
-        Dadurch springt die Web-Version etwas weiter in die
-        Eventsektion hinein und die Punkte sind gerade noch
-        vollständig sichtbar.
-        */
-
-        const paginationRect =
-            pagination.getBoundingClientRect();
-
-
-        const desiredPaginationBottom =
-            window.innerHeight - 18;
-
-
-        const targetY =
-            window.scrollY +
-            paginationRect.bottom -
-            desiredPaginationBottom;
-
-
-        window.scrollTo({
-            top:
-                Math.max(
-                    0,
-                    targetY
-                ),
-
-            behavior:
-                prefersReducedMotion()
-                    ? "auto"
-                    : "smooth"
-        });
-    }
-
-
-    /*
-    Öffentliche Funktion, damit auch der obere Eventbanner
-    dieselbe Desktop-Positionierung verwenden kann.
-    */
-    window.scrollAllerweilEventIntoView =
-        scrollEventDesktopIntoPosition;
-
-
-    /*
-    Navigation / normale Links zu #event auf Desktop.
-    Eventbanner wird separat über goToAllerweilEvent behandelt.
-    */
-    document
-        .querySelectorAll(
-            'a[href="#event"]:not(.event-banner-item)'
-        )
-        .forEach(
-            function (link) {
-
-                link.addEventListener(
-                    "click",
-                    function (event) {
-
-                        if (
-                            window.innerWidth <= 900
-                        ) {
-                            return;
-                        }
-
-
-                        event.preventDefault();
-
-
-                        history.replaceState(
-                            null,
-                            "",
-                            "#event"
-                        );
-
-
-                        scrollEventDesktopIntoPosition();
-                    },
-                    true
-                );
-            }
-        );
-
-
-    /*
-    Bestehende Eventbanner-Funktion erweitern:
-    Erst wird wie bisher die passende Eventseite gewählt,
-    anschließend wird auf Desktop exakt so gescrollt,
-    dass die Punkteleiste am unteren Rand sichtbar bleibt.
-    */
-    const originalGoToAllerweilEvent =
-        window.goToAllerweilEvent;
-
-
-    if (
-        typeof originalGoToAllerweilEvent
-        === "function"
-    ) {
-
-        window.goToAllerweilEvent =
-            function (index) {
-
-                if (
-                    window.innerWidth <= 900
-                ) {
-
-                    originalGoToAllerweilEvent(
-                        index
-                    );
-
-                    return;
-                }
-
-
-                /*
-                Passende Eventseite auswählen, ohne den alten
-                Desktop-Sprung dauerhaft zu übernehmen.
-                */
-                const slider =
-                    document.getElementById(
-                        "eventSlider"
-                    );
-
-
-                if (slider) {
-
-                    const slides =
-                        slider.querySelectorAll(
-                            ".event-slide"
-                        );
-
-
-                    const safeIndex =
-                        Math.max(
-                            0,
-                            Math.min(
-                                Number(index) || 0,
-                                slides.length - 1
-                            )
-                        );
-
-
-                    slider.scrollTo({
-                        left:
-                            safeIndex *
-                            slider.clientWidth,
-
-                        behavior:
-                            prefersReducedMotion()
-                                ? "auto"
-                                : "smooth"
-                    });
-
-
-                    const dots =
-                        eventSection.querySelectorAll(
-                            ".event-page-dot"
-                        );
-
-
-                    dots.forEach(
-                        function (dot, dotIndex) {
-
-                            const active =
-                                dotIndex === safeIndex;
-
-
-                            dot.classList.toggle(
-                                "active",
-                                active
-                            );
-
-
-                            dot.setAttribute(
-                                "aria-current",
-                                active
-                                    ? "true"
-                                    : "false"
-                            );
-                        }
-                    );
-                }
-
-
-                history.replaceState(
-                    null,
-                    "",
-                    "#event"
-                );
-
-
-                /*
-                Ein Frame warten, damit Slider/Dot-Layout sicher
-                aktuell ist, dann präzise positionieren.
-                */
-                window.requestAnimationFrame(
-                    scrollEventDesktopIntoPosition
-                );
-            };
-    }
 
 })();
 </script><script>
@@ -16949,8 +16600,6 @@ function activateExternalServices(
 
 })();
 </script>
-
-
 <script>
 /* ==========================================================
    WEB / DESKTOP – ROBUSTE ZENTRALE NAVIGATION
@@ -17112,54 +16761,100 @@ function activateExternalServices(
 
 
     function getEventTargetTop(
-        eventSection
+        eventSection,
+        eventIndex
     ) {
 
-        const sectionTop =
-            getNormalTargetTop(
-                eventSection
+        /*
+        WICHTIG:
+        Für Klicks aus der dynamischen Leiste zielen wir nicht
+        mehr auf die abstrakte Oberkante der Event-Sektion oder
+        auf die Pagination.
+
+        Stattdessen wird direkt die sichtbare Inhaltsbox des
+        gewählten Events als Ziel verwendet.
+
+        Dadurch landet bereits der ERSTE Klick sicher mitten im
+        echten Eventbereich und niemals mehr am Ende der Galerie.
+        */
+        const slides =
+            Array.from(
+                eventSection.querySelectorAll(
+                    ".event-slide"
+                )
             );
 
 
-        const pagination =
-            eventSection.querySelector(
-                ".event-pagination"
+        const safeIndex =
+            Math.max(
+                0,
+                Math.min(
+                    Number(eventIndex) || 0,
+                    Math.max(
+                        slides.length - 1,
+                        0
+                    )
+                )
             );
 
 
-        if (!pagination) {
-            return sectionTop;
-        }
+        const slide =
+            slides[safeIndex]
+            ||
+            slides[0]
+            ||
+            null;
 
 
-        const paginationRect =
-            pagination.getBoundingClientRect();
-
-
-        const paginationTarget =
-            window.scrollY +
-            paginationRect.bottom -
-            (
-                window.innerHeight -
-                18
-            );
+        const content =
+            slide
+                ? slide.querySelector(
+                    ".statement-inner"
+                )
+                : null;
 
 
         /*
-        WICHTIGER FIX:
-        Die alte Rechnung konnte bei einer Eventsektion, die
-        niedriger als das Browserfenster ist, VOR den Beginn
-        der Eventsektion springen – also zurück in die Galerie.
-
-        Deshalb darf die Zielposition niemals oberhalb des
-        korrekten Event-Starts liegen.
+        Fallback: Eventsektion selbst.
         */
+        const targetElement =
+            content
+            ||
+            eventSection;
+
+
+        const absoluteTop =
+            window.scrollY +
+            targetElement.getBoundingClientRect().top;
+
+
+        /*
+        Etwas Luft unter der festen Navigation lassen.
+        Bei der Inhaltsbox bedeutet das:
+        Datum + Eventtitel stehen sofort sichtbar im Viewport.
+        */
+        const targetTop =
+            absoluteTop -
+            getNavHeight() -
+            28;
+
+
+        /*
+        Zusätzliche harte Untergrenze:
+        Niemals oberhalb des Beginns der Eventsektion landen.
+        */
+        const eventSectionTop =
+            window.scrollY +
+            eventSection.getBoundingClientRect().top -
+            getNavHeight();
+
+
         return Math.max(
             0,
             Math.round(
                 Math.max(
-                    sectionTop,
-                    paginationTarget
+                    targetTop,
+                    eventSectionTop
                 )
             )
         );
@@ -17572,9 +17267,10 @@ function activateExternalServices(
                         : 0;
 
 
-                selectEventSlide(
-                    eventIndex
-                );
+                const selectedEventIndex =
+                    selectEventSlide(
+                        eventIndex
+                    );
 
 
                 setHashWithoutJump(
@@ -17585,8 +17281,9 @@ function activateExternalServices(
 
                 /*
                 Zwei Frames geben dem Eventslider Zeit, seine
-                horizontale Position und die Punktanzeige sauber
-                zu übernehmen. Erst danach vertikal scrollen.
+                horizontale Position sauber zu übernehmen.
+                Danach wird direkt auf den Inhalt des gewählten
+                Events gescrollt – nicht auf Galerie/Übergang.
                 */
                 window.requestAnimationFrame(
                     function () {
@@ -17596,7 +17293,8 @@ function activateExternalServices(
 
                                 scrollToPosition(
                                     getEventTargetTop(
-                                        target
+                                        target,
+                                        selectedEventIndex
                                     )
                                 );
                             }
@@ -17625,6 +17323,51 @@ function activateExternalServices(
 
 })();
 </script>
+<script>
+/* ==========================================================
+   WEB – EVENTBANNER FIRST-CLICK GUARD
 
-</body>
+   Falls ein Browser nach Pointer-/Drag-Interaktion noch einen
+   verspäteten alten Link-Default erzeugen möchte, wird dieser
+   für die Eventbanner-Links sicher verhindert.
+
+   Die eigentliche Navigation übernimmt ausschließlich der
+   zentrale Web-Navigationshandler.
+========================================================== */
+
+(function () {
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                window.innerWidth < 701
+            ) {
+                return;
+            }
+
+
+            const link =
+                event.target.closest(
+                    ".event-banner-item"
+                );
+
+
+            if (!link) {
+                return;
+            }
+
+
+            /*
+            preventDefault ist absichtlich redundant.
+            Das verhindert sicher jeden nativen #event-Sprung.
+            */
+            event.preventDefault();
+        },
+        true
+    );
+
+})();
+</script></body>
 </html>
