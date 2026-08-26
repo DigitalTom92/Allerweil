@@ -9952,6 +9952,65 @@ auf derselben Höhe wie auf Event 1.
 
 }
 
+
+
+/* ==========================================================
+   MOBILE EVENTS – DEZENTER WISCH-HINWEIS
+   Eventseite rutscht beim Erreichen kurz nach links und zurück.
+========================================================== */
+
+@media (max-width: 700px) {
+
+    .event-slider.mobile-swipe-hint .event-track {
+        animation:
+            allerweilEventSwipeHint
+            2.4s
+            cubic-bezier(.22,.75,.25,1)
+            1;
+    }
+
+    @keyframes allerweilEventSwipeHint {
+
+        0%,
+        12% {
+            transform:
+                translateX(0);
+        }
+
+        30% {
+            transform:
+                translateX(-22px);
+        }
+
+        48% {
+            transform:
+                translateX(0);
+        }
+
+        64% {
+            transform:
+                translateX(-12px);
+        }
+
+        82%,
+        100% {
+            transform:
+                translateX(0);
+        }
+    }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .event-slider.mobile-swipe-hint .event-track {
+        animation:
+            none !important;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -12886,6 +12945,212 @@ function activateExternalServices(
             event.stopPropagation();
         },
         true
+    );
+
+})();
+</script><script>
+/* ==========================================================
+   MOBILE EVENTS – WISCH-HINWEIS STARTEN
+   Läuft beim Sichtbarwerden der Eventsektion kurz ab.
+   Sobald der Nutzer selbst wischt, wird die Animation beendet.
+========================================================== */
+
+(function () {
+
+    const slider =
+        document.getElementById(
+            "eventSlider"
+        );
+
+    const section =
+        document.getElementById(
+            "event"
+        );
+
+
+    if (
+        !slider ||
+        !section
+    ) {
+        return;
+    }
+
+
+    const reduceMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        );
+
+
+    let hintTimer =
+        null;
+
+    let hasPlayedWhileVisible =
+        false;
+
+
+    function stopHint() {
+
+        window.clearTimeout(
+            hintTimer
+        );
+
+        hintTimer =
+            null;
+
+        slider.classList.remove(
+            "mobile-swipe-hint"
+        );
+    }
+
+
+    function playHint() {
+
+        if (
+            window.innerWidth > 700 ||
+            reduceMotion.matches ||
+            slider.scrollLeft > 8 ||
+            hasPlayedWhileVisible
+        ) {
+            return;
+        }
+
+
+        hasPlayedWhileVisible =
+            true;
+
+
+        hintTimer =
+            window.setTimeout(
+                function () {
+
+                    /*
+                    Klasse kurz neu setzen, damit die Animation
+                    auch beim späteren erneuten Besuch wieder startet.
+                    */
+                    slider.classList.remove(
+                        "mobile-swipe-hint"
+                    );
+
+                    void slider.offsetWidth;
+
+                    slider.classList.add(
+                        "mobile-swipe-hint"
+                    );
+
+
+                    window.setTimeout(
+                        function () {
+
+                            slider.classList.remove(
+                                "mobile-swipe-hint"
+                            );
+
+                        },
+                        2500
+                    );
+
+                },
+                650
+            );
+    }
+
+
+    /*
+    Sobald die Events gut sichtbar sind, gibt es den kleinen
+    Hinweis. Verlässt man den Bereich komplett, darf er beim
+    nächsten Besuch erneut abgespielt werden.
+    */
+    const observer =
+        new IntersectionObserver(
+            function (entries) {
+
+                entries.forEach(
+                    function (entry) {
+
+                        if (
+                            entry.isIntersecting &&
+                            entry.intersectionRatio >= .42
+                        ) {
+
+                            playHint();
+
+                            return;
+                        }
+
+
+                        if (!entry.isIntersecting) {
+
+                            stopHint();
+
+                            hasPlayedWhileVisible =
+                                false;
+                        }
+                    }
+                );
+            },
+            {
+                threshold:
+                    [0, .42]
+            }
+        );
+
+
+    observer.observe(
+        section
+    );
+
+
+    /*
+    Eigene Bedienung hat immer Vorrang.
+    */
+    [
+        "touchstart",
+        "pointerdown",
+        "wheel"
+    ].forEach(
+        function (eventName) {
+
+            slider.addEventListener(
+                eventName,
+                stopHint,
+                {
+                    passive: true
+                }
+            );
+        }
+    );
+
+
+    slider.addEventListener(
+        "scroll",
+        function () {
+
+            if (
+                slider.scrollLeft > 8
+            ) {
+                stopHint();
+            }
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            if (
+                window.innerWidth > 700
+            ) {
+                stopHint();
+            }
+        },
+        {
+            passive: true
+        }
     );
 
 })();
