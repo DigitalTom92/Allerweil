@@ -1,7 +1,124 @@
 <!DOCTYPE html>
 
 <html lang="de">
-<head>
+<head><script>
+/* ==========================================================
+   MOBILE REFRESH – IMMER AUF DER STARTSEITE BEGINNEN
+   Läuft absichtlich schon im <head>, bevor der Seiteninhalt
+   aufgebaut wird. Das hilft besonders bei iPhone/Safari und
+   Pull-to-Refresh.
+========================================================== */
+
+(function () {
+
+    const MOBILE_MAX =
+        700;
+
+
+    function isMobile() {
+
+        return (
+            window.innerWidth <= MOBILE_MAX
+        );
+    }
+
+
+    function getNavigationType() {
+
+        if (
+            performance.getEntriesByType
+        ) {
+
+            const entries =
+                performance.getEntriesByType(
+                    "navigation"
+                );
+
+
+            if (
+                entries &&
+                entries[0] &&
+                entries[0].type
+            ) {
+
+                return entries[0].type;
+            }
+        }
+
+
+        /*
+        Fallback für ältere Safari-Versionen.
+        TYPE_RELOAD = 1
+        */
+        if (
+            performance.navigation &&
+            performance.navigation.type === 1
+        ) {
+
+            return "reload";
+        }
+
+
+        return "navigate";
+    }
+
+
+    if (!isMobile()) {
+        return;
+    }
+
+
+    if (
+        "scrollRestoration"
+        in history
+    ) {
+
+        history.scrollRestoration =
+            "manual";
+    }
+
+
+    if (
+        getNavigationType() ===
+        "reload"
+    ) {
+
+        /*
+        Alte Abschnitts-Hashes entfernen, damit Safari nach
+        dem Reload nicht wieder zu #event, #kontakt usw. springt.
+        */
+        history.replaceState(
+            null,
+            "",
+            window.location.pathname +
+            window.location.search +
+            "#home"
+        );
+
+
+        try {
+
+            sessionStorage.removeItem(
+                "allerweil-mobile-scroll-y"
+            );
+
+        } catch (_) {
+            /* In privaten Browsermodi ggf. nicht verfügbar. */
+        }
+
+
+        /*
+        Bereits so früh wie möglich auf Position 0 setzen.
+        Weitere Sicherungen folgen nach dem Laden.
+        */
+        window.scrollTo(
+            0,
+            0
+        );
+    }
+
+})();
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Allerweil Darmstadt | Stehausschank am Friedensplatz</title>
@@ -15369,6 +15486,225 @@ function activateExternalServices(
                         ? "auto"
                         : "smooth"
             });
+        }
+    );
+
+})();
+</script><script>
+/* ==========================================================
+   MOBILE REFRESH – STARTPOSITION NACH DEM LADEN ABSICHERN
+   Gilt auch für iPhone Pull-to-Refresh.
+========================================================== */
+
+(function () {
+
+    const MOBILE_MAX =
+        700;
+
+
+    function isMobile() {
+
+        return (
+            window.innerWidth <= MOBILE_MAX
+        );
+    }
+
+
+    function getNavigationType() {
+
+        if (
+            performance.getEntriesByType
+        ) {
+
+            const entries =
+                performance.getEntriesByType(
+                    "navigation"
+                );
+
+
+            if (
+                entries &&
+                entries[0] &&
+                entries[0].type
+            ) {
+
+                return entries[0].type;
+            }
+        }
+
+
+        if (
+            performance.navigation &&
+            performance.navigation.type === 1
+        ) {
+
+            return "reload";
+        }
+
+
+        return "navigate";
+    }
+
+
+    if (
+        !isMobile() ||
+        getNavigationType() !== "reload"
+    ) {
+        return;
+    }
+
+
+    if (
+        "scrollRestoration"
+        in history
+    ) {
+
+        history.scrollRestoration =
+            "manual";
+    }
+
+
+    history.replaceState(
+        null,
+        "",
+        window.location.pathname +
+        window.location.search +
+        "#home"
+    );
+
+
+    function forceTop() {
+
+        /*
+        Eventslider ebenfalls auf Seite 1 zurücksetzen.
+        So startet wirklich der komplette mobile Zustand sauber.
+        */
+        const eventSlider =
+            document.getElementById(
+                "eventSlider"
+            );
+
+
+        if (eventSlider) {
+
+            eventSlider.scrollTo({
+                left:
+                    0,
+
+                behavior:
+                    "auto"
+            });
+        }
+
+
+        document
+            .querySelectorAll(
+                ".event-page-dot"
+            )
+            .forEach(
+                function (
+                    dot,
+                    index
+                ) {
+
+                    const active =
+                        index === 0;
+
+
+                    dot.classList.toggle(
+                        "active",
+                        active
+                    );
+
+
+                    dot.setAttribute(
+                        "aria-current",
+                        active
+                            ? "true"
+                            : "false"
+                    );
+                }
+            );
+
+
+        window.scrollTo({
+            top:
+                0,
+
+            left:
+                0,
+
+            behavior:
+                "auto"
+        });
+    }
+
+
+    /*
+    Sofort + nach Layout + nach Bildern/Fonts.
+    Diese Staffelung fängt Safari-Scroll-Restoration nach
+    Pull-to-Refresh zuverlässig ab.
+    */
+    forceTop();
+
+
+    window.requestAnimationFrame(
+        function () {
+
+            forceTop();
+
+
+            window.requestAnimationFrame(
+                forceTop
+            );
+        }
+    );
+
+
+    window.addEventListener(
+        "load",
+        function () {
+
+            forceTop();
+
+
+            window.setTimeout(
+                forceTop,
+                80
+            );
+
+
+            window.setTimeout(
+                forceTop,
+                260
+            );
+        },
+        {
+            once:
+                true
+        }
+    );
+
+
+    window.addEventListener(
+        "pageshow",
+        function (event) {
+
+            /*
+            BFCache bei Zurück/Vorwärts nicht überschreiben.
+            Bei echtem Reload dagegen immer nach oben.
+            */
+            if (
+                event.persisted
+            ) {
+                return;
+            }
+
+
+            window.setTimeout(
+                forceTop,
+                20
+            );
         }
     );
 
