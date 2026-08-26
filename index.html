@@ -10643,6 +10643,42 @@ auf derselben Höhe wie auf Event 1.
 
 }
 
+
+
+/* ==========================================================
+   MOBILE FOOTER – "ZUM ANFANG" DIREKT UNTER DEM LOGO
+   Nicht mehr am Ende des Footers.
+========================================================== */
+
+@media (max-width: 700px) {
+
+    .footer-logo .mobile-back-to-top {
+
+        /*
+        Gleiche Breite wie das Logo:
+        Dadurch sitzt Pfeil + Text exakt mittig darunter.
+        */
+        width:
+            min(
+                470px,
+                80vw
+            );
+
+        margin:
+            18px 0 0;
+
+        padding:
+            0;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -11193,7 +11229,10 @@ auf derselben Höhe wie auf Event 1.
 <div class="footer-inner">
 <div class="footer-logo">
 <span class="footer-logo-art"><img alt="Allerweil Stehausschank" src="Allerweil Logo.png"/></span>
-</div>
+<a aria-label="Zum Anfang der Seite" class="mobile-back-to-top" href="#home">
+<span aria-hidden="true" class="mobile-back-to-top-arrow">↑</span>
+<span class="mobile-back-to-top-label">Zum Anfang</span>
+</a></div>
 <div class="footer-grid">
 <div class="footer-column">
 <div class="footer-heading">
@@ -11279,10 +11318,7 @@ auf derselben Höhe wie auf Event 1.
 
             </span>
 </div>
-<a aria-label="Zum Anfang der Seite" class="mobile-back-to-top" href="#home">
-<span aria-hidden="true" class="mobile-back-to-top-arrow">↑</span>
-<span class="mobile-back-to-top-label">Zum Anfang</span>
-</a></div>
+</div>
 </footer>
 <!-- ==========================================================
      COOKIE
