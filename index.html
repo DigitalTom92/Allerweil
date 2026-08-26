@@ -11176,6 +11176,61 @@ auf derselben Höhe wie auf Event 1.
 
 }
 
+
+
+/* ==========================================================
+   MOBILE STARTSEITE – ETWAS TIEFER & MEHR LUFT
+   Sonst bleibt das bestehende Layout unverändert.
+========================================================== */
+
+@media (max-width: 700px) {
+
+    /*
+    Gesamten Hero-Inhalt etwas nach unten setzen,
+    damit er unter Eventleiste / Menü nicht so gedrängt wirkt.
+    */
+    .hero-inner {
+        transform:
+            translateY(24px);
+    }
+
+
+    /*
+    Kleine zusätzliche Abstände innerhalb des Hero-Inhalts.
+    */
+    .hero-eyebrow {
+        margin-bottom:
+            27px !important;
+    }
+
+
+    .hero-logo-mobile-file {
+        margin-bottom:
+            27px !important;
+    }
+
+
+    .hero-actions {
+        margin-top:
+            35px !important;
+    }
+
+}
+
+
+/*
+Auf sehr niedrigen Smartphone-Displays etwas weniger Verschiebung,
+damit der Scrollpfeil weiterhin sicher im sichtbaren Bereich bleibt.
+*/
+@media (max-width: 700px) and (max-height: 740px) {
+
+    .hero-inner {
+        transform:
+            translateY(12px);
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
