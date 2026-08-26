@@ -9903,6 +9903,38 @@ auf derselben Höhe wie auf Event 1.
     }
 }
 
+
+
+/* ==========================================================
+   MOBILE EVENTBANNER – NACH LINKS / RECHTS WISCHBAR
+   Ohne Berührung läuft der Banner weiterhin automatisch.
+========================================================== */
+
+@media (max-width: 700px) {
+
+    .mobile-hero-marquee {
+        touch-action:
+            pan-y;
+
+        -webkit-user-select:
+            none;
+
+        user-select:
+            none;
+    }
+
+    .mobile-hero-marquee .marquee-track {
+        will-change:
+            transform;
+    }
+
+    .mobile-hero-marquee.is-touch-dragging {
+        cursor:
+            grabbing;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -12498,5 +12530,347 @@ function activateExternalServices(
 
 })();
 </script>
-</body>
+<script>
+/* ==========================================================
+   MOBILE EVENTBANNER – TOUCH / SWIPE
+   Die laufende Marquee-Animation wird beim Wischen pausiert,
+   mit dem Finger vor/zurück bewegt und danach fortgesetzt.
+========================================================== */
+
+(function () {
+
+    const banner =
+        document.querySelector(
+            ".mobile-hero-marquee"
+        );
+
+    if (!banner) {
+        return;
+    }
+
+
+    const track =
+        banner.querySelector(
+            ".marquee-track"
+        );
+
+    if (!track) {
+        return;
+    }
+
+
+    let startX = 0;
+    let startY = 0;
+
+    let startAnimationTime = 0;
+
+    let activeAnimation = null;
+
+    let isHorizontalDrag = false;
+    let didSwipe = false;
+
+
+    function getMarqueeAnimation() {
+
+        const animations =
+            track.getAnimations();
+
+        if (!animations.length) {
+            return null;
+        }
+
+        return animations.find(
+            function (animation) {
+
+                const effect =
+                    animation.effect;
+
+                if (!effect) {
+                    return false;
+                }
+
+                const timing =
+                    effect.getTiming();
+
+                return (
+                    timing &&
+                    Number(timing.duration) > 0
+                );
+            }
+        ) || animations[0];
+    }
+
+
+    function getDuration(animation) {
+
+        if (
+            !animation ||
+            !animation.effect
+        ) {
+            return 30000;
+        }
+
+        const timing =
+            animation.effect.getTiming();
+
+        const duration =
+            Number(
+                timing.duration
+            );
+
+        return (
+            Number.isFinite(duration) &&
+            duration > 0
+        )
+            ? duration
+            : 30000;
+    }
+
+
+    function wrapTime(
+        time,
+        duration
+    ) {
+
+        return (
+            (
+                time % duration
+            ) + duration
+        ) % duration;
+    }
+
+
+    banner.addEventListener(
+        "touchstart",
+        function (event) {
+
+            if (
+                window.innerWidth > 700 ||
+                event.touches.length !== 1
+            ) {
+                return;
+            }
+
+
+            const touch =
+                event.touches[0];
+
+            startX =
+                touch.clientX;
+
+            startY =
+                touch.clientY;
+
+            isHorizontalDrag =
+                false;
+
+            didSwipe =
+                false;
+
+
+            activeAnimation =
+                getMarqueeAnimation();
+
+
+            if (!activeAnimation) {
+                return;
+            }
+
+
+            const currentTime =
+                Number(
+                    activeAnimation.currentTime
+                );
+
+            startAnimationTime =
+                Number.isFinite(currentTime)
+                    ? currentTime
+                    : 0;
+
+
+            activeAnimation.pause();
+
+            banner.classList.add(
+                "is-touch-dragging"
+            );
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    banner.addEventListener(
+        "touchmove",
+        function (event) {
+
+            if (
+                window.innerWidth > 700 ||
+                !activeAnimation ||
+                event.touches.length !== 1
+            ) {
+                return;
+            }
+
+
+            const touch =
+                event.touches[0];
+
+            const deltaX =
+                touch.clientX - startX;
+
+            const deltaY =
+                touch.clientY - startY;
+
+
+            if (!isHorizontalDrag) {
+
+                if (
+                    Math.abs(deltaX) < 7 &&
+                    Math.abs(deltaY) < 7
+                ) {
+                    return;
+                }
+
+
+                if (
+                    Math.abs(deltaY) >
+                    Math.abs(deltaX)
+                ) {
+
+                    activeAnimation.play();
+
+                    activeAnimation =
+                        null;
+
+                    banner.classList.remove(
+                        "is-touch-dragging"
+                    );
+
+                    return;
+                }
+
+
+                isHorizontalDrag =
+                    true;
+            }
+
+
+            event.preventDefault();
+
+
+            if (
+                Math.abs(deltaX) > 9
+            ) {
+                didSwipe =
+                    true;
+            }
+
+
+            const duration =
+                getDuration(
+                    activeAnimation
+                );
+
+
+            /*
+            Die CSS-Animation verschiebt den Track in 30 s
+            um exakt die Hälfte seiner Gesamtbreite.
+            Ein Fingerweg wird deshalb proportional in
+            Animationszeit umgerechnet.
+            */
+            const travelDistance =
+                Math.max(
+                    track.scrollWidth / 2,
+                    1
+                );
+
+
+            const timeShift =
+                (
+                    -deltaX /
+                    travelDistance
+                ) * duration;
+
+
+            activeAnimation.currentTime =
+                wrapTime(
+                    startAnimationTime +
+                    timeShift,
+                    duration
+                );
+        },
+        {
+            passive: false
+        }
+    );
+
+
+    function finishTouch() {
+
+        if (activeAnimation) {
+
+            activeAnimation.play();
+
+            activeAnimation =
+                null;
+        }
+
+
+        banner.classList.remove(
+            "is-touch-dragging"
+        );
+
+
+        /*
+        Kurz danach wieder normale Klicks zulassen.
+        */
+        window.setTimeout(
+            function () {
+                didSwipe = false;
+            },
+            180
+        );
+    }
+
+
+    banner.addEventListener(
+        "touchend",
+        finishTouch,
+        {
+            passive: true
+        }
+    );
+
+
+    banner.addEventListener(
+        "touchcancel",
+        finishTouch,
+        {
+            passive: true
+        }
+    );
+
+
+    /*
+    Nach einem echten Swipe darf nicht versehentlich
+    das darunterliegende Event geöffnet werden.
+    Normales Antippen funktioniert weiterhin.
+    */
+    banner.addEventListener(
+        "click",
+        function (event) {
+
+            if (!didSwipe) {
+                return;
+            }
+
+            event.preventDefault();
+            event.stopPropagation();
+        },
+        true
+    );
+
+})();
+</script></body>
 </html>
