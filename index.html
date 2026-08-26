@@ -11738,6 +11738,109 @@ Zusätzliche Sicherheitsstufe für typische kleinere Laptop-Höhen.
 }
 
 
+
+
+/* ==========================================================
+   NAVIGATION – GANZES ALLERWEIL-LOGO ANKLICKBAR
+   Mauszeiger zeigt die Hand / den Finger.
+========================================================== */
+
+.nav-logo {
+
+    position:
+        relative;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        flex-start;
+
+    cursor:
+        pointer !important;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+    /*
+    Die komplette sichtbare Logo-Fläche gehört zum Link.
+    */
+    min-width:
+        190px;
+
+    min-height:
+        50px;
+}
+
+
+/*
+Auch über allen Bestandteilen des Logos bleibt der
+Hand-/Finger-Cursor sichtbar.
+*/
+.nav-logo *,
+.nav-logo::before,
+.nav-logo::after {
+
+    cursor:
+        pointer !important;
+}
+
+
+/*
+Mobil ebenfalls die komplette Logofläche anklickbar.
+*/
+@media (max-width: 700px) {
+
+    .nav-logo {
+
+        min-width:
+            176px;
+
+        min-height:
+            48px;
+    }
+
+}
+
+
+
+
+/* ==========================================================
+   WEB / DESKTOP – DYNAMISCHE EVENTLEISTE MIT MAUS WISCHBAR
+   Anklicken + gedrückt halten + nach links/rechts ziehen.
+========================================================== */
+
+@media (min-width: 701px) {
+
+    .mobile-hero-marquee {
+        cursor:
+            grab;
+
+        user-select:
+            none;
+
+        -webkit-user-select:
+            none;
+    }
+
+
+    .mobile-hero-marquee.is-mouse-dragging {
+        cursor:
+            grabbing;
+    }
+
+
+    .mobile-hero-marquee .marquee-track {
+        will-change:
+            transform;
+    }
+
+}
+
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -16373,5 +16476,363 @@ function activateExternalServices(
     );
 
 })();
-</script></body>
+</script>
+<script>
+/* ==========================================================
+   WEB / DESKTOP – EVENTBANNER MIT MAUSZIEHEN
+   Gleiche Idee wie beim mobilen Wischen:
+   Die laufende Marquee-Animation wird während des Ziehens
+   pausiert, proportional verschoben und danach fortgesetzt.
+========================================================== */
+
+(function () {
+
+    const banner =
+        document.querySelector(
+            ".mobile-hero-marquee"
+        );
+
+    if (!banner) {
+        return;
+    }
+
+
+    const track =
+        banner.querySelector(
+            ".marquee-track"
+        );
+
+    if (!track) {
+        return;
+    }
+
+
+    let pointerId =
+        null;
+
+    let startX =
+        0;
+
+    let startAnimationTime =
+        0;
+
+    let activeAnimation =
+        null;
+
+    let didDrag =
+        false;
+
+
+    function getMarqueeAnimation() {
+
+        const animations =
+            track.getAnimations();
+
+        if (!animations.length) {
+            return null;
+        }
+
+
+        return (
+            animations.find(
+                function (animation) {
+
+                    const effect =
+                        animation.effect;
+
+                    if (!effect) {
+                        return false;
+                    }
+
+
+                    const timing =
+                        effect.getTiming();
+
+
+                    return (
+                        timing &&
+                        Number(
+                            timing.duration
+                        ) > 0
+                    );
+                }
+            )
+            ||
+            animations[0]
+        );
+    }
+
+
+    function getDuration(animation) {
+
+        if (
+            !animation ||
+            !animation.effect
+        ) {
+            return 30000;
+        }
+
+
+        const timing =
+            animation.effect.getTiming();
+
+
+        const duration =
+            Number(
+                timing.duration
+            );
+
+
+        return (
+            Number.isFinite(
+                duration
+            )
+            &&
+            duration > 0
+        )
+            ? duration
+            : 30000;
+    }
+
+
+    function wrapTime(
+        time,
+        duration
+    ) {
+
+        return (
+            (
+                time % duration
+            )
+            +
+            duration
+        ) % duration;
+    }
+
+
+    banner.addEventListener(
+        "pointerdown",
+        function (event) {
+
+            if (
+                window.innerWidth <= 700 ||
+                event.pointerType !== "mouse" ||
+                event.button !== 0
+            ) {
+                return;
+            }
+
+
+            activeAnimation =
+                getMarqueeAnimation();
+
+
+            if (!activeAnimation) {
+                return;
+            }
+
+
+            pointerId =
+                event.pointerId;
+
+            startX =
+                event.clientX;
+
+            didDrag =
+                false;
+
+
+            const currentTime =
+                Number(
+                    activeAnimation.currentTime
+                );
+
+
+            startAnimationTime =
+                Number.isFinite(
+                    currentTime
+                )
+                    ? currentTime
+                    : 0;
+
+
+            activeAnimation.pause();
+
+
+            banner.classList.add(
+                "is-mouse-dragging"
+            );
+
+
+            banner.setPointerCapture(
+                pointerId
+            );
+
+
+            event.preventDefault();
+        }
+    );
+
+
+    banner.addEventListener(
+        "pointermove",
+        function (event) {
+
+            if (
+                window.innerWidth <= 700 ||
+                pointerId === null ||
+                event.pointerId !== pointerId ||
+                !activeAnimation
+            ) {
+                return;
+            }
+
+
+            const deltaX =
+                event.clientX - startX;
+
+
+            if (
+                Math.abs(
+                    deltaX
+                ) > 6
+            ) {
+                didDrag =
+                    true;
+            }
+
+
+            const duration =
+                getDuration(
+                    activeAnimation
+                );
+
+
+            /*
+            Die CSS-Marquee bewegt sich pro Zyklus
+            um die Hälfte der gesamten Trackbreite.
+            Mausweg wird proportional in Animationszeit
+            umgerechnet.
+            */
+            const travelDistance =
+                Math.max(
+                    track.scrollWidth / 2,
+                    1
+                );
+
+
+            const timeShift =
+                (
+                    -deltaX /
+                    travelDistance
+                )
+                *
+                duration;
+
+
+            activeAnimation.currentTime =
+                wrapTime(
+                    startAnimationTime +
+                    timeShift,
+                    duration
+                );
+
+
+            event.preventDefault();
+        }
+    );
+
+
+    function finishMouseDrag(
+        event
+    ) {
+
+        if (
+            pointerId === null ||
+            event.pointerId !== pointerId
+        ) {
+            return;
+        }
+
+
+        try {
+
+            banner.releasePointerCapture(
+                pointerId
+            );
+
+        } catch (_) {}
+
+
+        pointerId =
+            null;
+
+
+        if (activeAnimation) {
+
+            activeAnimation.play();
+
+            activeAnimation =
+                null;
+        }
+
+
+        banner.classList.remove(
+            "is-mouse-dragging"
+        );
+
+
+        /*
+        Nach einem echten Ziehen den unmittelbar folgenden
+        Link-Klick unterdrücken.
+        */
+        if (didDrag) {
+
+            window.setTimeout(
+                function () {
+
+                    didDrag =
+                        false;
+                },
+                180
+            );
+        }
+    }
+
+
+    banner.addEventListener(
+        "pointerup",
+        finishMouseDrag
+    );
+
+
+    banner.addEventListener(
+        "pointercancel",
+        finishMouseDrag
+    );
+
+
+    banner.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                window.innerWidth <= 700 ||
+                !didDrag
+            ) {
+                return;
+            }
+
+
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+        },
+        true
+    );
+
+})();
+</script>
+
+</body>
 </html>
