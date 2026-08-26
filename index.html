@@ -3,6 +3,119 @@
 <html lang="de">
 <head><script>
 /* ==========================================================
+   WEB REFRESH – EARLY HOME RESET
+   Bei einem echten Reload im Web/Desktop immer auf #home.
+========================================================== */
+
+(function () {
+
+    const DESKTOP_MIN =
+        701;
+
+
+    function isWeb() {
+
+        return (
+            window.innerWidth >=
+            DESKTOP_MIN
+        );
+    }
+
+
+    function getNavigationType() {
+
+        try {
+
+            const entries =
+                performance.getEntriesByType
+                    ? performance.getEntriesByType(
+                        "navigation"
+                    )
+                    : [];
+
+
+            if (
+                entries &&
+                entries[0] &&
+                entries[0].type
+            ) {
+
+                return entries[0].type;
+            }
+
+        } catch (_) {}
+
+
+        /*
+        Fallback für ältere Browser.
+        TYPE_RELOAD === 1
+        */
+        try {
+
+            if (
+                performance.navigation &&
+                performance.navigation.type === 1
+            ) {
+
+                return "reload";
+            }
+
+        } catch (_) {}
+
+
+        return "navigate";
+    }
+
+
+    if (!isWeb()) {
+        return;
+    }
+
+
+    if (
+        "scrollRestoration"
+        in history
+    ) {
+
+        history.scrollRestoration =
+            "manual";
+    }
+
+
+    if (
+        getNavigationType() !==
+        "reload"
+    ) {
+
+        return;
+    }
+
+
+    /*
+    Alten Hash wie #event, #galerie, #kontakt usw.
+    beim Reload sofort entfernen.
+    */
+    try {
+
+        history.replaceState(
+            null,
+            "",
+            window.location.pathname +
+            window.location.search +
+            "#home"
+        );
+
+    } catch (_) {}
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+})();
+</script><script>
+/* ==========================================================
    MOBILE REFRESH – EARLY HOME RESET
    Bei echtem Reload (inkl. iPhone Pull-to-Refresh) sofort
    auf #home / Scrollposition 0 vorbereiten.
@@ -13436,7 +13549,6 @@ function activateExternalServices(
 })();
 
 </script>
-
 <script>
 /* ==========================================================
    EVENT-SLIDER
@@ -17280,10 +17392,10 @@ function activateExternalServices(
 
 
                 /*
-                Zwei Frames geben dem Eventslider Zeit, seine
-                horizontale Position sauber zu übernehmen.
-                Danach wird direkt auf den Inhalt des gewählten
-                Events gescrollt – nicht auf Galerie/Übergang.
+                Erst horizontale Eventseite setzen,
+                dann vertikal exakt zu diesem Event springen.
+                So führt Event 1 sicher zu Event 1 und
+                Event 2 sicher zu Event 2.
                 */
                 window.requestAnimationFrame(
                     function () {
@@ -17291,11 +17403,63 @@ function activateExternalServices(
                         window.requestAnimationFrame(
                             function () {
 
-                                scrollToPosition(
-                                    getEventTargetTop(
-                                        target,
+                                const slides =
+                                    Array.from(
+                                        target.querySelectorAll(
+                                            ".event-slide"
+                                        )
+                                    );
+
+
+                                const selectedSlide =
+                                    slides[
                                         selectedEventIndex
-                                    )
+                                    ]
+                                    ||
+                                    slides[0]
+                                    ||
+                                    target;
+
+
+                                const selectedContent =
+                                    selectedSlide.querySelector
+                                        ? (
+                                            selectedSlide.querySelector(
+                                                ".statement-inner"
+                                            )
+                                            ||
+                                            selectedSlide
+                                        )
+                                        : target;
+
+
+                                const eventSectionTop =
+                                    window.scrollY +
+                                    target.getBoundingClientRect().top -
+                                    getNavHeight();
+
+
+                                const selectedContentTop =
+                                    window.scrollY +
+                                    selectedContent.getBoundingClientRect().top -
+                                    getNavHeight() -
+                                    28;
+
+
+                                const exactTargetTop =
+                                    Math.max(
+                                        0,
+                                        Math.round(
+                                            Math.max(
+                                                eventSectionTop,
+                                                selectedContentTop
+                                            )
+                                        )
+                                    );
+
+
+                                scrollToPosition(
+                                    exactTargetTop
                                 );
                             }
                         );
@@ -17366,6 +17530,193 @@ function activateExternalServices(
             event.preventDefault();
         },
         true
+    );
+
+})();
+</script><script>
+/* ==========================================================
+   WEB REFRESH – FINAL HOME RESET
+   Browser können nach Fonts/Bildern noch einmal eine alte
+   Scrollposition einspielen. Bei echtem Reload wird deshalb
+   kurz mehrfach auf Position 0 abgesichert.
+========================================================== */
+
+(function () {
+
+    const DESKTOP_MIN =
+        701;
+
+
+    function isWeb() {
+
+        return (
+            window.innerWidth >=
+            DESKTOP_MIN
+        );
+    }
+
+
+    function getNavigationType() {
+
+        try {
+
+            const entries =
+                performance.getEntriesByType
+                    ? performance.getEntriesByType(
+                        "navigation"
+                    )
+                    : [];
+
+
+            if (
+                entries &&
+                entries[0] &&
+                entries[0].type
+            ) {
+
+                return entries[0].type;
+            }
+
+        } catch (_) {}
+
+
+        try {
+
+            if (
+                performance.navigation &&
+                performance.navigation.type === 1
+            ) {
+
+                return "reload";
+            }
+
+        } catch (_) {}
+
+
+        return "navigate";
+    }
+
+
+    if (
+        !isWeb() ||
+        getNavigationType() !==
+        "reload"
+    ) {
+
+        return;
+    }
+
+
+    function forceHome() {
+
+        if (
+            "scrollRestoration"
+            in history
+        ) {
+
+            history.scrollRestoration =
+                "manual";
+        }
+
+
+        try {
+
+            history.replaceState(
+                null,
+                "",
+                window.location.pathname +
+                window.location.search +
+                "#home"
+            );
+
+        } catch (_) {}
+
+
+        window.scrollTo({
+            top:
+                0,
+
+            left:
+                0,
+
+            behavior:
+                "auto"
+        });
+    }
+
+
+    forceHome();
+
+
+    requestAnimationFrame(
+        function () {
+
+            forceHome();
+
+
+            requestAnimationFrame(
+                forceHome
+            );
+        }
+    );
+
+
+    window.addEventListener(
+        "load",
+        function () {
+
+            forceHome();
+
+            setTimeout(
+                forceHome,
+                80
+            );
+
+            setTimeout(
+                forceHome,
+                240
+            );
+
+            setTimeout(
+                forceHome,
+                520
+            );
+        },
+        {
+            once:
+                true
+        }
+    );
+
+
+    window.addEventListener(
+        "pageshow",
+        function (event) {
+
+            /*
+            Zurück/Vorwärts via BFCache nicht überschreiben.
+            Nur echter Reload.
+            */
+            if (
+                event.persisted ||
+                getNavigationType() !==
+                    "reload"
+            ) {
+
+                return;
+            }
+
+
+            setTimeout(
+                forceHome,
+                25
+            );
+
+            setTimeout(
+                forceHome,
+                180
+            );
+        }
     );
 
 })();
