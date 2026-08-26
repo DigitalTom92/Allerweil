@@ -12092,6 +12092,28 @@ und zeigt weiterhin den Hand-/Finger-Cursor.
 
 }
 
+
+
+/* ==========================================================
+   MOBILE – GALERIE VOR EVENTSPRUNG LAYOUT-STABIL
+========================================================== */
+
+@media (max-width: 700px) {
+
+    .photo-card img {
+
+        display:
+            block;
+
+        width:
+            100%;
+
+        height:
+            auto;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -15225,6 +15247,177 @@ function activateExternalServices(
         null;
 
 
+    /*
+    ==========================================================
+    MOBILE – BILDER OBERHALB DER EVENTS VOR DEM SPRUNG LADEN
+
+    Besonders auf iPhone/Safari konnten Galerie-Bilder erst
+    nach dem Sprung ihre endgültige Höhe bekommen. Dadurch
+    wurde der Eventbereich nach unten verschoben und man
+    landete scheinbar wieder in der Galerie.
+
+    Deshalb:
+    - Bilder vor der Eventsektion werden früh geladen
+    - wir warten auf load + decode()
+    - Webfonts werden ebenfalls abgewartet
+    - erst danach wird zur Eventsektion gescrollt
+    ==========================================================
+    */
+
+    let mobileEventNavigationRequest =
+        0;
+
+
+    function waitForMobileImageReady(
+        image
+    ) {
+
+        return new Promise(
+            function (resolve) {
+
+                function finish() {
+
+                    if (
+                        typeof image.decode ===
+                        "function"
+                    ) {
+
+                        image.decode()
+                            .catch(
+                                function () {}
+                            )
+                            .finally(
+                                resolve
+                            );
+
+                        return;
+                    }
+
+
+                    resolve();
+                }
+
+
+                if (
+                    image.complete &&
+                    image.naturalWidth > 0
+                ) {
+
+                    finish();
+                    return;
+                }
+
+
+                image.addEventListener(
+                    "load",
+                    finish,
+                    {
+                        once:
+                            true
+                    }
+                );
+
+
+                image.addEventListener(
+                    "error",
+                    resolve,
+                    {
+                        once:
+                            true
+                    }
+                );
+            }
+        );
+    }
+
+
+    function preloadMobileImagesBeforeEvents() {
+
+        const eventSection =
+            document.getElementById(
+                "event"
+            );
+
+
+        if (!eventSection) {
+
+            return Promise.resolve();
+        }
+
+
+        const images =
+            Array.from(
+                document.querySelectorAll(
+                    "img"
+                )
+            )
+            .filter(
+                function (image) {
+
+                    /*
+                    Nur Bilder, die im DOM vor #event liegen.
+                    */
+                    return Boolean(
+                        image.compareDocumentPosition(
+                            eventSection
+                        )
+                        &
+                        Node.DOCUMENT_POSITION_FOLLOWING
+                    );
+                }
+            );
+
+
+        images.forEach(
+            function (image) {
+
+                /*
+                Lazy Loading für die relevanten Bilder aufheben.
+                Dadurch steht die Höhe der Galerie fest, bevor
+                zu einem Event gescrollt wird.
+                */
+                image.loading =
+                    "eager";
+            }
+        );
+
+
+        const imagePromises =
+            images.map(
+                waitForMobileImageReady
+            );
+
+
+        const fontPromise =
+            (
+                document.fonts &&
+                document.fonts.ready
+            )
+                ? document.fonts.ready
+                    .catch(
+                        function () {}
+                    )
+                : Promise.resolve();
+
+
+        return Promise.all([
+            Promise.all(
+                imagePromises
+            ),
+            fontPromise
+        ]);
+    }
+
+
+    /*
+    Direkt beim Aufbau der mobilen Seite starten.
+    Beim späteren Event-Klick ist der Großteil dann meist
+    bereits vollständig geladen und layoutstabil.
+    */
+    const mobileImagesBeforeEventsReady =
+        preloadMobileImagesBeforeEvents();
+
+
     function markUserInteraction() {
 
         interactionVersion +=
@@ -15600,17 +15793,6 @@ function activateExternalServices(
         closeMenuImmediately();
 
 
-        if (
-            target.id === "event" &&
-            settings.eventIndex !== null
-        ) {
-
-            selectEventSlide(
-                settings.eventIndex
-            );
-        }
-
-
         /*
         URL aktualisieren, ohne den nativen Hash-Sprung
         auszulösen.
@@ -15635,6 +15817,97 @@ function activateExternalServices(
         }
 
 
+        /*
+        EVENT-NAVIGATION AUF MOBIL:
+        Erst alle Bilder oberhalb der Eventsektion + Fonts
+        fertig laden lassen. Danach Eventseite wählen und
+        die endgültige Scrollposition berechnen.
+
+        So kann die Galerie den Eventbereich nachträglich
+        nicht mehr verschieben.
+        */
+        if (
+            target.id === "event"
+        ) {
+
+            const requestId =
+                ++mobileEventNavigationRequest;
+
+
+            mobileImagesBeforeEventsReady
+                .catch(
+                    function () {}
+                )
+                .then(
+                    function () {
+
+                        /*
+                        Bei mehreren schnellen Klicks zählt
+                        nur der zuletzt gewählte Eventlink.
+                        */
+                        if (
+                            requestId !==
+                            mobileEventNavigationRequest
+                        ) {
+
+                            return;
+                        }
+
+
+                        if (
+                            settings.eventIndex !==
+                            null
+                        ) {
+
+                            selectEventSlide(
+                                settings.eventIndex
+                            );
+                        }
+
+
+                        /*
+                        Zwei Frames warten, damit Galerie,
+                        Eventslider und Punktanzeige nach dem
+                        Decoding endgültig layoutet sind.
+                        */
+                        window.requestAnimationFrame(
+                            function () {
+
+                                window.requestAnimationFrame(
+                                    function () {
+
+                                        if (
+                                            requestId !==
+                                            mobileEventNavigationRequest
+                                        ) {
+
+                                            return;
+                                        }
+
+
+                                        scrollToTarget(
+                                            target,
+                                            settings.smooth
+                                                ? "smooth"
+                                                : "auto",
+                                            settings.smooth
+                                        );
+                                    }
+                                );
+                            }
+                        );
+                    }
+                );
+
+
+            return;
+        }
+
+
+        /*
+        Alle anderen mobilen Navigationsziele bleiben
+        unverändert und reagieren sofort.
+        */
         scrollToTarget(
             target,
             settings.smooth
