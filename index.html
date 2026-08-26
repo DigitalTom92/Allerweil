@@ -10334,6 +10334,65 @@ auf derselben Höhe wie auf Event 1.
 
 }
 
+
+
+/* ==========================================================
+   MOBILE EVENTS – TITEL DREIZEILIG UND MITTIG
+   Event 1:
+   Afterwork
+   ×
+   Pregame
+
+   Event 2:
+   Afterwork
+   x
+   DJ Dan
+
+   Desktop/Web bleibt wie bisher einzeilig.
+========================================================== */
+
+.event-title-line {
+    display:
+        inline;
+}
+
+
+@media (max-width: 700px) {
+
+    #event .statement-event-title {
+
+        width:
+            100%;
+
+        text-align:
+            center;
+
+        line-height:
+            .94;
+    }
+
+
+    #event .statement-event-title
+    .event-title-line {
+
+        display:
+            block;
+    }
+
+
+    /*
+    Das X bekommt etwas Luft, damit die drei Zeilen
+    bewusst gesetzt und nicht zusammengestaucht wirken.
+    */
+    #event .statement-event-title
+    .event-title-line:nth-child(2) {
+
+        margin:
+            .08em 0;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -10659,7 +10718,7 @@ auf derselben Höhe wie auf Event 1.
 <!-- ==========================================================
      04 · EVENTS
 ========================================================== -->
-<section class="statement has-transition" id="event"><div aria-hidden="true" class="event-decor-circle-bottom-left"></div><div aria-label="Kommende Events" class="event-slider" id="eventSlider"><div class="event-track"><article aria-label="Event 1 von 2" class="event-slide has-event-copy" data-event-slide="0"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">03. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title">Afterwork × Pregame</div><div class="statement-event-time">ab 18 Uhr</div><button aria-label="Afterwork x Pregame zum Kalender hinzufügen" class="event-calendar-button" data-calendar-date="20260903" data-calendar-endtime="220000" data-calendar-filename="allerweil-afterwork-pregame-03-09-2026.ics" data-calendar-time="180000" data-calendar-title="Afterwork x Pregame" data-calendar-uid="afterwork-pregame-20260903@allerweil-darmstadt" title="Zum Kalender hinzufügen" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M7 3v3M17 3v3M4.5 9h15M6 5h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"></path><path d="M12 12.5v5M9.5 15h5"></path></svg></button></div><div class="statement-slogan">Feierabend. Freunde. Beats &amp; Drinks <span>Allerweil.</span></div><div class="statement-event-copy"><div class="statement-event-copy-column"><p>PREGAME AFTERWORK at ALLERWEIL DARMSTADT is officially here.</p><p>Starting now, we’ll meet every second Thursday for afterwork drinks, good music and even better company.</p></div><div class="statement-event-copy-column"><p>No pressure. No big plans.</p><p>Just friends, drinks and tunes after work.</p><p>A place to meet, unwind and accidentally stay ALLERWEIL.</p><div class="statement-event-copy-close"><span>Come for one drink.</span><span>Stay for a few more.</span></div></div></div></div></div></article><article aria-label="Event 2 von 2" class="event-slide has-event-copy" data-event-slide="1"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">17. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title">Afterwork x DJ Dan</div><div class="statement-event-time">ab 18:00 Uhr</div><button aria-label="Afterwork x DJ Dan zum Kalender hinzufügen" class="event-calendar-button" data-calendar-date="20260917" data-calendar-endtime="220000" data-calendar-filename="allerweil-afterwork-dj-dan-17-09-2026.ics" data-calendar-time="180000" data-calendar-title="Afterwork x DJ Dan" data-calendar-uid="afterwork-dj-dan-20260917@allerweil-darmstadt" title="Zum Kalender hinzufügen" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M7 3v3M17 3v3M4.5 9h15M6 5h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"></path><path d="M12 12.5v5M9.5 15h5"></path></svg></button></div><div class="statement-slogan">Feierabend. Freunde. Beats &amp; Drinks <span>Allerweil.</span></div><div class="statement-event-copy">
+<section class="statement has-transition" id="event"><div aria-hidden="true" class="event-decor-circle-bottom-left"></div><div aria-label="Kommende Events" class="event-slider" id="eventSlider"><div class="event-track"><article aria-label="Event 1 von 2" class="event-slide has-event-copy" data-event-slide="0"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">03. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title"><span class="event-title-line">Afterwork</span> <span class="event-title-line">×</span> <span class="event-title-line">Pregame</span></div><div class="statement-event-time">ab 18 Uhr</div><button aria-label="Afterwork x Pregame zum Kalender hinzufügen" class="event-calendar-button" data-calendar-date="20260903" data-calendar-endtime="220000" data-calendar-filename="allerweil-afterwork-pregame-03-09-2026.ics" data-calendar-time="180000" data-calendar-title="Afterwork x Pregame" data-calendar-uid="afterwork-pregame-20260903@allerweil-darmstadt" title="Zum Kalender hinzufügen" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M7 3v3M17 3v3M4.5 9h15M6 5h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"></path><path d="M12 12.5v5M9.5 15h5"></path></svg></button></div><div class="statement-slogan">Feierabend. Freunde. Beats &amp; Drinks <span>Allerweil.</span></div><div class="statement-event-copy"><div class="statement-event-copy-column"><p>PREGAME AFTERWORK at ALLERWEIL DARMSTADT is officially here.</p><p>Starting now, we’ll meet every second Thursday for afterwork drinks, good music and even better company.</p></div><div class="statement-event-copy-column"><p>No pressure. No big plans.</p><p>Just friends, drinks and tunes after work.</p><p>A place to meet, unwind and accidentally stay ALLERWEIL.</p><div class="statement-event-copy-close"><span>Come for one drink.</span><span>Stay for a few more.</span></div></div></div></div></div></article><article aria-label="Event 2 von 2" class="event-slide has-event-copy" data-event-slide="1"><div class="statement-inner"><div class="reveal"><div class="statement-date"><div class="statement-date-day">17. Sep</div><div class="statement-date-year">2026</div></div></div><div class="statement-event reveal"><div class="statement-event-label">04 · Events</div><div class="statement-event-head"><div class="statement-event-title"><span class="event-title-line">Afterwork</span> <span class="event-title-line">x</span> <span class="event-title-line">DJ Dan</span></div><div class="statement-event-time">ab 18:00 Uhr</div><button aria-label="Afterwork x DJ Dan zum Kalender hinzufügen" class="event-calendar-button" data-calendar-date="20260917" data-calendar-endtime="220000" data-calendar-filename="allerweil-afterwork-dj-dan-17-09-2026.ics" data-calendar-time="180000" data-calendar-title="Afterwork x DJ Dan" data-calendar-uid="afterwork-dj-dan-20260917@allerweil-darmstadt" title="Zum Kalender hinzufügen" type="button"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M7 3v3M17 3v3M4.5 9h15M6 5h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"></path><path d="M12 12.5v5M9.5 15h5"></path></svg></button></div><div class="statement-slogan">Feierabend. Freunde. Beats &amp; Drinks <span>Allerweil.</span></div><div class="statement-event-copy">
 <div class="statement-event-copy-column">
 <p>AFTERWORK x DJ DAN at ALLERWEIL DARMSTADT is coming up.</p>
 <p>This time, DJ Dan is on the decks while we take care of cold drinks and the right afterwork mood.</p>
