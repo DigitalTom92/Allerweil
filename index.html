@@ -12192,6 +12192,534 @@ und zeigt weiterhin den Hand-/Finger-Cursor.
 }
 
 
+
+
+/* ==========================================================
+   HERO – LEICHT EXPLOSIONSARTIGES AUFLÖSEN BEIM RUNTERSCROLLEN
+
+   Logo, Schrift, Buttons und die großen Hintergrundkreise
+   bewegen sich beim Verlassen der Startseite leicht auseinander.
+   Beim Hochscrollen setzt sich alles wieder sauber zusammen.
+========================================================== */
+
+.hero {
+
+    --hero-fade:
+        1;
+
+    --hero-blur:
+        0px;
+
+    --hero-logo-x:
+        0px;
+
+    --hero-logo-y:
+        0px;
+
+    --hero-logo-rot:
+        0deg;
+
+    --hero-logo-scale:
+        1;
+
+    --hero-line1-x:
+        0px;
+
+    --hero-line1-y:
+        0px;
+
+    --hero-line1-rot:
+        0deg;
+
+    --hero-line2-x:
+        0px;
+
+    --hero-line2-y:
+        0px;
+
+    --hero-line2-rot:
+        0deg;
+
+    --hero-author-x:
+        0px;
+
+    --hero-author-y:
+        0px;
+
+    --hero-actions-x:
+        0px;
+
+    --hero-actions-y:
+        0px;
+
+    --hero-ring-1:
+        1;
+
+    --hero-ring-2:
+        1;
+
+    --hero-ring-opacity-1:
+        .035;
+
+    --hero-ring-opacity-2:
+        .045;
+}
+
+
+/*
+Die beiden großen Kreise gehen leicht auseinander
+und lösen sich gleichzeitig auf.
+*/
+.hero::before {
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        )
+        scale(
+            var(--hero-ring-1)
+        )
+        rotate(
+            var(--hero-ring-rot-1, 0deg)
+        ) !important;
+
+    border-color:
+        rgba(
+            254,
+            230,
+            202,
+            var(--hero-ring-opacity-1)
+        ) !important;
+
+    will-change:
+        transform,
+        border-color;
+}
+
+
+.hero::after {
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        )
+        scale(
+            var(--hero-ring-2)
+        )
+        rotate(
+            var(--hero-ring-rot-2, 0deg)
+        ) !important;
+
+    border-color:
+        rgba(
+            254,
+            230,
+            202,
+            var(--hero-ring-opacity-2)
+        ) !important;
+
+    will-change:
+        transform,
+        border-color;
+}
+
+
+/*
+Logo als eigener "Brocken".
+*/
+.hero-logo,
+.hero-logo-mobile-file {
+
+    transform:
+        translate3d(
+            var(--hero-logo-x),
+            var(--hero-logo-y),
+            0
+        )
+        rotate(
+            var(--hero-logo-rot)
+        )
+        scale(
+            var(--hero-logo-scale)
+        );
+
+    opacity:
+        var(--hero-fade);
+
+    filter:
+        blur(
+            var(--hero-blur)
+        );
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+}
+
+
+/*
+Die beiden Satzzeilen driften ganz leicht in
+entgegengesetzte Richtungen.
+*/
+.hero-quote-line {
+
+    display:
+        inline-block;
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+}
+
+
+.hero-quote .hero-quote-line {
+
+    font-family:
+        inherit;
+
+    font-style:
+        normal;
+
+    font-weight:
+        inherit;
+
+    letter-spacing:
+        inherit;
+}
+
+
+.hero-quote-line-1 {
+
+    transform:
+        translate3d(
+            var(--hero-line1-x),
+            var(--hero-line1-y),
+            0
+        )
+        rotate(
+            var(--hero-line1-rot)
+        );
+
+    opacity:
+        var(--hero-fade);
+
+    filter:
+        blur(
+            var(--hero-blur)
+        );
+}
+
+
+.hero-quote-line-2 {
+
+    transform:
+        translate3d(
+            var(--hero-line2-x),
+            var(--hero-line2-y),
+            0
+        )
+        rotate(
+            var(--hero-line2-rot)
+        );
+
+    opacity:
+        var(--hero-fade);
+
+    filter:
+        blur(
+            var(--hero-blur)
+        );
+}
+
+
+/*
+Nur "allerweil hier." bleibt – wie bisher –
+in der Serifenschrift und kursiv.
+*/
+.hero-quote .hero-quote-line .hero-quote-italic {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style:
+        italic;
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        -.035em;
+}
+
+
+.hero-quote-author {
+
+    transform:
+        translate3d(
+            var(--hero-author-x),
+            var(--hero-author-y),
+            0
+        );
+
+    opacity:
+        var(--hero-fade);
+
+    filter:
+        blur(
+            var(--hero-blur)
+        );
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+}
+
+
+.hero-actions {
+
+    transform:
+        translate3d(
+            var(--hero-actions-x),
+            var(--hero-actions-y),
+            0
+        );
+
+    opacity:
+        var(--hero-fade);
+
+    filter:
+        blur(
+            var(--hero-blur)
+        );
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+}
+
+
+/*
+Falls die Ortszeile in einer Variante sichtbar ist,
+löst sie sich ebenfalls mit auf.
+*/
+.hero-eyebrow {
+
+    opacity:
+        var(--hero-fade);
+
+    filter:
+        blur(
+            var(--hero-blur)
+        );
+
+    will-change:
+        opacity,
+        filter,
+        transform;
+}
+
+
+/* ==========================================================
+   KLEINE PARTIKEL / SPLITTER
+========================================================== */
+
+.hero-explosion-particles {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    width:
+        min(
+            560px,
+            82vw
+        );
+
+    height:
+        min(
+            420px,
+            62vh
+        );
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    z-index:
+        4;
+
+    pointer-events:
+        none;
+
+    overflow:
+        visible;
+}
+
+
+.hero-explosion-particle {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        48%;
+
+    opacity:
+        0;
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .72
+        );
+
+    transform-origin:
+        center;
+
+    will-change:
+        transform,
+        opacity;
+}
+
+
+.hero-explosion-particle.particle-dot {
+
+    width:
+        5px;
+
+    height:
+        5px;
+
+    border-radius:
+        50%;
+}
+
+
+.hero-explosion-particle.particle-line {
+
+    width:
+        18px;
+
+    height:
+        1px;
+
+    border-radius:
+        999px;
+}
+
+
+/*
+Auf kleinen Displays etwas feinere Partikel.
+*/
+@media (max-width: 700px) {
+
+    .hero-explosion-particles {
+
+        width:
+            82vw;
+
+        height:
+            52vh;
+
+        top:
+            51%;
+    }
+
+
+    .hero-explosion-particle.particle-dot {
+
+        width:
+            4px;
+
+        height:
+            4px;
+    }
+
+
+    .hero-explosion-particle.particle-line {
+
+        width:
+            14px;
+    }
+
+}
+
+
+/*
+Barrierefreiheit: bei reduzierter Bewegung
+bleibt die Startseite vollständig ruhig.
+*/
+@media (prefers-reduced-motion: reduce) {
+
+    .hero::before,
+    .hero::after,
+    .hero-logo,
+    .hero-logo-mobile-file,
+    .hero-quote-line,
+    .hero-quote-author,
+    .hero-actions,
+    .hero-eyebrow,
+    .hero-explosion-particle {
+
+        transform:
+            none !important;
+
+        filter:
+            none !important;
+
+        opacity:
+            1 !important;
+    }
+
+
+    .hero::before {
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            ) !important;
+    }
+
+
+    .hero::after {
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            ) !important;
+    }
+
+
+    .hero-explosion-particle {
+
+        display:
+            none !important;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -12231,7 +12759,7 @@ und zeigt weiterhin den Hand-/Finger-Cursor.
          EVENT BANNER – DESKTOP UND MOBIL DIREKT UNTER DER MENÜLEISTE
     ======================================================= -->
 <div aria-label="Kommende Events" class="marquee mobile-hero-marquee event-banner-bar"><div class="marquee-track"><a aria-label="Zum Afterwork Pregame am 03. September" class="event-marquee event-banner-item" data-event-index="0" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork × PREGAME</span><span class="event-date">03.09.2026</span><span class="event-time">ab 18 Uhr</span></a><span aria-hidden="true" class="event-banner-separator"></span><a aria-label="Zum Afterwork mit DJ Dan am 17. September" class="event-marquee event-banner-item" data-event-index="1" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork x DJ Dan</span><span class="event-date">17.09.2026</span><span class="event-time">ab 18:00 Uhr</span></a><span aria-hidden="true" class="event-banner-separator"></span><a aria-label="Zum Afterwork Pregame am 03. September" class="event-marquee event-banner-item" data-event-index="0" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork × PREGAME</span><span class="event-date">03.09.2026</span><span class="event-time">ab 18 Uhr</span></a><span aria-hidden="true" class="event-banner-separator"></span><a aria-label="Zum Afterwork mit DJ Dan am 17. September" class="event-marquee event-banner-item" data-event-index="1" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork x DJ Dan</span><span class="event-date">17.09.2026</span><span class="event-time">ab 18:00 Uhr</span></a></div></div>
-<div class="hero-inner">
+<div aria-hidden="true" class="hero-explosion-particles"><span class="hero-explosion-particle particle-dot" data-dx="-78" data-dy="-48" data-rot="-18" data-scale="1.0"></span><span class="hero-explosion-particle particle-dot" data-dx="74" data-dy="-54" data-rot="16" data-scale="0.82"></span><span class="hero-explosion-particle particle-line" data-dx="-98" data-dy="8" data-rot="-26" data-scale="0.72"></span><span class="hero-explosion-particle particle-line" data-dx="96" data-dy="14" data-rot="24" data-scale="0.78"></span><span class="hero-explosion-particle particle-dot" data-dx="-58" data-dy="62" data-rot="18" data-scale="0.68"></span><span class="hero-explosion-particle particle-dot" data-dx="62" data-dy="70" data-rot="-20" data-scale="0.74"></span><span class="hero-explosion-particle particle-line" data-dx="-24" data-dy="-86" data-rot="12" data-scale="0.62"></span><span class="hero-explosion-particle particle-dot" data-dx="28" data-dy="-92" data-rot="-10" data-scale="0.66"></span><span class="hero-explosion-particle particle-dot" data-dx="-118" data-dy="-24" data-rot="-32" data-scale="0.58"></span><span class="hero-explosion-particle particle-dot" data-dx="122" data-dy="-18" data-rot="30" data-scale="0.58"></span><span class="hero-explosion-particle particle-line" data-dx="-88" data-dy="92" data-rot="-28" data-scale="0.55"></span><span class="hero-explosion-particle particle-line" data-dx="92" data-dy="98" data-rot="28" data-scale="0.55"></span><span class="hero-explosion-particle particle-dot" data-dx="-12" data-dy="112" data-rot="14" data-scale="0.52"></span><span class="hero-explosion-particle particle-dot" data-dx="14" data-dy="126" data-rot="-14" data-scale="0.5"></span></div><div class="hero-inner">
 <div class="hero-eyebrow">
 
             Friedensplatz · Darmstadt
@@ -12240,7 +12768,7 @@ und zeigt weiterhin den Hand-/Finger-Cursor.
 <div class="hero-logo">
 <img alt="Allerweil Stehausschank" src="Allerweil Logo.png"/>
 </div><div class="hero-logo-mobile-file"><img alt="Allerweil Stehausschank" src="Allerweil Logo Mobil.png"/></div><div class="mobile-hero-new-slogan">Du kannst sitzen oder stehen. Nur die Zeit fliegt</div>
-<div class="hero-quote">Wir wollten nur kurz stehen bleiben.<br/>Jetzt stehen wir <span>allerweil hier.</span></div>
+<div class="hero-quote"><span class="hero-quote-line hero-quote-line-1">Wir wollten nur kurz stehen bleiben.</span><br/><span class="hero-quote-line hero-quote-line-2">Jetzt stehen wir <span class="hero-quote-italic">allerweil hier.</span></span></div>
 <div class="hero-quote-author">der erste Gast, der eigentlich nur kurz bleiben wollte</div>
 <div class="hero-actions">
 <a class="primary-button" href="#standort">
@@ -18312,6 +18840,429 @@ function activateExternalServices(
             );
         }
     );
+
+})();
+</script><script>
+/* ==========================================================
+   HERO – SCROLLGESTEUERTES, SANFTES "EXPLODIEREN"
+========================================================== */
+
+(function () {
+
+    const hero =
+        document.getElementById(
+            "home"
+        );
+
+
+    if (!hero) {
+        return;
+    }
+
+
+    const particles =
+        Array.from(
+            hero.querySelectorAll(
+                ".hero-explosion-particle"
+            )
+        );
+
+
+    const reduceMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        );
+
+
+    let ticking =
+        false;
+
+
+    function clamp(
+        value,
+        min,
+        max
+    ) {
+
+        return Math.max(
+            min,
+            Math.min(
+                max,
+                value
+            )
+        );
+    }
+
+
+    function easeOutCubic(
+        value
+    ) {
+
+        return (
+            1 -
+            Math.pow(
+                1 - value,
+                3
+            )
+        );
+    }
+
+
+    function updateHeroExplosion() {
+
+        ticking =
+            false;
+
+
+        if (reduceMotion.matches) {
+
+            hero.style.removeProperty(
+                "--hero-fade"
+            );
+
+            particles.forEach(
+                function (particle) {
+
+                    particle.style.opacity =
+                        "0";
+                }
+            );
+
+            return;
+        }
+
+
+        /*
+        Der Effekt beginnt direkt beim Verlassen der Startseite,
+        ist aber bewusst erst nach rund 65 % einer Bildschirmhöhe
+        vollständig abgeschlossen.
+        */
+        const distance =
+            Math.max(
+                1,
+                Math.min(
+                    hero.offsetHeight * .72,
+                    window.innerHeight * .68
+                )
+            );
+
+
+        const rawProgress =
+            clamp(
+                window.scrollY /
+                distance,
+                0,
+                1
+            );
+
+
+        const progress =
+            easeOutCubic(
+                rawProgress
+            );
+
+
+        /*
+        Inhalt nie komplett brutal "wegknipsen":
+        bis 96 % ausblenden, dadurch wirkt es weich.
+        */
+        const fade =
+            1 -
+            progress * .96;
+
+
+        const blur =
+            progress * 1.15;
+
+
+        hero.style.setProperty(
+            "--hero-fade",
+            fade.toFixed(4)
+        );
+
+
+        hero.style.setProperty(
+            "--hero-blur",
+            blur.toFixed(2) + "px"
+        );
+
+
+        /*
+        Logo leicht nach links/oben.
+        */
+        hero.style.setProperty(
+            "--hero-logo-x",
+            (-18 * progress).toFixed(2) + "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-logo-y",
+            (-24 * progress).toFixed(2) + "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-logo-rot",
+            (-1.25 * progress).toFixed(3) + "deg"
+        );
+
+        hero.style.setProperty(
+            "--hero-logo-scale",
+            (1 + .025 * progress).toFixed(4)
+        );
+
+
+        /*
+        Satzzeilen auseinanderziehen.
+        */
+        hero.style.setProperty(
+            "--hero-line1-x",
+            (-26 * progress).toFixed(2) + "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-line1-y",
+            (5 * progress).toFixed(2) + "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-line1-rot",
+            (-.65 * progress).toFixed(3) + "deg"
+        );
+
+
+        hero.style.setProperty(
+            "--hero-line2-x",
+            (28 * progress).toFixed(2) + "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-line2-y",
+            (-3 * progress).toFixed(2) + "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-line2-rot",
+            (.72 * progress).toFixed(3) + "deg"
+        );
+
+
+        hero.style.setProperty(
+            "--hero-author-x",
+            (-12 * progress).toFixed(2) + "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-author-y",
+            (18 * progress).toFixed(2) + "px"
+        );
+
+
+        hero.style.setProperty(
+            "--hero-actions-x",
+            (10 * progress).toFixed(2) + "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-actions-y",
+            (24 * progress).toFixed(2) + "px"
+        );
+
+
+        /*
+        Hintergrundkreise expandieren wie eine sehr leichte
+        Druckwelle und verschwinden dabei.
+        */
+        hero.style.setProperty(
+            "--hero-ring-1",
+            (1 + .23 * progress).toFixed(4)
+        );
+
+        hero.style.setProperty(
+            "--hero-ring-2",
+            (1 + .16 * progress).toFixed(4)
+        );
+
+        hero.style.setProperty(
+            "--hero-ring-rot-1",
+            (7 * progress).toFixed(3) + "deg"
+        );
+
+        hero.style.setProperty(
+            "--hero-ring-rot-2",
+            (-9 * progress).toFixed(3) + "deg"
+        );
+
+        hero.style.setProperty(
+            "--hero-ring-opacity-1",
+            Math.max(
+                0,
+                .035 *
+                (
+                    1 - progress
+                )
+            ).toFixed(4)
+        );
+
+        hero.style.setProperty(
+            "--hero-ring-opacity-2",
+            Math.max(
+                0,
+                .045 *
+                (
+                    1 - progress
+                )
+            ).toFixed(4)
+        );
+
+
+        /*
+        Partikel tauchen kurz auf und fliegen radial auseinander.
+        Peak ungefähr in der Mitte der Bewegung.
+        */
+        const burst =
+            Math.sin(
+                rawProgress *
+                Math.PI
+            );
+
+
+        particles.forEach(
+            function (
+                particle,
+                index
+            ) {
+
+                const dx =
+                    Number(
+                        particle.dataset.dx
+                    ) || 0;
+
+                const dy =
+                    Number(
+                        particle.dataset.dy
+                    ) || 0;
+
+                const rot =
+                    Number(
+                        particle.dataset.rot
+                    ) || 0;
+
+                const scale =
+                    Number(
+                        particle.dataset.scale
+                    ) || 1;
+
+
+                /*
+                Auf Mobil minimal kürzere Wege,
+                damit es nicht zu wild wirkt.
+                */
+                const mobileFactor =
+                    window.innerWidth <= 700
+                        ? .76
+                        : 1;
+
+
+                const tx =
+                    dx *
+                    progress *
+                    mobileFactor;
+
+                const ty =
+                    dy *
+                    progress *
+                    mobileFactor;
+
+
+                particle.style.transform =
+                    "translate3d(" +
+                    tx.toFixed(2) +
+                    "px," +
+                    ty.toFixed(2) +
+                    "px,0) " +
+                    "rotate(" +
+                    (
+                        rot *
+                        progress
+                    ).toFixed(2) +
+                    "deg) " +
+                    "scale(" +
+                    (
+                        scale *
+                        (
+                            .72 +
+                            .28 *
+                            burst
+                        )
+                    ).toFixed(3) +
+                    ")";
+
+
+                particle.style.opacity =
+                    (
+                        burst *
+                        .55 *
+                        (
+                            .82 +
+                            (
+                                index % 3
+                            ) *
+                            .07
+                        )
+                    ).toFixed(3);
+            }
+        );
+    }
+
+
+    function requestUpdate() {
+
+        if (ticking) {
+            return;
+        }
+
+
+        ticking =
+            true;
+
+
+        window.requestAnimationFrame(
+            updateHeroExplosion
+        );
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        requestUpdate,
+        {
+            passive:
+                true
+        }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        requestUpdate,
+        {
+            passive:
+                true
+        }
+    );
+
+
+    reduceMotion.addEventListener
+        ? reduceMotion.addEventListener(
+            "change",
+            requestUpdate
+        )
+        : reduceMotion.addListener(
+            requestUpdate
+        );
+
+
+    requestUpdate();
 
 })();
 </script></body>
