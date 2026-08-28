@@ -12982,6 +12982,196 @@ ursprünglichen Position, aber ohne Explosion.
 
 }
 
+
+
+/* ==========================================================
+   HERO EXPLOSION V3 – BIERTROPFEN & HOPFEN STATT SPLITTERN
+========================================================== */
+
+.hero-explosion-particle {
+
+    background:
+        transparent !important;
+}
+
+
+/*
+Biertropfen: warme goldene Bierfarbe
+mit leichtem Glanz.
+*/
+.hero-explosion-particle.particle-drop {
+
+    width:
+        14px;
+
+    height:
+        20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 236, 166, .98) 0%,
+            rgba(244, 201, 77, .96) 52%,
+            rgba(210, 164, 41, .94) 100%
+        ) !important;
+
+    clip-path:
+        path(
+            "M7 0 C10 3.4 14 8.8 14 13.2 C14 17.0 10.9 20 7 20 C3.1 20 0 17.0 0 13.2 C0 8.8 4 3.4 7 0 Z"
+        );
+
+    border-radius:
+        0;
+
+    box-shadow:
+        0 0 10px rgba(244, 201, 77, .18);
+}
+
+
+.hero-explosion-particle.particle-drop::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        2px;
+
+    top:
+        3px;
+
+    width:
+        4px;
+
+    height:
+        7px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(255, 250, 225, .48);
+}
+
+
+/*
+Hopfen: kleines hopfenartiges Blatt in Grün.
+*/
+.hero-explosion-particle.particle-hop {
+
+    width:
+        16px;
+
+    height:
+        20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(129, 166, 76, .98) 0%,
+            rgba(91, 128, 48, .96) 58%,
+            rgba(58, 94, 33, .94) 100%
+        ) !important;
+
+    clip-path:
+        polygon(
+            50% 0%,
+            68% 8%,
+            82% 22%,
+            88% 38%,
+            82% 55%,
+            70% 72%,
+            56% 88%,
+            50% 100%,
+            44% 88%,
+            30% 72%,
+            18% 55%,
+            12% 38%,
+            18% 22%,
+            32% 8%
+        );
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        0 0 10px rgba(91, 128, 48, .14);
+}
+
+
+.hero-explosion-particle.particle-hop::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        2px;
+
+    width:
+        1.4px;
+
+    height:
+        15px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        rgba(238, 244, 222, .64);
+
+    border-radius:
+        999px;
+}
+
+
+@media (max-width: 700px) {
+
+    .hero-explosion-particle.particle-drop {
+
+        width:
+            12px;
+
+        height:
+            17px;
+    }
+
+
+    .hero-explosion-particle.particle-hop {
+
+        width:
+            14px;
+
+        height:
+            17px;
+    }
+
+
+    .hero-explosion-particle.particle-drop::after {
+
+        width:
+            3px;
+
+        height:
+            6px;
+    }
+
+
+    .hero-explosion-particle.particle-hop::before {
+
+        height:
+            13px;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -13021,7 +13211,7 @@ ursprünglichen Position, aber ohne Explosion.
          EVENT BANNER – DESKTOP UND MOBIL DIREKT UNTER DER MENÜLEISTE
     ======================================================= -->
 <div aria-label="Kommende Events" class="marquee mobile-hero-marquee event-banner-bar"><div class="marquee-track"><a aria-label="Zum Afterwork Pregame am 03. September" class="event-marquee event-banner-item" data-event-index="0" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork × PREGAME</span><span class="event-date">03.09.2026</span><span class="event-time">ab 18 Uhr</span></a><span aria-hidden="true" class="event-banner-separator"></span><a aria-label="Zum Afterwork mit DJ Dan am 17. September" class="event-marquee event-banner-item" data-event-index="1" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork x DJ Dan</span><span class="event-date">17.09.2026</span><span class="event-time">ab 18:00 Uhr</span></a><span aria-hidden="true" class="event-banner-separator"></span><a aria-label="Zum Afterwork Pregame am 03. September" class="event-marquee event-banner-item" data-event-index="0" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork × PREGAME</span><span class="event-date">03.09.2026</span><span class="event-time">ab 18 Uhr</span></a><span aria-hidden="true" class="event-banner-separator"></span><a aria-label="Zum Afterwork mit DJ Dan am 17. September" class="event-marquee event-banner-item" data-event-index="1" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork x DJ Dan</span><span class="event-date">17.09.2026</span><span class="event-time">ab 18:00 Uhr</span></a></div></div>
-<div aria-hidden="true" class="hero-explosion-particles"><span class="hero-explosion-particle particle-line" data-dx="-165" data-dy="-105" data-rot="-42" data-scale="1.0"></span><span class="hero-explosion-particle particle-line" data-dx="172" data-dy="-112" data-rot="38" data-scale="0.92"></span><span class="hero-explosion-particle particle-dot" data-dx="-205" data-dy="-38" data-rot="-58" data-scale="0.88"></span><span class="hero-explosion-particle particle-dot" data-dx="210" data-dy="-26" data-rot="52" data-scale="0.82"></span><span class="hero-explosion-particle particle-line" data-dx="-190" data-dy="58" data-rot="-36" data-scale="0.92"></span><span class="hero-explosion-particle particle-line" data-dx="198" data-dy="72" data-rot="34" data-scale="0.86"></span><span class="hero-explosion-particle particle-dot" data-dx="-138" data-dy="138" data-rot="28" data-scale="0.78"></span><span class="hero-explosion-particle particle-dot" data-dx="146" data-dy="152" data-rot="-30" data-scale="0.84"></span><span class="hero-explosion-particle particle-line" data-dx="-72" data-dy="-172" data-rot="22" data-scale="0.74"></span><span class="hero-explosion-particle particle-dot" data-dx="82" data-dy="-180" data-rot="-24" data-scale="0.72"></span><span class="hero-explosion-particle particle-dot" data-dx="-30" data-dy="188" data-rot="-18" data-scale="0.72"></span><span class="hero-explosion-particle particle-line" data-dx="38" data-dy="205" data-rot="20" data-scale="0.68"></span><span class="hero-explosion-particle particle-dot" data-dx="-242" data-dy="-92" data-rot="-66" data-scale="0.66"></span><span class="hero-explosion-particle particle-dot" data-dx="248" data-dy="-84" data-rot="64" data-scale="0.64"></span><span class="hero-explosion-particle particle-line" data-dx="-232" data-dy="118" data-rot="-50" data-scale="0.62"></span><span class="hero-explosion-particle particle-line" data-dx="238" data-dy="130" data-rot="48" data-scale="0.66"></span><span class="hero-explosion-particle particle-dot" data-dx="-108" data-dy="-220" data-rot="34" data-scale="0.62"></span><span class="hero-explosion-particle particle-line" data-dx="118" data-dy="-228" data-rot="-32" data-scale="0.62"></span><span class="hero-explosion-particle particle-line" data-dx="-112" data-dy="230" data-rot="-26" data-scale="0.58"></span><span class="hero-explosion-particle particle-dot" data-dx="124" data-dy="244" data-rot="28" data-scale="0.58"></span><span class="hero-explosion-particle particle-line" data-dx="-278" data-dy="18" data-rot="-72" data-scale="0.54"></span><span class="hero-explosion-particle particle-line" data-dx="282" data-dy="30" data-rot="72" data-scale="0.54"></span><span class="hero-explosion-particle particle-dot" data-dx="-18" data-dy="-255" data-rot="14" data-scale="0.52"></span><span class="hero-explosion-particle particle-dot" data-dx="24" data-dy="268" data-rot="-14" data-scale="0.52"></span></div><div class="hero-inner">
+<div aria-hidden="true" class="hero-explosion-particles"><span class="hero-explosion-particle particle-drop" data-dx="-165" data-dy="-105" data-rot="-32" data-scale="1.02"></span><span class="hero-explosion-particle particle-hop" data-dx="172" data-dy="-112" data-rot="28" data-scale="0.98"></span><span class="hero-explosion-particle particle-drop" data-dx="-205" data-dy="-38" data-rot="-36" data-scale="0.96"></span><span class="hero-explosion-particle particle-hop" data-dx="210" data-dy="-26" data-rot="34" data-scale="0.92"></span><span class="hero-explosion-particle particle-hop" data-dx="-190" data-dy="58" data-rot="-22" data-scale="0.92"></span><span class="hero-explosion-particle particle-drop" data-dx="198" data-dy="72" data-rot="20" data-scale="0.88"></span><span class="hero-explosion-particle particle-hop" data-dx="-138" data-dy="138" data-rot="18" data-scale="0.82"></span><span class="hero-explosion-particle particle-drop" data-dx="146" data-dy="152" data-rot="-16" data-scale="0.84"></span><span class="hero-explosion-particle particle-hop" data-dx="-72" data-dy="-172" data-rot="24" data-scale="0.8"></span><span class="hero-explosion-particle particle-drop" data-dx="82" data-dy="-180" data-rot="-22" data-scale="0.78"></span><span class="hero-explosion-particle particle-hop" data-dx="-30" data-dy="188" data-rot="-14" data-scale="0.76"></span><span class="hero-explosion-particle particle-drop" data-dx="38" data-dy="205" data-rot="16" data-scale="0.74"></span><span class="hero-explosion-particle particle-drop" data-dx="-242" data-dy="-92" data-rot="-42" data-scale="0.72"></span><span class="hero-explosion-particle particle-hop" data-dx="248" data-dy="-84" data-rot="40" data-scale="0.7"></span><span class="hero-explosion-particle particle-hop" data-dx="-232" data-dy="118" data-rot="-28" data-scale="0.7"></span><span class="hero-explosion-particle particle-drop" data-dx="238" data-dy="130" data-rot="26" data-scale="0.72"></span><span class="hero-explosion-particle particle-hop" data-dx="-108" data-dy="-220" data-rot="18" data-scale="0.68"></span><span class="hero-explosion-particle particle-drop" data-dx="118" data-dy="-228" data-rot="-18" data-scale="0.68"></span><span class="hero-explosion-particle particle-hop" data-dx="-112" data-dy="230" data-rot="-20" data-scale="0.66"></span><span class="hero-explosion-particle particle-drop" data-dx="124" data-dy="244" data-rot="20" data-scale="0.66"></span><span class="hero-explosion-particle particle-drop" data-dx="-278" data-dy="18" data-rot="-44" data-scale="0.62"></span><span class="hero-explosion-particle particle-hop" data-dx="282" data-dy="30" data-rot="44" data-scale="0.62"></span><span class="hero-explosion-particle particle-drop" data-dx="-18" data-dy="-255" data-rot="12" data-scale="0.6"></span><span class="hero-explosion-particle particle-hop" data-dx="24" data-dy="268" data-rot="-12" data-scale="0.6"></span></div><div class="hero-inner">
 <div class="hero-eyebrow">
 
             Friedensplatz · Darmstadt
