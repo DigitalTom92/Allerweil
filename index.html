@@ -12720,6 +12720,268 @@ bleibt die Startseite vollständig ruhig.
 
 }
 
+
+
+/* ==========================================================
+   HERO EXPLOSION V2 – KREISE WIEDER SICHTBAR + DEUTLICH STÄRKER
+
+   Wichtig:
+   Die Kreise waren ursprünglich seitlich angeschnitten und
+   nutzten nur translateY(-50%). Der erste Explosionseffekt
+   hatte zusätzlich translate(-50%, -50%) gesetzt und sie damit
+   fast komplett aus dem sichtbaren Bereich verschoben.
+
+   Hier wird die ursprüngliche Geometrie wiederhergestellt.
+========================================================== */
+
+.hero {
+
+    --hero-ring-x-1:
+        0px;
+
+    --hero-ring-y-1:
+        0px;
+
+    --hero-ring-x-2:
+        0px;
+
+    --hero-ring-y-2:
+        0px;
+
+    --hero-ring-1:
+        1;
+
+    --hero-ring-2:
+        1;
+
+    --hero-ring-opacity-1:
+        .11;
+
+    --hero-ring-opacity-2:
+        .15;
+}
+
+
+/*
+LINKER KREIS:
+ursprüngliche Position wieder exakt beibehalten.
+*/
+.hero::before {
+
+    transform:
+        translateY(
+            -50%
+        )
+        translate3d(
+            var(--hero-ring-x-1),
+            var(--hero-ring-y-1),
+            0
+        )
+        scale(
+            var(--hero-ring-1)
+        )
+        rotate(
+            var(--hero-ring-rot-1, 0deg)
+        ) !important;
+
+    border-color:
+        rgba(
+            254,
+            230,
+            202,
+            var(--hero-ring-opacity-1)
+        ) !important;
+
+    opacity:
+        1 !important;
+}
+
+
+/*
+RECHTER KREIS:
+ebenfalls wieder wie vorher seitlich sichtbar.
+*/
+.hero::after {
+
+    transform:
+        translateY(
+            -50%
+        )
+        translate3d(
+            var(--hero-ring-x-2),
+            var(--hero-ring-y-2),
+            0
+        )
+        scale(
+            var(--hero-ring-2)
+        )
+        rotate(
+            var(--hero-ring-rot-2, 0deg)
+        ) !important;
+
+    border-color:
+        rgba(
+            254,
+            230,
+            202,
+            var(--hero-ring-opacity-2)
+        ) !important;
+
+    opacity:
+        1 !important;
+}
+
+
+/*
+Mehr "Spreng"-Charakter:
+die einzelnen Hero-Bestandteile dürfen deutlich weiter fliegen.
+*/
+.hero-logo,
+.hero-logo-mobile-file,
+.hero-quote-line,
+.hero-quote-author,
+.hero-actions,
+.hero-eyebrow {
+
+    transform-origin:
+        center;
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+}
+
+
+/*
+Partikel größer und klarer sichtbar.
+*/
+.hero-explosion-particles {
+
+    width:
+        min(
+            760px,
+            94vw
+        );
+
+    height:
+        min(
+            600px,
+            76vh
+        );
+
+    z-index:
+        6;
+}
+
+
+.hero-explosion-particle {
+
+    background:
+        rgba(
+            254,
+            230,
+            202,
+            .88
+        );
+}
+
+
+.hero-explosion-particle.particle-dot {
+
+    width:
+        7px;
+
+    height:
+        7px;
+}
+
+
+.hero-explosion-particle.particle-line {
+
+    width:
+        28px;
+
+    height:
+        2px;
+}
+
+
+@media (max-width: 700px) {
+
+    .hero-explosion-particles {
+
+        width:
+            96vw;
+
+        height:
+            66vh;
+    }
+
+
+    .hero-explosion-particle.particle-dot {
+
+        width:
+            6px;
+
+        height:
+            6px;
+    }
+
+
+    .hero-explosion-particle.particle-line {
+
+        width:
+            22px;
+
+        height:
+            2px;
+    }
+
+}
+
+
+/*
+Reduced Motion: Kreise bleiben sichtbar in ihrer
+ursprünglichen Position, aber ohne Explosion.
+*/
+@media (prefers-reduced-motion: reduce) {
+
+    .hero::before {
+
+        transform:
+            translateY(
+                -50%
+            ) !important;
+
+        border-color:
+            rgba(
+                254,
+                230,
+                202,
+                .11
+            ) !important;
+    }
+
+
+    .hero::after {
+
+        transform:
+            translateY(
+                -50%
+            ) !important;
+
+        border-color:
+            rgba(
+                254,
+                230,
+                202,
+                .15
+            ) !important;
+    }
+
+}
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -12759,7 +13021,7 @@ bleibt die Startseite vollständig ruhig.
          EVENT BANNER – DESKTOP UND MOBIL DIREKT UNTER DER MENÜLEISTE
     ======================================================= -->
 <div aria-label="Kommende Events" class="marquee mobile-hero-marquee event-banner-bar"><div class="marquee-track"><a aria-label="Zum Afterwork Pregame am 03. September" class="event-marquee event-banner-item" data-event-index="0" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork × PREGAME</span><span class="event-date">03.09.2026</span><span class="event-time">ab 18 Uhr</span></a><span aria-hidden="true" class="event-banner-separator"></span><a aria-label="Zum Afterwork mit DJ Dan am 17. September" class="event-marquee event-banner-item" data-event-index="1" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork x DJ Dan</span><span class="event-date">17.09.2026</span><span class="event-time">ab 18:00 Uhr</span></a><span aria-hidden="true" class="event-banner-separator"></span><a aria-label="Zum Afterwork Pregame am 03. September" class="event-marquee event-banner-item" data-event-index="0" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork × PREGAME</span><span class="event-date">03.09.2026</span><span class="event-time">ab 18 Uhr</span></a><span aria-hidden="true" class="event-banner-separator"></span><a aria-label="Zum Afterwork mit DJ Dan am 17. September" class="event-marquee event-banner-item" data-event-index="1" href="#event"><span class="event-small">Next Event</span><span class="event-title">Afterwork x DJ Dan</span><span class="event-date">17.09.2026</span><span class="event-time">ab 18:00 Uhr</span></a></div></div>
-<div aria-hidden="true" class="hero-explosion-particles"><span class="hero-explosion-particle particle-dot" data-dx="-78" data-dy="-48" data-rot="-18" data-scale="1.0"></span><span class="hero-explosion-particle particle-dot" data-dx="74" data-dy="-54" data-rot="16" data-scale="0.82"></span><span class="hero-explosion-particle particle-line" data-dx="-98" data-dy="8" data-rot="-26" data-scale="0.72"></span><span class="hero-explosion-particle particle-line" data-dx="96" data-dy="14" data-rot="24" data-scale="0.78"></span><span class="hero-explosion-particle particle-dot" data-dx="-58" data-dy="62" data-rot="18" data-scale="0.68"></span><span class="hero-explosion-particle particle-dot" data-dx="62" data-dy="70" data-rot="-20" data-scale="0.74"></span><span class="hero-explosion-particle particle-line" data-dx="-24" data-dy="-86" data-rot="12" data-scale="0.62"></span><span class="hero-explosion-particle particle-dot" data-dx="28" data-dy="-92" data-rot="-10" data-scale="0.66"></span><span class="hero-explosion-particle particle-dot" data-dx="-118" data-dy="-24" data-rot="-32" data-scale="0.58"></span><span class="hero-explosion-particle particle-dot" data-dx="122" data-dy="-18" data-rot="30" data-scale="0.58"></span><span class="hero-explosion-particle particle-line" data-dx="-88" data-dy="92" data-rot="-28" data-scale="0.55"></span><span class="hero-explosion-particle particle-line" data-dx="92" data-dy="98" data-rot="28" data-scale="0.55"></span><span class="hero-explosion-particle particle-dot" data-dx="-12" data-dy="112" data-rot="14" data-scale="0.52"></span><span class="hero-explosion-particle particle-dot" data-dx="14" data-dy="126" data-rot="-14" data-scale="0.5"></span></div><div class="hero-inner">
+<div aria-hidden="true" class="hero-explosion-particles"><span class="hero-explosion-particle particle-line" data-dx="-165" data-dy="-105" data-rot="-42" data-scale="1.0"></span><span class="hero-explosion-particle particle-line" data-dx="172" data-dy="-112" data-rot="38" data-scale="0.92"></span><span class="hero-explosion-particle particle-dot" data-dx="-205" data-dy="-38" data-rot="-58" data-scale="0.88"></span><span class="hero-explosion-particle particle-dot" data-dx="210" data-dy="-26" data-rot="52" data-scale="0.82"></span><span class="hero-explosion-particle particle-line" data-dx="-190" data-dy="58" data-rot="-36" data-scale="0.92"></span><span class="hero-explosion-particle particle-line" data-dx="198" data-dy="72" data-rot="34" data-scale="0.86"></span><span class="hero-explosion-particle particle-dot" data-dx="-138" data-dy="138" data-rot="28" data-scale="0.78"></span><span class="hero-explosion-particle particle-dot" data-dx="146" data-dy="152" data-rot="-30" data-scale="0.84"></span><span class="hero-explosion-particle particle-line" data-dx="-72" data-dy="-172" data-rot="22" data-scale="0.74"></span><span class="hero-explosion-particle particle-dot" data-dx="82" data-dy="-180" data-rot="-24" data-scale="0.72"></span><span class="hero-explosion-particle particle-dot" data-dx="-30" data-dy="188" data-rot="-18" data-scale="0.72"></span><span class="hero-explosion-particle particle-line" data-dx="38" data-dy="205" data-rot="20" data-scale="0.68"></span><span class="hero-explosion-particle particle-dot" data-dx="-242" data-dy="-92" data-rot="-66" data-scale="0.66"></span><span class="hero-explosion-particle particle-dot" data-dx="248" data-dy="-84" data-rot="64" data-scale="0.64"></span><span class="hero-explosion-particle particle-line" data-dx="-232" data-dy="118" data-rot="-50" data-scale="0.62"></span><span class="hero-explosion-particle particle-line" data-dx="238" data-dy="130" data-rot="48" data-scale="0.66"></span><span class="hero-explosion-particle particle-dot" data-dx="-108" data-dy="-220" data-rot="34" data-scale="0.62"></span><span class="hero-explosion-particle particle-line" data-dx="118" data-dy="-228" data-rot="-32" data-scale="0.62"></span><span class="hero-explosion-particle particle-line" data-dx="-112" data-dy="230" data-rot="-26" data-scale="0.58"></span><span class="hero-explosion-particle particle-dot" data-dx="124" data-dy="244" data-rot="28" data-scale="0.58"></span><span class="hero-explosion-particle particle-line" data-dx="-278" data-dy="18" data-rot="-72" data-scale="0.54"></span><span class="hero-explosion-particle particle-line" data-dx="282" data-dy="30" data-rot="72" data-scale="0.54"></span><span class="hero-explosion-particle particle-dot" data-dx="-18" data-dy="-255" data-rot="14" data-scale="0.52"></span><span class="hero-explosion-particle particle-dot" data-dx="24" data-dy="268" data-rot="-14" data-scale="0.52"></span></div><div class="hero-inner">
 <div class="hero-eyebrow">
 
             Friedensplatz · Darmstadt
@@ -18844,7 +19106,9 @@ function activateExternalServices(
 })();
 </script><script>
 /* ==========================================================
-   HERO – SCROLLGESTEUERTES, SANFTES "EXPLODIEREN"
+   HERO – SCROLLGESTEUERTE EXPLOSION V2
+   Beim Runterscrollen sprengt sich der komplette Hero sichtbar
+   auseinander. Beim Hochscrollen setzt sich alles wieder zusammen.
 ========================================================== */
 
 (function () {
@@ -18894,7 +19158,11 @@ function activateExternalServices(
     }
 
 
-    function easeOutCubic(
+    /*
+    Etwas aggressiver als vorher:
+    Die Bewegung startet schnell und zieht danach weiter.
+    */
+    function easeOutQuart(
         value
     ) {
 
@@ -18902,7 +19170,7 @@ function activateExternalServices(
             1 -
             Math.pow(
                 1 - value,
-                3
+                4
             )
         );
     }
@@ -18916,8 +19184,14 @@ function activateExternalServices(
 
         if (reduceMotion.matches) {
 
-            hero.style.removeProperty(
-                "--hero-fade"
+            hero.style.setProperty(
+                "--hero-fade",
+                "1"
+            );
+
+            hero.style.setProperty(
+                "--hero-blur",
+                "0px"
             );
 
             particles.forEach(
@@ -18933,16 +19207,16 @@ function activateExternalServices(
 
 
         /*
-        Der Effekt beginnt direkt beim Verlassen der Startseite,
-        ist aber bewusst erst nach rund 65 % einer Bildschirmhöhe
-        vollständig abgeschlossen.
+        Explosion über ca. 75 % einer Bildschirmhöhe.
+        Dadurch passiert beim normalen Runterscrollen sichtbar
+        eine komplette Zerlegung, bevor die nächste Sektion kommt.
         */
         const distance =
             Math.max(
                 1,
                 Math.min(
-                    hero.offsetHeight * .72,
-                    window.innerHeight * .68
+                    hero.offsetHeight * .78,
+                    window.innerHeight * .74
                 )
             );
 
@@ -18957,22 +19231,26 @@ function activateExternalServices(
 
 
         const progress =
-            easeOutCubic(
+            easeOutQuart(
                 rawProgress
             );
 
 
         /*
-        Inhalt nie komplett brutal "wegknipsen":
-        bis 96 % ausblenden, dadurch wirkt es weich.
+        Die Elemente verschwinden fast vollständig.
         */
         const fade =
-            1 -
-            progress * .96;
+            Math.max(
+                0,
+                1 -
+                progress *
+                1.08
+            );
 
 
         const blur =
-            progress * 1.15;
+            progress *
+            3.1;
 
 
         hero.style.setProperty(
@@ -18983,146 +19261,236 @@ function activateExternalServices(
 
         hero.style.setProperty(
             "--hero-blur",
-            blur.toFixed(2) + "px"
+            blur.toFixed(2) +
+            "px"
         );
 
 
         /*
-        Logo leicht nach links/oben.
+        LOGO:
+        deutlich nach links/oben + drehen + leicht vergrößern.
         */
         hero.style.setProperty(
             "--hero-logo-x",
-            (-18 * progress).toFixed(2) + "px"
+            (-115 * progress).toFixed(2) +
+            "px"
         );
 
         hero.style.setProperty(
             "--hero-logo-y",
-            (-24 * progress).toFixed(2) + "px"
+            (-92 * progress).toFixed(2) +
+            "px"
         );
 
         hero.style.setProperty(
             "--hero-logo-rot",
-            (-1.25 * progress).toFixed(3) + "deg"
+            (-8.5 * progress).toFixed(3) +
+            "deg"
         );
 
         hero.style.setProperty(
             "--hero-logo-scale",
-            (1 + .025 * progress).toFixed(4)
+            (
+                1 +
+                .12 *
+                progress
+            ).toFixed(4)
         );
 
 
         /*
-        Satzzeilen auseinanderziehen.
+        SPRUCHZEILE 1:
+        links / leicht nach unten.
         */
         hero.style.setProperty(
             "--hero-line1-x",
-            (-26 * progress).toFixed(2) + "px"
+            (-150 * progress).toFixed(2) +
+            "px"
         );
 
         hero.style.setProperty(
             "--hero-line1-y",
-            (5 * progress).toFixed(2) + "px"
+            (46 * progress).toFixed(2) +
+            "px"
         );
 
         hero.style.setProperty(
             "--hero-line1-rot",
-            (-.65 * progress).toFixed(3) + "deg"
-        );
-
-
-        hero.style.setProperty(
-            "--hero-line2-x",
-            (28 * progress).toFixed(2) + "px"
-        );
-
-        hero.style.setProperty(
-            "--hero-line2-y",
-            (-3 * progress).toFixed(2) + "px"
-        );
-
-        hero.style.setProperty(
-            "--hero-line2-rot",
-            (.72 * progress).toFixed(3) + "deg"
-        );
-
-
-        hero.style.setProperty(
-            "--hero-author-x",
-            (-12 * progress).toFixed(2) + "px"
-        );
-
-        hero.style.setProperty(
-            "--hero-author-y",
-            (18 * progress).toFixed(2) + "px"
-        );
-
-
-        hero.style.setProperty(
-            "--hero-actions-x",
-            (10 * progress).toFixed(2) + "px"
-        );
-
-        hero.style.setProperty(
-            "--hero-actions-y",
-            (24 * progress).toFixed(2) + "px"
+            (-7.2 * progress).toFixed(3) +
+            "deg"
         );
 
 
         /*
-        Hintergrundkreise expandieren wie eine sehr leichte
-        Druckwelle und verschwinden dabei.
+        SPRUCHZEILE 2:
+        entgegengesetzt nach rechts / oben.
         */
         hero.style.setProperty(
+            "--hero-line2-x",
+            (165 * progress).toFixed(2) +
+            "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-line2-y",
+            (-52 * progress).toFixed(2) +
+            "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-line2-rot",
+            (8.2 * progress).toFixed(3) +
+            "deg"
+        );
+
+
+        /*
+        Autor nach links unten.
+        */
+        hero.style.setProperty(
+            "--hero-author-x",
+            (-92 * progress).toFixed(2) +
+            "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-author-y",
+            (98 * progress).toFixed(2) +
+            "px"
+        );
+
+
+        /*
+        Buttons nach rechts unten.
+        */
+        hero.style.setProperty(
+            "--hero-actions-x",
+            (105 * progress).toFixed(2) +
+            "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-actions-y",
+            (118 * progress).toFixed(2) +
+            "px"
+        );
+
+
+        /*
+        KREISE:
+        bleiben am Anfang exakt sichtbar wie vorher.
+        Beim Scrollen fliegen sie kräftig nach außen,
+        wachsen wie eine Druckwelle und verblassen erst spät.
+        */
+        hero.style.setProperty(
+            "--hero-ring-x-1",
+            (-205 * progress).toFixed(2) +
+            "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-ring-y-1",
+            (38 * progress).toFixed(2) +
+            "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-ring-x-2",
+            (205 * progress).toFixed(2) +
+            "px"
+        );
+
+        hero.style.setProperty(
+            "--hero-ring-y-2",
+            (-42 * progress).toFixed(2) +
+            "px"
+        );
+
+
+        hero.style.setProperty(
             "--hero-ring-1",
-            (1 + .23 * progress).toFixed(4)
+            (
+                1 +
+                .42 *
+                progress
+            ).toFixed(4)
         );
 
         hero.style.setProperty(
             "--hero-ring-2",
-            (1 + .16 * progress).toFixed(4)
+            (
+                1 +
+                .36 *
+                progress
+            ).toFixed(4)
         );
+
 
         hero.style.setProperty(
             "--hero-ring-rot-1",
-            (7 * progress).toFixed(3) + "deg"
+            (22 * progress).toFixed(3) +
+            "deg"
         );
 
         hero.style.setProperty(
             "--hero-ring-rot-2",
-            (-9 * progress).toFixed(3) + "deg"
+            (-26 * progress).toFixed(3) +
+            "deg"
         );
+
+
+        /*
+        Kreise erst ab ca. 35 % Scroll stärker ausblenden,
+        damit sie am Anfang wieder klar vorhanden sind.
+        */
+        const ringFade =
+            clamp(
+                (
+                    rawProgress -
+                    .34
+                ) /
+                .66,
+                0,
+                1
+            );
+
 
         hero.style.setProperty(
             "--hero-ring-opacity-1",
-            Math.max(
-                0,
-                .035 *
+            (
+                .11 *
                 (
-                    1 - progress
+                    1 -
+                    ringFade
                 )
             ).toFixed(4)
         );
 
         hero.style.setProperty(
             "--hero-ring-opacity-2",
-            Math.max(
-                0,
-                .045 *
+            (
+                .15 *
                 (
-                    1 - progress
+                    1 -
+                    ringFade
                 )
             ).toFixed(4)
         );
 
 
         /*
-        Partikel tauchen kurz auf und fliegen radial auseinander.
-        Peak ungefähr in der Mitte der Bewegung.
+        PARTIKEL:
+        sehr kurzer Initial-Burst, dann fliegen sie weit auseinander.
         */
-        const burst =
-            Math.sin(
-                rawProgress *
-                Math.PI
+        const burstOpacity =
+            clamp(
+                Math.sin(
+                    rawProgress *
+                    Math.PI
+                ) *
+                1.28,
+                0,
+                1
             );
 
 
@@ -19153,24 +19521,32 @@ function activateExternalServices(
                     ) || 1;
 
 
-                /*
-                Auf Mobil minimal kürzere Wege,
-                damit es nicht zu wild wirkt.
-                */
                 const mobileFactor =
                     window.innerWidth <= 700
-                        ? .76
+                        ? .72
                         : 1;
+
+
+                /*
+                Weg wächst überproportional.
+                */
+                const flight =
+                    progress *
+                    (
+                        .72 +
+                        .48 *
+                        progress
+                    );
 
 
                 const tx =
                     dx *
-                    progress *
+                    flight *
                     mobileFactor;
 
                 const ty =
                     dy *
-                    progress *
+                    flight *
                     mobileFactor;
 
 
@@ -19183,7 +19559,8 @@ function activateExternalServices(
                     "rotate(" +
                     (
                         rot *
-                        progress
+                        progress *
+                        1.35
                     ).toFixed(2) +
                     "deg) " +
                     "scale(" +
@@ -19191,8 +19568,8 @@ function activateExternalServices(
                         scale *
                         (
                             .72 +
-                            .28 *
-                            burst
+                            .62 *
+                            progress
                         )
                     ).toFixed(3) +
                     ")";
@@ -19200,14 +19577,13 @@ function activateExternalServices(
 
                 particle.style.opacity =
                     (
-                        burst *
-                        .55 *
+                        burstOpacity *
                         (
-                            .82 +
+                            .66 +
                             (
-                                index % 3
+                                index % 4
                             ) *
-                            .07
+                            .08
                         )
                     ).toFixed(3);
             }
@@ -19252,14 +19628,22 @@ function activateExternalServices(
     );
 
 
-    reduceMotion.addEventListener
-        ? reduceMotion.addEventListener(
+    if (
+        typeof reduceMotion.addEventListener ===
+        "function"
+    ) {
+
+        reduceMotion.addEventListener(
             "change",
             requestUpdate
-        )
-        : reduceMotion.addListener(
+        );
+
+    } else {
+
+        reduceMotion.addListener(
             requestUpdate
         );
+    }
 
 
     requestUpdate();
