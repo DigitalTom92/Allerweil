@@ -13191,6 +13191,14 @@ Hopfen: kleines hopfenartiges Blatt in Grün.
         none !important;
 }
 
+
+
+/* ==========================================================
+   HERO EXPLOSION – LANGSAMERER SCROLLVERLAUF
+   Die Optik bleibt gleich, nur die Explosion verteilt sich
+   über einen längeren Scrollweg.
+========================================================== */
+
 </style>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/></head>
 <body>
@@ -19420,12 +19428,19 @@ function activateExternalServices(
         Dadurch passiert beim normalen Runterscrollen sichtbar
         eine komplette Zerlegung, bevor die nächste Sektion kommt.
         */
+        /*
+        Langsamere Explosion:
+        Der komplette Effekt verteilt sich jetzt über deutlich
+        mehr Scrollweg. Dadurch bewegt sich bei kleinen
+        Scrollbewegungen weniger und alles sprengt sich
+        wesentlich ruhiger auseinander.
+        */
         const distance =
             Math.max(
                 1,
                 Math.min(
-                    hero.offsetHeight * .78,
-                    window.innerHeight * .74
+                    hero.offsetHeight * 1.22,
+                    window.innerHeight * 1.16
                 )
             );
 
